@@ -1,5 +1,12 @@
+# データ管理ツール（プライベートリポジトリで管理）
+tools/
+
 # wiki HTML キャッシュ（大容量・著作権）
 data/ms_html_cache/
+
+# URL一覧・生テキスト（プライベートリポジトリで管理）
+data/ms_url_list.json
+data/ms_urls.txt
 
 # Python
 tools/__pycache__/
