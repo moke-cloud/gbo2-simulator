@@ -1,1 +1,3946 @@
-{"totalMS": 0, "msList": []}
+{
+  "totalMS": 563,
+  "msList": [
+    {
+      "name": "ザクⅠ",
+      "pageId": 351,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/351.html",
+      "category": "強襲",
+      "minCost": 100
+    },
+    {
+      "name": "ジム・ライトアーマー",
+      "pageId": 360,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/360.html",
+      "category": "強襲",
+      "minCost": 100
+    },
+    {
+      "name": "アッガイ",
+      "pageId": 345,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/345.html",
+      "category": "強襲",
+      "minCost": 200
+    },
+    {
+      "name": "アッグ［ML装備］",
+      "pageId": 2745,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2745.html",
+      "category": "強襲",
+      "minCost": 200
+    },
+    {
+      "name": "ドラッツェ",
+      "pageId": 837,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/837.html",
+      "category": "強襲",
+      "minCost": 200
+    },
+    {
+      "name": "アッグガイ",
+      "pageId": 2062,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2062.html",
+      "category": "強襲",
+      "minCost": 250
+    },
+    {
+      "name": "グフ",
+      "pageId": 349,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/349.html",
+      "category": "強襲",
+      "minCost": 250
+    },
+    {
+      "name": "ジム・ナイトシーカーⅡ",
+      "pageId": 2220,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2220.html",
+      "category": "強襲",
+      "minCost": 250
+    },
+    {
+      "name": "ヅダ",
+      "pageId": 124,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/124.html",
+      "category": "強襲",
+      "minCost": 250
+    },
+    {
+      "name": "陸戦用ジム",
+      "pageId": 1793,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1793.html",
+      "category": "強襲",
+      "minCost": 250
+    },
+    {
+      "name": "アッガイ【TB】",
+      "pageId": 5484,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5484.html",
+      "category": "強襲",
+      "minCost": 300
+    },
+    {
+      "name": "イフリート（DS）",
+      "pageId": 1149,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1149.html",
+      "category": "強襲",
+      "minCost": 300
+    },
+    {
+      "name": "ゴッグ",
+      "pageId": 1734,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1734.html",
+      "category": "強襲",
+      "minCost": 300
+    },
+    {
+      "name": "ザク・フリッパー",
+      "pageId": 1783,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1783.html",
+      "category": "強襲",
+      "minCost": 300
+    },
+    {
+      "name": "ザクⅡFS型（SM）",
+      "pageId": 1296,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1296.html",
+      "category": "強襲",
+      "minCost": 300
+    },
+    {
+      "name": "ザクⅡ（KG）",
+      "pageId": 4625,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4625.html",
+      "category": "強襲",
+      "minCost": 300
+    },
+    {
+      "name": "ジム・ガードカスタム",
+      "pageId": 1265,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1265.html",
+      "category": "強襲",
+      "minCost": 300
+    },
+    {
+      "name": "ジム［ギャザーロード隊仕様］",
+      "pageId": 4803,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4803.html",
+      "category": "強襲",
+      "minCost": 300
+    },
+    {
+      "name": "ジム・コマンドLA",
+      "pageId": 3995,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3995.html",
+      "category": "強襲",
+      "minCost": 300
+    },
+    {
+      "name": "ジム・ストライカー",
+      "pageId": 119,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/119.html",
+      "category": "強襲",
+      "minCost": 300
+    },
+    {
+      "name": "ズゴック",
+      "pageId": 405,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/405.html",
+      "category": "強襲",
+      "minCost": 300
+    },
+    {
+      "name": "マ・クベ専用グフ",
+      "pageId": 5940,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5940.html",
+      "category": "強襲",
+      "minCost": 300
+    },
+    {
+      "name": "アッグジン",
+      "pageId": 5218,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5218.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "イフリート改",
+      "pageId": 621,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/621.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "イフリート・ナハト",
+      "pageId": 1111,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1111.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "グフ・カスタム",
+      "pageId": 364,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/364.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "グフ・ホバータイプ",
+      "pageId": 6146,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6146.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "ゲルググG",
+      "pageId": 3388,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3388.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "ジム・ストライカー改",
+      "pageId": 1627,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1627.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "ドム高速実験型",
+      "pageId": 1308,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1308.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "ハイブースト・ジム",
+      "pageId": 4521,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4521.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "ブルーディスティニー1号機",
+      "pageId": 623,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/623.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "プロトタイプガンダム",
+      "pageId": 738,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/738.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "ペイルライダー［軽装備仕様］",
+      "pageId": 7249,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7249.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "ホビー・ハイザック",
+      "pageId": 5233,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5233.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "ラムズゴック",
+      "pageId": 2525,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2525.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "陸戦型ガンダム［ジム頭］",
+      "pageId": 5698,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5698.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "陸戦高機動型ザク（AS）",
+      "pageId": 3602,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3602.html",
+      "category": "強襲",
+      "minCost": 350
+    },
+    {
+      "name": "アクト・ザク［指揮官仕様］",
+      "pageId": 1213,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1213.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ガンダムピクシー",
+      "pageId": 711,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/711.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ガンダムEz8［HMC］",
+      "pageId": 5928,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5928.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ギャン",
+      "pageId": 147,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/147.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "グフ・フライトタイプ",
+      "pageId": 1975,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1975.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ゲルググM",
+      "pageId": 1357,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1357.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "サイコミュ高機動試験機",
+      "pageId": 1438,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1438.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ジム改陸戦型［CB装備］【TB】",
+      "pageId": 4748,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4748.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ジム・クゥエル",
+      "pageId": 1949,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1949.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ジム・スパルタン［BD隊仕様］",
+      "pageId": 3776,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3776.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ジムⅡ・セミストライカー",
+      "pageId": 3303,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3303.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ジュリック",
+      "pageId": 5317,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5317.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ジーライン・アサルトアーマー",
+      "pageId": 1595,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1595.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ジーライン・ライトアーマー",
+      "pageId": 1425,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1425.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ズゴックE",
+      "pageId": 785,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/785.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "デザート・ザク（DR）",
+      "pageId": 4694,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4694.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ドム・レゾナンス【TB】",
+      "pageId": 5820,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5820.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ドワッジ",
+      "pageId": 945,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/945.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ブルーディスティニー2号機",
+      "pageId": 1003,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1003.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "ペイルライダー・デュラハン",
+      "pageId": 2652,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2652.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "メタル・スパイダー",
+      "pageId": 5282,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5282.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "リック・ドムⅡ（GH）",
+      "pageId": 1629,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1629.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "レッドライダー",
+      "pageId": 3044,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3044.html",
+      "category": "強襲",
+      "minCost": 400
+    },
+    {
+      "name": "アレックス［C・A装備］",
+      "pageId": 4860,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4860.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "ガンダム5号機",
+      "pageId": 1260,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1260.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "グール",
+      "pageId": 5193,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5193.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "高機動型ガルバルディα",
+      "pageId": 3084,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3084.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "高機動型ゲルググ（JR）",
+      "pageId": 6858,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6858.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "ジムⅢ［近接戦仕様］",
+      "pageId": 2928,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2928.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "シャア専用ゲルググ",
+      "pageId": 4195,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4195.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "シルバー・ヘイズ改",
+      "pageId": 4655,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4655.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "ストライカー・カスタム",
+      "pageId": 2000,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2000.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "デザート・ゲルググ",
+      "pageId": 2037,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2037.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "ドルメル",
+      "pageId": 4911,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4911.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "ネロ・トレーナー",
+      "pageId": 3579,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3579.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "ブラックライダー",
+      "pageId": 3816,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3816.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "G-3ガンダム",
+      "pageId": 152,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/152.html",
+      "category": "強襲",
+      "minCost": 450
+    },
+    {
+      "name": "赤いガンダム",
+      "pageId": 6657,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6657.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "エンゲージゼロ［追加BST装備型］",
+      "pageId": 5525,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5525.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "ガズエル",
+      "pageId": 2957,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2957.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "ガンダムピクシー（LA）",
+      "pageId": 3653,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3653.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "ガンダム5号機Bst",
+      "pageId": 2460,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2460.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "高機動型ゲルググ（GK）",
+      "pageId": 4446,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4446.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "サイコ・ザク マークⅡ【TB】",
+      "pageId": 4834,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4834.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "ジム・ナイトシーカー（V）",
+      "pageId": 2551,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2551.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "ジム・NS［宇宙戦仕様］（V）",
+      "pageId": 3219,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3219.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "シュツルム・ガルス",
+      "pageId": 4164,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4164.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "ティターニア",
+      "pageId": 3692,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3692.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "フルアーマー・ガンダム【TB】",
+      "pageId": 539,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/539.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "プロトΖガンダム［X1型］",
+      "pageId": 6163,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6163.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "ヘイズル2号機",
+      "pageId": 3853,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3853.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "ボリノーク・サマーン",
+      "pageId": 2265,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2265.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "R・ジャジャ",
+      "pageId": 2412,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2412.html",
+      "category": "強襲",
+      "minCost": 500
+    },
+    {
+      "name": "ウーンドウォート・ラーⅡ",
+      "pageId": 7130,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7130.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "エンゲージガンダム［BST装備］",
+      "pageId": 5726,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5726.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "ガズエル・グラウ",
+      "pageId": 3673,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3673.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "ガンダム試作2号機［BB仕様］",
+      "pageId": 1481,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1481.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "ガーベラ・テトラ",
+      "pageId": 1549,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1549.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "ギャプラン",
+      "pageId": 2129,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2129.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "ギラ・ドーガ［サイコミュ試験型］",
+      "pageId": 5668,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5668.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "ギラ・ドーガ（FF）",
+      "pageId": 7480,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7480.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "ジェガン（CH）",
+      "pageId": 4980,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4980.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "スパーブ・ジェガン",
+      "pageId": 6913,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6913.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "ゼク・アイン［第1種兵装］",
+      "pageId": 4084,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4084.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "ゼー・ズール",
+      "pageId": 3941,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3941.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "バウ",
+      "pageId": 2598,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2598.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "百式",
+      "pageId": 1900,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1900.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "ヘイズル改［イカロス・U装備］",
+      "pageId": 6048,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6048.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "ヘイズル改［高機動仕様］",
+      "pageId": 4366,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4366.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "ムーシカ",
+      "pageId": 5569,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5569.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "リ・ガズィ",
+      "pageId": 3343,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3343.html",
+      "category": "強襲",
+      "minCost": 550
+    },
+    {
+      "name": "アトラスガンダム（BC）【TB】",
+      "pageId": 5831,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5831.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "オーヴェロン［アーマー形態］",
+      "pageId": 6729,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6729.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "ガンダムデルタカイ［陸戦仕様］",
+      "pageId": 6200,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6200.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "ガンダム・端白星",
+      "pageId": 7437,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7437.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "キハールⅡ",
+      "pageId": 7085,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7085.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "ギャプラン（I0）",
+      "pageId": 5639,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5639.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "ギラ・ズール（EH）",
+      "pageId": 4384,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4384.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "ゲルググ・ウェルテクス",
+      "pageId": 3212,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3212.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "シャッコー",
+      "pageId": 7287,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7287.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "ディジェ［ルオ商会仕様］",
+      "pageId": 5406,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5406.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "バイアラン・カスタム",
+      "pageId": 3539,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3539.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "ハンブラビ",
+      "pageId": 2334,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2334.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "ヘビーガンダム（I0）",
+      "pageId": 5770,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5770.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "リック・ディアスⅡ",
+      "pageId": 2997,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2997.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "リック・ディジェ改",
+      "pageId": 4025,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4025.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "RFグフ",
+      "pageId": 6412,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6412.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "RFズゴック",
+      "pageId": 6488,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6488.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "Sガンダム",
+      "pageId": 4717,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4717.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "ΖプラスA1型",
+      "pageId": 2479,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2479.html",
+      "category": "強襲",
+      "minCost": 600
+    },
+    {
+      "name": "ガンダムMk-Ⅴ",
+      "pageId": 2860,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2860.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "キュベレイMk-Ⅱ",
+      "pageId": 2658,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2658.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "ザクⅢ改",
+      "pageId": 3278,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3278.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "ジェスタ［シェザール隊仕様A］",
+      "pageId": 4595,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4595.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "ディジェ（CA）",
+      "pageId": 3116,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3116.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "ディマーテル",
+      "pageId": 6105,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6105.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "デルタプラス",
+      "pageId": 4097,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4097.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "ナラティブガンダム［C装備］",
+      "pageId": 5403,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5403.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "バウンド・ドック",
+      "pageId": 4217,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4217.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "バルギル",
+      "pageId": 3718,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3718.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "フェイルノート",
+      "pageId": 6877,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6877.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "プロトタイプΖΖガンダム",
+      "pageId": 6521,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6521.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "メッサーF02型",
+      "pageId": 5904,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5904.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "ヤクト・ドーガ（GG）",
+      "pageId": 3417,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3417.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "リゼルC型［DaU装備］",
+      "pageId": 6320,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6320.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "RFケンプファー",
+      "pageId": 7268,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7268.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "Ζガンダム3号機P2型",
+      "pageId": 6455,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6455.html",
+      "category": "強襲",
+      "minCost": 650
+    },
+    {
+      "name": "ウイングガンダムゼロ【EW】",
+      "pageId": 6994,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6994.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "ガンダム・バルバトスルプス",
+      "pageId": 7435,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7435.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "強化型ΖΖガンダム",
+      "pageId": 3916,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3916.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "ザクⅣ（IP）",
+      "pageId": 3968,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3968.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "サザビー初期試験型",
+      "pageId": 5862,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5862.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "シナンジュ・スタイン（ZA）",
+      "pageId": 4474,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4474.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "ナイチンゲール",
+      "pageId": 5073,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5073.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "バンシィ",
+      "pageId": 4300,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4300.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "ヘイズル・アウスラ［GAU装備］",
+      "pageId": 6831,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6831.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "ペーネロペー",
+      "pageId": 5971,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5971.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "ユニコーンガンダム［覚醒］",
+      "pageId": 6350,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6350.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "F89",
+      "pageId": 7379,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7379.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "F90［MZ仕様］",
+      "pageId": 6697,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6697.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "RX-93ff νガンダム",
+      "pageId": 5014,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5014.html",
+      "category": "強襲",
+      "minCost": 700
+    },
+    {
+      "name": "クラスターガンダム",
+      "pageId": 7169,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7169.html",
+      "category": "強襲",
+      "minCost": 750
+    },
+    {
+      "name": "クロスボーン・ガンダムX2改",
+      "pageId": 6947,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6947.html",
+      "category": "強襲",
+      "minCost": 750
+    },
+    {
+      "name": "クロスボーン・ガンダムX3",
+      "pageId": 7247,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7247.html",
+      "category": "強襲",
+      "minCost": 750
+    },
+    {
+      "name": "ビギナ・ギナⅡ［木星決戦仕様］",
+      "pageId": 7221,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7221.html",
+      "category": "強襲",
+      "minCost": 750
+    },
+    {
+      "name": "F90Ⅱ［Iタイプ］",
+      "pageId": 6764,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6764.html",
+      "category": "強襲",
+      "minCost": 750
+    },
+    {
+      "name": "V2ガンダム",
+      "pageId": 7498,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7498.html",
+      "category": "強襲",
+      "minCost": 750
+    },
+    {
+      "name": "ザクⅡ",
+      "pageId": 343,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/343.html",
+      "category": "汎用",
+      "minCost": 100
+    },
+    {
+      "name": "ジム",
+      "pageId": 341,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/341.html",
+      "category": "汎用",
+      "minCost": 100
+    },
+    {
+      "name": "ジム・トレーナー",
+      "pageId": 358,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/358.html",
+      "category": "汎用",
+      "minCost": 100
+    },
+    {
+      "name": "ザクⅡFS型",
+      "pageId": 366,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/366.html",
+      "category": "汎用",
+      "minCost": 150
+    },
+    {
+      "name": "陸戦型ジム",
+      "pageId": 519,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/519.html",
+      "category": "汎用",
+      "minCost": 150
+    },
+    {
+      "name": "ゲム・カモフ",
+      "pageId": 1374,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1374.html",
+      "category": "汎用",
+      "minCost": 200
+    },
+    {
+      "name": "ザク強行偵察型",
+      "pageId": 1617,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1617.html",
+      "category": "汎用",
+      "minCost": 200
+    },
+    {
+      "name": "ザク・デザートタイプ",
+      "pageId": 811,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/811.html",
+      "category": "汎用",
+      "minCost": 200
+    },
+    {
+      "name": "ザク・マインレイヤー",
+      "pageId": 1436,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1436.html",
+      "category": "汎用",
+      "minCost": 200
+    },
+    {
+      "name": "ザクⅡS型",
+      "pageId": 548,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/548.html",
+      "category": "汎用",
+      "minCost": 200
+    },
+    {
+      "name": "ジム改",
+      "pageId": 148,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/148.html",
+      "category": "汎用",
+      "minCost": 200
+    },
+    {
+      "name": "ジム・ナイトシーカー",
+      "pageId": 869,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/869.html",
+      "category": "汎用",
+      "minCost": 200
+    },
+    {
+      "name": "ザク・マリンタイプ",
+      "pageId": 2720,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2720.html",
+      "category": "汎用",
+      "minCost": 250
+    },
+    {
+      "name": "ザクⅡ改",
+      "pageId": 380,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/380.html",
+      "category": "汎用",
+      "minCost": 250
+    },
+    {
+      "name": "ジム寒冷地仕様",
+      "pageId": 762,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/762.html",
+      "category": "汎用",
+      "minCost": 250
+    },
+    {
+      "name": "ジム・コマンド",
+      "pageId": 565,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/565.html",
+      "category": "汎用",
+      "minCost": 250
+    },
+    {
+      "name": "ジム・コマンド宇宙戦仕様",
+      "pageId": 698,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/698.html",
+      "category": "汎用",
+      "minCost": 250
+    },
+    {
+      "name": "装甲強化型ジム",
+      "pageId": 1215,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1215.html",
+      "category": "汎用",
+      "minCost": 250
+    },
+    {
+      "name": "ドラッツェ改",
+      "pageId": 1557,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1557.html",
+      "category": "汎用",
+      "minCost": 250
+    },
+    {
+      "name": "ブグ（RR）【GTO】",
+      "pageId": 5700,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5700.html",
+      "category": "汎用",
+      "minCost": 250
+    },
+    {
+      "name": "陸戦型ジム［WR装備］",
+      "pageId": 5018,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5018.html",
+      "category": "汎用",
+      "minCost": 250
+    },
+    {
+      "name": "アクア・ジム",
+      "pageId": 2617,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2617.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "アッガイ火力型A【TB】",
+      "pageId": 5486,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5486.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "イフリート",
+      "pageId": 713,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/713.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "グフ重装型",
+      "pageId": 3520,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3520.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "グフ（VD）",
+      "pageId": 1128,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1128.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "高機動型ザク",
+      "pageId": 118,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/118.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "ザク・ハーフキャノン（MB）",
+      "pageId": 3606,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3606.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "ザクⅠ（GS）",
+      "pageId": 953,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/953.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "ザクⅡ改［フリッツヘルム仕様］",
+      "pageId": 907,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/907.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "ザクⅡ後期型",
+      "pageId": 835,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/835.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "ジムⅡ",
+      "pageId": 1853,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1853.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "ジムⅡ［M・S社仕様］",
+      "pageId": 6915,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6915.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "ジム［WD隊仕様］",
+      "pageId": 1126,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1126.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "装甲強化型ジム（BA）",
+      "pageId": 5906,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5906.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "ドズル・ザビ専用ザクⅡ",
+      "pageId": 6107,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6107.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "ドム",
+      "pageId": 120,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/120.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "ドム・トロピカルテストタイプ",
+      "pageId": 2199,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2199.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "陸戦型ガンダム",
+      "pageId": 116,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/116.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "陸戦高機動型ザク",
+      "pageId": 874,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/874.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "リック・ドム",
+      "pageId": 122,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/122.html",
+      "category": "汎用",
+      "minCost": 300
+    },
+    {
+      "name": "アクト・ザク",
+      "pageId": 1031,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1031.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "ガッシャ",
+      "pageId": 1064,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1064.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "ガンダムEz8",
+      "pageId": 368,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/368.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "グフ飛行試験型",
+      "pageId": 1732,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1732.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "ゲルググ",
+      "pageId": 567,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/567.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "ゲルググ［袖付き仕様］",
+      "pageId": 7500,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7500.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "ザクⅡ［シュトゥッツァー］",
+      "pageId": 3975,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3975.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "ジム・インターセプトカスタムFB",
+      "pageId": 1409,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1409.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "ジム・レイド",
+      "pageId": 5077,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5077.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "シャア専用ズゴック",
+      "pageId": 6300,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6300.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "水中型ガンダム",
+      "pageId": 2715,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2715.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "スライフレイル",
+      "pageId": 5942,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5942.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "スレイヴ・レイス",
+      "pageId": 1147,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1147.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "ゾゴック",
+      "pageId": 910,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/910.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "ドム・トローペン",
+      "pageId": 333,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/333.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "ハイゴッグ",
+      "pageId": 767,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/767.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "パワード・ジム",
+      "pageId": 335,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/335.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "ペイルライダー・キャバルリー",
+      "pageId": 1709,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1709.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "リック・ドム（AG）",
+      "pageId": 7078,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7078.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "リック・ドムⅡ",
+      "pageId": 1249,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1249.html",
+      "category": "汎用",
+      "minCost": 350
+    },
+    {
+      "name": "アクト・ハイザック",
+      "pageId": 7135,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7135.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ガザC",
+      "pageId": 2378,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2378.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ガルバルディα",
+      "pageId": 1166,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1166.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ガンキャノン重装型タイプD",
+      "pageId": 1791,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1791.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ガンダム",
+      "pageId": 353,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/353.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ガンダムEX",
+      "pageId": 6176,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6176.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ギャン・エーオース",
+      "pageId": 1267,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1267.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "グフ［Fユニット装備］【TB】",
+      "pageId": 4785,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4785.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ゲルググL",
+      "pageId": 6638,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6638.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "高機動型ザク後期型",
+      "pageId": 700,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/700.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "高機動型ザクⅡ［06R-3S］",
+      "pageId": 7046,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7046.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ザクダイバー",
+      "pageId": 3973,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3973.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ジム・カスタム",
+      "pageId": 1477,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1477.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ジム・スナイパーⅡ［WD隊仕様］",
+      "pageId": 1199,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1199.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ジム・ドミナンス",
+      "pageId": 3199,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3199.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ジム・ドミナンス［水中用装備］",
+      "pageId": 5160,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5160.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ジムⅡ・ウェポンテスター",
+      "pageId": 6885,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6885.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ジムⅢ",
+      "pageId": 150,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/150.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ジーライン・スタンダードアーマー",
+      "pageId": 1469,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1469.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "先行量産型ゲルググ",
+      "pageId": 151,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/151.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ヅダF",
+      "pageId": 1687,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1687.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ディザート・ザク",
+      "pageId": 4411,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4411.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ネモ",
+      "pageId": 1806,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1806.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ハイザック",
+      "pageId": 1830,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1830.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ブルーディスティニー3号機",
+      "pageId": 1005,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1005.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ペイルライダー［空間戦仕様］",
+      "pageId": 1615,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1615.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ペイルライダー［陸戦重装備仕様］",
+      "pageId": 1090,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1090.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "ペズン・ドワッジ",
+      "pageId": 1063,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1063.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "陸戦型ゲルググ（VD）",
+      "pageId": 1201,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1201.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "リック・ドム［シュトゥッツァー］",
+      "pageId": 4016,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4016.html",
+      "category": "汎用",
+      "minCost": 400
+    },
+    {
+      "name": "アレックス",
+      "pageId": 955,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/955.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "イフリート・イェーガー",
+      "pageId": 3655,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3655.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "エンゲージゼロ",
+      "pageId": 5523,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5523.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ガザD",
+      "pageId": 3171,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3171.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ガ・ゾウム",
+      "pageId": 3315,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3315.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ガルバルディβ",
+      "pageId": 1917,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1917.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ガンダム4号機",
+      "pageId": 1228,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1228.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ガンダム（CD）",
+      "pageId": 6834,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6834.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ゲルググ［シュトゥッツァー］",
+      "pageId": 4497,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4497.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ゲルググM指揮官機",
+      "pageId": 1535,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1535.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ケンプファー",
+      "pageId": 957,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/957.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "高機動型ゲルググ",
+      "pageId": 858,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/858.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "高機動型ゲルググ（UL）",
+      "pageId": 1723,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1723.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "高機動型ゲルググ（VG）",
+      "pageId": 1323,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1323.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ザク・マシーナリー",
+      "pageId": 5799,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5799.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ジェダ",
+      "pageId": 3451,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3451.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ジム・スパルタン（RG）",
+      "pageId": 3697,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3697.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ジムⅢパワード",
+      "pageId": 3500,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3500.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "白いガンダム",
+      "pageId": 6806,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6806.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ドワス改",
+      "pageId": 2836,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2836.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ドワッジ改",
+      "pageId": 2229,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2229.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ネロ",
+      "pageId": 3361,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3361.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "バーザム",
+      "pageId": 2176,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2176.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "フルアーマーガンダム陸戦タイプ",
+      "pageId": 1960,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1960.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ペイルライダー（VG）",
+      "pageId": 3134,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3134.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "マラサイ",
+      "pageId": 2018,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2018.html",
+      "category": "汎用",
+      "minCost": 450
+    },
+    {
+      "name": "ガザG",
+      "pageId": 5268,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5268.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ガズアル",
+      "pageId": 2955,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2955.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "カプール",
+      "pageId": 2909,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2909.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ガルスJ",
+      "pageId": 2365,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2365.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ガルバルディβ（FS）",
+      "pageId": 3239,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3239.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ガンダム4号機Bst",
+      "pageId": 2458,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2458.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ガンダム7号機",
+      "pageId": 5512,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5512.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ガンダムMk-Ⅱ",
+      "pageId": 1874,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1874.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ギャプランTR-5",
+      "pageId": 5254,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5254.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ギラ・ドーガ",
+      "pageId": 3086,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3086.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "高機動型ケンプファー",
+      "pageId": 5527,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5527.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "サイコ・ザク【TB】",
+      "pageId": 541,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/541.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ジェガン",
+      "pageId": 3060,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3060.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ジェガンD型",
+      "pageId": 3714,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3714.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ズサ［袖付き仕様］",
+      "pageId": 5464,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5464.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ドルメル・ドゥーエ",
+      "pageId": 5344,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5344.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ナラティブガンダム",
+      "pageId": 6457,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6457.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "バイアラン",
+      "pageId": 2876,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2876.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "バーザム改",
+      "pageId": 3565,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3565.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ヘイズル改",
+      "pageId": 3750,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3750.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "メタス［重装備仕様］",
+      "pageId": 2581,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2581.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "リゲルグ",
+      "pageId": 2637,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2637.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "リック・ディアス",
+      "pageId": 1801,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1801.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "ロゼット［強化陸戦形態］",
+      "pageId": 6713,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6713.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "FA・ストライカー・カスタム",
+      "pageId": 4462,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4462.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "GQuuuuuuX（ジークアクス）",
+      "pageId": 6810,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6810.html",
+      "category": "汎用",
+      "minCost": 500
+    },
+    {
+      "name": "アッシマー",
+      "pageId": 2215,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2215.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "イフリート・シュナイド",
+      "pageId": 3305,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3305.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ガンダム試作1号機",
+      "pageId": 1479,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1479.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ガンダム試作1号機［アクア装備］",
+      "pageId": 4679,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4679.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ガンダム試作1号機Fb",
+      "pageId": 1574,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1574.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ガンダム試作3号機ステイメン",
+      "pageId": 1515,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1515.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ガンダムMk-Ⅱ［メガラニカ所属］",
+      "pageId": 6376,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6376.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ガンダムMk-Ⅲ",
+      "pageId": 2241,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2241.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ガーベラ・テトラ改",
+      "pageId": 6778,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6778.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ギラ・ズール",
+      "pageId": 3787,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3787.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ギラ・ドーガ改",
+      "pageId": 5050,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5050.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ザクⅢ",
+      "pageId": 2943,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2943.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ザクⅢ［サイコミュ装備型］",
+      "pageId": 6125,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6125.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ジェガン［エコーズ仕様］",
+      "pageId": 3960,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3960.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ジェガン重装型",
+      "pageId": 5063,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5063.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ジオング",
+      "pageId": 1642,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1642.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "スタークジェガン",
+      "pageId": 3865,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3865.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ゼク・アイン［第3種兵装］",
+      "pageId": 2779,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2779.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "零式",
+      "pageId": 2318,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2318.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ディジェ",
+      "pageId": 2162,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2162.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "デスパーダ",
+      "pageId": 4896,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4896.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ドライセン",
+      "pageId": 2509,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2509.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "パーフェクト・ガンダム【TB】",
+      "pageId": 5596,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5596.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ブルG【TB】",
+      "pageId": 5204,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5204.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ヘイズル・アウスラ",
+      "pageId": 4959,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4959.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ヤクト・ドーガ［袖付き仕様］",
+      "pageId": 6489,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6489.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "量産型百式改",
+      "pageId": 4548,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4548.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "量産型Ζガンダム",
+      "pageId": 6090,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6090.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "ロズウェル・ジェガン",
+      "pageId": 5786,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5786.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "EWACジェガン",
+      "pageId": 3901,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3901.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "FAガンダムMk-Ⅱ",
+      "pageId": 3639,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3639.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "Ζガンダム［ザク頭］",
+      "pageId": 4472,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4472.html",
+      "category": "汎用",
+      "minCost": 550
+    },
+    {
+      "name": "アトラスガンダム【TB】",
+      "pageId": 4796,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4796.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "アンクシャ",
+      "pageId": 5373,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5373.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ヴィクトリーガンダム",
+      "pageId": 7285,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7285.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "エンゲージゼロ・ヨンファヴィン",
+      "pageId": 6029,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6029.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "オーヴェロン",
+      "pageId": 5748,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5748.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ガブスレイ",
+      "pageId": 2283,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2283.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ガンダムデルタアンス",
+      "pageId": 6471,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6471.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ガンダムMk-Ⅳ",
+      "pageId": 4998,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4998.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ゲルググ・V・キュアノス",
+      "pageId": 4349,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4349.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ジェガン［バーナム所属機］",
+      "pageId": 7104,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7104.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ジェスタ",
+      "pageId": 4255,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4255.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "シルヴァ・バレト［F試験型］",
+      "pageId": 6292,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6292.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ゾロアット",
+      "pageId": 7333,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7333.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ディジェSE-R",
+      "pageId": 2677,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2677.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "トリスタン",
+      "pageId": 2560,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2560.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ドーベン・ウルフ",
+      "pageId": 2700,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2700.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "バイアラン・イゾルデ",
+      "pageId": 4145,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4145.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ハイゼンスレイ",
+      "pageId": 4627,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4627.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "百式改",
+      "pageId": 3838,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3838.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ヘビーガン",
+      "pageId": 6622,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6622.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "メッサーラ",
+      "pageId": 3516,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3516.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "リ・ガズィ・カスタム",
+      "pageId": 3439,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3439.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "リゼル",
+      "pageId": 4030,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4030.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "量産型νガンダム",
+      "pageId": 5653,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5653.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "量産型ΖΖガンダム",
+      "pageId": 4925,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4925.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "RFザク",
+      "pageId": 6395,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6395.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "Ζガンダム",
+      "pageId": 2077,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2077.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ΖプラスA2型",
+      "pageId": 6228,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6228.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "ΖⅡ",
+      "pageId": 3154,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3154.html",
+      "category": "汎用",
+      "minCost": 600
+    },
+    {
+      "name": "アビゴル",
+      "pageId": 7478,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7478.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "ガンダムデルタカイ",
+      "pageId": 4404,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4404.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "ガンダムGファースト",
+      "pageId": 6240,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6240.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "ガンダムMk-Ⅴ［MP装備］",
+      "pageId": 6216,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6216.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "ガンブラスター",
+      "pageId": 7403,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7403.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "キュベレイ",
+      "pageId": 2435,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2435.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "グスタフ・カール",
+      "pageId": 4546,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4546.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "サイコ・ドーガ",
+      "pageId": 5128,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5128.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "サイコバウ",
+      "pageId": 5851,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5851.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "シルヴァ・バレト",
+      "pageId": 4321,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4321.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "ジ・O",
+      "pageId": 2838,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2838.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "ゼク・ツヴァイ",
+      "pageId": 4737,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4737.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "ディジェ・トラバーシア",
+      "pageId": 5294,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5294.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "デナン・ゾン",
+      "pageId": 6537,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6537.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "トーリス・リッター",
+      "pageId": 2818,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2818.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "ナラティブガンダム［B装備］",
+      "pageId": 4571,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4571.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "ファーヴニル",
+      "pageId": 6064,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6064.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "フライルー・ラーⅡ",
+      "pageId": 5991,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5991.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "フルアーマー陸戦型Ζガンダム",
+      "pageId": 6737,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6737.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "プロトタイプ・サイコ・ガンダム",
+      "pageId": 6680,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6680.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "メッサーF01型",
+      "pageId": 5702,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5702.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "リバウ",
+      "pageId": 4050,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4050.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "Ex-Sガンダム",
+      "pageId": 2794,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2794.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "GFタンク",
+      "pageId": 6338,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6338.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "RFドム",
+      "pageId": 6607,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6607.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "Ζガンダム3号機A型",
+      "pageId": 5620,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5620.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "ΖΖガンダム",
+      "pageId": 2376,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2376.html",
+      "category": "汎用",
+      "minCost": 650
+    },
+    {
+      "name": "アマクサ",
+      "pageId": 7116,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7116.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "クシャトリヤ・リペアード",
+      "pageId": 6298,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6298.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "サザビー",
+      "pageId": 3359,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3359.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "シナンジュ",
+      "pageId": 4189,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4189.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "ダギ・イルス",
+      "pageId": 6856,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6856.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "デスティニーガンダム",
+      "pageId": 7202,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7202.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "トールギスⅢ",
+      "pageId": 6996,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6996.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "ハイゼンスレイⅡ・ラー",
+      "pageId": 7344,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7344.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "バンシィ・ノルン",
+      "pageId": 5440,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5440.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "フェネクス【NT】",
+      "pageId": 4605,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4605.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "ベルガ・ギロス［B・V仕様］",
+      "pageId": 6967,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6967.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "ムーンガンダム",
+      "pageId": 3731,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3731.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "ユニコーンガンダム",
+      "pageId": 4271,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4271.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "FA・ユニコーンガンダム",
+      "pageId": 5886,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5886.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "F90",
+      "pageId": 6533,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6533.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "F90Iタイプ［木星決戦仕様］",
+      "pageId": 7234,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7234.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "Hi-νガンダム",
+      "pageId": 5071,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5071.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "νガンダム",
+      "pageId": 3357,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3357.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "Ξガンダム",
+      "pageId": 5938,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5938.html",
+      "category": "汎用",
+      "minCost": 700
+    },
+    {
+      "name": "クロスボーン・ガンダムX1改",
+      "pageId": 6911,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6911.html",
+      "category": "汎用",
+      "minCost": 750
+    },
+    {
+      "name": "クロスボーン・ガンダムX1FC",
+      "pageId": 7281,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7281.html",
+      "category": "汎用",
+      "minCost": 750
+    },
+    {
+      "name": "シルエットガンダム改",
+      "pageId": 7182,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7182.html",
+      "category": "汎用",
+      "minCost": 750
+    },
+    {
+      "name": "F91",
+      "pageId": 6535,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6535.html",
+      "category": "汎用",
+      "minCost": 750
+    },
+    {
+      "name": "ザク・キャノン",
+      "pageId": 385,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/385.html",
+      "category": "支援",
+      "minCost": 100
+    },
+    {
+      "name": "ジム・キャノン",
+      "pageId": 347,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/347.html",
+      "category": "支援",
+      "minCost": 100
+    },
+    {
+      "name": "ギガン",
+      "pageId": 1168,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1168.html",
+      "category": "支援",
+      "minCost": 200
+    },
+    {
+      "name": "ザクⅠ指揮官仕様",
+      "pageId": 895,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/895.html",
+      "category": "支援",
+      "minCost": 200
+    },
+    {
+      "name": "ザクⅡ［重装備仕様］",
+      "pageId": 1325,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1325.html",
+      "category": "支援",
+      "minCost": 200
+    },
+    {
+      "name": "ザニー［地上仕様］",
+      "pageId": 3604,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3604.html",
+      "category": "支援",
+      "minCost": 200
+    },
+    {
+      "name": "ジム・スナイパー",
+      "pageId": 339,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/339.html",
+      "category": "支援",
+      "minCost": 200
+    },
+    {
+      "name": "ギガン［空間戦仕様］",
+      "pageId": 3581,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3581.html",
+      "category": "支援",
+      "minCost": 250
+    },
+    {
+      "name": "ザク・キャノン［ラビットタイプ］",
+      "pageId": 1612,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1612.html",
+      "category": "支援",
+      "minCost": 250
+    },
+    {
+      "name": "ジム・キャノン［空間突撃仕様］",
+      "pageId": 1692,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1692.html",
+      "category": "支援",
+      "minCost": 250
+    },
+    {
+      "name": "デザート・ジム",
+      "pageId": 833,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/833.html",
+      "category": "支援",
+      "minCost": 250
+    },
+    {
+      "name": "量産型ガンタンク",
+      "pageId": 399,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/399.html",
+      "category": "支援",
+      "minCost": 250
+    },
+    {
+      "name": "アッガイ索敵型【TB】",
+      "pageId": 5488,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5488.html",
+      "category": "支援",
+      "minCost": 300
+    },
+    {
+      "name": "ザク・タンク［砲撃仕様］",
+      "pageId": 331,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/331.html",
+      "category": "支援",
+      "minCost": 300
+    },
+    {
+      "name": "ザク・デザートタイプ［DA仕様］",
+      "pageId": 2693,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2693.html",
+      "category": "支援",
+      "minCost": 300
+    },
+    {
+      "name": "ザク・ハーフキャノン",
+      "pageId": 2770,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2770.html",
+      "category": "支援",
+      "minCost": 300
+    },
+    {
+      "name": "ザクⅠ・スナイパータイプ",
+      "pageId": 123,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/123.html",
+      "category": "支援",
+      "minCost": 300
+    },
+    {
+      "name": "ザクⅡ［狙撃型］（HH）",
+      "pageId": 3608,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3608.html",
+      "category": "支援",
+      "minCost": 300
+    },
+    {
+      "name": "ジム改［シャドウズWR仕様］",
+      "pageId": 4801,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4801.html",
+      "category": "支援",
+      "minCost": 300
+    },
+    {
+      "name": "ジム・スナイパーカスタム",
+      "pageId": 362,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/362.html",
+      "category": "支援",
+      "minCost": 300
+    },
+    {
+      "name": "ドラッツェ改［重装備型］",
+      "pageId": 2802,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2802.html",
+      "category": "支援",
+      "minCost": 300
+    },
+    {
+      "name": "陸戦型ガンダム［WR装備］",
+      "pageId": 890,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/890.html",
+      "category": "支援",
+      "minCost": 300
+    },
+    {
+      "name": "量産型ガンキャノン",
+      "pageId": 793,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/793.html",
+      "category": "支援",
+      "minCost": 300
+    },
+    {
+      "name": "ガンキャノン",
+      "pageId": 121,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/121.html",
+      "category": "支援",
+      "minCost": 350
+    },
+    {
+      "name": "ガンキャノン・アクア【TB】",
+      "pageId": 4769,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4769.html",
+      "category": "支援",
+      "minCost": 350
+    },
+    {
+      "name": "ガンキャノン［SML装備］",
+      "pageId": 1813,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1813.html",
+      "category": "支援",
+      "minCost": 350
+    },
+    {
+      "name": "ガンダムEz8［WR装備］",
+      "pageId": 2053,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2053.html",
+      "category": "支援",
+      "minCost": 350
+    },
+    {
+      "name": "ガンタンク",
+      "pageId": 337,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/337.html",
+      "category": "支援",
+      "minCost": 350
+    },
+    {
+      "name": "ガンタンクⅡ",
+      "pageId": 2079,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2079.html",
+      "category": "支援",
+      "minCost": 350
+    },
+    {
+      "name": "ジム・SC［ML装備］",
+      "pageId": 3066,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3066.html",
+      "category": "支援",
+      "minCost": 350
+    },
+    {
+      "name": "ジュアッグ",
+      "pageId": 926,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/926.html",
+      "category": "支援",
+      "minCost": 350
+    },
+    {
+      "name": "ドム・キャノン［単砲仕様］",
+      "pageId": 2339,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2339.html",
+      "category": "支援",
+      "minCost": 350
+    },
+    {
+      "name": "ドム・キャノン［複砲仕様］",
+      "pageId": 1395,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1395.html",
+      "category": "支援",
+      "minCost": 350
+    },
+    {
+      "name": "ドム［重装備仕様］",
+      "pageId": 5075,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5075.html",
+      "category": "支援",
+      "minCost": 350
+    },
+    {
+      "name": "ビショップ",
+      "pageId": 1405,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1405.html",
+      "category": "支援",
+      "minCost": 350
+    },
+    {
+      "name": "アイザック",
+      "pageId": 2615,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2615.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "ガザCZ",
+      "pageId": 7381,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7381.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "ガザE",
+      "pageId": 4704,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4704.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "ガンキャノン重装型",
+      "pageId": 5256,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5256.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "ガンキャノンⅡ",
+      "pageId": 1048,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1048.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "ガンナーガンダム",
+      "pageId": 1292,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1292.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "ザク・マリナー",
+      "pageId": 4193,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4193.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "ジム・キャノンⅡ",
+      "pageId": 1576,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1576.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "ジム・スナイパーⅡ",
+      "pageId": 149,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/149.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "ジムSPⅢ［中距離支援ユニット］",
+      "pageId": 4511,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4511.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "ドム・バラッジ",
+      "pageId": 968,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/968.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "ヒルドルブ",
+      "pageId": 1453,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1453.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "フルアーマー・スレイヴ・レイス",
+      "pageId": 3363,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3363.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "陸戦型ゲルググ",
+      "pageId": 1091,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1091.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "陸戦強襲型ガンタンク",
+      "pageId": 1372,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1372.html",
+      "category": "支援",
+      "minCost": 400
+    },
+    {
+      "name": "ウーンドウォート",
+      "pageId": 5181,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5181.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "ガ・ゾウム［ガンナータイプ］",
+      "pageId": 4532,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4532.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "ガンキャノン・ディテクター",
+      "pageId": 2148,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2148.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "ゲルググ・キャノン",
+      "pageId": 813,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/813.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "ゲルググJ",
+      "pageId": 1241,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1241.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "ジーライン・フルカスタム",
+      "pageId": 1983,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1983.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "ゾック",
+      "pageId": 1673,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1673.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "ネモ・カノン",
+      "pageId": 4993,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4993.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "ハイザック・カスタム",
+      "pageId": 1855,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1855.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "ハイザック・キャノン［増加装甲］",
+      "pageId": 4179,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4179.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "フルアーマー・アレックス",
+      "pageId": 5434,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5434.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "フルアーマーガンダム",
+      "pageId": 696,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/696.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "プロトタイプケンプファー",
+      "pageId": 7029,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7029.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "ペイルライダーDⅡ",
+      "pageId": 3928,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3928.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "ヘビーガンダム",
+      "pageId": 1188,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1188.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "ホワイトライダー",
+      "pageId": 3818,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3818.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "マドロック",
+      "pageId": 1019,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1019.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "EWACネロ",
+      "pageId": 5741,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5741.html",
+      "category": "支援",
+      "minCost": 450
+    },
+    {
+      "name": "エンゲージゼロ［インコム搭載型］",
+      "pageId": 5913,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5913.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ガルスK",
+      "pageId": 3552,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3552.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ガルバルディβ高機動型［T仕様］",
+      "pageId": 4397,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4397.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ガンダム試作0号機",
+      "pageId": 4844,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4844.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ゲルググキャノン（JN）",
+      "pageId": 3618,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3618.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ザク・マシーナリー（EB）",
+      "pageId": 5801,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5801.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ザメル",
+      "pageId": 674,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/674.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ジム・シューター",
+      "pageId": 6378,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6378.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ジムⅢパワードFA",
+      "pageId": 3883,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3883.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ジャムル・フィン",
+      "pageId": 3663,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3663.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ズサ",
+      "pageId": 2685,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2685.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ドム・ノーミーデス",
+      "pageId": 3701,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3701.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ネティクス",
+      "pageId": 6077,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6077.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ネモⅢ",
+      "pageId": 2309,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2309.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "フルアーマーガンダム［タイプB］",
+      "pageId": 1768,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1768.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "プロト・スタークジェガン",
+      "pageId": 3333,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3333.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "ロト",
+      "pageId": 5466,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5466.html",
+      "category": "支援",
+      "minCost": 500
+    },
+    {
+      "name": "アドバンスド・ヘイズル",
+      "pageId": 4644,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4644.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "アルス・ジャジャ",
+      "pageId": 3801,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3801.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "エンゲージガンダム［I装備］",
+      "pageId": 6322,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6322.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "ガンダム試作2号機［MLRS］",
+      "pageId": 1660,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1660.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "ガンダム試作4号機",
+      "pageId": 1741,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1741.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "ガンタンクR-44",
+      "pageId": 7283,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7283.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "ギラ・ドーガ［重武装仕様］",
+      "pageId": 3508,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3508.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "ジェダキャノン",
+      "pageId": 5331,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5331.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "シスクード",
+      "pageId": 4876,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4876.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "シュツルム・ディアス［NZ仕様］",
+      "pageId": 2351,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2351.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "スーパーガンダム",
+      "pageId": 1936,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/1936.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "ゼク・アイン［第2種兵装］",
+      "pageId": 2777,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2777.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "零式弐型（AR）",
+      "pageId": 3105,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3105.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "パラス・アテネ",
+      "pageId": 2527,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2527.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "フルアーマーガンダム7号機",
+      "pageId": 2194,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2194.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "リック・ディジェ",
+      "pageId": 3480,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3480.html",
+      "category": "支援",
+      "minCost": 550
+    },
+    {
+      "name": "ガブスレイβ",
+      "pageId": 6902,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6902.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "ギラ・ズール（アンジェロ機）",
+      "pageId": 4066,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4066.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "ゲルググ・V・クサントス",
+      "pageId": 4374,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4374.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "ザクⅣ",
+      "pageId": 4434,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4434.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "ジェスタ・キャノン",
+      "pageId": 4332,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4332.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "ディジェ・アサルトパッケージ",
+      "pageId": 5583,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5583.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "デルタガンダム",
+      "pageId": 4239,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4239.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "バイアラン・カスタム2号機",
+      "pageId": 6259,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6259.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "ハンマ・ハンマ",
+      "pageId": 2451,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2451.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "メタス改",
+      "pageId": 3269,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3269.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "リガズィード",
+      "pageId": 5036,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5036.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "陸戦用百式改",
+      "pageId": 5145,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5145.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "量産型νガンダム［F・F装備］",
+      "pageId": 6012,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6012.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "FAガンダムMk-Ⅲ",
+      "pageId": 4006,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4006.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "FAZZ",
+      "pageId": 2754,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2754.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "Gキャノン",
+      "pageId": 6794,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6794.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "ΖプラスC1型",
+      "pageId": 2730,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2730.html",
+      "category": "支援",
+      "minCost": 600
+    },
+    {
+      "name": "キャノンガン",
+      "pageId": 6138,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6138.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "ゲーマルク",
+      "pageId": 2975,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2975.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "ジェスタ［シェザール隊仕様B］",
+      "pageId": 4566,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4566.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "シルヴァ・バレト・サプレッサー",
+      "pageId": 5387,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5387.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "フルアーマー・オーヴェロン",
+      "pageId": 6505,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6505.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "フルアーマー百式改",
+      "pageId": 2892,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/2892.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "ヤクト・ドーガ（QA）",
+      "pageId": 3458,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3458.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "リゼルC型［DbU装備］",
+      "pageId": 4664,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4664.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "量産型キュベレイ",
+      "pageId": 3183,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3183.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "FAエンゲージガンダム［Aプラン］",
+      "pageId": 7417,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7417.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "Gキャノン・マグナ",
+      "pageId": 7098,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7098.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "RFゲルググ",
+      "pageId": 6640,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6640.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "Vダッシュガンダムヘキサ",
+      "pageId": 7364,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7364.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "Ζガンダム3号機B型",
+      "pageId": 5876,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5876.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "Ζガンダム［HML］",
+      "pageId": 3015,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3015.html",
+      "category": "支援",
+      "minCost": 650
+    },
+    {
+      "name": "クシャトリヤ",
+      "pageId": 4112,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4112.html",
+      "category": "支援",
+      "minCost": 700
+    },
+    {
+      "name": "ダグ・ドール",
+      "pageId": 3768,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/3768.html",
+      "category": "支援",
+      "minCost": 700
+    },
+    {
+      "name": "ハーディガン",
+      "pageId": 7154,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7154.html",
+      "category": "支援",
+      "minCost": 700
+    },
+    {
+      "name": "フルアーマーΖΖガンダム",
+      "pageId": 5228,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5228.html",
+      "category": "支援",
+      "minCost": 700
+    },
+    {
+      "name": "ローゼン・ズール",
+      "pageId": 5354,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5354.html",
+      "category": "支援",
+      "minCost": 700
+    },
+    {
+      "name": "G・ドアーズ",
+      "pageId": 6427,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6427.html",
+      "category": "支援",
+      "minCost": 700
+    },
+    {
+      "name": "MSN-04FF サザビー",
+      "pageId": 4941,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/4941.html",
+      "category": "支援",
+      "minCost": 700
+    },
+    {
+      "name": "νガンダム［HWS装備］",
+      "pageId": 5681,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/5681.html",
+      "category": "支援",
+      "minCost": 700
+    },
+    {
+      "name": "ネオガンダム",
+      "pageId": 7060,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/7060.html",
+      "category": "支援",
+      "minCost": 750
+    },
+    {
+      "name": "ビギナ・ギナ",
+      "pageId": 6980,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6980.html",
+      "category": "支援",
+      "minCost": 750
+    },
+    {
+      "name": "F90［Sタイプ］",
+      "pageId": 6590,
+      "url": "https://w.atwiki.jp/battle-operation2/pages/6590.html",
+      "category": "支援",
+      "minCost": 750
+    }
+  ]
+}

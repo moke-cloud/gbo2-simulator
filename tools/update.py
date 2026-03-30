@@ -183,8 +183,8 @@ def download_ms_pages(ms_list: list, force: bool = False, delay: float = 2.5) ->
     targets = ms_list if force else [ms for ms in ms_list if str(ms['pageId']) not in existing]
 
     if not targets:
-        print("ダウンロード対象なし (全て既存)")
-        return []
+        print("ダウンロード対象なし (全て既存キャッシュ)")
+        return []  # 空リストを返すが失敗ではない
 
     print(f"ダウンロード: {len(targets)}体 (間隔: {delay}秒)")
     success = []
@@ -237,7 +237,7 @@ def mode_weekly() -> None:
 
     print(f"\n{len(new_ms)}体の新規MSをダウンロードします...")
     success = download_ms_pages(new_ms)
-    if not success:
+    if success is None:
         print("ダウンロード失敗。終了します。")
         return
 
