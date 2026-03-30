@@ -1,1 +1,1651 @@
-{"totalSkills": 0, "skills": []}
+{
+  "version": "2026-03-29",
+  "totalSkills": 60,
+  "skills": [
+    {
+      "name": "射撃補正拡張",
+      "level": 1,
+      "category": "attack",
+      "description": "射撃補正が4増加し、射撃補正の上限値が4増加する",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction_cap",
+          "value": 4,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "射撃補正拡張",
+      "level": 2,
+      "category": "attack",
+      "description": "射撃補正が5増加し、射撃補正の上限値が5増加する",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 5,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction_cap",
+          "value": 5,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "射撃補正拡張",
+      "level": 3,
+      "category": "attack",
+      "description": "射撃補正が7増加し、射撃補正の上限値が7増加する",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 7,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction_cap",
+          "value": 7,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "射撃補正拡張",
+      "level": 4,
+      "category": "attack",
+      "description": "射撃補正が9増加し、射撃補正の上限値が9増加する",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 9,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction_cap",
+          "value": 9,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "射撃補正拡張",
+      "level": 5,
+      "category": "attack",
+      "description": "射撃補正が12増加し、射撃補正の上限値が12増加する",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 12,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction_cap",
+          "value": 12,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "格闘補正拡張",
+      "level": 1,
+      "category": "attack",
+      "description": "格闘補正が5増加し、格闘補正の上限値が5増加する",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 5,
+          "direct": true
+        },
+        {
+          "type": "melee_correction_cap",
+          "value": 5,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "格闘補正拡張",
+      "level": 2,
+      "category": "attack",
+      "description": "格闘補正が7増加し、格闘補正の上限値が7増加する",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 7,
+          "direct": true
+        },
+        {
+          "type": "melee_correction_cap",
+          "value": 7,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "格闘補正拡張",
+      "level": 3,
+      "category": "attack",
+      "description": "格闘補正が9増加し、格闘補正の上限値が9増加する",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 9,
+          "direct": true
+        },
+        {
+          "type": "melee_correction_cap",
+          "value": 9,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "格闘補正拡張",
+      "level": 4,
+      "category": "attack",
+      "description": "格闘補正が12増加し、格闘補正の上限値が12増加する",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 12,
+          "direct": true
+        },
+        {
+          "type": "melee_correction_cap",
+          "value": 12,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "格闘補正拡張",
+      "level": 5,
+      "category": "attack",
+      "description": "格闘補正が15増加し、格闘補正の上限値が15増加する",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 15,
+          "direct": true
+        },
+        {
+          "type": "melee_correction_cap",
+          "value": 15,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐実弾補正拡張",
+      "level": 1,
+      "category": "defense",
+      "description": "耐実弾補正が2増加し、耐実弾補正の上限値が2増加する",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor_cap",
+          "value": 2,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐実弾補正拡張",
+      "level": 2,
+      "category": "defense",
+      "description": "耐実弾補正が3増加し、耐実弾補正の上限値が3増加する",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor_cap",
+          "value": 3,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐実弾補正拡張",
+      "level": 3,
+      "category": "defense",
+      "description": "耐実弾補正が4増加し、耐実弾補正の上限値が4増加する",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor_cap",
+          "value": 4,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐実弾補正拡張",
+      "level": 4,
+      "category": "defense",
+      "description": "耐実弾補正が8増加し、耐実弾補正の上限値が6増加する",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 8,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor_cap",
+          "value": 6,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐実弾補正拡張",
+      "level": 5,
+      "category": "defense",
+      "description": "耐実弾補正が12増加し、耐実弾補正の上限値が10増加する",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 12,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor_cap",
+          "value": 10,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐ビーム補正拡張",
+      "level": 1,
+      "category": "defense",
+      "description": "耐ビーム補正が2増加し、耐ビーム補正の上限値が2増加する",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "beam_armor_cap",
+          "value": 2,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐ビーム補正拡張",
+      "level": 2,
+      "category": "defense",
+      "description": "耐ビーム補正が3増加し、耐ビーム補正の上限値が3増加する",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "beam_armor_cap",
+          "value": 3,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐ビーム補正拡張",
+      "level": 3,
+      "category": "defense",
+      "description": "耐ビーム補正が4増加し、耐ビーム補正の上限値が4増加する",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "beam_armor_cap",
+          "value": 4,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐ビーム補正拡張",
+      "level": 4,
+      "category": "defense",
+      "description": "耐ビーム補正が8増加し、耐ビーム補正の上限値が6増加する",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 8,
+          "direct": true
+        },
+        {
+          "type": "beam_armor_cap",
+          "value": 6,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐ビーム補正拡張",
+      "level": 5,
+      "category": "defense",
+      "description": "耐ビーム補正が12増加し、耐ビーム補正の上限値が10増加する",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 12,
+          "direct": true
+        },
+        {
+          "type": "beam_armor_cap",
+          "value": 10,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐格闘補正拡張",
+      "level": 1,
+      "category": "defense",
+      "description": "耐格闘補正が2増加し、耐格闘補正の上限値が2増加する",
+      "effects": [
+        {
+          "type": "melee_armor",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "melee_armor_cap",
+          "value": 2,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐格闘補正拡張",
+      "level": 2,
+      "category": "defense",
+      "description": "耐格闘補正が3増加し、耐格闘補正の上限値が3増加する",
+      "effects": [
+        {
+          "type": "melee_armor",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "melee_armor_cap",
+          "value": 3,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐格闘補正拡張",
+      "level": 3,
+      "category": "defense",
+      "description": "耐格闘補正が4増加し、耐格闘補正の上限値が4増加する",
+      "effects": [
+        {
+          "type": "melee_armor",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "melee_armor_cap",
+          "value": 4,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐格闘補正拡張",
+      "level": 4,
+      "category": "defense",
+      "description": "耐格闘補正が8増加し、耐格闘補正の上限値が6増加する",
+      "effects": [
+        {
+          "type": "melee_armor",
+          "value": 8,
+          "direct": true
+        },
+        {
+          "type": "melee_armor_cap",
+          "value": 6,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "耐格闘補正拡張",
+      "level": 5,
+      "category": "defense",
+      "description": "耐格闘補正が12増加し、耐格闘補正の上限値が10増加する",
+      "effects": [
+        {
+          "type": "melee_armor",
+          "value": 12,
+          "direct": true
+        },
+        {
+          "type": "melee_armor_cap",
+          "value": 10,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "スラスター拡張",
+      "level": 1,
+      "category": "mobility",
+      "description": "スラスターが4増加し、スラスターの上限値が4増加する。高速移動速が1増加し、高速移動の上限値が1増加する",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "boost_speed",
+          "value": 1,
+          "direct": true
+        },
+        {
+          "type": "thruster_cap",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "boost_speed_cap",
+          "value": 1,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "スラスター拡張",
+      "level": 2,
+      "category": "mobility",
+      "description": "スラスターが6増加し、スラスターの上限値が6増加する。高速移動速が2増加し、高速移動の上限値が2増加する",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 6,
+          "direct": true
+        },
+        {
+          "type": "boost_speed",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "thruster_cap",
+          "value": 6,
+          "direct": true
+        },
+        {
+          "type": "boost_speed_cap",
+          "value": 2,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "スラスター拡張",
+      "level": 3,
+      "category": "mobility",
+      "description": "スラスターが8増加し、スラスターの上限値が8増加する。高速移動速が3増加し、高速移動の上限値が3増加する",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 8,
+          "direct": true
+        },
+        {
+          "type": "boost_speed",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "thruster_cap",
+          "value": 8,
+          "direct": true
+        },
+        {
+          "type": "boost_speed_cap",
+          "value": 3,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "スラスター拡張",
+      "level": 4,
+      "category": "mobility",
+      "description": "スラスターが12増加し、スラスターの上限値が12増加する。高速移動速が4増加し、高速移動の上限値が4増加する",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 12,
+          "direct": true
+        },
+        {
+          "type": "boost_speed",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "thruster_cap",
+          "value": 12,
+          "direct": true
+        },
+        {
+          "type": "boost_speed_cap",
+          "value": 4,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "スラスター拡張",
+      "level": 5,
+      "category": "mobility",
+      "description": "スラスターが20増加し、スラスターの上限値が20増加する。高速移動速が5増加し、高速移動の上限値が5増加する",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 20,
+          "direct": true
+        },
+        {
+          "type": "boost_speed",
+          "value": 5,
+          "direct": true
+        },
+        {
+          "type": "thruster_cap",
+          "value": 20,
+          "direct": true
+        },
+        {
+          "type": "boost_speed_cap",
+          "value": 5,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［HP］",
+      "level": 1,
+      "category": "custom_parts",
+      "description": "「攻撃」「防御」「特殊」タイプのカスタムパーツを1つ装備するごとに機体HPが50増加し、シールドHPが50増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "attack",
+            "defense",
+            "special"
+          ],
+          "perPartEffects": [
+            {
+              "type": "hp",
+              "value": 50
+            },
+            {
+              "type": "shield_hp",
+              "value": 50
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［HP］",
+      "level": 2,
+      "category": "custom_parts",
+      "description": "「攻撃」「防御」「特殊」タイプのカスタムパーツを1つ装備するごとに機体HPが100増加し、シールドHPが100増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "attack",
+            "defense",
+            "special"
+          ],
+          "perPartEffects": [
+            {
+              "type": "hp",
+              "value": 100
+            },
+            {
+              "type": "shield_hp",
+              "value": 100
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［HP］",
+      "level": 3,
+      "category": "custom_parts",
+      "description": "「攻撃」「防御」「特殊」タイプのカスタムパーツを1つ装備するごとに機体HPが200増加し、シールドHPが150増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "attack",
+            "defense",
+            "special"
+          ],
+          "perPartEffects": [
+            {
+              "type": "hp",
+              "value": 200
+            },
+            {
+              "type": "shield_hp",
+              "value": 150
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［HP］",
+      "level": 4,
+      "category": "custom_parts",
+      "description": "「攻撃」「防御」「特殊」タイプのカスタムパーツを1つ装備するごとに機体HPが300増加し、シールドHPが200増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "attack",
+            "defense",
+            "special"
+          ],
+          "perPartEffects": [
+            {
+              "type": "hp",
+              "value": 300
+            },
+            {
+              "type": "shield_hp",
+              "value": 200
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［HP］",
+      "level": 5,
+      "category": "custom_parts",
+      "description": "「攻撃」「防御」「特殊」タイプのカスタムパーツを1つ装備するごとに機体HPが400増加し、シールドHPが300増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "attack",
+            "defense",
+            "special"
+          ],
+          "perPartEffects": [
+            {
+              "type": "hp",
+              "value": 400
+            },
+            {
+              "type": "shield_hp",
+              "value": 300
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［攻撃］",
+      "level": 1,
+      "category": "custom_parts",
+      "description": "「移動」タイプのカスタムパーツを1つ装備するごとに格闘補正が1、射撃補正が1上昇する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "mobility"
+          ],
+          "perPartEffects": [
+            {
+              "type": "melee_correction",
+              "value": 1
+            },
+            {
+              "type": "shooting_correction",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［攻撃］",
+      "level": 2,
+      "category": "custom_parts",
+      "description": "「移動」タイプのカスタムパーツを1つ装備するごとに格闘補正が2、射撃補正が1上昇する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "mobility"
+          ],
+          "perPartEffects": [
+            {
+              "type": "melee_correction",
+              "value": 2
+            },
+            {
+              "type": "shooting_correction",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［攻撃］",
+      "level": 3,
+      "category": "custom_parts",
+      "description": "「移動」タイプのカスタムパーツを1つ装備するごとに格闘補正が2、射撃補正が2上昇する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "mobility"
+          ],
+          "perPartEffects": [
+            {
+              "type": "melee_correction",
+              "value": 2
+            },
+            {
+              "type": "shooting_correction",
+              "value": 2
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［攻撃］",
+      "level": 4,
+      "category": "custom_parts",
+      "description": "「移動」タイプのカスタムパーツを1つ装備するごとに格闘補正が3、射撃補正が3上昇する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "mobility"
+          ],
+          "perPartEffects": [
+            {
+              "type": "melee_correction",
+              "value": 3
+            },
+            {
+              "type": "shooting_correction",
+              "value": 3
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［攻撃］",
+      "level": 5,
+      "category": "custom_parts",
+      "description": "「移動」タイプのカスタムパーツを1つ装備するごとに格闘補正が4、射撃補正が4上昇する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "mobility"
+          ],
+          "perPartEffects": [
+            {
+              "type": "melee_correction",
+              "value": 4
+            },
+            {
+              "type": "shooting_correction",
+              "value": 4
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［装甲］",
+      "level": 1,
+      "category": "custom_parts",
+      "description": "「補助」タイプのカスタムパーツを1つ装備するごとに耐実弾補正が1、耐ビーム補正が1、耐格闘補正が1増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "support"
+          ],
+          "perPartEffects": [
+            {
+              "type": "ballistic_armor",
+              "value": 1
+            },
+            {
+              "type": "beam_armor",
+              "value": 1
+            },
+            {
+              "type": "melee_armor",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［装甲］",
+      "level": 2,
+      "category": "custom_parts",
+      "description": "「補助」タイプのカスタムパーツを1つ装備するごとに耐実弾補正が2、耐ビーム補正が1、耐格闘補正が1増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "support"
+          ],
+          "perPartEffects": [
+            {
+              "type": "ballistic_armor",
+              "value": 2
+            },
+            {
+              "type": "beam_armor",
+              "value": 1
+            },
+            {
+              "type": "melee_armor",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［装甲］",
+      "level": 3,
+      "category": "custom_parts",
+      "description": "「補助」タイプのカスタムパーツを1つ装備するごとに耐実弾補正が2、耐ビーム補正が1、耐格闘補正が2増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "support"
+          ],
+          "perPartEffects": [
+            {
+              "type": "ballistic_armor",
+              "value": 2
+            },
+            {
+              "type": "beam_armor",
+              "value": 1
+            },
+            {
+              "type": "melee_armor",
+              "value": 2
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［装甲］",
+      "level": 4,
+      "category": "custom_parts",
+      "description": "「補助」タイプのカスタムパーツを1つ装備するごとに耐実弾補正が2、耐ビーム補正が2、耐格闘補正が2増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "support"
+          ],
+          "perPartEffects": [
+            {
+              "type": "ballistic_armor",
+              "value": 2
+            },
+            {
+              "type": "beam_armor",
+              "value": 2
+            },
+            {
+              "type": "melee_armor",
+              "value": 2
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［装甲］",
+      "level": 5,
+      "category": "custom_parts",
+      "description": "「補助」タイプのカスタムパーツを1つ装備するごとに耐実弾補正が3、耐ビーム補正が3、耐格闘補正が3増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "support"
+          ],
+          "perPartEffects": [
+            {
+              "type": "ballistic_armor",
+              "value": 3
+            },
+            {
+              "type": "beam_armor",
+              "value": 3
+            },
+            {
+              "type": "melee_armor",
+              "value": 3
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［スラスター］",
+      "level": 1,
+      "category": "custom_parts",
+      "description": "「防御」「補助」「特殊」タイプのカスタムパーツを1つ装備するごとにスラスターが1増加し、高速移動が1増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "defense",
+            "support",
+            "special"
+          ],
+          "perPartEffects": [
+            {
+              "type": "thruster",
+              "value": 1
+            },
+            {
+              "type": "boost_speed",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［スラスター］",
+      "level": 2,
+      "category": "custom_parts",
+      "description": "「防御」「補助」「特殊」タイプのカスタムパーツを1つ装備するごとにスラスターが2増加し、高速移動が1増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "defense",
+            "support",
+            "special"
+          ],
+          "perPartEffects": [
+            {
+              "type": "thruster",
+              "value": 2
+            },
+            {
+              "type": "boost_speed",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［スラスター］",
+      "level": 3,
+      "category": "custom_parts",
+      "description": "「防御」「補助」「特殊」タイプのカスタムパーツを1つ装備するごとにスラスターが3増加し、高速移動が1増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "defense",
+            "support",
+            "special"
+          ],
+          "perPartEffects": [
+            {
+              "type": "thruster",
+              "value": 3
+            },
+            {
+              "type": "boost_speed",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［スラスター］",
+      "level": 4,
+      "category": "custom_parts",
+      "description": "「防御」「補助」「特殊」タイプのカスタムパーツを1つ装備するごとにスラスターが4増加し、高速移動が1増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "defense",
+            "support",
+            "special"
+          ],
+          "perPartEffects": [
+            {
+              "type": "thruster",
+              "value": 4
+            },
+            {
+              "type": "boost_speed",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ拡張［スラスター］",
+      "level": 5,
+      "category": "custom_parts",
+      "description": "「防御」「補助」「特殊」タイプのカスタムパーツを1つ装備するごとにスラスターが5増加し、高速移動が2増加する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "defense",
+            "support",
+            "special"
+          ],
+          "perPartEffects": [
+            {
+              "type": "thruster",
+              "value": 5
+            },
+            {
+              "type": "boost_speed",
+              "value": 2
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ複合拡張α",
+      "level": 1,
+      "category": "custom_parts",
+      "description": "「攻撃」タイプのカスタムパーツを1つ装備するごとに機体HPが50増加し、スラスターが1、高速移動が1増加し、兵装のリロードおよびオーバーヒート時間を1%短縮する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "attack"
+          ],
+          "perPartEffects": [
+            {
+              "type": "hp",
+              "value": 50
+            },
+            {
+              "type": "thruster",
+              "value": 1
+            },
+            {
+              "type": "boost_speed",
+              "value": 1
+            },
+            {
+              "type": "reload_oh_reduction_pct",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ複合拡張α",
+      "level": 2,
+      "category": "custom_parts",
+      "description": "「攻撃」タイプのカスタムパーツを1つ装備するごとに機体HPが100増加し、スラスターが1、高速移動が1増加し、兵装のリロードおよびオーバーヒート時間を1%短縮する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "attack"
+          ],
+          "perPartEffects": [
+            {
+              "type": "hp",
+              "value": 100
+            },
+            {
+              "type": "thruster",
+              "value": 1
+            },
+            {
+              "type": "boost_speed",
+              "value": 1
+            },
+            {
+              "type": "reload_oh_reduction_pct",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ複合拡張α",
+      "level": 3,
+      "category": "custom_parts",
+      "description": "「攻撃」タイプのカスタムパーツを1つ装備するごとに機体HPが150増加し、スラスターが1、高速移動が1増加し、兵装のリロードおよびオーバーヒート時間を1%短縮する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "attack"
+          ],
+          "perPartEffects": [
+            {
+              "type": "hp",
+              "value": 150
+            },
+            {
+              "type": "thruster",
+              "value": 1
+            },
+            {
+              "type": "boost_speed",
+              "value": 1
+            },
+            {
+              "type": "reload_oh_reduction_pct",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ複合拡張α",
+      "level": 4,
+      "category": "custom_parts",
+      "description": "「攻撃」タイプのカスタムパーツを1つ装備するごとに機体HPが200増加し、スラスターが2、高速移動が1増加し、兵装のリロードおよびオーバーヒート時間を1%短縮する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "attack"
+          ],
+          "perPartEffects": [
+            {
+              "type": "hp",
+              "value": 200
+            },
+            {
+              "type": "thruster",
+              "value": 2
+            },
+            {
+              "type": "boost_speed",
+              "value": 1
+            },
+            {
+              "type": "reload_oh_reduction_pct",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "カスタムパーツ複合拡張α",
+      "level": 5,
+      "category": "custom_parts",
+      "description": "「攻撃」タイプのカスタムパーツを1つ装備するごとに機体HPが250増加し、スラスターが2、高速移動が2増加し、兵装のリロードおよびオーバーヒート時間を1%短縮する",
+      "effects": [
+        {
+          "type": "per_custom_part",
+          "targetPartTypes": [
+            "attack"
+          ],
+          "perPartEffects": [
+            {
+              "type": "hp",
+              "value": 250
+            },
+            {
+              "type": "thruster",
+              "value": 2
+            },
+            {
+              "type": "boost_speed",
+              "value": 2
+            },
+            {
+              "type": "reload_oh_reduction_pct",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "MS戦複合拡張",
+      "level": 1,
+      "category": "composite",
+      "description": "リペアツールのHP回復量が10%、格闘補正と上限値が1、射撃補正と上限値が1、耐実弾補正と上限値が1、耐ビーム補正と上限値が1、耐格闘補正と上限値が1増加する",
+      "effects": [
+        {
+          "type": "repair_tool_pct",
+          "value": 10,
+          "direct": true
+        },
+        {
+          "type": "melee_correction",
+          "value": 1,
+          "direct": true
+        },
+        {
+          "type": "melee_correction_cap",
+          "value": 1,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction",
+          "value": 1,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction_cap",
+          "value": 1,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor",
+          "value": 1,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor_cap",
+          "value": 1,
+          "direct": true
+        },
+        {
+          "type": "beam_armor",
+          "value": 1,
+          "direct": true
+        },
+        {
+          "type": "beam_armor_cap",
+          "value": 1,
+          "direct": true
+        },
+        {
+          "type": "melee_armor",
+          "value": 1,
+          "direct": true
+        },
+        {
+          "type": "melee_armor_cap",
+          "value": 1,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "MS戦複合拡張",
+      "level": 2,
+      "category": "composite",
+      "description": "リペアツールのHP回復量が12%、格闘補正と上限値が2、射撃補正と上限値が2、耐実弾補正と上限値が2、耐ビーム補正と上限値が2、耐格闘補正と上限値が2増加する",
+      "effects": [
+        {
+          "type": "repair_tool_pct",
+          "value": 12,
+          "direct": true
+        },
+        {
+          "type": "melee_correction",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "melee_correction_cap",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction_cap",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor_cap",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "beam_armor",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "beam_armor_cap",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "melee_armor",
+          "value": 2,
+          "direct": true
+        },
+        {
+          "type": "melee_armor_cap",
+          "value": 2,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "MS戦複合拡張",
+      "level": 3,
+      "category": "composite",
+      "description": "リペアツールのHP回復量が15%、格闘補正と上限値が3、射撃補正と上限値が3、耐実弾補正と上限値が3、耐ビーム補正と上限値が3、耐格闘補正と上限値が3増加する",
+      "effects": [
+        {
+          "type": "repair_tool_pct",
+          "value": 15,
+          "direct": true
+        },
+        {
+          "type": "melee_correction",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "melee_correction_cap",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction_cap",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor_cap",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "beam_armor",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "beam_armor_cap",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "melee_armor",
+          "value": 3,
+          "direct": true
+        },
+        {
+          "type": "melee_armor_cap",
+          "value": 3,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "MS戦複合拡張",
+      "level": 4,
+      "category": "composite",
+      "description": "リペアツールのHP回復量が19%、格闘補正と上限値が4、射撃補正と上限値が4、耐実弾補正と上限値が4、耐ビーム補正と上限値が4、耐格闘補正と上限値が4増加する",
+      "effects": [
+        {
+          "type": "repair_tool_pct",
+          "value": 19,
+          "direct": true
+        },
+        {
+          "type": "melee_correction",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "melee_correction_cap",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction_cap",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor_cap",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "beam_armor",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "beam_armor_cap",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "melee_armor",
+          "value": 4,
+          "direct": true
+        },
+        {
+          "type": "melee_armor_cap",
+          "value": 4,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "MS戦複合拡張",
+      "level": 5,
+      "category": "composite",
+      "description": "リペアツールのHP回復量が25%、格闘補正と上限値が5、射撃補正と上限値が5、耐実弾補正と上限値が5、耐ビーム補正と上限値が5、耐格闘補正と上限値が5増加する",
+      "effects": [
+        {
+          "type": "repair_tool_pct",
+          "value": 25,
+          "direct": true
+        },
+        {
+          "type": "melee_correction",
+          "value": 5,
+          "direct": true
+        },
+        {
+          "type": "melee_correction_cap",
+          "value": 5,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction",
+          "value": 5,
+          "direct": true
+        },
+        {
+          "type": "shooting_correction_cap",
+          "value": 5,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor",
+          "value": 5,
+          "direct": true
+        },
+        {
+          "type": "ballistic_armor_cap",
+          "value": 5,
+          "direct": true
+        },
+        {
+          "type": "beam_armor",
+          "value": 5,
+          "direct": true
+        },
+        {
+          "type": "beam_armor_cap",
+          "value": 5,
+          "direct": true
+        },
+        {
+          "type": "melee_armor",
+          "value": 5,
+          "direct": true
+        },
+        {
+          "type": "melee_armor_cap",
+          "value": 5,
+          "direct": true
+        }
+      ],
+      "remarks": ""
+    }
+  ]
+}

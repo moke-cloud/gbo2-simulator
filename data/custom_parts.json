@@ -1,1 +1,2891 @@
-{"totalParts": 0, "parts": []}
+{
+  "version": "2026-03-27",
+  "totalParts": 150,
+  "parts": [
+    {
+      "name": "射撃強化プログラム",
+      "level": 1,
+      "rarity": 1,
+      "category": "attack",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 1
+      },
+      "description": "射撃補正が2増加",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 2
+        }
+      ],
+      "dpCost": 4500,
+      "ticketCost": 10
+    },
+    {
+      "name": "射撃強化プログラム",
+      "level": 2,
+      "rarity": 1,
+      "category": "attack",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 3
+      },
+      "description": "射撃補正が5増加",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 5
+        }
+      ],
+      "dpCost": 8500,
+      "ticketCost": 20
+    },
+    {
+      "name": "射撃強化プログラム",
+      "level": 3,
+      "rarity": 2,
+      "category": "attack",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 4
+      },
+      "description": "射撃補正が7増加",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 7
+        }
+      ],
+      "dpCost": 27700,
+      "ticketCost": 75
+    },
+    {
+      "name": "射撃強化プログラム",
+      "level": 4,
+      "rarity": 2,
+      "category": "attack",
+      "slots": {
+        "close": 0,
+        "mid": 2,
+        "long": 5
+      },
+      "description": "射撃補正が10増加",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 10
+        }
+      ],
+      "dpCost": 54000,
+      "ticketCost": 75
+    },
+    {
+      "name": "射撃強化プログラム",
+      "level": 5,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 0,
+        "mid": 6,
+        "long": 10
+      },
+      "description": "射撃補正が13増加",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 13
+        }
+      ],
+      "dpCost": 96000,
+      "ticketCost": 120
+    },
+    {
+      "name": "格闘強化プログラム",
+      "level": 1,
+      "rarity": 1,
+      "category": "attack",
+      "slots": {
+        "close": 1,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "格闘補正が2増加",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 2
+        }
+      ],
+      "dpCost": 4500,
+      "ticketCost": 10
+    },
+    {
+      "name": "格闘強化プログラム",
+      "level": 2,
+      "rarity": 1,
+      "category": "attack",
+      "slots": {
+        "close": 3,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "格闘補正が5増加",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 5
+        }
+      ],
+      "dpCost": 8500,
+      "ticketCost": 20
+    },
+    {
+      "name": "格闘強化プログラム",
+      "level": 3,
+      "rarity": 2,
+      "category": "attack",
+      "slots": {
+        "close": 4,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "格闘補正が7増加",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 7
+        }
+      ],
+      "dpCost": 27700,
+      "ticketCost": 75
+    },
+    {
+      "name": "格闘強化プログラム",
+      "level": 4,
+      "rarity": 2,
+      "category": "attack",
+      "slots": {
+        "close": 4,
+        "mid": 1,
+        "long": 0
+      },
+      "description": "格闘補正が10増加",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 10
+        }
+      ],
+      "dpCost": 54000,
+      "ticketCost": 75
+    },
+    {
+      "name": "格闘強化プログラム",
+      "level": 5,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 5,
+        "mid": 3,
+        "long": 3
+      },
+      "description": "格闘補正が13増加",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 13
+        }
+      ],
+      "dpCost": 96000,
+      "ticketCost": 120
+    },
+    {
+      "name": "オーバーチューン［射撃］",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 3,
+        "mid": 4,
+        "long": 5
+      },
+      "description": "射撃攻撃による敵に与えるダメージが1％増加。機体LVが1上昇するごとにさらに3%増加。同一のパーツ効果による最大上昇値は10%。",
+      "effects": [
+        {
+          "type": "shooting_damage_pct",
+          "value": 1
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 130
+    },
+    {
+      "name": "オーバーチューン［射撃］",
+      "level": 2,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 4,
+        "mid": 5,
+        "long": 3
+      },
+      "description": "射撃攻撃による敵に与えるダメージが4％増加。機体LVが1上昇するごとにさらに2%増加。同一のパーツ効果による最大上昇値は10%。",
+      "effects": [
+        {
+          "type": "shooting_damage_pct",
+          "value": 4
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "オーバーチューン［格闘］",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 5,
+        "mid": 3,
+        "long": 1
+      },
+      "description": "格闘攻撃による敵に与えるダメージが3％増加。機体LVが1上昇するごとにさらに3%増加。同一のパーツ効果による最大上昇値は12%。",
+      "effects": [
+        {
+          "type": "melee_damage_pct",
+          "value": 3
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 130
+    },
+    {
+      "name": "オーバーチューン［格闘］",
+      "level": 2,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 2,
+        "mid": 4,
+        "long": 3
+      },
+      "description": "格闘攻撃による敵に与えるダメージが6％増加。機体LVが1上昇するごとにさらに2%増加。同一のパーツ効果による最大上昇値は12%。",
+      "effects": [
+        {
+          "type": "melee_damage_pct",
+          "value": 6
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "射撃特化プログラム",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "射撃攻撃による敵に与えるダメージが5%増加。格闘攻撃による敵に与えるダメージが3%減少。機体HPが1000減少。",
+      "effects": [
+        {
+          "type": "hp",
+          "value": -1000
+        },
+        {
+          "type": "shooting_damage_pct",
+          "value": 5
+        },
+        {
+          "type": "melee_damage_pct",
+          "value": -3
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "格闘特化プログラム",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "格闘攻撃による敵に与えるダメージが5%増加。射撃攻撃による敵に与えるダメージが3%減少。機体HPが500減少。",
+      "effects": [
+        {
+          "type": "hp",
+          "value": -500
+        },
+        {
+          "type": "melee_damage_pct",
+          "value": 5
+        },
+        {
+          "type": "shooting_damage_pct",
+          "value": -3
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "イレギュラーDBL",
+      "level": 1,
+      "rarity": 1,
+      "category": "attack",
+      "slots": {
+        "close": 0,
+        "mid": 1,
+        "long": 2
+      },
+      "description": "一部の状態異常の継続時間を10%増加。",
+      "effects": [],
+      "dpCost": 14200,
+      "ticketCost": 10
+    },
+    {
+      "name": "試験型イレギュラーDBL",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "一部の状態異常の継続時間を10%増加。なお自機が受ける一部の状態異常の復帰時間が10％増加。加えて、イレギュラーDBLと同時装備不可。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "特殊燃焼剤",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 0,
+        "mid": 2,
+        "long": 2
+      },
+      "description": "焼夷効果によって当てるダメージを25%増加。さらに焼夷効果の継続時間を10%増加。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "火器管制最適化システム",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 3,
+        "mid": 1,
+        "long": 5
+      },
+      "description": "射撃補正が2増加し、ASL（自動照準補正）領域を5拡張。ビーム射撃兵装の集束時間を5%短縮し、更に敵へ与えるダメージを5%増加させる。なおASL（自動照準補正）領域を拡張、またはビーム射撃兵装の集束時間を短縮するパーツとの同時装備は不可。",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 2
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "レベルリンクシステム［格闘］",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 3,
+        "mid": 1,
+        "long": 2
+      },
+      "description": "格闘補正が5増加。機体と主兵装のLVが一致すると効果量が上昇し、LVが高いほど効果量も高くなる。同系統のパーツは複数装備不可。",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 5
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "レベルリンクシステム［射撃］",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 1,
+        "mid": 3,
+        "long": 3
+      },
+      "description": "射撃補正が5増加。機体と主兵装のLVが一致すると効果量が上昇し、LVが高いほど効果量も高くなる。同系統のパーツは複数装備不可。",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 5
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "カテゴリ特攻プログラム［強襲］",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 2,
+        "mid": 3,
+        "long": 4
+      },
+      "description": "強襲カテゴリのみ装備可能。射撃補正と格闘補正を7増加。有利カテゴリの敵機に与えるダメージを増加。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "コネクティングシステム［支援Ⅰ型］",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 1,
+        "mid": 5,
+        "long": 3
+      },
+      "description": "ビーム射撃兵装で敵機に与えるダメージが5%増加し、オーバーヒートからの復帰時間を10%短縮する。さらに支援カテゴリに装備させると、ビーム射撃兵装の集束時間が10%短縮する。同系統のカスタムパーツは複数装備不可。",
+      "effects": [
+        {
+          "type": "oh_recovery_pct",
+          "value": 10
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "強化フレーム",
+      "level": 1,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 1
+      },
+      "description": "機体HPが200増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 200
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "強化フレーム",
+      "level": 2,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 3
+      },
+      "description": "機体HPが500増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 500
+        }
+      ],
+      "dpCost": 7000,
+      "ticketCost": 20
+    },
+    {
+      "name": "強化フレーム",
+      "level": 3,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 1,
+        "long": 3
+      },
+      "description": "機体HPが700増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 700
+        }
+      ],
+      "dpCost": 8400,
+      "ticketCost": 20
+    },
+    {
+      "name": "強化フレーム",
+      "level": 4,
+      "rarity": 2,
+      "category": "defense",
+      "slots": {
+        "close": 1,
+        "mid": 1,
+        "long": 3
+      },
+      "description": "機体HPが1000増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 1000
+        }
+      ],
+      "dpCost": 17400,
+      "ticketCost": 55
+    },
+    {
+      "name": "強化フレーム",
+      "level": 5,
+      "rarity": 2,
+      "category": "defense",
+      "slots": {
+        "close": 2,
+        "mid": 1,
+        "long": 3
+      },
+      "description": "機体HPが1200増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 1200
+        }
+      ],
+      "dpCost": 54200,
+      "ticketCost": 75
+    },
+    {
+      "name": "コネクティングシステム［汎用Ⅱ型］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 6,
+        "long": 3
+      },
+      "description": "機体HPとシールドHPが2000増加。さらに汎用機に装備させると各部位のHPが30%増加する。同系統のカスタムパーツは複数装備不可。",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 2000
+        },
+        {
+          "type": "shield_hp",
+          "value": 2000
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "新型フレーム",
+      "level": 1,
+      "rarity": 2,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 5,
+        "long": 0
+      },
+      "description": "機体HPが800増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 800
+        }
+      ],
+      "dpCost": 49300,
+      "ticketCost": 90
+    },
+    {
+      "name": "新型フレーム",
+      "level": 2,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 5,
+        "mid": 2,
+        "long": 0
+      },
+      "description": "機体HPが1000増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 1000
+        }
+      ],
+      "dpCost": 97300,
+      "ticketCost": 120
+    },
+    {
+      "name": "新型フレーム",
+      "level": 3,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 1,
+        "mid": 2,
+        "long": 5
+      },
+      "description": "機体HPが1200増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 1200
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 230
+    },
+    {
+      "name": "新型フレーム",
+      "level": 4,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 2,
+        "mid": 4,
+        "long": 6
+      },
+      "description": "HPが2400増加リペアツールのHP回復量が15%上昇する",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 2400
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "シールド補強材",
+      "level": 1,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 1,
+        "long": 0
+      },
+      "description": "シールドHPが400増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 400
+        },
+        {
+          "type": "shield_hp",
+          "value": 400
+        }
+      ],
+      "dpCost": 5200,
+      "ticketCost": 15
+    },
+    {
+      "name": "シールド補強材",
+      "level": 2,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 2,
+        "long": 0
+      },
+      "description": "シールドHPが600増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 600
+        },
+        {
+          "type": "shield_hp",
+          "value": 600
+        }
+      ],
+      "dpCost": 6000,
+      "ticketCost": 15
+    },
+    {
+      "name": "シールド補強材",
+      "level": 3,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 3,
+        "long": 0
+      },
+      "description": "シールドHPが800増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 800
+        },
+        {
+          "type": "shield_hp",
+          "value": 800
+        }
+      ],
+      "dpCost": 7600,
+      "ticketCost": 20
+    },
+    {
+      "name": "シールド補強材",
+      "level": 4,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 4,
+        "long": 0
+      },
+      "description": "シールドHPが1400増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 1400
+        },
+        {
+          "type": "shield_hp",
+          "value": 1400
+        }
+      ],
+      "dpCost": 12000,
+      "ticketCost": 30
+    },
+    {
+      "name": "シールド補強材",
+      "level": 5,
+      "rarity": 2,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 5,
+        "long": 0
+      },
+      "description": "シールドHPが1600増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 1600
+        },
+        {
+          "type": "shield_hp",
+          "value": 1600
+        }
+      ],
+      "dpCost": 58200,
+      "ticketCost": 80
+    },
+    {
+      "name": "耐実弾装甲",
+      "level": 1,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 1,
+        "long": 1
+      },
+      "description": "耐実弾補正が3増加",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 3
+        }
+      ],
+      "dpCost": 3600,
+      "ticketCost": 10
+    },
+    {
+      "name": "耐実弾装甲",
+      "level": 2,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 2,
+        "long": 3
+      },
+      "description": "耐実弾補正が6増加",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 6
+        }
+      ],
+      "dpCost": 9000,
+      "ticketCost": 25
+    },
+    {
+      "name": "耐実弾装甲",
+      "level": 3,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 8
+      },
+      "description": "耐実弾補正が10増加",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 10
+        }
+      ],
+      "dpCost": 20400,
+      "ticketCost": 40
+    },
+    {
+      "name": "耐実弾装甲",
+      "level": 4,
+      "rarity": 2,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 9,
+        "long": 0
+      },
+      "description": "耐実弾補正が15増加",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 15
+        }
+      ],
+      "dpCost": 52400,
+      "ticketCost": 70
+    },
+    {
+      "name": "耐実弾装甲",
+      "level": 5,
+      "rarity": 2,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 9,
+        "long": 3
+      },
+      "description": "耐実弾補正が20増加",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 20
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 140
+    },
+    {
+      "name": "耐ビーム装甲",
+      "level": 1,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 1,
+        "long": 1
+      },
+      "description": "耐ビーム補正が3増加",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 3
+        }
+      ],
+      "dpCost": 3600,
+      "ticketCost": 10
+    },
+    {
+      "name": "耐ビーム装甲",
+      "level": 2,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 2,
+        "long": 3
+      },
+      "description": "耐ビーム補正が6増加",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 6
+        }
+      ],
+      "dpCost": 9000,
+      "ticketCost": 25
+    },
+    {
+      "name": "耐ビーム装甲",
+      "level": 3,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 8
+      },
+      "description": "耐ビーム補正が10増加",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 10
+        }
+      ],
+      "dpCost": 20400,
+      "ticketCost": 40
+    },
+    {
+      "name": "耐ビーム装甲",
+      "level": 4,
+      "rarity": 2,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 12,
+        "long": 0
+      },
+      "description": "耐ビーム補正が15増加",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 15
+        }
+      ],
+      "dpCost": 52400,
+      "ticketCost": 70
+    },
+    {
+      "name": "耐ビーム装甲",
+      "level": 5,
+      "rarity": 2,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 12,
+        "long": 4
+      },
+      "description": "耐ビーム補正が20増加",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 20
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 140
+    },
+    {
+      "name": "耐格闘装甲",
+      "level": 1,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 1,
+        "mid": 1,
+        "long": 0
+      },
+      "description": "耐格闘補正が3増加",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 3
+        },
+        {
+          "type": "melee_armor",
+          "value": 3
+        }
+      ],
+      "dpCost": 3600,
+      "ticketCost": 10
+    },
+    {
+      "name": "耐格闘装甲",
+      "level": 2,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 3,
+        "mid": 2,
+        "long": 0
+      },
+      "description": "耐格闘補正が6増加",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 6
+        },
+        {
+          "type": "melee_armor",
+          "value": 6
+        }
+      ],
+      "dpCost": 9000,
+      "ticketCost": 25
+    },
+    {
+      "name": "耐格闘装甲",
+      "level": 3,
+      "rarity": 1,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 8,
+        "long": 0
+      },
+      "description": "耐格闘補正が10増加",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 10
+        },
+        {
+          "type": "melee_armor",
+          "value": 10
+        }
+      ],
+      "dpCost": 20400,
+      "ticketCost": 40
+    },
+    {
+      "name": "耐格闘装甲",
+      "level": 4,
+      "rarity": 2,
+      "category": "defense",
+      "slots": {
+        "close": 12,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "耐格闘補正が15増加",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 15
+        },
+        {
+          "type": "melee_armor",
+          "value": 15
+        }
+      ],
+      "dpCost": 52400,
+      "ticketCost": 70
+    },
+    {
+      "name": "耐格闘装甲",
+      "level": 5,
+      "rarity": 2,
+      "category": "defense",
+      "slots": {
+        "close": 12,
+        "mid": 4,
+        "long": 0
+      },
+      "description": "耐格闘補正が20増加",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 20
+        },
+        {
+          "type": "melee_armor",
+          "value": 20
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 140
+    },
+    {
+      "name": "新型耐実弾装甲",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 3,
+        "mid": 1,
+        "long": 5
+      },
+      "description": "耐実弾補正が12増加し、耐実弾補正の上限値が20増加する。自機がよろけている場合、実弾属性から受けるダメージを軽減する。新型装甲系パーツは複数装備することは不可。",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 12
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "新型耐ビーム装甲",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 3,
+        "mid": 5,
+        "long": 9
+      },
+      "description": "耐ビーム補正が12増加し、耐ビーム補正の上限値が20増加する。自機がよろけている場合、ビーム属性から受けるダメージを軽減する。新型装甲系パーツは複数装備することは不可。",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 12
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "新型耐格闘装甲",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 5,
+        "mid": 7,
+        "long": 3
+      },
+      "description": "耐格闘補正が12増加し、耐格闘補正の上限値が20増加する。自機がよろけている場合、格闘属性から受けるダメージを軽減する。新型装甲系パーツは複数装備することは不可。",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 12
+        },
+        {
+          "type": "melee_armor",
+          "value": 12
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "オーバーチューン［フレーム］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 3,
+        "mid": 4,
+        "long": 3
+      },
+      "description": "機体HPが300増加。機体LVが1上昇するごとにさらに900増加。同一のパーツ効果による最大上昇値は3000。",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 300
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "オーバーチューン［実弾装甲］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 1,
+        "mid": 0,
+        "long": 2
+      },
+      "description": "実弾属性から受けるダメージが3%軽減。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "オーバーチューン［ビーム装甲］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 5,
+        "mid": 0,
+        "long": 2
+      },
+      "description": "ビーム属性から受けるダメージが3%軽減。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "オーバーチューン［格闘装甲］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 4,
+        "mid": 1,
+        "long": 1
+      },
+      "description": "格闘属性から受けるダメージが3%軽減。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "ヘビーアーマー",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 5,
+        "mid": 4,
+        "long": 3
+      },
+      "description": "耐実弾、耐ビーム、耐格闘の各補正が1増加。機体LVが1上昇するごとにさらに3増加。同一のパーツ効果による最大上昇値は10。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "複合装甲材［Type-A］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 4,
+        "mid": 4,
+        "long": 5
+      },
+      "description": "リペアツールのHP回復量が10%上昇する。耐実弾補正と耐ビーム補正が4増加。強化リストの強化段階が3段階目に達していると追加で耐実弾補正と耐ビーム補正が3増加。更に6段階目に達していると追加で耐実弾補正と耐ビーム補正が3増加。なお複合装甲材系パーツは複数装備できない。",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 4
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "複合装甲材［Type-B］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 6,
+        "mid": 4,
+        "long": 4
+      },
+      "description": "リペアツールのHP回復量が10%上昇する。耐格闘補正と耐ビーム補正が4増加。強化リストの強化段階が3段階目に達していると追加で耐格闘補正と耐ビーム補正が3増加。更に6段階目に達していると追加で耐格闘補正と耐ビーム補正が3増加。なお複合装甲材系パーツは複数装備できない。",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 4
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "複合装甲材［Type-C］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 5,
+        "mid": 4,
+        "long": 3
+      },
+      "description": "リペアツールのHP回復量が10%上昇する。耐実弾補正と耐格闘補正が4増加。強化リストの強化段階が3段階目に達していると追加で耐実弾補正と耐格闘補正が3増加。更に6段階目に達していると追加で耐実弾補正と耐格闘補正が3増加。なお複合装甲材系パーツは複数装備できない。",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 4
+        },
+        {
+          "type": "melee_armor",
+          "value": 4
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "サイコ・パッケージ",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 4,
+        "mid": 2,
+        "long": 2
+      },
+      "description": "敵から受けるサイコミュ兵装の使用不可時間を短縮し、サイコミュ兵装から受けるダメージを10%短縮。さらに機体HPが1200増加する。",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 1200
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "新型緩衝材",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 2,
+        "mid": 4,
+        "long": 5
+      },
+      "description": "機体HPに受けるダメージを3%軽減。加えて、緩衝材系スキルの効果である機体HPへのダメージ軽減効果をさらに8%強化。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "特殊強化フレーム［Type-A］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 3,
+        "mid": 7,
+        "long": 5
+      },
+      "description": "機体HPが5%増加。耐実弾補正と耐ビーム補正が9増加。特殊強化フレーム系パーツは複数装備できない。",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 9
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "特殊強化フレーム［Type-B］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 11,
+        "mid": 1,
+        "long": 3
+      },
+      "description": "機体HPが5%増加。耐格闘補正が18増加。特殊強化フレーム系パーツは複数装備できない。",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 18
+        },
+        {
+          "type": "melee_armor",
+          "value": 18
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "爆風軽減装甲",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 3,
+        "mid": 1,
+        "long": 2
+      },
+      "description": "耐実弾補正が7増加。兵装による爆風ダメージを15%軽減。MSの爆破によるリアクションを軽減。",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 7
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "レベルリンクシステム［装甲］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 3,
+        "mid": 0,
+        "long": 3
+      },
+      "description": "耐実弾、耐ビーム、耐格闘補正が2増加。機体と主兵装のLVが一致すると効果量が上昇し、LVが高いほど効果量も高くなる。同系統のパーツは複数装備不可。",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 2
+        },
+        {
+          "type": "melee_armor",
+          "value": 2
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "特殊強化装置［Type-γ］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 3,
+        "mid": 6,
+        "long": 5
+      },
+      "description": "耐実弾、耐ビーム、耐格闘の各補正が14%増加。機体HPが1200増加。なお特殊強化装置系のパーツは複数装備不可。",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 1200
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "教育型コンピューター［特防］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 3,
+        "mid": 4,
+        "long": 3
+      },
+      "description": "敵から受けるダメージを10%軽減する。更に作戦開始から4分経過すると自機がよろけている場合に受けるダメージを10%軽減する。なお教育型コンピューター系のパーツは複数装備不可。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "高性能走行制御機構",
+      "level": 1,
+      "rarity": 1,
+      "category": "mobility",
+      "slots": {
+        "close": 4,
+        "mid": 1,
+        "long": 0
+      },
+      "description": "スピードが5増加。なおスピードが上昇するパーツとの同時装備は行えない。",
+      "effects": [
+        {
+          "type": "speed",
+          "value": 5
+        }
+      ],
+      "dpCost": 9600,
+      "ticketCost": 25
+    },
+    {
+      "name": "噴射制御装置",
+      "level": 1,
+      "rarity": 1,
+      "category": "mobility",
+      "slots": {
+        "close": 3,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "スラスターが5増加",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 5
+        }
+      ],
+      "dpCost": 7500,
+      "ticketCost": 20
+    },
+    {
+      "name": "噴射制御装置",
+      "level": 2,
+      "rarity": 1,
+      "category": "mobility",
+      "slots": {
+        "close": 4,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "スラスターが7増加",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 7
+        }
+      ],
+      "dpCost": 15400,
+      "ticketCost": 35
+    },
+    {
+      "name": "噴射制御装置",
+      "level": 3,
+      "rarity": 2,
+      "category": "mobility",
+      "slots": {
+        "close": 3,
+        "mid": 4,
+        "long": 0
+      },
+      "description": "スラスターが10増加",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 10
+        }
+      ],
+      "dpCost": 37100,
+      "ticketCost": 85
+    },
+    {
+      "name": "噴射制御装置",
+      "level": 4,
+      "rarity": 2,
+      "category": "mobility",
+      "slots": {
+        "close": 6,
+        "mid": 4,
+        "long": 0
+      },
+      "description": "スラスターが12増加",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 12
+        }
+      ],
+      "dpCost": 73600,
+      "ticketCost": 85
+    },
+    {
+      "name": "噴射制御装置",
+      "level": 5,
+      "rarity": 3,
+      "category": "mobility",
+      "slots": {
+        "close": 3,
+        "mid": 3,
+        "long": 5
+      },
+      "description": "スラスターが15増加高速移動中のスラスター消費量を5%軽減",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 15
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "大出力追加ブースター",
+      "level": 1,
+      "rarity": 3,
+      "category": "mobility",
+      "slots": {
+        "close": 5,
+        "mid": 4,
+        "long": 3
+      },
+      "description": "高速移動が5増加スラスターが10増加",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 10
+        },
+        {
+          "type": "boost_speed",
+          "value": 5
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "オーバーチューン［機動］",
+      "level": 1,
+      "rarity": 3,
+      "category": "mobility",
+      "slots": {
+        "close": 3,
+        "mid": 1,
+        "long": 0
+      },
+      "description": "高速移動が1増加。機体LVが1上昇するごとにさらに3増加。同一のパーツ効果による最大上昇値は10。",
+      "effects": [
+        {
+          "type": "boost_speed",
+          "value": 1
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 425
+    },
+    {
+      "name": "オーバーチューン［スラスター］",
+      "level": 1,
+      "rarity": 3,
+      "category": "mobility",
+      "slots": {
+        "close": 2,
+        "mid": 3,
+        "long": 2
+      },
+      "description": "スラスターが3増加。機体LVが1上昇するごとにさらに4増加。同一のパーツ効果による最大上昇値は15。",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 3
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "運動性能強化機構",
+      "level": 1,
+      "rarity": 3,
+      "category": "mobility",
+      "slots": {
+        "close": 5,
+        "mid": 2,
+        "long": 3
+      },
+      "description": "スピードが10増加し、旋回性能が5増加。脚部負荷発生後の回復速度を20%上昇。なおスピードまたは旋回性能が上昇するパーツとの同時装備は行えない。",
+      "effects": [
+        {
+          "type": "speed",
+          "value": 10
+        },
+        {
+          "type": "turn_speed",
+          "value": 5
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "燃焼効率補助装置",
+      "level": 1,
+      "rarity": 3,
+      "category": "mobility",
+      "slots": {
+        "close": 2,
+        "mid": 2,
+        "long": 1
+      },
+      "description": "高速移動開始時と高速移動のスラスター消費量を10%軽減。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "コンポジットモーター",
+      "level": 1,
+      "rarity": 3,
+      "category": "mobility",
+      "slots": {
+        "close": 3,
+        "mid": 0,
+        "long": 5
+      },
+      "description": "スピードが7増加し、旋回性能が12増加。ジャンプ後と高速移動後の脚部負荷を20%軽減する。なおスピードまたは旋回性能が上昇するパーツとの同時装備は行えない。",
+      "effects": [
+        {
+          "type": "speed",
+          "value": 7
+        },
+        {
+          "type": "turn_speed",
+          "value": 12
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "高純度推進材",
+      "level": 1,
+      "rarity": 3,
+      "category": "mobility",
+      "slots": {
+        "close": 5,
+        "mid": 2,
+        "long": 4
+      },
+      "description": "スラスターが15増加。スラスターの上限値が10増加する。スラスターの回復速度が10%上昇する。",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 15
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "コネクティングシステム［汎用Ⅰ型］",
+      "level": 1,
+      "rarity": 3,
+      "category": "mobility",
+      "slots": {
+        "close": 0,
+        "mid": 4,
+        "long": 3
+      },
+      "description": "スピード、スラスター、旋回性能が7増加。さらに汎用カテゴリに装備させると各部位へ与える部位ダメージが10%増加。なおスピードが上昇するパーツと同系統のカスタムパーツは同時装備不可。",
+      "effects": [
+        {
+          "type": "turn_speed",
+          "value": 7
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "冷却システム",
+      "level": 1,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 3,
+        "mid": 1,
+        "long": 0
+      },
+      "description": "スラスターの回復速度が5%上昇し、スラスターが3増加。スラスターオーバーヒート時の回復時間が1%短縮する。",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 3
+        }
+      ],
+      "dpCost": 4900,
+      "ticketCost": 15
+    },
+    {
+      "name": "冷却システム",
+      "level": 2,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 6,
+        "mid": 2,
+        "long": 0
+      },
+      "description": "スラスターの回復速度が10%上昇し、スラスターが5増加。スラスターオーバーヒート時の回復時間が3%短縮する。",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 5
+        }
+      ],
+      "dpCost": 5900,
+      "ticketCost": 15
+    },
+    {
+      "name": "冷却システム",
+      "level": 3,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 7,
+        "mid": 4,
+        "long": 0
+      },
+      "description": "スラスターの回復速度が15%上昇し、スラスターが7増加。スラスターオーバーヒート時の回復時間が5%短縮する。",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 7
+        }
+      ],
+      "dpCost": 26200,
+      "ticketCost": 55
+    },
+    {
+      "name": "冷却システム",
+      "level": 4,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 10,
+        "mid": 5,
+        "long": 1
+      },
+      "description": "スラスターの回復速度が20%上昇し、スラスターが10増加。スラスターオーバーヒート時の回復時間が7%短縮する。",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 10
+        }
+      ],
+      "dpCost": 44100,
+      "ticketCost": 60
+    },
+    {
+      "name": "冷却システム",
+      "level": 5,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 11,
+        "mid": 6,
+        "long": 1
+      },
+      "description": "スラスターの回復速度が25%上昇し、スラスターが13増加。スラスターオーバーヒート時の回復時間が10%短縮する。",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 13
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 80
+    },
+    {
+      "name": "強制冷却システム",
+      "level": 1,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 2,
+        "mid": 1,
+        "long": 0
+      },
+      "description": "スラスターオーバーヒート時の回復時間が5%短縮。さらにスラスターの回復速度が3%上昇する。",
+      "effects": [],
+      "dpCost": 7500,
+      "ticketCost": 20
+    },
+    {
+      "name": "強制冷却システム",
+      "level": 2,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 5,
+        "mid": 3,
+        "long": 0
+      },
+      "description": "スラスターオーバーヒート時の回復時間が10%短縮。さらにスラスターの回復速度が6%上昇する。",
+      "effects": [],
+      "dpCost": 10200,
+      "ticketCost": 25
+    },
+    {
+      "name": "強制冷却システム",
+      "level": 3,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 7,
+        "mid": 4,
+        "long": 1
+      },
+      "description": "スラスターオーバーヒート時の回復時間が15%短縮。さらにスラスターの回復速度が9%上昇する。",
+      "effects": [],
+      "dpCost": 33100,
+      "ticketCost": 70
+    },
+    {
+      "name": "強制冷却システム",
+      "level": 4,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 10,
+        "mid": 5,
+        "long": 1
+      },
+      "description": "スラスターオーバーヒート時の回復時間が20%短縮。さらにスラスターの回復速度が12%上昇する。",
+      "effects": [],
+      "dpCost": 62500,
+      "ticketCost": 75
+    },
+    {
+      "name": "強制冷却システム",
+      "level": 5,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 11,
+        "mid": 6,
+        "long": 1
+      },
+      "description": "スラスターオーバーヒート時の回復時間が25%短縮。さらにスラスターの回復速度が15%上昇する。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 100
+    },
+    {
+      "name": "クイックローダー",
+      "level": 1,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 2
+      },
+      "description": "実弾射撃兵装およびビーム(残弾式)のリロード時間を3%短縮",
+      "effects": [],
+      "dpCost": 10200,
+      "ticketCost": 25
+    },
+    {
+      "name": "クイックローダー",
+      "level": 2,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 1,
+        "mid": 4,
+        "long": 0
+      },
+      "description": "実弾射撃兵装およびビーム(残弾式)のリロード時間を6%短縮",
+      "effects": [],
+      "dpCost": 21700,
+      "ticketCost": 45
+    },
+    {
+      "name": "クイックローダー",
+      "level": 3,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 1,
+        "mid": 7,
+        "long": 0
+      },
+      "description": "実弾射撃兵装およびビーム(残弾式)のリロード時間を10%短縮",
+      "effects": [],
+      "dpCost": 43900,
+      "ticketCost": 75
+    },
+    {
+      "name": "クイックローダー",
+      "level": 4,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 2,
+        "mid": 12,
+        "long": 0
+      },
+      "description": "実弾射撃兵装およびビーム(残弾式)のリロード時間を15%短縮",
+      "effects": [],
+      "dpCost": 67900,
+      "ticketCost": 80
+    },
+    {
+      "name": "補助ジェネレーター",
+      "level": 1,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 2
+      },
+      "description": "ビーム射撃兵装のオーバーヒートからの復帰時間を3%短縮",
+      "effects": [
+        {
+          "type": "oh_recovery_pct",
+          "value": 3
+        }
+      ],
+      "dpCost": 6000,
+      "ticketCost": 15
+    },
+    {
+      "name": "補助ジェネレーター",
+      "level": 2,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 1,
+        "mid": 4,
+        "long": 0
+      },
+      "description": "ビーム射撃兵装のオーバーヒートからの復帰時間を6%短縮",
+      "effects": [
+        {
+          "type": "oh_recovery_pct",
+          "value": 6
+        }
+      ],
+      "dpCost": 17000,
+      "ticketCost": 40
+    },
+    {
+      "name": "補助ジェネレーター",
+      "level": 3,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 1,
+        "mid": 7,
+        "long": 0
+      },
+      "description": "ビーム射撃兵装のオーバーヒートからの復帰時間を10%短縮",
+      "effects": [
+        {
+          "type": "oh_recovery_pct",
+          "value": 10
+        }
+      ],
+      "dpCost": 33000,
+      "ticketCost": 70
+    },
+    {
+      "name": "補助ジェネレーター",
+      "level": 4,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 2,
+        "mid": 10,
+        "long": 0
+      },
+      "description": "ビーム射撃兵装のオーバーヒートからの復帰時間を15%短縮",
+      "effects": [
+        {
+          "type": "oh_recovery_pct",
+          "value": 15
+        }
+      ],
+      "dpCost": 62400,
+      "ticketCost": 75
+    },
+    {
+      "name": "補助ジェネレーター",
+      "level": 5,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 3,
+        "mid": 14,
+        "long": 0
+      },
+      "description": "ビーム射撃兵装のオーバーヒートからの復帰時間を20%短縮",
+      "effects": [
+        {
+          "type": "oh_recovery_pct",
+          "value": 20
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 115
+    },
+    {
+      "name": "高精度集束リング",
+      "level": 1,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 0,
+        "mid": 2,
+        "long": 0
+      },
+      "description": "ビーム射撃兵装の集束時間を3%短縮",
+      "effects": [],
+      "dpCost": 34900,
+      "ticketCost": 75
+    },
+    {
+      "name": "高精度集束リング",
+      "level": 2,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 0,
+        "mid": 3,
+        "long": 1
+      },
+      "description": "ビーム射撃兵装の集束時間を6%短縮",
+      "effects": [],
+      "dpCost": 49300,
+      "ticketCost": 80
+    },
+    {
+      "name": "高精度集束リング",
+      "level": 3,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 0,
+        "mid": 6,
+        "long": 0
+      },
+      "description": "ビーム射撃兵装の集束時間を10%短縮",
+      "effects": [],
+      "dpCost": 65300,
+      "ticketCost": 90
+    },
+    {
+      "name": "AD-DCS",
+      "level": 1,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 0,
+        "mid": 1,
+        "long": 0
+      },
+      "description": "一部の状態異常の回復時間を20%短縮。同パーツのＬＶ違いの短縮効果は重複しない。",
+      "effects": [],
+      "dpCost": 14200,
+      "ticketCost": 30
+    },
+    {
+      "name": "AD-DCS",
+      "level": 2,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 1,
+        "mid": 2,
+        "long": 0
+      },
+      "description": "一部の状態異常の回復時間を30%短縮。同パーツのＬＶ違いの短縮効果は重複しない。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 40
+    },
+    {
+      "name": "フィールドモーター",
+      "level": 1,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 0,
+        "mid": 1,
+        "long": 4
+      },
+      "description": "旋回性能（レティクルのレスポンス）が5増加",
+      "effects": [],
+      "dpCost": 11700,
+      "ticketCost": 40
+    },
+    {
+      "name": "フィールドモーター",
+      "level": 2,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 0,
+        "mid": 3,
+        "long": 7
+      },
+      "description": "旋回性能（レティクルのレスポンス）が10増加",
+      "effects": [],
+      "dpCost": 34800,
+      "ticketCost": 70
+    },
+    {
+      "name": "フィールドモーター",
+      "level": 3,
+      "rarity": 2,
+      "category": "support",
+      "slots": {
+        "close": 8,
+        "mid": 6,
+        "long": 1
+      },
+      "description": "旋回性能（レティクルのレスポンス）が15増加",
+      "effects": [],
+      "dpCost": 52000,
+      "ticketCost": 80
+    },
+    {
+      "name": "AD-ASL",
+      "level": 1,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 0,
+        "mid": 1,
+        "long": 4
+      },
+      "description": "ASL（自動照準補正）領域を5拡張",
+      "effects": [],
+      "dpCost": 4800,
+      "ticketCost": 15
+    },
+    {
+      "name": "AD-ASL",
+      "level": 2,
+      "rarity": 1,
+      "category": "support",
+      "slots": {
+        "close": 0,
+        "mid": 5,
+        "long": 7
+      },
+      "description": "ASL（自動照準補正）領域を10拡張",
+      "effects": [],
+      "dpCost": 10000,
+      "ticketCost": 25
+    },
+    {
+      "name": "電子防護システム",
+      "level": 1,
+      "rarity": 3,
+      "category": "support",
+      "slots": {
+        "close": 2,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "戦闘時間4分経過後に発動。機体HPが30%以上の時に攻撃及び一部のスキルによるレーダー障害を無効化。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "大容量補給パック",
+      "level": 1,
+      "rarity": 3,
+      "category": "support",
+      "slots": {
+        "close": 1,
+        "mid": 9,
+        "long": 3
+      },
+      "description": "実弾、ビーム（残弾式）、その他の残弾式兵装のリロード時間、およびオーバーヒートからの回復速度が15%上昇する。なお、他パーツによる同一効果を持つカスタムパーツとの同時装備はできない。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "脚部特殊装甲",
+      "level": 1,
+      "rarity": 2,
+      "category": "special",
+      "slots": {
+        "close": 3,
+        "mid": 1,
+        "long": 0
+      },
+      "description": "「脚部HP」に充てられるHPを60%から65%に増加脚部被弾時、機体HPへのダメージを1%軽減。同パーツへの他LV装備時の効果は重複しない。",
+      "effects": [],
+      "dpCost": 14100,
+      "ticketCost": 45
+    },
+    {
+      "name": "脚部特殊装甲",
+      "level": 2,
+      "rarity": 2,
+      "category": "special",
+      "slots": {
+        "close": 5,
+        "mid": 2,
+        "long": 0
+      },
+      "description": "「脚部HP」に充てられるHPを60%から70%に増加脚部被弾時、機体HPへのダメージを1%軽減。同パーツへの他LV装備時の効果は重複しない。",
+      "effects": [],
+      "dpCost": 23800,
+      "ticketCost": 65
+    },
+    {
+      "name": "脚部特殊装甲",
+      "level": 3,
+      "rarity": 2,
+      "category": "special",
+      "slots": {
+        "close": 5,
+        "mid": 4,
+        "long": 1
+      },
+      "description": "「脚部HP」に充てられるHPを60%から80%に増加脚部被弾時、機体HPへのダメージを2%軽減。同パーツへの他LV装備時の効果は重複しない。",
+      "effects": [],
+      "dpCost": 27700,
+      "ticketCost": 75
+    },
+    {
+      "name": "脚部特殊装甲",
+      "level": 4,
+      "rarity": 2,
+      "category": "special",
+      "slots": {
+        "close": 6,
+        "mid": 5,
+        "long": 1
+      },
+      "description": "「脚部HP」に充てられるHPを60%から90%に増加脚部被弾時、機体HPへのダメージを7%軽減。同パーツへの他LV装備時の効果は重複しない。",
+      "effects": [],
+      "dpCost": 40700,
+      "ticketCost": 75
+    },
+    {
+      "name": "頭部特殊装甲",
+      "level": 1,
+      "rarity": 1,
+      "category": "special",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 1
+      },
+      "description": "「頭部HP」に充てられるHPを45%から55%に増加頭部被弾時、機体HPへのダメージを4%軽減。同パーツへの他LV装備時の効果は重複しない。",
+      "effects": [],
+      "dpCost": 4200,
+      "ticketCost": 10
+    },
+    {
+      "name": "頭部特殊装甲",
+      "level": 2,
+      "rarity": 1,
+      "category": "special",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 2
+      },
+      "description": "「頭部HP」に充てられるHPを45%から75%に増加頭部被弾時、機体HPへのダメージを12%軽減。同パーツへの他LV装備時の効果は重複しない。",
+      "effects": [],
+      "dpCost": 10000,
+      "ticketCost": 25
+    },
+    {
+      "name": "頭部特殊装甲",
+      "level": 3,
+      "rarity": 1,
+      "category": "special",
+      "slots": {
+        "close": 0,
+        "mid": 0,
+        "long": 3
+      },
+      "description": "「頭部HP」に充てられるHPを45%から85%に増加頭部被弾時、機体HPへのダメージを15%軽減。同パーツへの他LV装備時の効果は重複しない。",
+      "effects": [],
+      "dpCost": 21700,
+      "ticketCost": 45
+    },
+    {
+      "name": "背部特殊装甲",
+      "level": 1,
+      "rarity": 1,
+      "category": "special",
+      "slots": {
+        "close": 1,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "「背部HP」に充てられるHPを30%から40%に増加背部被弾時、機体HPへのダメージを2%軽減。同パーツへの他LV装備時の効果は重複しない。",
+      "effects": [],
+      "dpCost": 4500,
+      "ticketCost": 10
+    },
+    {
+      "name": "背部特殊装甲",
+      "level": 2,
+      "rarity": 1,
+      "category": "special",
+      "slots": {
+        "close": 2,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "「背部HP」に充てられるHPを30%から55%に増加背部被弾時、機体HPへのダメージを6%軽減。同パーツへの他LV装備時の効果は重複しない。",
+      "effects": [],
+      "dpCost": 10400,
+      "ticketCost": 25
+    },
+    {
+      "name": "背部特殊装甲",
+      "level": 3,
+      "rarity": 2,
+      "category": "special",
+      "slots": {
+        "close": 3,
+        "mid": 0,
+        "long": 0
+      },
+      "description": "「背部HP」に充てられるHPを30%から80%に増加背部被弾時、機体HPへのダメージを13%軽減。同パーツへの他LV装備時の効果は重複しない。",
+      "effects": [],
+      "dpCost": 20500,
+      "ticketCost": 55
+    },
+    {
+      "name": "データベースリンク",
+      "level": 1,
+      "rarity": 2,
+      "category": "special",
+      "slots": {
+        "close": 0,
+        "mid": 1,
+        "long": 2
+      },
+      "description": "脚部、頭部、背部への部位ダメージ量が3%増加",
+      "effects": [],
+      "dpCost": 19500,
+      "ticketCost": 65
+    },
+    {
+      "name": "データベースリンク",
+      "level": 2,
+      "rarity": 2,
+      "category": "special",
+      "slots": {
+        "close": 0,
+        "mid": 2,
+        "long": 4
+      },
+      "description": "脚部、頭部、背部への部位ダメージ量が6%増加",
+      "effects": [],
+      "dpCost": 35000,
+      "ticketCost": 80
+    },
+    {
+      "name": "スペースドフレーム",
+      "level": 1,
+      "rarity": 2,
+      "category": "special",
+      "slots": {
+        "close": 1,
+        "mid": 3,
+        "long": 1
+      },
+      "description": "機体HPが200増加。スラスターが3増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 200
+        },
+        {
+          "type": "thruster",
+          "value": 3
+        }
+      ],
+      "dpCost": 65700,
+      "ticketCost": 75
+    },
+    {
+      "name": "スペースドフレーム",
+      "level": 2,
+      "rarity": 2,
+      "category": "special",
+      "slots": {
+        "close": 1,
+        "mid": 1,
+        "long": 4
+      },
+      "description": "機体HPが400増加。スラスターが5増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 400
+        },
+        {
+          "type": "thruster",
+          "value": 5
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 150
+    },
+    {
+      "name": "スペースドフレーム",
+      "level": 3,
+      "rarity": 2,
+      "category": "special",
+      "slots": {
+        "close": 5,
+        "mid": 1,
+        "long": 1
+      },
+      "description": "機体HPが600増加。スラスターが7増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 600
+        },
+        {
+          "type": "thruster",
+          "value": 7
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 350
+    },
+    {
+      "name": "スペースドフレーム",
+      "level": 4,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 4,
+        "mid": 0,
+        "long": 4
+      },
+      "description": "機体HPが1000増加。スラスターが8増加",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 1000
+        },
+        {
+          "type": "thruster",
+          "value": 8
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "スペースドアーマー",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 4,
+        "mid": 2,
+        "long": 3
+      },
+      "description": "スラスターが4増加。耐実弾、耐ビーム、耐格闘装甲の各補正値が4増加。",
+      "effects": [
+        {
+          "type": "thruster",
+          "value": 4
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "サイコフレーム",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 2,
+        "mid": 3,
+        "long": 3
+      },
+      "description": "サイコミュ兵装のロックオン時間を25%短縮。機体HPの受けるダメージを3%軽減。MSの旋回性能が3増加",
+      "effects": [
+        {
+          "type": "turn_speed",
+          "value": 3
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 350
+    },
+    {
+      "name": "教育型コンピューター",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 4,
+        "mid": 4,
+        "long": 6
+      },
+      "description": "敵に与えるダメージを3%増加させ、機体HPに受けるダメージを3%軽減。更に作戦開始から4分経過すると効果が上昇",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "複合フレーム［Type-A］",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 2,
+        "mid": 4,
+        "long": 3
+      },
+      "description": "リペアツールのHP回復量が15%上昇する。機体HPが200上昇。射撃補正が2増加。強化リストの強化段階が3段階目に達していると追加で機体HPが300上昇し、射撃補正が3増加する。更に6段階目に達していると追加で機体HPが500上昇し、射撃補正が5増加する。なお複合フレーム系パーツは複数装備できない。",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 2
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "複合フレーム［Type-B］",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 3,
+        "mid": 4,
+        "long": 2
+      },
+      "description": "リペアツールのHP回復量が15%上昇する。機体HPが200上昇。格闘補正が2増加。強化リストの強化段階が3段階目に達していると追加で機体HPが300上昇し、格闘補正が3増加する。更に6段階目に達していると追加で機体HPが500上昇し、格闘補正が5増加する。なお複合フレーム系パーツは複数装備できない。",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 2
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "水中戦適正化装置",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 4,
+        "mid": 3,
+        "long": 2
+      },
+      "description": "本パーツを装備した機体に対して「水中適正」を付与する。さらに水中におけるスラスター消費量を軽減し、スラスターのオーバーヒート回復時間とビーム兵装のオーバーヒート回復速度が、より強化される。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "射撃攻防プログラム",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 2,
+        "mid": 2,
+        "long": 5
+      },
+      "description": "射撃補正が5増加。射撃属性から受けるダメージを5%軽減。",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 5
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "格闘攻防プログラム",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 4,
+        "mid": 2,
+        "long": 2
+      },
+      "description": "格闘補正が5増加。格闘属性から受けるダメージを10%軽減。",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 5
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "総合強化プログラム［格闘］",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 3,
+        "mid": 3,
+        "long": 1
+      },
+      "description": "格闘補正、耐格闘補正、高速移動、スラスター、MSの旋回性能が1増加する。機体LVが1上昇するごとに、さらに1増加。本パーツによる最大上昇は機体LV5まで。",
+      "effects": [
+        {
+          "type": "turn_speed",
+          "value": 1
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "総合強化プログラム［射撃］",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 1,
+        "mid": 3,
+        "long": 3
+      },
+      "description": "機体HPが100増加し、耐実弾補正、耐ビーム補正、射撃補正が1増加する。機体LVが1上昇するごとに、機体HPが100増加し、その他効果は1増加。本パーツによる最大上昇は機体LV5まで。",
+      "effects": [
+        {
+          "type": "shooting_correction",
+          "value": 1
+        },
+        {
+          "type": "hp",
+          "value": 100
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "特殊強化装置［Type-α］",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 4,
+        "mid": 3,
+        "long": 2
+      },
+      "description": "格闘補正が20%増加。機体HPが1000増加。なお特殊強化装置系のパーツは複数装備不可。",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 1000
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "特殊強化装置［Type-β］",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 3,
+        "mid": 3,
+        "long": 5
+      },
+      "description": "射撃補正が20%増加。機体HPが1000増加。なお特殊強化装置系のパーツは複数装備不可。",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 1000
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "カテゴリ特攻プログラム［汎用］",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 4,
+        "mid": 1,
+        "long": 4
+      },
+      "description": "汎用カテゴリのみ装備可能。機体HPが2000増加。有利カテゴリの敵機に与えるダメージを増加。",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 2000
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "カテゴリ特攻プログラム［支援］",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 2,
+        "mid": 4,
+        "long": 4
+      },
+      "description": "支援カテゴリのみ装備可能。機体HPに受けるダメージを軽減。有利カテゴリの敵機に与えるダメージを増加。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "コネクティングシステム［強襲Ⅰ型］",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 9,
+        "mid": 3,
+        "long": 2
+      },
+      "description": "格闘補正と耐格闘補正が10増加。さらに強襲カテゴリに装備させると、スピードが7増加。同系統のカスタムパーツは複数装備不可。",
+      "effects": [
+        {
+          "type": "melee_correction",
+          "value": 10
+        },
+        {
+          "type": "melee_armor",
+          "value": 10
+        },
+        {
+          "type": "speed",
+          "value": 7
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "コネクティングシステム［強襲Ⅱ型］",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 3,
+        "mid": 5,
+        "long": 1
+      },
+      "description": "射撃補正と耐実弾、耐ビーム補正が5増加。強襲カテゴリに装備させると高速移動が5増加。同系統のカスタムパーツは複数装備不可。",
+      "effects": [
+        {
+          "type": "beam_armor",
+          "value": 5
+        },
+        {
+          "type": "boost_speed",
+          "value": 5
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    }
+  ]
+}
