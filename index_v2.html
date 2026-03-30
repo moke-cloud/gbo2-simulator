@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="バトオペ2 カスタムパーツシミュレーター - カスタムパーツの自動最適化、火力・防御期待値の計算">
+  <title>GBO2 カスタムパーツ シミュレーター</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style_v2.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header id="app-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <span class="logo-icon">⬡</span>
+        <h1>GBO2 CUSTOM PARTS SIMULATOR</h1>
+      </div>
+      <div class="header-subtitle">カスタムパーツ シミュレーター</div>
+    </div>
+  </header>
+
+  <main id="app-main">
+    <!-- 左サイドバー: 機体選択 & 設定 -->
+    <aside id="sidebar">
+      <!-- 機体選択セクション -->
+      <section class="sidebar-section" id="ms-select-section">
+        <h2 class="section-title"><span class="icon">🔧</span> 機体選択</h2>
+        <div class="form-group">
+          <label>機体絞り込み</label>
+          <div class="ms-filters-grid">
+            <select id="ms-filter-category" class="filter-select">
+              <option value="all">全兵科</option>
+              <option value="汎用">汎用</option>
+              <option value="強襲">強襲</option>
+              <option value="支援">支援</option>
+            </select>
+            <select id="ms-filter-level" class="filter-select">
+              <option value="all">全LV</option>
+              <option value="1">LV1</option>
+              <option value="2">LV2</option>
+              <option value="3">LV3</option>
+              <option value="4">LV4</option>
+              <option value="5">LV5</option>
+            </select>
+            <select id="ms-filter-cost" class="filter-select" style="grid-column: span 2;">
+              <option value="all">全コスト</option>
+              <option value="200">200</option>
+              <option value="250">250</option>
+              <option value="300">300</option>
+              <option value="350">350</option>
+              <option value="400">400</option>
+              <option value="450">450</option>
+              <option value="500">500</option>
+              <option value="550">550</option>
+              <option value="600">600</option>
+              <option value="650">650</option>
+              <option value="700">700</option>
+              <option value="750">750</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="ms-search">直接検索</label>
+          <input type="text" id="ms-search" placeholder="機体名を入力..." autocomplete="off">
+          <div id="ms-search-results" class="search-results hidden"></div>
+        </div>
+        <div class="ms-filters-grid" style="margin-bottom: var(--gap-md);">
+          <div style="display: flex; flex-direction: column;">
+            <label for="ms-level" style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: var(--gap-xs); font-weight: 500;">機体LV</label>
+            <select id="ms-level" class="filter-select">
+              <option value="1">LV1</option>
+            </select>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <label for="ms-enhance-level" style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: var(--gap-xs); font-weight: 500;">強化段階</label>
+            <select id="ms-enhance-level" class="filter-select">
+              <option value="0">未強化</option>
+              <option value="1">第1段階</option>
+              <option value="2">第2段階</option>
+              <option value="3">第3段階</option>
+              <option value="4">第4段階</option>
+              <option value="5">第5段階</option>
+              <option value="6">第6段階</option>
+            </select>
+          </div>
+        </div>
+        <div id="ms-info-card" class="ms-card hidden">
+          <div class="ms-card-header">
+            <span id="ms-card-name" class="ms-name">-</span>
+            <span id="ms-card-category" class="ms-category">-</span>
+          </div>
+          <div class="ms-card-details">
+            <div class="ms-card-row">
+              <span class="label">Cost</span>
+              <span id="ms-card-cost" class="value">-</span>
+            </div>
+            <div class="ms-card-row">
+              <span class="label">出撃</span>
+              <span id="ms-card-sortie" class="value">-</span>
+            </div>
+            <div class="ms-card-row">
+              <span class="label">適正</span>
+              <span id="ms-card-env" class="value">-</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 拡張スキル設定 -->
+      <section class="sidebar-section" id="expansion-skills-section">
+        <h2 class="section-title"><span class="icon">🔩</span> 拡張スキル</h2>
+        <div id="expansion-skills-grid" class="expansion-skills-grid"></div>
+      </section>
+
+      <!-- 最適化設定 -->
+      <section class="sidebar-section" id="optimize-section">
+        <h2 class="section-title"><span class="icon">⚙</span> 最適化設定</h2>
+        
+        <div class="form-group">
+          <label>被弾配分 <span class="ratio-hint">（比率）</span></label>
+          <div class="ratio-inputs">
+            <div class="ratio-item-number">
+              <span class="ratio-label ballistic">実弾</span>
+              <input type="number" id="ratio-ballistic" min="0" value="4" class="ratio-number">
+            </div>
+            <div class="ratio-item-number">
+              <span class="ratio-label beam">ビーム</span>
+              <input type="number" id="ratio-beam" min="0" value="3" class="ratio-number">
+            </div>
+            <div class="ratio-item-number">
+              <span class="ratio-label melee">格闘</span>
+              <input type="number" id="ratio-melee" min="0" value="3" class="ratio-number">
+            </div>
+            <button id="btn-equal-damage" class="btn-equal">均等</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>攻撃配分 <span class="ratio-hint">（比率）</span></label>
+          <div class="ratio-inputs">
+            <div class="ratio-item-number">
+              <span class="ratio-label shooting">射撃</span>
+              <input type="number" id="atk-shooting" min="0" value="3" class="ratio-number">
+            </div>
+            <div class="ratio-item-number">
+              <span class="ratio-label melee-atk">格闘</span>
+              <input type="number" id="atk-melee" min="0" value="2" class="ratio-number">
+            </div>
+            <button id="btn-equal-attack" class="btn-equal">均等</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>優先ステータス <span class="ratio-hint">（最大3つ）</span></label>
+          <div class="priority-stats-grid" id="priority-stats-grid">
+            <label class="stat-check-item"><input type="checkbox" value="hp"> 機体HP</label>
+            <label class="stat-check-item"><input type="checkbox" value="ballistic_armor"> 耐実弾</label>
+            <label class="stat-check-item"><input type="checkbox" value="beam_armor"> 耐ビーム</label>
+            <label class="stat-check-item"><input type="checkbox" value="melee_armor"> 耐格闘</label>
+            <label class="stat-check-item"><input type="checkbox" value="shooting_correction"> 射撃補正</label>
+            <label class="stat-check-item"><input type="checkbox" value="melee_correction"> 格闘補正</label>
+            <label class="stat-check-item"><input type="checkbox" value="speed"> スピード</label>
+            <label class="stat-check-item"><input type="checkbox" value="boost_speed"> 高速移動</label>
+            <label class="stat-check-item"><input type="checkbox" value="thruster"> スラスター</label>
+          </div>
+          <p id="priority-stats-hint" class="ratio-hint" style="margin-top:4px;"></p>
+        </div>
+
+        <button id="btn-optimize" class="btn-primary" disabled>
+          <span class="btn-icon">⚡</span> 自動最適化
+        </button>
+        <button id="btn-clear" class="btn-secondary">
+          <span class="btn-icon">✕</span> パーツクリア
+        </button>
+      </section>
+    </aside>
+
+    <!-- メインコンテンツ -->
+    <div id="content">
+      <!-- ステータス表示 -->
+      <section id="status-section">
+        <h2 class="section-title"><span class="icon">📊</span> ステータス</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">機体HP</div>
+            <div class="stat-values">
+              <span id="stat-hp-base" class="stat-base">-</span>
+              <span id="stat-hp-arrow" class="stat-arrow hidden">→</span>
+              <span id="stat-hp-modified" class="stat-modified hidden">-</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">耐実弾</div>
+            <div class="stat-values">
+              <span id="stat-ballistic-base" class="stat-base">-</span>
+              <span id="stat-ballistic-arrow" class="stat-arrow hidden">→</span>
+              <span id="stat-ballistic-modified" class="stat-modified hidden">-</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">耐ビーム</div>
+            <div class="stat-values">
+              <span id="stat-beam-base" class="stat-base">-</span>
+              <span id="stat-beam-arrow" class="stat-arrow hidden">→</span>
+              <span id="stat-beam-modified" class="stat-modified hidden">-</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">耐格闘</div>
+            <div class="stat-values">
+              <span id="stat-melee-armor-base" class="stat-base">-</span>
+              <span id="stat-melee-armor-arrow" class="stat-arrow hidden">→</span>
+              <span id="stat-melee-armor-modified" class="stat-modified hidden">-</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">射撃補正</div>
+            <div class="stat-values">
+              <span id="stat-shooting-base" class="stat-base">-</span>
+              <span id="stat-shooting-arrow" class="stat-arrow hidden">→</span>
+              <span id="stat-shooting-modified" class="stat-modified hidden">-</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">格闘補正</div>
+            <div class="stat-values">
+              <span id="stat-melee-base" class="stat-base">-</span>
+              <span id="stat-melee-arrow" class="stat-arrow hidden">→</span>
+              <span id="stat-melee-modified" class="stat-modified hidden">-</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">スピード</div>
+            <div class="stat-values">
+              <span id="stat-speed-base" class="stat-base">-</span>
+              <span id="stat-speed-arrow" class="stat-arrow hidden">→</span>
+              <span id="stat-speed-modified" class="stat-modified hidden">-</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">スラスター</div>
+            <div class="stat-values">
+              <span id="stat-thruster-base" class="stat-base">-</span>
+              <span id="stat-thruster-arrow" class="stat-arrow hidden">→</span>
+              <span id="stat-thruster-modified" class="stat-modified hidden">-</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">高速移動</div>
+            <div class="stat-values">
+              <span id="stat-boost-base" class="stat-base">-</span>
+              <span id="stat-boost-arrow" class="stat-arrow hidden">→</span>
+              <span id="stat-boost-modified" class="stat-modified hidden">-</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">旋回</div>
+            <div class="stat-values">
+              <span id="stat-turn-base" class="stat-base">-</span>
+              <span id="stat-turn-arrow" class="stat-arrow hidden">→</span>
+              <span id="stat-turn-modified" class="stat-modified hidden">-</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- スロット & パーツ配置 -->
+      <section id="slots-section">
+        <h2 class="section-title"><span class="icon">🎯</span> パーツスロット</h2>
+        <div class="slot-bars">
+          <div class="slot-bar-group">
+            <span class="slot-label close">近距離</span>
+            <div class="slot-bar" id="slot-bar-close">
+              <div class="slot-fill" id="slot-fill-close"></div>
+            </div>
+            <span class="slot-text"><span id="slot-used-close">0</span> / <span id="slot-max-close">0</span></span>
+          </div>
+          <div class="slot-bar-group">
+            <span class="slot-label mid">中距離</span>
+            <div class="slot-bar" id="slot-bar-mid">
+              <div class="slot-fill" id="slot-fill-mid"></div>
+            </div>
+            <span class="slot-text"><span id="slot-used-mid">0</span> / <span id="slot-max-mid">0</span></span>
+          </div>
+          <div class="slot-bar-group">
+            <span class="slot-label long">遠距離</span>
+            <div class="slot-bar" id="slot-bar-long">
+              <div class="slot-fill" id="slot-fill-long"></div>
+            </div>
+            <span class="slot-text"><span id="slot-used-long">0</span> / <span id="slot-max-long">0</span></span>
+          </div>
+        </div>
+
+        <div id="equipped-parts" class="equipped-parts">
+          <div class="part-slot empty" data-slot="0"><span class="part-slot-label">1</span></div>
+          <div class="part-slot empty" data-slot="1"><span class="part-slot-label">2</span></div>
+          <div class="part-slot empty" data-slot="2"><span class="part-slot-label">3</span></div>
+          <div class="part-slot empty" data-slot="3"><span class="part-slot-label">4</span></div>
+          <div class="part-slot empty" data-slot="4"><span class="part-slot-label">5</span></div>
+          <div class="part-slot empty" data-slot="5"><span class="part-slot-label">6</span></div>
+          <div class="part-slot empty" data-slot="6"><span class="part-slot-label">7</span></div>
+          <div class="part-slot empty" data-slot="7"><span class="part-slot-label">8</span></div>
+        </div>
+      </section>
+
+      <!-- 計算結果 -->
+      <section id="calc-section">
+        <h2 class="section-title"><span class="icon">📈</span> 計算結果</h2>
+        <div class="calc-grid">
+          <div class="calc-card offense">
+            <div class="calc-card-header">火力期待値</div>
+            <div class="calc-card-body">
+              <div class="calc-row">
+                <span class="calc-label">射撃火力倍率</span>
+                <span id="calc-shooting-power" class="calc-value">×1.00</span>
+              </div>
+              <div class="calc-row">
+                <span class="calc-label">格闘火力倍率</span>
+                <span id="calc-melee-power" class="calc-value">×1.00</span>
+              </div>
+              <div class="calc-row highlight">
+                <span class="calc-label">総合火力スコア</span>
+                <div style="text-align: right;">
+                  <div id="calc-offense-score" class="calc-value">-</div>
+                  <div style="font-size: 0.7rem; color: var(--accent-green); line-height: 1.2; margin-top:2px;">対有利: <span id="calc-offense-adv">-</span></div>
+                  <div style="font-size: 0.7rem; color: var(--accent-red); line-height: 1.2;">対不利: <span id="calc-offense-dis">-</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-card defense">
+            <div class="calc-card-header">防御期待値</div>
+            <div class="calc-card-body">
+              <div class="calc-row calc-section-label">パーツのみ</div>
+              <div class="calc-row">
+                <span class="calc-label">実弾カット率</span>
+                <span id="calc-ballistic-cut" class="calc-value">0%</span>
+              </div>
+              <div class="calc-row">
+                <span class="calc-label">ビームカット率</span>
+                <span id="calc-beam-cut" class="calc-value">0%</span>
+              </div>
+              <div class="calc-row">
+                <span class="calc-label">格闘カット率</span>
+                <span id="calc-melee-cut" class="calc-value">0%</span>
+              </div>
+              <div class="calc-row highlight">
+                <span class="calc-label">加重平均カット率</span>
+                <span id="calc-avg-cut" class="calc-value">0%</span>
+              </div>
+              <div class="calc-row calc-section-label" id="combined-dc-section" style="display:none">スキル＋パーツ合算</div>
+              <div class="calc-row" id="combined-dc-row-ballistic" style="display:none">
+                <span class="calc-label">実弾（合算）</span>
+                <span id="calc-combined-ballistic" class="calc-value">0%</span>
+              </div>
+              <div class="calc-row" id="combined-dc-row-beam" style="display:none">
+                <span class="calc-label">ビーム（合算）</span>
+                <span id="calc-combined-beam" class="calc-value">0%</span>
+              </div>
+              <div class="calc-row" id="combined-dc-row-melee" style="display:none">
+                <span class="calc-label">格闘（合算）</span>
+                <span id="calc-combined-melee" class="calc-value">0%</span>
+              </div>
+              <div class="calc-row" id="combined-dc-row-all" style="display:none">
+                <span class="calc-label">ダメージ（合算）</span>
+                <span id="calc-combined-all" class="calc-value">0%</span>
+              </div>
+              <div class="calc-row highlight">
+                <span class="calc-label">有効HP</span>
+                <div style="text-align: right;">
+                  <div id="calc-effective-hp" class="calc-value">-</div>
+                  <div style="font-size: 0.7rem; color: var(--accent-green); line-height: 1.2; margin-top:2px;">対有利(被ダメ0.8倍): <span id="calc-effective-hp-adv">-</span></div>
+                  <div style="font-size: 0.7rem; color: var(--accent-red); line-height: 1.2;">対不利(被ダメ1.3倍): <span id="calc-effective-hp-dis">-</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- スキル効果 -->
+      <section id="skills-section" class="hidden">
+        <h2 class="section-title"><span class="icon">⚡</span> スキル効果</h2>
+        <div class="skills-summary">
+          <div class="calc-row">
+            <span class="calc-label">よろけ蓄積閾値</span>
+            <span id="calc-stagger-threshold" class="calc-value">100%（固定）</span>
+          </div>
+          <div class="calc-row" id="stagger-effective-row" style="display:none">
+            <span class="calc-label">└ 蓄積よろけ値への補正倍率</span>
+            <span id="calc-stagger-effective" class="calc-value">-</span>
+          </div>
+          <div class="calc-row" id="damage-cut-skill-row" style="display:none">
+            <span class="calc-label">スキルによるダメージカット</span>
+            <span id="calc-skill-damage-cut" class="calc-value">-</span>
+          </div>
+          <div class="calc-row" id="firepower-skill-row" style="display:none">
+            <span class="calc-label">スキルによる火力ボーナス</span>
+            <span id="calc-skill-firepower" class="calc-value">-</span>
+          </div>
+        </div>
+        <div id="skill-toggles-list" class="skill-toggles-list"></div>
+      </section>
+    </div>
+
+    <!-- 右サイドバー: パーツ一覧 -->
+    <aside id="parts-panel">
+      <h2 class="section-title"><span class="icon">📦</span> パーツ一覧</h2>
+      <div class="parts-filter">
+        <div class="filter-tabs" id="parts-category-tabs">
+          <button class="filter-tab active" data-category="all">全て</button>
+          <button class="filter-tab" data-category="attack">攻撃</button>
+          <button class="filter-tab" data-category="defense">防御</button>
+          <button class="filter-tab" data-category="mobility">移動</button>
+          <button class="filter-tab" data-category="support">補助</button>
+          <button class="filter-tab" data-category="special">特殊</button>
+        </div>
+        <input type="text" id="parts-search" placeholder="パーツ名検索..." style="margin-bottom: var(--gap-sm);">
+        <label style="display: flex; align-items: center; gap: var(--gap-sm); font-size: 0.75rem; color: var(--text-secondary); cursor: pointer;">
+          <input type="checkbox" id="show-unowned" checked> 未所持パーツも表示
+        </label>
+      </div>
+      <div id="parts-list" class="parts-list"></div>
+    </aside>
+  </main>
+
+  <footer id="app-footer">
+    <p>GBO2 Custom Parts Simulator | データ元: <a href="https://w.atwiki.jp/battle-operation2/" target="_blank" rel="noopener">バトオペ2攻略Wiki</a></p>
+  </footer>
+
+  <script src="js/calculator.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

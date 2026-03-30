@@ -1,0 +1,11 @@
+# wiki HTML キャッシュ（大容量・著作権）
+data/ms_html_cache/
+
+# Python
+tools/__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db
