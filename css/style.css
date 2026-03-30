@@ -1284,3 +1284,284 @@ input[type="range"]::-webkit-slider-thumb:hover {
   .stats-grid { grid-template-columns: repeat(4, 1fr); }
   .calc-grid { grid-template-columns: 1fr; }
 }
+
+/* ===== MOBILE (≤768px) ===== */
+@media (max-width: 768px) {
+  :root {
+    --gap-md: 10px;
+    --gap-lg: 16px;
+  }
+
+  #app-header .header-inner { padding: 0 12px; }
+  #app-header h1 { font-size: 1rem; }
+  .header-subtitle { display: none; }
+
+  #app-main { flex-direction: column; }
+
+  #sidebar, #parts-panel {
+    width: 100%;
+    min-width: 100%;
+    max-height: none;
+    border: none;
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  #sidebar { padding: 12px; }
+
+  .sidebar-section { padding: 12px; margin-bottom: 8px; }
+
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+
+  .stat-card { padding: 6px 8px; }
+
+  .equipped-parts { grid-template-columns: repeat(4, 1fr); gap: 4px; }
+  .part-slot { padding: 6px 4px; min-height: 44px; font-size: 0.7rem; }
+
+  .calc-grid { grid-template-columns: 1fr; }
+
+  .slot-bars { gap: 6px; }
+  .slot-bar-group { gap: 4px; }
+
+  /* フィルタータブをスクロール可能に */
+  .filter-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .filter-tabs::-webkit-scrollbar { display: none; }
+  .filter-tab { white-space: nowrap; min-height: 36px; padding: 0 10px; flex-shrink: 0; }
+
+  /* パーツパネルの高さ制限 */
+  #parts-panel { max-height: none; }
+  .parts-list { max-height: 55vh; overflow-y: auto; }
+
+  /* パーツグループのタッチターゲット */
+  .part-group-header { min-height: 44px; }
+  .part-lv-row { min-height: 40px; }
+  .btn-own-toggle, .btn-accordion { width: 26px; height: 26px; }
+
+  /* select のフォントサイズ (iOS ズーム防止) */
+  select, input[type="text"], input[type="number"] { font-size: 16px; }
+
+  /* 比率入力 */
+  .ratio-inputs { flex-wrap: wrap; gap: 6px; }
+  .ratio-item-number { flex: 1 1 60px; }
+
+  /* 検索結果 */
+  .ms-search-results { max-height: 200px; }
+
+  /* パーツ一覧パネル（モバイル時はフル幅） */
+  #parts-panel { order: 3; border-top: 1px solid var(--border-primary); }
+  #content { order: 2; }
+  #sidebar { order: 1; }
+}
+
+/* ===== 構成保存 UI ===== */
+.build-save-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.build-name-input {
+  width: 100%;
+  padding: 6px 8px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+}
+
+.build-name-input:focus {
+  outline: none;
+  border-color: var(--border-accent);
+}
+
+.btn-save-build { width: 100%; font-size: 0.8rem; }
+
+.saved-builds-list { display: flex; flex-direction: column; gap: 6px; }
+
+.no-builds-msg {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 8px 0;
+}
+
+.builds-count {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: right;
+  margin-bottom: 2px;
+}
+
+.saved-build-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+}
+
+.build-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.build-item-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.build-item-ms {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.build-item-date {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.build-item-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.btn-load-build {
+  background: rgba(0, 168, 255, 0.12);
+  border: 1px solid var(--border-accent);
+  color: var(--color-accent);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-load-build:hover {
+  background: rgba(0, 168, 255, 0.22);
+}
+
+.btn-delete-build {
+  background: none;
+  border: 1px solid var(--border-primary);
+  color: var(--text-muted);
+  border-radius: 4px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.65rem;
+  transition: all var(--transition-fast);
+  padding: 0;
+}
+
+.btn-delete-build:hover {
+  border-color: #ff4060;
+  color: #ff4060;
+}
+
+/* ===== 構成比較 UI ===== */
+#compare-section {
+  margin-top: var(--gap-md);
+  padding: var(--gap-md) var(--gap-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+}
+
+.compare-controls {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.compare-select-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.compare-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.compare-select { width: 100%; font-size: 0.78rem; }
+
+.btn-compare { white-space: nowrap; flex-shrink: 0; }
+
+.compare-results { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  min-width: 320px;
+}
+
+.compare-table th, .compare-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  text-align: center;
+}
+
+.compare-table th:first-child,
+.compare-table td:first-child {
+  text-align: left;
+}
+
+.cmp-header {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+  background: var(--bg-secondary);
+}
+
+.cmp-ms {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.cmp-label {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.cmp-val { font-weight: 500; }
+
+.cmp-better {
+  color: #4cde80;
+  font-weight: 700;
+}
+
+.cmp-worse { color: var(--text-muted); }
+
+/* よろけ耐性の強調表示 */
+.calc-value-accent { color: var(--color-accent); font-weight: 600; }

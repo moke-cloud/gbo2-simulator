@@ -11,6 +11,7 @@ const App = {
   selectedMS: null,
   selectedLevel: 1,
   equippedParts: [null, null, null, null, null, null, null, null],
+  savedBuilds: [], // 保存済み構成リスト
   
   // 設定（比率は整数で保持、計算時に正規化）
   damageRatio: { ballistic: 4, beam: 3, melee: 3 },
@@ -34,6 +35,8 @@ const App = {
       this.bindEvents();
       this.renderExpansionSkillsUI();
       this.renderPartsList();
+      this.renderSavedBuilds();
+      this.updateBuildSelectOptions();
     } catch (e) {
       // 初期化失敗はサイレントに（UIは機能しない状態になる）
     }
@@ -71,21 +74,25 @@ const App = {
   loadSettings() {
     try {
       const savedUnowned = localStorage.getItem('gbo2_unowned_parts');
-      if (savedUnowned) {
-        this.unownedParts = new Set(JSON.parse(savedUnowned));
-      }
+      if (savedUnowned) this.unownedParts = new Set(JSON.parse(savedUnowned));
+
       const showUnowned = localStorage.getItem('gbo2_show_unowned');
-      if (showUnowned !== null) {
-        this.showUnowned = showUnowned === 'true';
-      }
+      if (showUnowned !== null) this.showUnowned = showUnowned === 'true';
+
+      const savedBuilds = localStorage.getItem('gbo2_saved_builds');
+      if (savedBuilds) this.savedBuilds = JSON.parse(savedBuilds);
     } catch (e) {
       // 設定読み込み失敗時はデフォルト値を使用
     }
   },
 
   saveSettings() {
-    localStorage.setItem('gbo2_unowned_parts', JSON.stringify(Array.from(this.unownedParts)));
-    localStorage.setItem('gbo2_show_unowned', this.showUnowned);
+    try {
+      localStorage.setItem('gbo2_unowned_parts', JSON.stringify(Array.from(this.unownedParts)));
+      localStorage.setItem('gbo2_show_unowned', this.showUnowned);
+    } catch (e) {
+      // Safari private mode 等で localStorage が使えない場合は無視
+    }
   },
 
   bindEvents() {
@@ -168,6 +175,19 @@ const App = {
 
     // パーツクリアボタン
     document.getElementById('btn-clear').addEventListener('click', () => this.clearParts());
+
+    // 構成保存
+    document.getElementById('btn-save-build').addEventListener('click', () => {
+      const name = document.getElementById('build-save-name').value;
+      this.saveBuild(name);
+      document.getElementById('build-save-name').value = '';
+    });
+    document.getElementById('build-save-name').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('btn-save-build').click();
+    });
+
+    // 構成比較
+    document.getElementById('btn-compare').addEventListener('click', () => this.runCompareBuild());
 
     // パーツカテゴリフィルター
     document.getElementById('parts-category-tabs').addEventListener('click', (e) => {
@@ -704,8 +724,19 @@ const App = {
       document.getElementById('stagger-effective-row').style.display = '';
       document.getElementById('calc-stagger-effective').textContent =
         `受けたよろけ値 ×${combined.toFixed(3)} （${(combined * 100).toFixed(1)}%）`;
+      // 実質よろけ耐性: スキルがよろけ値を圧縮する分、より大きなよろけ値に耐えられる
+      // 例: ×0.5 → よろけ閾値100%を割るには元の200%が必要 → 「200%以下を無効化」
+      document.getElementById('stagger-resistance-row').style.display = '';
+      if (combined <= 0) {
+        document.getElementById('calc-stagger-resistance').textContent = '全よろけ値を無効化';
+      } else {
+        const threshold = Math.round(100 / combined);
+        document.getElementById('calc-stagger-resistance').textContent =
+          `よろけ値 ${threshold}% 未満のよろけを無効化`;
+      }
     } else {
       document.getElementById('stagger-effective-row').style.display = 'none';
+      document.getElementById('stagger-resistance-row').style.display = 'none';
     }
 
     // ダメージカット: 加算合計
@@ -823,6 +854,243 @@ const App = {
     });
 
     this.updateDisplay();
+  },
+
+  // === 構成保存・読込・比較 ===
+
+  saveBuild(name) {
+    if (!this.selectedMS) {
+      alert('機体を選択してください');
+      return;
+    }
+    if (this.savedBuilds.length >= 5) {
+      alert('保存上限（5件）です。不要な構成を削除してください。');
+      return;
+    }
+    const trimmed = name.trim() || `構成${this.savedBuilds.length + 1}`;
+    const build = {
+      id: Date.now(),
+      name: trimmed,
+      msName: this.selectedMS.name,
+      msLevel: this.selectedLevel,
+      enhanceLevel: this.enhanceLevel,
+      equippedParts: this.equippedParts.filter(Boolean).map(p => ({ name: p.name, level: p.level })),
+      activeSkillIndices: Array.from(this.activeSkillIndices),
+      expansionSkillLevels: { ...this.expansionSkillLevels },
+      timestamp: new Date().toLocaleDateString('ja-JP'),
+    };
+    this.savedBuilds = [...this.savedBuilds, build];
+    this._persistBuilds();
+    this.renderSavedBuilds();
+    this.updateBuildSelectOptions();
+  },
+
+  loadBuild(id) {
+    const build = this.savedBuilds.find(b => b.id === id);
+    if (!build) return;
+    const ms = this.msData.find(m => m.name === build.msName);
+    if (!ms) {
+      alert(`機体「${build.msName}」が見つかりません（データ更新で削除された可能性があります）`);
+      return;
+    }
+    this.selectedMS = ms;
+    this.selectedLevel = build.msLevel;
+    this.enhanceLevel = build.enhanceLevel;
+
+    const lvSelect = document.getElementById('ms-level');
+    const availableLvs = Object.keys(ms.levels || {}).map(Number).sort((a, b) => a - b);
+    lvSelect.innerHTML = availableLvs.map(lv =>
+      `<option value="${lv}" ${lv === build.msLevel ? 'selected' : ''}>LV${lv}</option>`
+    ).join('');
+    document.getElementById('ms-enhance-level').value = String(build.enhanceLevel);
+    document.getElementById('ms-search').value = ms.name;
+
+    this.equippedParts = [null, null, null, null, null, null, null, null];
+    build.equippedParts.forEach((sp, idx) => {
+      if (idx >= 8) return;
+      const part = this.customParts.find(p => p.name === sp.name && p.level === sp.level);
+      if (part) this.equippedParts[idx] = part;
+    });
+
+    this.expansionSkillLevels = { ...build.expansionSkillLevels };
+    this.renderExpansionSkillsUI();
+    this.activeSkillIndices = new Set();
+    this._skillEffectCache = [];
+    document.getElementById('btn-optimize').disabled = false;
+    this.updateDisplay();
+  },
+
+  deleteBuild(id) {
+    this.savedBuilds = this.savedBuilds.filter(b => b.id !== id);
+    this._persistBuilds();
+    this.renderSavedBuilds();
+    this.updateBuildSelectOptions();
+  },
+
+  _persistBuilds() {
+    try {
+      localStorage.setItem('gbo2_saved_builds', JSON.stringify(this.savedBuilds));
+    } catch (e) { /* storage full or private mode */ }
+  },
+
+  renderSavedBuilds() {
+    const container = document.getElementById('saved-builds-list');
+    if (this.savedBuilds.length === 0) {
+      container.innerHTML = '<p class="no-builds-msg">保存済み構成はありません</p>';
+      return;
+    }
+    const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    container.innerHTML = `
+      <div class="builds-count">${this.savedBuilds.length} / 5 件</div>
+      ${this.savedBuilds.map(b => `
+        <div class="saved-build-item">
+          <div class="build-item-info">
+            <span class="build-item-name">${esc(b.name)}</span>
+            <span class="build-item-ms">${esc(b.msName)} LV${b.msLevel}</span>
+            <span class="build-item-date">${esc(b.timestamp)}</span>
+          </div>
+          <div class="build-item-actions">
+            <button class="btn-load-build" data-id="${b.id}">読込</button>
+            <button class="btn-delete-build" data-id="${b.id}" title="削除">✕</button>
+          </div>
+        </div>
+      `).join('')}
+    `;
+    container.querySelectorAll('.btn-load-build').forEach(btn =>
+      btn.addEventListener('click', () => this.loadBuild(Number(btn.dataset.id)))
+    );
+    container.querySelectorAll('.btn-delete-build').forEach(btn =>
+      btn.addEventListener('click', () => this.deleteBuild(Number(btn.dataset.id)))
+    );
+  },
+
+  updateBuildSelectOptions() {
+    const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    [document.getElementById('compare-build-a'), document.getElementById('compare-build-b')].forEach(sel => {
+      if (!sel) return;
+      const prev = sel.value;
+      sel.innerHTML = `
+        <option value="">-- 選択 --</option>
+        <option value="current">現在の構成</option>
+        ${this.savedBuilds.map(b =>
+          `<option value="${b.id}">${esc(b.name)} (${esc(b.msName)} LV${b.msLevel})</option>`
+        ).join('')}
+      `;
+      sel.value = prev;
+    });
+    const sec = document.getElementById('compare-section');
+    if (sec) sec.classList.toggle('hidden', this.savedBuilds.length === 0);
+  },
+
+  _computeCalcResult(modified, msName, msLevel) {
+    const r = this.getNormalizedDamageRatio();
+    const ar = this.getNormalizedAtkRatio();
+    const bCut  = GBO2Calculator.calcCutRate(modified.ballistic_armor || 0);
+    const beCut = GBO2Calculator.calcCutRate(modified.beam_armor || 0);
+    const mCut  = GBO2Calculator.calcCutRate(modified.melee_armor || 0);
+    const avgCut = bCut * r.ballistic + beCut * r.beam + mCut * r.melee;
+    const effHP = GBO2Calculator.calcEffectiveHPFromCutRates(
+      modified.hp || 0, { ballistic: bCut, beam: beCut, melee: mCut }, r
+    );
+    const shootMul = GBO2Calculator.calcShootingMultiplier(modified.shooting_correction || 0);
+    const meleeMul = GBO2Calculator.calcMeleeMultiplier(modified.melee_correction || 0);
+    return {
+      msName: msName || (this.selectedMS?.name || ''),
+      msLevel: msLevel !== undefined ? msLevel : this.selectedLevel,
+      hp: modified.hp || 0,
+      ballistic_armor: modified.ballistic_armor || 0,
+      beam_armor: modified.beam_armor || 0,
+      melee_armor: modified.melee_armor || 0,
+      shooting_correction: modified.shooting_correction || 0,
+      melee_correction: modified.melee_correction || 0,
+      speed: modified.speed || 0,
+      thruster: modified.thruster || 0,
+      bCut, beCut, mCut, avgCut, effectiveHP: effHP,
+      shootingMultiplier: shootMul,
+      meleeMultiplier: meleeMul,
+    };
+  },
+
+  calcStatsFromBuild(buildData) {
+    if (buildData === 'current') {
+      if (!this.selectedMS) return null;
+      const base = this.getBaseStats();
+      if (!base) return null;
+      const expSkills = this.getSelectedExpansionSkills();
+      const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), expSkills);
+      return this._computeCalcResult(modified, this.selectedMS.name, this.selectedLevel);
+    }
+    const ms = this.msData.find(m => m.name === buildData.msName);
+    if (!ms) return null;
+    const lvData = ms.levels?.[String(buildData.msLevel)];
+    if (!lvData) return null;
+
+    const base = GBO2Calculator.applyEnhancements(
+      { ...lvData }, ms.enhancements || [], buildData.enhanceLevel, buildData.msLevel
+    );
+    const parts = (buildData.equippedParts || [])
+      .map(sp => this.customParts.find(p => p.name === sp.name && p.level === sp.level))
+      .filter(Boolean);
+    const expSkills = Object.entries(buildData.expansionSkillLevels || [])
+      .filter(([, lv]) => lv > 0)
+      .map(([name, lv]) => this.expansionSkillsData.find(s => s.name === name && s.level === lv))
+      .filter(Boolean);
+
+    const modified = GBO2Calculator.applyParts(base, parts, expSkills);
+    return this._computeCalcResult(modified, buildData.msName, buildData.msLevel);
+  },
+
+  runCompareBuild() {
+    const valA = document.getElementById('compare-build-a').value;
+    const valB = document.getElementById('compare-build-b').value;
+    if (!valA || !valB) { alert('比較する構成を2つ選択してください'); return; }
+    if (valA === valB) { alert('異なる構成を選択してください'); return; }
+    const getItem = v => v === 'current' ? 'current' : this.savedBuilds.find(b => b.id === Number(v));
+    const dataA = getItem(valA);
+    const dataB = getItem(valB);
+    if (!dataA || !dataB) return;
+    const resultA = this.calcStatsFromBuild(dataA);
+    const resultB = this.calcStatsFromBuild(dataB);
+    if (!resultA || !resultB) { alert('ステータス計算に失敗しました（機体データが見つかりません）'); return; }
+    const nameA = valA === 'current' ? '現在の構成' : dataA.name;
+    const nameB = valB === 'current' ? '現在の構成' : dataB.name;
+    this.renderCompareResults(resultA, resultB, nameA, nameB);
+  },
+
+  renderCompareResults(a, b, nameA, nameB) {
+    const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const rows = [
+      { label: '機体HP',      va: a.hp,                  vb: b.hp,                  fmt: v => v.toLocaleString() },
+      { label: '耐実弾',      va: a.ballistic_armor,     vb: b.ballistic_armor,     fmt: v => String(v) },
+      { label: '耐ビーム',    va: a.beam_armor,          vb: b.beam_armor,          fmt: v => String(v) },
+      { label: '耐格闘',      va: a.melee_armor,         vb: b.melee_armor,         fmt: v => String(v) },
+      { label: '射撃補正',    va: a.shooting_correction, vb: b.shooting_correction, fmt: v => String(v) },
+      { label: '格闘補正',    va: a.melee_correction,    vb: b.melee_correction,    fmt: v => String(v) },
+      { label: 'スピード',    va: a.speed,               vb: b.speed,               fmt: v => String(v) },
+      { label: 'スラスター',  va: a.thruster,            vb: b.thruster,            fmt: v => String(v) },
+      { label: '射撃倍率',    va: a.shootingMultiplier,  vb: b.shootingMultiplier,  fmt: v => `×${v.toFixed(2)}` },
+      { label: '格闘倍率',    va: a.meleeMultiplier,     vb: b.meleeMultiplier,     fmt: v => `×${v.toFixed(2)}` },
+      { label: '加重カット率', va: a.avgCut,             vb: b.avgCut,              fmt: v => `${(v*100).toFixed(1)}%` },
+      { label: '有効HP',      va: a.effectiveHP,         vb: b.effectiveHP,         fmt: v => v.toLocaleString() },
+    ];
+    const tbody = rows.map(row => {
+      const aWin = row.va > row.vb, bWin = row.vb > row.va;
+      return `<tr>
+        <td class="cmp-label">${row.label}</td>
+        <td class="cmp-val ${aWin ? 'cmp-better' : bWin ? 'cmp-worse' : ''}">${row.fmt(row.va)}</td>
+        <td class="cmp-val ${bWin ? 'cmp-better' : aWin ? 'cmp-worse' : ''}">${row.fmt(row.vb)}</td>
+      </tr>`;
+    }).join('');
+    const container = document.getElementById('compare-results');
+    container.innerHTML = `<table class="compare-table">
+      <thead><tr>
+        <th></th>
+        <th class="cmp-header">${esc(nameA)}<br><span class="cmp-ms">${esc(a.msName)} LV${a.msLevel}</span></th>
+        <th class="cmp-header">${esc(nameB)}<br><span class="cmp-ms">${esc(b.msName)} LV${b.msLevel}</span></th>
+      </tr></thead>
+      <tbody>${tbody}</tbody>
+    </table>`;
+    container.classList.remove('hidden');
   },
 
   // === パーツ一覧レンダリング ===

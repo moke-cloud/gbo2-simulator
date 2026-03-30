@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d1117'/%3E%3Crect x='1' y='1' width='30' height='30' rx='6' fill='none' stroke='%2300a8ff' stroke-width='1.5' opacity='0.6'/%3E%3Ctext x='16' y='23' font-family='Arial Black,sans-serif' font-size='21' font-weight='900' text-anchor='middle' fill='%2300a8ff'%3EG%3C/text%3E%3C/svg%3E">
 </head>
 <body>
   <!-- ヘッダー -->
@@ -175,6 +176,20 @@
         <button id="btn-clear" class="btn-secondary">
           <span class="btn-icon">✕</span> パーツクリア
         </button>
+      </section>
+
+      <!-- 構成保存 -->
+      <section class="sidebar-section" id="build-save-section">
+        <h2 class="section-title"><span class="icon">💾</span> 構成保存</h2>
+        <div class="build-save-form">
+          <input type="text" id="build-save-name" placeholder="構成名を入力..." maxlength="20" class="build-name-input">
+          <button id="btn-save-build" class="btn-secondary btn-save-build">
+            <span class="btn-icon">💾</span> 保存
+          </button>
+        </div>
+        <div id="saved-builds-list" class="saved-builds-list">
+          <p class="no-builds-msg">保存済み構成はありません</p>
+        </div>
       </section>
     </aside>
 
@@ -394,6 +409,10 @@
             <span class="calc-label">└ 蓄積よろけ値への補正倍率</span>
             <span id="calc-stagger-effective" class="calc-value">-</span>
           </div>
+          <div class="calc-row" id="stagger-resistance-row" style="display:none">
+            <span class="calc-label">└ 実質よろけ耐性</span>
+            <span id="calc-stagger-resistance" class="calc-value calc-value-accent">-</span>
+          </div>
           <div class="calc-row" id="damage-cut-skill-row" style="display:none">
             <span class="calc-label">スキルによるダメージカット</span>
             <span id="calc-skill-damage-cut" class="calc-value">-</span>
@@ -404,6 +423,29 @@
           </div>
         </div>
         <div id="skill-toggles-list" class="skill-toggles-list"></div>
+      </section>
+
+      <!-- 構成比較 -->
+      <section id="compare-section" class="hidden">
+        <h2 class="section-title"><span class="icon">⚖</span> 構成比較</h2>
+        <div class="compare-controls">
+          <div class="compare-select-row">
+            <label class="compare-label">構成A</label>
+            <select id="compare-build-a" class="filter-select compare-select">
+              <option value="">-- 選択 --</option>
+            </select>
+          </div>
+          <div class="compare-select-row">
+            <label class="compare-label">構成B</label>
+            <select id="compare-build-b" class="filter-select compare-select">
+              <option value="">-- 選択 --</option>
+            </select>
+          </div>
+          <button id="btn-compare" class="btn-primary btn-compare">
+            <span class="btn-icon">⚖</span> 比較する
+          </button>
+        </div>
+        <div id="compare-results" class="compare-results hidden"></div>
       </section>
     </div>
 
