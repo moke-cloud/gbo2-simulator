@@ -64,12 +64,27 @@ const GBO2Calculator = {
   },
 
   /**
-   * 有効HPを計算
+   * 有効HPを計算（防御値から）
    * 有効HP = HP / (1 - 加重カット率)
    */
   calcEffectiveHP(hp, armor, damageRatio) {
     const avgCut = this.calcWeightedCutRate(armor, damageRatio);
     return Math.round(hp / (1 - avgCut));
+  },
+
+  /**
+   * 有効HPを計算（カット率から直接）
+   * @param {number} hp
+   * @param {{ ballistic, beam, melee }} cutRates - 各属性のカット率 (0-1)
+   * @param {{ ballistic, beam, melee }} damageRatio
+   */
+  calcEffectiveHPFromCutRates(hp, cutRates, damageRatio) {
+    const avgCut = cutRates.ballistic * damageRatio.ballistic
+      + cutRates.beam * damageRatio.beam
+      + cutRates.melee * damageRatio.melee;
+    const denom = 1 - avgCut;
+    if (denom <= 0) return hp;
+    return Math.round(hp / denom);
   },
 
   /**

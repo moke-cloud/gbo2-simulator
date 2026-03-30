@@ -844,49 +844,133 @@ input[type="range"]::-webkit-slider-thumb:hover {
   gap: var(--gap-xs);
 }
 
-.part-item {
+/* ===== パーツグループ（アコーディオン） ===== */
+.part-group {
   background: var(--bg-card);
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-sm);
-  padding: var(--gap-sm) var(--gap-md);
-  cursor: pointer;
-  transition: all var(--transition-fast);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
 }
 
-.part-item:hover {
+.part-group:hover {
   border-color: var(--border-accent);
-  background: var(--bg-card-hover);
-  transform: translateX(-2px);
 }
 
-.part-item.unequippable {
+.part-group.unowned {
   opacity: 0.35;
-  filter: grayscale(0.8);
 }
 
-.part-item.unequippable:hover {
-  transform: none;
-  cursor: not-allowed;
-  border-color: var(--border-primary);
+.part-group.equipped {
+  border-color: var(--color-accent);
+  background: rgba(0, 168, 255, 0.05);
 }
 
-.part-item.unowned {
-  opacity: 0.2;
-}
-
-.part-item-header {
+.part-group-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2px;
-}
-
-.part-item-title-group {
-  display: flex;
-  align-items: center;
+  padding: var(--gap-sm) var(--gap-md);
+  cursor: pointer;
   gap: var(--gap-sm);
 }
 
+.part-group-title {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  flex: 1;
+  min-width: 0;
+}
+
+.part-group-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.part-item-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.part-lv-range,
+.part-equipped-lv {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.part-equipped-lv {
+  color: var(--color-accent);
+}
+
+.part-item-detail {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  padding: 0 var(--gap-md) var(--gap-sm);
+}
+
+.part-item-slots {
+  display: flex;
+  gap: var(--gap-sm);
+  font-size: 0.65rem;
+}
+
+.part-item-slots span {
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.part-item-slots .slot-close { background: rgba(255, 107, 107, 0.15); color: var(--color-close); }
+.part-item-slots .slot-mid { background: rgba(255, 217, 61, 0.15); color: var(--color-mid); }
+.part-item-slots .slot-long { background: rgba(107, 207, 255, 0.15); color: var(--color-long); }
+
+.part-item-category {
+  display: inline-block;
+  font-size: 0.6rem;
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.part-item-category.attack  { background: rgba(255,  64,  96, 0.15); color: var(--color-attack); }
+.part-item-category.defense { background: rgba(  0, 180, 255, 0.15); color: var(--color-defense); }
+.part-item-category.mobility{ background: rgba(  0, 230, 118, 0.15); color: var(--color-mobility); }
+.part-item-category.support { background: rgba(255, 215,  64, 0.15); color: var(--color-support); }
+.part-item-category.special { background: rgba(179, 136, 255, 0.15); color: var(--color-special); }
+
+/* アコーディオンボタン */
+.btn-accordion {
+  background: none;
+  border: 1px solid var(--border-primary);
+  color: var(--text-muted);
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.6rem;
+  padding: 0;
+  transition: all var(--transition-fast);
+}
+
+.btn-accordion:hover {
+  border-color: var(--border-accent);
+  color: var(--text-primary);
+}
+
+/* 所持トグルボタン */
 .btn-own-toggle {
   background: none;
   border: 1px solid var(--border-primary);
@@ -914,58 +998,77 @@ input[type="range"]::-webkit-slider-thumb:hover {
   background: rgba(255, 215, 64, 0.1);
 }
 
-.part-item-name {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-primary);
+/* LV一覧（アコーディオン内） */
+.part-lv-list {
+  border-top: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  overflow: hidden;
+  max-height: 600px;
+  transition: max-height 0.2s ease, opacity 0.15s ease;
+  opacity: 1;
 }
 
-.part-item-lv {
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  font-weight: 500;
+.part-lv-list.collapsed {
+  max-height: 0;
+  opacity: 0;
 }
 
-.part-item-detail {
-  font-size: 0.7rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-
-.part-item-slots {
+.part-lv-row {
   display: flex;
+  align-items: center;
   gap: var(--gap-sm);
-  margin-top: 4px;
+  padding: 5px var(--gap-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  font-size: 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.part-lv-row:last-child {
+  border-bottom: none;
+}
+
+.part-lv-row:hover:not(.unequippable) {
+  background: var(--bg-card-hover);
+}
+
+.part-lv-row.unequippable {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.part-lv-row.lv-equipped {
+  background: rgba(0, 168, 255, 0.08);
+  color: var(--color-accent);
+}
+
+.lv-badge {
   font-size: 0.65rem;
-}
-
-.part-item-slots span {
-  padding: 1px 4px;
-  border-radius: 2px;
-}
-
-.part-item-slots .slot-close { background: rgba(255, 107, 107, 0.15); color: var(--color-close); }
-.part-item-slots .slot-mid { background: rgba(255, 217, 61, 0.15); color: var(--color-mid); }
-.part-item-slots .slot-long { background: rgba(107, 207, 255, 0.15); color: var(--color-long); }
-
-.part-item-category {
-  display: inline-block;
-  font-size: 0.6rem;
-  padding: 1px 5px;
-  border-radius: 2px;
   font-weight: 700;
-  margin-left: var(--gap-sm);
+  color: var(--text-muted);
+  min-width: 28px;
 }
 
-.part-item-category.attack { background: rgba(255, 64, 96, 0.15); color: var(--color-attack); }
-.part-item-category.defense { background: rgba(0, 180, 255, 0.15); color: var(--color-defense); }
-.part-item-category.mobility { background: rgba(0, 230, 118, 0.15); color: var(--color-mobility); }
-.part-item-category.support { background: rgba(255, 215, 64, 0.15); color: var(--color-support); }
-.part-item-category.special { background: rgba(179, 136, 255, 0.15); color: var(--color-special); }
+.lv-desc {
+  flex: 1;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  line-height: 1.3;
+}
 
-.part-item.unequippable {
-  opacity: 0.4;
-  pointer-events: none;
+.lv-equipped-badge {
+  font-size: 0.6rem;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+.no-parts {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  padding: var(--gap-lg);
 }
 
 /* ===== FOOTER ===== */

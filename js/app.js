@@ -34,9 +34,8 @@ const App = {
       this.bindEvents();
       this.renderExpansionSkillsUI();
       this.renderPartsList();
-      console.log('GBO2 Simulator initialized');
     } catch (e) {
-      console.error('Init error:', e);
+      // 初期化失敗はサイレントに（UIは機能しない状態になる）
     }
   },
 
@@ -45,9 +44,7 @@ const App = {
       const partsRes = await fetch('data/custom_parts.json');
       const partsData = await partsRes.json();
       this.customParts = partsData.parts || [];
-      console.log(`Loaded ${this.customParts.length} custom parts`);
     } catch (e) {
-      console.warn('custom_parts.json not found:', e);
       this.customParts = [];
     }
 
@@ -55,9 +52,7 @@ const App = {
       const msRes = await fetch('data/ms_data.json');
       const msDataRaw = await msRes.json();
       this.msData = msDataRaw.msList || [];
-      console.log(`Loaded ${this.msData.length} MS`);
     } catch (e) {
-      console.warn('ms_data.json not found:', e);
       this.msData = [];
     }
 
@@ -68,9 +63,7 @@ const App = {
       // 初期状態: 全スキルをLV0（未選択）に設定
       const names = [...new Set(this.expansionSkillsData.map(s => s.name))];
       names.forEach(n => { if (!(n in this.expansionSkillLevels)) this.expansionSkillLevels[n] = 0; });
-      console.log(`Loaded ${this.expansionSkillsData.length} expansion skills`);
     } catch (e) {
-      console.warn('enhancement_skills.json not found:', e);
       this.expansionSkillsData = [];
     }
   },
@@ -86,7 +79,7 @@ const App = {
         this.showUnowned = showUnowned === 'true';
       }
     } catch (e) {
-      console.warn('Failed to load settings:', e);
+      // 設定読み込み失敗時はデフォルト値を使用
     }
   },
 
@@ -218,6 +211,7 @@ const App = {
     const names = [...new Set(this.expansionSkillsData.map(s => s.name))];
     if (names.length === 0) { container.innerHTML = '<p style="color:var(--text-secondary);font-size:0.8rem;">データなし</p>'; return; }
 
+    const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     container.innerHTML = names.map(name => {
       const maxLv = this.expansionSkillsData.filter(s => s.name === name).length;
       const cur = this.expansionSkillLevels[name] || 0;
@@ -225,8 +219,8 @@ const App = {
         `<option value="${i}" ${i === cur ? 'selected' : ''}>${i === 0 ? '未装備' : 'LV' + i}</option>`
       ).join('');
       return `<div class="expansion-skill-row">
-        <span class="expansion-skill-name" title="${name}">${name}</span>
-        <select class="expansion-skill-select filter-select" data-skill-name="${name}">${opts}</select>
+        <span class="expansion-skill-name" title="${esc(name)}">${esc(name)}</span>
+        <select class="expansion-skill-select filter-select" data-skill-name="${esc(name)}">${opts}</select>
       </div>`;
     }).join('');
 
@@ -282,13 +276,14 @@ const App = {
       return;
     }
 
+    const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     results.innerHTML = matches.map(match => {
       const ms = match.ms;
       const data = ms.levels[match.lv];
       const catClass = ms.category === '強襲' ? 'raid' : ms.category === '汎用' ? 'general' : 'support';
-      return `<div class="search-result-item" data-ms-name="${ms.name}" data-ms-lv="${match.lv}">
-        <span>${ms.name} (LV${match.lv})</span>
-        <span class="ms-type ${catClass}">${ms.category || '?'} ${data.cost || '?'}</span>
+      return `<div class="search-result-item" data-ms-name="${esc(ms.name)}" data-ms-lv="${Number(match.lv)}">
+        <span>${esc(ms.name)} (LV${Number(match.lv)})</span>
+        <span class="ms-type ${catClass}">${esc(ms.category || '?')} ${esc(data.cost || '?')}</span>
       </div>`;
     }).join('');
 
@@ -524,6 +519,7 @@ const App = {
   updateEquippedParts() {
     const container = document.getElementById('equipped-parts');
     const slots = container.querySelectorAll('.part-slot');
+    const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
     slots.forEach((slot, idx) => {
       const part = this.equippedParts[idx];
@@ -531,8 +527,8 @@ const App = {
         slot.classList.remove('empty');
         slot.classList.add('filled');
         slot.innerHTML = `
-          <span class="part-name">${part.name}</span>
-          <span class="part-lv">LV${part.level}</span>
+          <span class="part-name">${esc(part.name)}</span>
+          <span class="part-lv">LV${esc(part.level)}</span>
           <span class="part-remove" title="取り外す">✕</span>
         `;
       } else {
@@ -611,10 +607,11 @@ const App = {
       const combB  = (1 - (1 - bCut)  * (1 - skillDC / 100)) * 100;
       const combBe = (1 - (1 - beCut) * (1 - skillDC / 100)) * 100;
       const combM  = (1 - (1 - mCut)  * (1 - skillDC / 100)) * 100;
+      const combAvg = combB * normDmgRatio.ballistic + combBe * normDmgRatio.beam + combM * normDmgRatio.melee;
       document.getElementById('calc-combined-ballistic').textContent = `${combB.toFixed(1)}%`;
       document.getElementById('calc-combined-beam').textContent = `${combBe.toFixed(1)}%`;
       document.getElementById('calc-combined-melee').textContent = `${combM.toFixed(1)}%`;
-      document.getElementById('calc-combined-all').textContent = `${skillDC.toFixed(1)}%`;
+      document.getElementById('calc-combined-all').textContent = `${combAvg.toFixed(1)}%`;
       ['combined-dc-section', 'combined-dc-row-ballistic', 'combined-dc-row-beam',
        'combined-dc-row-melee', 'combined-dc-row-all'].forEach(id => {
         document.getElementById(id).style.display = '';
@@ -626,8 +623,20 @@ const App = {
       });
     }
 
-    // 有効HP (等倍 / 有利相手からの被ダメ0.8 / 不利相手からの被ダメ1.3)
-    const effHP = GBO2Calculator.calcEffectiveHP(modified.hp || 0, armor, normDmgRatio);
+    // 有効HP（スキルDCも考慮: 受ける実ダメージが減る分だけHPを水増し換算）
+    const skillDCFactor = skillDC > 0 ? 1 / (1 - skillDC / 100) : 1;
+    const armorForHP = skillDC > 0
+      ? {
+          ballistic: 1 - (1 - bCut) * (1 - skillDC / 100),
+          beam:      1 - (1 - beCut) * (1 - skillDC / 100),
+          melee:     1 - (1 - mCut) * (1 - skillDC / 100)
+        }
+      : {
+          ballistic: bCut,
+          beam: beCut,
+          melee: mCut
+        };
+    const effHP = GBO2Calculator.calcEffectiveHPFromCutRates(modified.hp || 0, armorForHP, normDmgRatio);
     document.getElementById('calc-effective-hp').textContent = effHP.toLocaleString() + ' (基準)';
     document.getElementById('calc-effective-hp-adv').textContent = Math.round(effHP / 0.8).toLocaleString();
     document.getElementById('calc-effective-hp-dis').textContent = Math.round(effHP / 1.3).toLocaleString();
@@ -721,15 +730,18 @@ const App = {
 
     // トグルリスト描画（1効果=1行）
     const catLabel = { stagger: 'よろけ値', damage_cut: 'ダメージカット', firepower: '火力' };
+    const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const safeCategory = (c) => ['stagger', 'damage_cut', 'firepower'].includes(c) ? c : '';
     const container = document.getElementById('skill-toggles-list');
     container.innerHTML = effectItems.map((item, i) => {
       const isOn = this.activeSkillIndices.has(i);
       const badge = catLabel[item.category] || '';
+      const cat = safeCategory(item.category);
       const valueText = item.category === 'stagger'
-        ? `よろけ値を ${item.value}% で計算`
+        ? `よろけ値を ${Number(item.value)}% で計算`
         : item.category === 'damage_cut'
-        ? `被ダメージ -${item.value}%`
-        : `ダメージ +${item.value}%`;
+        ? `被ダメージ -${Number(item.value)}%`
+        : `ダメージ +${Number(item.value)}%`;
       return `
         <div class="skill-toggle-item ${isOn ? 'active' : ''}">
           <div class="skill-toggle-header">
@@ -737,12 +749,12 @@ const App = {
               <input type="checkbox" ${isOn ? 'checked' : ''} onchange="App.toggleSkill(${i})">
               <span class="toggle-slider"></span>
             </label>
-            <span class="skill-toggle-name">${item.skillLabel}</span>
-            <span class="skill-category-badge ${item.category}">${badge}</span>
+            <span class="skill-toggle-name">${esc(item.skillLabel)}</span>
+            <span class="skill-category-badge ${cat}">${esc(badge)}</span>
           </div>
           <div class="skill-effect-row">
-            <span>【${item.condition}】${valueText}</span>
-            <span class="skill-effect-value">${item.category === 'stagger' ? `×${(item.value / 100).toFixed(2)}` : (item.category === 'damage_cut' ? `-${item.value}%` : `+${item.value}%`)}</span>
+            <span>【${esc(item.condition)}】${valueText}</span>
+            <span class="skill-effect-value">${item.category === 'stagger' ? `×${(Number(item.value) / 100).toFixed(2)}` : (item.category === 'damage_cut' ? `-${Number(item.value)}%` : `+${Number(item.value)}%`)}</span>
           </div>
         </div>`;
     }).join('');
@@ -816,9 +828,9 @@ const App = {
   // === パーツ一覧レンダリング ===
   renderPartsList() {
     const container = document.getElementById('parts-list');
-    
+
     let filtered = this.customParts;
-    
+
     if (this.partsFilter !== 'all') {
       filtered = filtered.filter(p => p.category === this.partsFilter);
     }
@@ -828,14 +840,16 @@ const App = {
       filtered = filtered.filter(p => p.name.toLowerCase().includes(q));
     }
 
-    // 重複除去（同名は最大LVのみ表示、全LVは展開で）
-    const grouped = {};
+    // 同名パーツをグループ化（LV昇順）
+    const groupMap = {};
     for (const part of filtered) {
-      const key = `${part.name}_LV${part.level}`;
-      grouped[key] = part;
+      if (!groupMap[part.name]) groupMap[part.name] = [];
+      groupMap[part.name].push(part);
+    }
+    for (const name of Object.keys(groupMap)) {
+      groupMap[name].sort((a, b) => a.level - b.level);
     }
 
-    const partsList = Object.values(grouped);
     const maxSlots = this.getMaxSlots();
     const usedSlots = this.getUsedSlots();
     const remaining = {
@@ -855,57 +869,113 @@ const App = {
       special: '特殊'
     };
 
-    container.innerHTML = partsList.map(part => {
-      // 未所持判定
-      const isUnowned = this.unownedParts.has(part.name);
-      
-      // 未所持で非表示設定ならレンダリングしない
+    const escapeHtml = (str) => String(str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+    const html = Object.entries(groupMap).map(([name, levels]) => {
+      const isUnowned = this.unownedParts.has(name);
       if (isUnowned && !this.showUnowned) return '';
 
-      // 装備可能か
-      const canEquip = this.selectedMS 
-        && !isFull
-        && !equippedNames.has(part.name)
-        && GBO2Calculator.canEquip(part, remaining);
+      const maxLvPart = levels[levels.length - 1];
+      const equippedPart = this.equippedParts.find(p => p && p.name === name);
+      const isEquipped = !!equippedPart;
+      const hasMultipleLvs = levels.length > 1;
 
+      // グループヘッダー用スロット情報（最大LV基準）
       const slotsHtml = [];
-      if (part.slots.close > 0) slotsHtml.push(`<span class="slot-close">近${part.slots.close}</span>`);
-      if (part.slots.mid > 0) slotsHtml.push(`<span class="slot-mid">中${part.slots.mid}</span>`);
-      if (part.slots.long > 0) slotsHtml.push(`<span class="slot-long">遠${part.slots.long}</span>`);
+      if (maxLvPart.slots.close > 0) slotsHtml.push(`<span class="slot-close">近${maxLvPart.slots.close}</span>`);
+      if (maxLvPart.slots.mid > 0) slotsHtml.push(`<span class="slot-mid">中${maxLvPart.slots.mid}</span>`);
+      if (maxLvPart.slots.long > 0) slotsHtml.push(`<span class="slot-long">遠${maxLvPart.slots.long}</span>`);
 
-      const classNames = ['part-item'];
-      if (!canEquip) classNames.push('unequippable');
-      if (isUnowned) classNames.push('unowned');
+      const groupClasses = ['part-group'];
+      if (isUnowned) groupClasses.push('unowned');
+      if (isEquipped) groupClasses.push('equipped');
 
-      return `<div class="${classNames.join(' ')}" data-part-key="${part.name}_LV${part.level}">
-        <div class="part-item-header">
-          <div class="part-item-title-group">
-            <span class="part-item-name">${part.name}</span>
-            <span class="part-item-lv">LV${part.level}</span>
-            <span class="part-item-category ${part.category}">${categoryMap[part.category] || part.category}</span>
+      // LV行のHTML（アコーディオン内）
+      const lvRowsHtml = levels.map(part => {
+        const canEquip = this.selectedMS
+          && !isFull
+          && !equippedNames.has(part.name)
+          && GBO2Calculator.canEquip(part, remaining);
+        const isThisEquipped = equippedPart && equippedPart.level === part.level;
+        const lvClass = ['part-lv-row'];
+        if (!canEquip && !isThisEquipped) lvClass.push('unequippable');
+        if (isThisEquipped) lvClass.push('lv-equipped');
+        return `<div class="${lvClass.join(' ')}" data-part-name="${escapeHtml(name)}" data-part-lv="${part.level}">
+          <span class="lv-badge">LV${part.level}</span>
+          <span class="lv-desc">${escapeHtml(part.description)}</span>
+          ${isThisEquipped ? '<span class="lv-equipped-badge">装備中</span>' : ''}
+        </div>`;
+      }).join('');
+
+      const lvBadge = isEquipped
+        ? `<span class="part-equipped-lv">LV${equippedPart.level} 装備中</span>`
+        : `<span class="part-lv-range">${hasMultipleLvs ? `LV1〜${maxLvPart.level}` : `LV${maxLvPart.level}`}</span>`;
+
+      return `<div class="${groupClasses.join(' ')}" data-part-group="${escapeHtml(name)}">
+        <div class="part-group-header">
+          <div class="part-group-title">
+            <span class="part-item-name">${escapeHtml(name)}</span>
+            ${lvBadge}
+            <span class="part-item-category ${maxLvPart.category}">${categoryMap[maxLvPart.category] || maxLvPart.category}</span>
           </div>
-          <button class="btn-own-toggle ${!isUnowned ? 'owned' : ''}" data-part-name="${part.name}" title="所持/未所持の切り替え">
-            ★
-          </button>
+          <div class="part-group-actions">
+            <div class="part-item-slots">${slotsHtml.join('')}</div>
+            <button class="btn-own-toggle ${!isUnowned ? 'owned' : ''}" data-part-name="${escapeHtml(name)}" title="所持/未所持の切り替え">★</button>
+            ${hasMultipleLvs ? `<button class="btn-accordion" data-part-group="${escapeHtml(name)}" title="LV一覧を展開">▼</button>` : ''}
+          </div>
         </div>
-        <div class="part-item-detail">${part.description}</div>
-        <div class="part-item-slots">${slotsHtml.join('')}</div>
+        ${hasMultipleLvs ? `<div class="part-lv-list collapsed">${lvRowsHtml}</div>` : `<div class="part-item-detail">${escapeHtml(maxLvPart.description)}</div>`}
       </div>`;
     }).join('');
 
-    // クリックでパーツ装備
-    container.querySelectorAll('.part-item:not(.unequippable)').forEach(item => {
-      item.addEventListener('click', (e) => {
-        // 所持トグルボタンのクリックは装備処理を行わない
+    container.innerHTML = html || '<p class="no-parts">該当するパーツがありません</p>';
+
+    // アコーディオントグル
+    container.querySelectorAll('.btn-accordion').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const groupName = btn.dataset.partGroup;
+        const groupEl = container.querySelector(`.part-group[data-part-group="${CSS.escape(groupName)}"]`);
+        const lvList = groupEl && groupEl.querySelector('.part-lv-list');
+        if (!lvList) return;
+        const isCollapsed = lvList.classList.contains('collapsed');
+        lvList.classList.toggle('collapsed', !isCollapsed);
+        btn.textContent = isCollapsed ? '▲' : '▼';
+      });
+    });
+
+    // LV行クリックで装備
+    container.querySelectorAll('.part-lv-row:not(.unequippable)').forEach(row => {
+      row.addEventListener('click', (e) => {
         if (e.target.closest('.btn-own-toggle')) return;
-        
-        const key = item.dataset.partKey;
-        const part = grouped[key];
-        // 未所持なら装備しない
-        if (part && !this.unownedParts.has(part.name)) {
+        const partName = row.dataset.partName;
+        const partLv = parseInt(row.dataset.partLv, 10);
+        const part = (groupMap[partName] || []).find(p => p.level === partLv);
+        if (part && !this.unownedParts.has(partName)) {
           this.equipPart(part);
         }
       });
+    });
+
+    // LVが1つだけのグループ: ヘッダークリックで装備
+    container.querySelectorAll('.part-group').forEach(groupEl => {
+      const groupName = groupEl.dataset.partGroup;
+      const levels = groupMap[groupName] || [];
+      if (levels.length === 1) {
+        groupEl.querySelector('.part-group-header').addEventListener('click', (e) => {
+          if (e.target.closest('.btn-own-toggle') || e.target.closest('.btn-accordion')) return;
+          const part = levels[0];
+          const canEquip = this.selectedMS
+            && !isFull
+            && !equippedNames.has(part.name)
+            && GBO2Calculator.canEquip(part, remaining);
+          if (canEquip && !this.unownedParts.has(part.name)) {
+            this.equipPart(part);
+          }
+        });
+      }
     });
 
     // 所持トグルの処理
@@ -915,11 +985,8 @@ const App = {
         const partName = btn.dataset.partName;
         if (this.unownedParts.has(partName)) {
           this.unownedParts.delete(partName);
-          btn.classList.add('owned');
         } else {
           this.unownedParts.add(partName);
-          btn.classList.remove('owned');
-          
           // 装備中なら外す
           const equippedIdx = this.equippedParts.findIndex(p => p && p.name === partName);
           if (equippedIdx !== -1) {
@@ -927,7 +994,6 @@ const App = {
           }
         }
         this.saveSettings();
-        // UI即座更新
         this.renderPartsList();
       });
     });
