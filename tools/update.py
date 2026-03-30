@@ -273,10 +273,12 @@ def mode_monthly() -> None:
         print(f"  新規{len(added)}体を追加")
 
     print(f"\n全{len(current_list)}体を再ダウンロードします (force=True)...")
-    confirm = input("続行しますか? [y/N]: ").strip().lower()
-    if confirm != 'y':
-        print("中断しました。")
-        return
+    # CI環境（GitHub Actions等）では自動続行、ローカルでは確認
+    if not os.environ.get('CI'):
+        confirm = input("続行しますか? [y/N]: ").strip().lower()
+        if confirm != 'y':
+            print("中断しました。")
+            return
 
     success = download_ms_pages(current_list, force=True)
     print(f"ダウンロード完了: {len(success)}/{len(current_list)}")
