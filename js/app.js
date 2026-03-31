@@ -500,7 +500,7 @@ const App = {
       return;
     }
 
-    const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills());
+    const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel);
     const hasParts = this.equippedParts.some(Boolean);
 
     for (const [key, prefix] of Object.entries(statMap)) {
@@ -582,7 +582,7 @@ const App = {
     const normDmgRatio = this.getNormalizedDamageRatio();
     const normAtkRatio = this.getNormalizedAtkRatio();
 
-    const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills());
+    const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel);
 
     // 射撃・格闘倍率
     const shootMul = GBO2Calculator.calcShootingMultiplier(modified.shooting_correction || 0) * (1 + (modified.shootingDmgPct || 0) / 100);
@@ -610,9 +610,16 @@ const App = {
       melee: modified.melee_armor || 0
     };
 
-    const bCut = GBO2Calculator.calcCutRate(armor.ballistic);
-    const beCut = GBO2Calculator.calcCutRate(armor.beam);
-    const mCut = GBO2Calculator.calcCutRate(armor.melee);
+    // 装甲補正によるカット率 + オーバーチューン[装甲系]等の属性ダメージカット率を乗算合成
+    const armorBCut = GBO2Calculator.calcCutRate(armor.ballistic);
+    const armorBeCut = GBO2Calculator.calcCutRate(armor.beam);
+    const armorMCut = GBO2Calculator.calcCutRate(armor.melee);
+    const partsBCutPct  = modified.ballisticDamageCutPct || 0;
+    const partsBeCutPct = modified.beamDamageCutPct || 0;
+    const partsMCutPct  = modified.meleeDamageCutPct || 0;
+    const bCut  = partsBCutPct  > 0 ? 1 - (1 - armorBCut)  * (1 - partsBCutPct  / 100) : armorBCut;
+    const beCut = partsBeCutPct > 0 ? 1 - (1 - armorBeCut) * (1 - partsBeCutPct / 100) : armorBeCut;
+    const mCut  = partsMCutPct  > 0 ? 1 - (1 - armorMCut)  * (1 - partsMCutPct  / 100) : armorMCut;
 
     document.getElementById('calc-ballistic-cut').textContent = `${(bCut * 100).toFixed(1)}%`;
     document.getElementById('calc-beam-cut').textContent = `${(beCut * 100).toFixed(1)}%`;
@@ -1018,7 +1025,7 @@ const App = {
       const base = this.getBaseStats();
       if (!base) return null;
       const expSkills = this.getSelectedExpansionSkills();
-      const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), expSkills);
+      const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), expSkills, this.selectedLevel, this.enhanceLevel);
       return this._computeCalcResult(modified, this.selectedMS.name, this.selectedLevel);
     }
     const ms = this.msData.find(m => m.name === buildData.msName);
@@ -1037,7 +1044,7 @@ const App = {
       .map(([name, lv]) => this.expansionSkillsData.find(s => s.name === name && s.level === lv))
       .filter(Boolean);
 
-    const modified = GBO2Calculator.applyParts(base, parts, expSkills);
+    const modified = GBO2Calculator.applyParts(base, parts, expSkills, buildData.msLevel || 1, buildData.enhanceLevel || 0);
     return this._computeCalcResult(modified, buildData.msName, buildData.msLevel);
   },
 

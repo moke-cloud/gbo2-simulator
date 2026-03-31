@@ -193,13 +193,36 @@ const GBO2Calculator = {
   },
 
   /**
+   * パーツ効果値を機体LV・強化段階を考慮して解決する
+   * @param {object} effect - パーツエフェクトオブジェクト
+   * @param {number} msLevel - 現在の機体レベル
+   * @param {number} enhanceLevel - 現在の強化段階 (0〜6)
+   * @returns {number} 解決された効果量
+   */
+  resolveEffectValue(effect, msLevel = 1, enhanceLevel = 0) {
+    let val = effect.value;
+    if (effect.msLevelScaling) {
+      const { perLevel, max } = effect.msLevelScaling;
+      val = Math.min(val + (msLevel - 1) * perLevel, max);
+    }
+    if (effect.enhanceSteps) {
+      for (const step of effect.enhanceSteps) {
+        if (enhanceLevel >= step.minEnhance) val += step.bonus;
+      }
+    }
+    return val;
+  },
+
+  /**
    * パーツ効果を機体ステータスに適用（拡張スキル対応版）
    * @param {object} baseStats - 強化適用済みの基本ステータス
    * @param {Array} parts - 装備中のパーツ配列
    * @param {Array} expansionSkillsList - 選択中の拡張スキル配列 (デフォルト: [])
+   * @param {number} msLevel - 機体レベル (デフォルト: 1)
+   * @param {number} enhanceLevel - 強化段階 (デフォルト: 0)
    * @returns {object} 修正後のステータス
    */
-  applyParts(baseStats, parts, expansionSkillsList = []) {
+  applyParts(baseStats, parts, expansionSkillsList = [], msLevel = 1, enhanceLevel = 0) {
     // 拡張スキルの直接効果を適用し上限値ボーナスを取得
     const { stats: expanded, capBonus } = this.applyExpansionSkillsDirect(baseStats, expansionSkillsList);
 
@@ -207,14 +230,15 @@ const GBO2Calculator = {
     for (const part of parts) {
       if (!part || !part.effects) continue;
       for (const effect of part.effects) {
+        const v = this.resolveEffectValue(effect, msLevel, enhanceLevel);
         switch (effect.type) {
-          case 'shooting_correction_cap': capBonus.shooting_correction += effect.value; break;
-          case 'melee_correction_cap':    capBonus.melee_correction    += effect.value; break;
-          case 'ballistic_armor_cap':     capBonus.ballistic_armor     += effect.value; break;
-          case 'beam_armor_cap':          capBonus.beam_armor          += effect.value; break;
-          case 'melee_armor_cap':         capBonus.melee_armor         += effect.value; break;
-          case 'thruster_cap':            capBonus.thruster            += effect.value; break;
-          case 'boost_speed_cap':         capBonus.boost_speed         += effect.value; break;
+          case 'shooting_correction_cap': capBonus.shooting_correction += v; break;
+          case 'melee_correction_cap':    capBonus.melee_correction    += v; break;
+          case 'ballistic_armor_cap':     capBonus.ballistic_armor     += v; break;
+          case 'beam_armor_cap':          capBonus.beam_armor          += v; break;
+          case 'melee_armor_cap':         capBonus.melee_armor         += v; break;
+          case 'thruster_cap':            capBonus.thruster            += v; break;
+          case 'boost_speed_cap':         capBonus.boost_speed         += v; break;
         }
       }
     }
@@ -222,6 +246,9 @@ const GBO2Calculator = {
     const modified = { ...expanded };
     let shootingDmgPct = 0;
     let meleeDmgPct = 0;
+    let ballisticDamageCutPct = 0;
+    let beamDamageCutPct = 0;
+    let meleeDamageCutPct = 0;
 
     const shootingCap    = this.ATTACK_CAP  + (capBonus.shooting_correction || 0);
     const meleeCap       = this.ATTACK_CAP  + (capBonus.melee_correction    || 0);
@@ -234,42 +261,52 @@ const GBO2Calculator = {
     for (const part of parts) {
       if (!part || !part.effects) continue;
       for (const effect of part.effects) {
+        const effectVal = this.resolveEffectValue(effect, msLevel, enhanceLevel);
         switch (effect.type) {
           case 'hp':
-            modified.hp = (modified.hp || 0) + effect.value;
+            modified.hp = (modified.hp || 0) + effectVal;
             break;
           case 'ballistic_armor':
-            modified.ballistic_armor = Math.min((modified.ballistic_armor || 0) + effect.value, ballisticCap);
+            modified.ballistic_armor = Math.min((modified.ballistic_armor || 0) + effectVal, ballisticCap);
             break;
           case 'beam_armor':
-            modified.beam_armor = Math.min((modified.beam_armor || 0) + effect.value, beamCap);
+            modified.beam_armor = Math.min((modified.beam_armor || 0) + effectVal, beamCap);
             break;
           case 'melee_armor':
-            modified.melee_armor = Math.min((modified.melee_armor || 0) + effect.value, meleeArmorCap);
+            modified.melee_armor = Math.min((modified.melee_armor || 0) + effectVal, meleeArmorCap);
             break;
           case 'shooting_correction':
-            modified.shooting_correction = Math.min((modified.shooting_correction || 0) + effect.value, shootingCap);
+            modified.shooting_correction = Math.min((modified.shooting_correction || 0) + effectVal, shootingCap);
             break;
           case 'melee_correction':
-            modified.melee_correction = Math.min((modified.melee_correction || 0) + effect.value, meleeCap);
+            modified.melee_correction = Math.min((modified.melee_correction || 0) + effectVal, meleeCap);
             break;
           case 'speed':
-            modified.speed = Math.min((modified.speed || 0) + effect.value, speedCap);
+            modified.speed = Math.min((modified.speed || 0) + effectVal, speedCap);
             break;
           case 'thruster':
-            modified.thruster = Math.min((modified.thruster || 0) + effect.value, thrusterCap);
+            modified.thruster = Math.min((modified.thruster || 0) + effectVal, thrusterCap);
             break;
           case 'turn_speed':
-            modified.turn_speed_ground = (modified.turn_speed_ground || 0) + effect.value;
+            modified.turn_speed_ground = (modified.turn_speed_ground || 0) + effectVal;
             break;
           case 'boost_speed':
-            modified.boost_speed = (modified.boost_speed || 0) + effect.value;
+            modified.boost_speed = (modified.boost_speed || 0) + effectVal;
             break;
           case 'shooting_damage_pct':
-            shootingDmgPct += effect.value;
+            shootingDmgPct += effectVal;
             break;
           case 'melee_damage_pct':
-            meleeDmgPct += effect.value;
+            meleeDmgPct += effectVal;
+            break;
+          case 'ballistic_damage_cut_pct':
+            ballisticDamageCutPct += effectVal;
+            break;
+          case 'beam_damage_cut_pct':
+            beamDamageCutPct += effectVal;
+            break;
+          case 'melee_damage_cut_pct':
+            meleeDamageCutPct += effectVal;
             break;
         }
       }
@@ -302,6 +339,9 @@ const GBO2Calculator = {
 
     modified.shootingDmgPct = shootingDmgPct;
     modified.meleeDmgPct = meleeDmgPct;
+    modified.ballisticDamageCutPct = ballisticDamageCutPct;
+    modified.beamDamageCutPct = beamDamageCutPct;
+    modified.meleeDamageCutPct = meleeDamageCutPct;
 
     return modified;
   },
