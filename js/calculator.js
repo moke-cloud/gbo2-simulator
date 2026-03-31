@@ -109,46 +109,74 @@ const GBO2Calculator = {
    * @param {number} level - 適用する強化段階 (0 ~ 6)
    * @param {number} msLevel - 機体レベル（MSレベル別強化リストフィルタ用）
    */
+  /**
+   * 強化リストのバリアントを解決する（MSレベルに応じた効果テキストを返す）
+   * @param {object} enhancement - 強化リストエントリ
+   * @param {number} msLevel - 機体レベル
+   * @returns {string} 解決された効果テキスト
+   */
+  resolveEnhancementEffect(enhancement, msLevel) {
+    if (enhancement.variants && enhancement.variants[String(msLevel)]) {
+      return enhancement.variants[String(msLevel)].effect;
+    }
+    return enhancement.effect || '';
+  },
+
   applyEnhancements(baseStats, enhancements, level, msLevel) {
     if (level <= 0 || !enhancements || enhancements.length === 0) return baseStats;
 
     const modified = { ...baseStats };
 
-    // 強化レベルは、enhancements配列の上から最大 level 個までを対象とする
-    // かつ ms_levels が設定されている場合は現在のMSレベルで利用可能なものだけ適用
     const targetEnhancements = enhancements
       .filter(e => !e.ms_levels || e.ms_levels.length === 0 || e.ms_levels.includes(msLevel))
       .slice(0, level);
 
     for (const enhancement of targetEnhancements) {
-      const text = enhancement.effect || '';
-      
-      if (text.includes('機体HPが') && text.includes('増加')) {
-        const match = text.match(/機体HPが(\d+)増加/);
-        if (match) modified.hp = (modified.hp || 0) + parseInt(match[1]);
-        
-      } else if (text.includes('射撃補正が') && text.includes('増加')) {
-        const match = text.match(/射撃補正が(\d+)増加/);
-        if (match) {
-          modified.shooting_correction = (modified.shooting_correction || 0) + parseInt(match[1]);
-          // 拡張スキル分は上限突破するのでベース値として扱う
-        }
-        
-      } else if (text.includes('格闘補正が') && text.includes('増加')) {
-        const match = text.match(/格闘補正が(\d+)増加/);
-        if (match) modified.melee_correction = (modified.melee_correction || 0) + parseInt(match[1]);
-        
-      } else if (text.includes('スピードが') && text.includes('増加')) {
-        const match = text.match(/スピードが(\d+)増加/);
-        if (match) modified.speed = (modified.speed || 0) + parseInt(match[1]);
-        
-      } else if (text.includes('スラスターが') && text.includes('増加')) {
-        const match = text.match(/スラスターが(\d+)増加/);
-        if (match) modified.thruster = (modified.thruster || 0) + parseInt(match[1]);
+      const text = this.resolveEnhancementEffect(enhancement, msLevel);
+      let match;
+
+      // 機体HP
+      if ((match = text.match(/機体HPが(\d+)増加/))) {
+        modified.hp = (modified.hp || 0) + parseInt(match[1]);
       }
-      // その他スロット増加などは現状UI側制御が必要なため今回はステータスのみ
+      // 耐実弾補正（「耐」付きを先にチェック）
+      if ((match = text.match(/耐実弾補正が(\d+)増加/))) {
+        modified.ballistic_armor = (modified.ballistic_armor || 0) + parseInt(match[1]);
+      }
+      // 耐ビーム補正
+      if ((match = text.match(/耐ビーム補正が(\d+)増加/))) {
+        modified.beam_armor = (modified.beam_armor || 0) + parseInt(match[1]);
+      }
+      // 耐格闘補正
+      if ((match = text.match(/耐格闘補正が(\d+)増加/))) {
+        modified.melee_armor = (modified.melee_armor || 0) + parseInt(match[1]);
+      }
+      // 射撃補正
+      if ((match = text.match(/(?<!耐.{0,4})射撃補正が(\d+)増加/))) {
+        modified.shooting_correction = (modified.shooting_correction || 0) + parseInt(match[1]);
+      }
+      // 格闘補正（「耐格闘補正」を除外）
+      if (!/耐格闘/.test(text) && (match = text.match(/格闘補正が(\d+)増加/))) {
+        modified.melee_correction = (modified.melee_correction || 0) + parseInt(match[1]);
+      }
+      // スピード
+      if ((match = text.match(/スピードが(\d+)増加/))) {
+        modified.speed = (modified.speed || 0) + parseInt(match[1]);
+      }
+      // 高速移動
+      if ((match = text.match(/高速移動が(\d+)増加/))) {
+        modified.boost_speed = (modified.boost_speed || 0) + parseInt(match[1]);
+      }
+      // スラスター
+      if ((match = text.match(/スラスターが(\d+)増加/))) {
+        modified.thruster = (modified.thruster || 0) + parseInt(match[1]);
+      }
+      // 旋回
+      if ((match = text.match(/旋回(?:性能)?が(\d+)増加/))) {
+        modified.turn_speed_ground = (modified.turn_speed_ground || 0) + parseInt(match[1]);
+      }
     }
-    
+
     return modified;
   },
 
@@ -442,7 +470,11 @@ const GBO2Calculator = {
     const {
       damageRatio = { ballistic: 1/3, beam: 1/3, melee: 1/3 },
       atkRatio = { shooting: 0.6, melee: 0.4 },
-      selectedStats = []
+      selectedStats = [],
+      msLevel = 1,
+      enhanceLevel = 0,
+      expansionSkillsList = [],
+      equippedParts = []
     } = config;
 
     // 各ステータスのスコアスケール（1単位あたりの重み基準値）
@@ -455,10 +487,45 @@ const GBO2Calculator = {
       melee_correction: 2,
       shooting_damage_pct: 3,
       melee_damage_pct: 3,
+      ballistic_damage_cut_pct: 3,
+      beam_damage_cut_pct: 3,
+      melee_damage_cut_pct: 3,
       speed: 0.3,
       boost_speed: 0.2,
       thruster: 0.5,
       turn_speed: 0.2
+    };
+
+    // 拡張スキルによる上限ボーナスを事前計算
+    const { capBonus } = this.applyExpansionSkillsDirect(baseStats, expansionSkillsList);
+    // パーツからの上限ボーナスも既装備分から集計
+    for (const part of equippedParts) {
+      if (!part || !part.effects) continue;
+      for (const effect of part.effects) {
+        const v = this.resolveEffectValue(effect, msLevel, enhanceLevel);
+        switch (effect.type) {
+          case 'shooting_correction_cap': capBonus.shooting_correction += v; break;
+          case 'melee_correction_cap':    capBonus.melee_correction    += v; break;
+          case 'ballistic_armor_cap':     capBonus.ballistic_armor     += v; break;
+          case 'beam_armor_cap':          capBonus.beam_armor          += v; break;
+          case 'melee_armor_cap':         capBonus.melee_armor         += v; break;
+          case 'thruster_cap':            capBonus.thruster            += v; break;
+          case 'boost_speed_cap':         capBonus.boost_speed         += v; break;
+        }
+      }
+    }
+
+    // 拡張スキル適用後のステータスを最適化のベースとする
+    const expandedBase = this.applyParts(baseStats, equippedParts, expansionSkillsList, msLevel, enhanceLevel);
+
+    // 上限の残り余地を計算
+    const caps = {
+      shooting_correction: this.ATTACK_CAP + (capBonus.shooting_correction || 0),
+      melee_correction:    this.ATTACK_CAP + (capBonus.melee_correction    || 0),
+      ballistic_armor:     this.DEFENSE_CAP + (capBonus.ballistic_armor    || 0),
+      beam_armor:          this.DEFENSE_CAP + (capBonus.beam_armor         || 0),
+      melee_armor:         this.DEFENSE_CAP + (capBonus.melee_armor        || 0),
+      thruster:            this.THRUSTER_CAP + (capBonus.thruster          || 0),
     };
 
     // selectedStatsが空の場合は全ステータスを均等に使う
@@ -467,12 +534,25 @@ const GBO2Calculator = {
       : Object.keys(STAT_SCALES);
     const w = 1 / activeStats.length;
 
-    // 各パーツのスコアを計算
+    // 既装備パーツの情報
+    const usedSlots = { close: 0, mid: 0, long: 0 };
+    const usedNames = new Set();
+    for (const part of equippedParts) {
+      if (!part) continue;
+      usedSlots.close += part.slots.close || 0;
+      usedSlots.mid   += part.slots.mid   || 0;
+      usedSlots.long  += part.slots.long  || 0;
+      usedNames.add(part.name);
+    }
+    const existingCount = equippedParts.filter(Boolean).length;
+
+    // 各候補パーツのスコアを計算
     const scoredParts = allParts.map(part => {
       let score = 0;
 
       for (const effect of (part.effects || [])) {
         if (!activeStats.includes(effect.type)) continue;
+        const effectVal = this.resolveEffectValue(effect, msLevel, enhanceLevel);
         const scale = STAT_SCALES[effect.type] || 1;
         let weight = w;
 
@@ -486,30 +566,32 @@ const GBO2Calculator = {
         else if (effect.type === 'melee_correction' || effect.type === 'melee_damage_pct')
           weight *= atkRatio.melee;
 
-        score += effect.value * scale * weight;
+        // 上限に到達済みのステータスはスコア貢献を抑制
+        if (caps[effect.type] !== undefined) {
+          const current = expandedBase[effect.type] || 0;
+          const headroom = caps[effect.type] - current;
+          if (headroom <= 0) continue; // 既に上限到達
+          const usable = Math.min(effectVal, headroom);
+          score += usable * scale * weight;
+        } else {
+          score += effectVal * scale * weight;
+        }
       }
 
-      // スロット効率（スコア / スロット消費）
       const totalSlots = part.slots.close + part.slots.mid + part.slots.long;
       const efficiency = totalSlots > 0 ? score / totalSlots : score * 2;
 
       return { part, score, efficiency };
     });
 
-    // スコア順にソート
     scoredParts.sort((a, b) => b.efficiency - a.efficiency);
 
-    // 貪欲法で選択
+    // 貪欲法で選択（既装備は除外して空きスロットのみ使用）
     const selected = [];
-    const usedSlots = { close: 0, mid: 0, long: 0 };
-    const usedNames = new Set();
-
     for (const { part } of scoredParts) {
-      if (selected.length >= MAX_PARTS) break;
+      if (existingCount + selected.length >= MAX_PARTS) break;
 
-      // 同名パーツの重複チェック（同名同LVは不可、同名異LVも通常不可）
-      const partKey = part.name;
-      if (usedNames.has(partKey)) continue;
+      if (usedNames.has(part.name)) continue;
 
       const remaining = {
         close: maxSlots.close - usedSlots.close,
@@ -522,7 +604,7 @@ const GBO2Calculator = {
         usedSlots.close += part.slots.close;
         usedSlots.mid += part.slots.mid;
         usedSlots.long += part.slots.long;
-        usedNames.add(partKey);
+        usedNames.add(part.name);
       }
     }
 

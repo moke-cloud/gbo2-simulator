@@ -448,12 +448,16 @@ const App = {
       long: slots.long?.[String(this.selectedLevel)] || 0
     };
 
-    // 複合拡張パーツスロット: 強化段階で解放済みの分だけ各スロットに加算
+    // 複合拡張パーツスロット: 強化段階で解放済み＆現在MSレベルで有効なもののみ加算
     const enhancements = this.selectedMS.enhancements || [];
-    const slotBonus = enhancements.slice(0, this.enhanceLevel)
+    const msLevel = this.selectedLevel;
+    const slotBonus = enhancements
+      .filter(e => !e.ms_levels || e.ms_levels.length === 0 || e.ms_levels.includes(msLevel))
+      .slice(0, this.enhanceLevel)
       .filter(e => (e.skill_name || '').includes('複合拡張パーツスロット'))
       .reduce((sum, e) => {
-        const m = (e.effect || '').match(/(\d+)スロ/);
+        const effectText = GBO2Calculator.resolveEnhancementEffect(e, msLevel);
+        const m = effectText.match(/(\d+)スロ/);
         return sum + (m ? parseInt(m[1]) : 1);
       }, 0);
 
@@ -695,13 +699,15 @@ const App = {
       if (effects.length > 0) pushEffects(`${skill.name} ${skill.level}`, effects);
     }
 
-    // 強化リスト（現在の強化段階で解放済み）
+    // 強化リスト（現在の強化段階で解放済み、バリアント解決済み）
     const enhancements = this.selectedMS.enhancements || [];
     const activeEnhs = enhancements
       .filter(e => !e.ms_levels || e.ms_levels.length === 0 || e.ms_levels.includes(this.selectedLevel))
       .slice(0, this.enhanceLevel);
     for (const enh of activeEnhs) {
-      const effects = GBO2Calculator.extractSkillEffects(enh);
+      const resolvedEffect = GBO2Calculator.resolveEnhancementEffect(enh, this.selectedLevel);
+      const resolved = { ...enh, effect: resolvedEffect };
+      const effects = GBO2Calculator.extractSkillEffects(resolved);
       if (effects.length > 0) pushEffects(enh.skill_name, effects);
     }
 
@@ -848,18 +854,26 @@ const App = {
     if (!base) return;
 
     const maxSlots = this.getMaxSlots();
-    
+    const currentParts = this.equippedParts.filter(Boolean);
+
     const result = GBO2Calculator.optimize(base, maxSlots, this.customParts.filter(p => !this.unownedParts.has(p.name)), {
       damageRatio: this.getNormalizedDamageRatio(),
       atkRatio: this.getNormalizedAtkRatio(),
       selectedStats: this.selectedStats,
-      enhanceLevel: this.enhanceLevel
+      msLevel: this.selectedLevel,
+      enhanceLevel: this.enhanceLevel,
+      expansionSkillsList: this.getSelectedExpansionSkills(),
+      equippedParts: currentParts
     });
 
-    this.equippedParts = [null, null, null, null, null, null, null, null];
-    result.forEach((part, idx) => {
-      if (idx < 8) this.equippedParts[idx] = part;
-    });
+    // 既装備パーツを保持し、空きスロットに最適化結果を追加
+    const newParts = [...this.equippedParts];
+    for (const part of result) {
+      const emptyIdx = newParts.indexOf(null);
+      if (emptyIdx === -1) break;
+      newParts[emptyIdx] = part;
+    }
+    this.equippedParts = newParts;
 
     this.updateDisplay();
   },
