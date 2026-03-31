@@ -433,7 +433,11 @@
       "effects": [
         {
           "type": "melee_correction",
-          "value": 5
+          "value": 8,
+          "msLevelScaling": {
+            "perLevel": 2,
+            "max": 16
+          }
         }
       ],
       "dpCost": 0,
@@ -453,7 +457,11 @@
       "effects": [
         {
           "type": "shooting_correction",
-          "value": 5
+          "value": 8,
+          "msLevelScaling": {
+            "perLevel": 2,
+            "max": 16
+          }
         }
       ],
       "dpCost": 0,
@@ -1570,8 +1578,28 @@
       "description": "耐実弾、耐ビーム、耐格闘補正が2増加。機体と主兵装のLVが一致すると効果量が上昇し、LVが高いほど効果量も高くなる。同系統のパーツは複数装備不可。",
       "effects": [
         {
+          "type": "ballistic_armor",
+          "value": 4,
+          "msLevelScaling": {
+            "perLevel": 1,
+            "max": 8
+          }
+        },
+        {
+          "type": "beam_armor",
+          "value": 4,
+          "msLevelScaling": {
+            "perLevel": 1,
+            "max": 8
+          }
+        },
+        {
           "type": "melee_armor",
-          "value": 2
+          "value": 4,
+          "msLevelScaling": {
+            "perLevel": 1,
+            "max": 8
+          }
         }
       ],
       "dpCost": 0,
@@ -3141,6 +3169,10 @@
         },
         {
           "type": "shooting_correction",
+          "value": 5
+        },
+        {
+          "type": "ballistic_armor",
           "value": 5
         },
         {
