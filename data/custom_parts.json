@@ -343,12 +343,12 @@
           "value": -500
         },
         {
-          "type": "melee_damage_pct",
-          "value": 5
-        },
-        {
           "type": "shooting_damage_pct",
           "value": -3
+        },
+        {
+          "type": "melee_damage_pct",
+          "value": 5
         }
       ],
       "dpCost": 0,
@@ -1745,12 +1745,12 @@
       "description": "高速移動が5増加スラスターが10増加",
       "effects": [
         {
-          "type": "thruster",
-          "value": 10
-        },
-        {
           "type": "boost_speed",
           "value": 5
+        },
+        {
+          "type": "thruster",
+          "value": 10
         }
       ],
       "dpCost": 0,
@@ -3108,16 +3108,16 @@
       "description": "格闘補正と耐格闘補正が10増加。さらに強襲カテゴリに装備させると、スピードが7増加。同系統のカスタムパーツは複数装備不可。",
       "effects": [
         {
+          "type": "speed",
+          "value": 7
+        },
+        {
           "type": "melee_correction",
           "value": 10
         },
         {
           "type": "melee_armor",
           "value": 10
-        },
-        {
-          "type": "speed",
-          "value": 7
         }
       ],
       "dpCost": 0,
