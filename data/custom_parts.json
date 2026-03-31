@@ -1015,10 +1015,6 @@
       "description": "耐格闘補正が3増加",
       "effects": [
         {
-          "type": "melee_correction",
-          "value": 3
-        },
-        {
           "type": "melee_armor",
           "value": 3
         }
@@ -1038,10 +1034,6 @@
       },
       "description": "耐格闘補正が6増加",
       "effects": [
-        {
-          "type": "melee_correction",
-          "value": 6
-        },
         {
           "type": "melee_armor",
           "value": 6
@@ -1063,10 +1055,6 @@
       "description": "耐格闘補正が10増加",
       "effects": [
         {
-          "type": "melee_correction",
-          "value": 10
-        },
-        {
           "type": "melee_armor",
           "value": 10
         }
@@ -1087,10 +1075,6 @@
       "description": "耐格闘補正が15増加",
       "effects": [
         {
-          "type": "melee_correction",
-          "value": 15
-        },
-        {
           "type": "melee_armor",
           "value": 15
         }
@@ -1110,10 +1094,6 @@
       },
       "description": "耐格闘補正が20増加",
       "effects": [
-        {
-          "type": "melee_correction",
-          "value": 20
-        },
         {
           "type": "melee_armor",
           "value": 20
@@ -1137,6 +1117,10 @@
         {
           "type": "ballistic_armor",
           "value": 12
+        },
+        {
+          "type": "ballistic_armor_cap",
+          "value": 20
         }
       ],
       "dpCost": 0,
@@ -1157,6 +1141,10 @@
         {
           "type": "beam_armor",
           "value": 12
+        },
+        {
+          "type": "beam_armor_cap",
+          "value": 20
         }
       ],
       "dpCost": 0,
@@ -1175,12 +1163,12 @@
       "description": "耐格闘補正が12増加し、耐格闘補正の上限値が20増加する。自機がよろけている場合、格闘属性から受けるダメージを軽減する。新型装甲系パーツは複数装備することは不可。",
       "effects": [
         {
-          "type": "melee_correction",
+          "type": "melee_armor",
           "value": 12
         },
         {
-          "type": "melee_armor",
-          "value": 12
+          "type": "melee_armor_cap",
+          "value": 20
         }
       ],
       "dpCost": 0,
@@ -1262,7 +1250,20 @@
         "long": 3
       },
       "description": "耐実弾、耐ビーム、耐格闘の各補正が1増加。機体LVが1上昇するごとにさらに3増加。同一のパーツ効果による最大上昇値は10。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 1
+        },
+        {
+          "type": "beam_armor",
+          "value": 1
+        },
+        {
+          "type": "melee_armor",
+          "value": 1
+        }
+      ],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -1278,6 +1279,10 @@
       },
       "description": "リペアツールのHP回復量が10%上昇する。耐実弾補正と耐ビーム補正が4増加。強化リストの強化段階が3段階目に達していると追加で耐実弾補正と耐ビーム補正が3増加。更に6段階目に達していると追加で耐実弾補正と耐ビーム補正が3増加。なお複合装甲材系パーツは複数装備できない。",
       "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 4
+        },
         {
           "type": "beam_armor",
           "value": 4
@@ -1301,6 +1306,10 @@
         {
           "type": "beam_armor",
           "value": 4
+        },
+        {
+          "type": "melee_armor",
+          "value": 4
         }
       ],
       "dpCost": 0,
@@ -1319,7 +1328,7 @@
       "description": "リペアツールのHP回復量が10%上昇する。耐実弾補正と耐格闘補正が4増加。強化リストの強化段階が3段階目に達していると追加で耐実弾補正と耐格闘補正が3増加。更に6段階目に達していると追加で耐実弾補正と耐格闘補正が3増加。なお複合装甲材系パーツは複数装備できない。",
       "effects": [
         {
-          "type": "melee_correction",
+          "type": "ballistic_armor",
           "value": 4
         },
         {
@@ -1378,6 +1387,10 @@
       "description": "機体HPが5%増加。耐実弾補正と耐ビーム補正が9増加。特殊強化フレーム系パーツは複数装備できない。",
       "effects": [
         {
+          "type": "ballistic_armor",
+          "value": 9
+        },
+        {
           "type": "beam_armor",
           "value": 9
         }
@@ -1397,10 +1410,6 @@
       },
       "description": "機体HPが5%増加。耐格闘補正が18増加。特殊強化フレーム系パーツは複数装備できない。",
       "effects": [
-        {
-          "type": "melee_correction",
-          "value": 18
-        },
         {
           "type": "melee_armor",
           "value": 18
@@ -1441,10 +1450,6 @@
       },
       "description": "耐実弾、耐ビーム、耐格闘補正が2増加。機体と主兵装のLVが一致すると効果量が上昇し、LVが高いほど効果量も高くなる。同系統のパーツは複数装備不可。",
       "effects": [
-        {
-          "type": "melee_correction",
-          "value": 2
-        },
         {
           "type": "melee_armor",
           "value": 2
@@ -1750,6 +1755,10 @@
         {
           "type": "thruster",
           "value": 15
+        },
+        {
+          "type": "thruster_cap",
+          "value": 10
         }
       ],
       "dpCost": 0,
@@ -1769,6 +1778,10 @@
       "effects": [
         {
           "type": "turn_speed",
+          "value": 7
+        },
+        {
+          "type": "thruster",
           "value": 7
         }
       ],
@@ -2581,6 +2594,18 @@
         {
           "type": "thruster",
           "value": 4
+        },
+        {
+          "type": "ballistic_armor",
+          "value": 4
+        },
+        {
+          "type": "beam_armor",
+          "value": 4
+        },
+        {
+          "type": "melee_armor",
+          "value": 4
         }
       ],
       "dpCost": 0,
@@ -2731,6 +2756,18 @@
         {
           "type": "turn_speed",
           "value": 1
+        },
+        {
+          "type": "thruster",
+          "value": 1
+        },
+        {
+          "type": "melee_correction",
+          "value": 1
+        },
+        {
+          "type": "melee_armor",
+          "value": 1
         }
       ],
       "dpCost": 0,
@@ -2749,12 +2786,20 @@
       "description": "機体HPが100増加し、耐実弾補正、耐ビーム補正、射撃補正が1増加する。機体LVが1上昇するごとに、機体HPが100増加し、その他効果は1増加。本パーツによる最大上昇は機体LV5まで。",
       "effects": [
         {
+          "type": "hp",
+          "value": 100
+        },
+        {
           "type": "shooting_correction",
           "value": 1
         },
         {
-          "type": "hp",
-          "value": 100
+          "type": "ballistic_armor",
+          "value": 1
+        },
+        {
+          "type": "beam_armor",
+          "value": 1
         }
       ],
       "dpCost": 0,
@@ -2876,11 +2921,15 @@
       "description": "射撃補正と耐実弾、耐ビーム補正が5増加。強襲カテゴリに装備させると高速移動が5増加。同系統のカスタムパーツは複数装備不可。",
       "effects": [
         {
-          "type": "beam_armor",
+          "type": "boost_speed",
           "value": 5
         },
         {
-          "type": "boost_speed",
+          "type": "shooting_correction",
+          "value": 5
+        },
+        {
+          "type": "beam_armor",
           "value": 5
         }
       ],

@@ -27,6 +27,7 @@ const App = {
   _skillEffectCache: [], // 現在表示中の計算可能スキルリスト
   expansionSkillsData: [], // enhancement_skills.json の全拡張スキルデータ
   expansionSkillLevels: {}, // {skillName: selectedLevel} e.g. {'射撃補正拡張': 3, ...}
+  _expandedParts: new Set(), // アコーディオン展開中のパーツ名
 
   async init() {
     try {
@@ -508,7 +509,7 @@ const App = {
 
       document.getElementById(`${prefix}-base`).textContent = baseVal;
 
-      if (hasParts && modVal !== baseVal) {
+      if (modVal !== baseVal) {
         document.getElementById(`${prefix}-arrow`).classList.remove('hidden');
         const modEl = document.getElementById(`${prefix}-modified`);
         modEl.classList.remove('hidden');
@@ -1191,10 +1192,10 @@ const App = {
           <div class="part-group-actions">
             <div class="part-item-slots">${slotsHtml.join('')}</div>
             <button class="btn-own-toggle ${!isUnowned ? 'owned' : ''}" data-part-name="${escapeHtml(name)}" title="所持/未所持の切り替え">★</button>
-            ${hasMultipleLvs ? `<button class="btn-accordion" data-part-group="${escapeHtml(name)}" title="LV一覧を展開">▼</button>` : ''}
+            ${hasMultipleLvs ? `<button class="btn-accordion" data-part-group="${escapeHtml(name)}" title="LV一覧を展開">${this._expandedParts.has(name) ? '▲' : '▼'}</button>` : ''}
           </div>
         </div>
-        ${hasMultipleLvs ? `<div class="part-lv-list collapsed">${lvRowsHtml}</div>` : `<div class="part-item-detail">${escapeHtml(maxLvPart.description)}</div>`}
+        ${hasMultipleLvs ? `<div class="part-lv-list${this._expandedParts.has(name) ? '' : ' collapsed'}">${lvRowsHtml}</div>` : `<div class="part-item-detail">${escapeHtml(maxLvPart.description)}</div>`}
       </div>`;
     }).join('');
 
@@ -1211,6 +1212,11 @@ const App = {
         const isCollapsed = lvList.classList.contains('collapsed');
         lvList.classList.toggle('collapsed', !isCollapsed);
         btn.textContent = isCollapsed ? '▲' : '▼';
+        if (isCollapsed) {
+          this._expandedParts.add(groupName);
+        } else {
+          this._expandedParts.delete(groupName);
+        }
       });
     });
 

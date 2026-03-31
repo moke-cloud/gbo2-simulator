@@ -202,6 +202,23 @@ const GBO2Calculator = {
   applyParts(baseStats, parts, expansionSkillsList = []) {
     // 拡張スキルの直接効果を適用し上限値ボーナスを取得
     const { stats: expanded, capBonus } = this.applyExpansionSkillsDirect(baseStats, expansionSkillsList);
+
+    // パーツからも上限ボーナスを収集（先に集めてから上限値を確定する）
+    for (const part of parts) {
+      if (!part || !part.effects) continue;
+      for (const effect of part.effects) {
+        switch (effect.type) {
+          case 'shooting_correction_cap': capBonus.shooting_correction += effect.value; break;
+          case 'melee_correction_cap':    capBonus.melee_correction    += effect.value; break;
+          case 'ballistic_armor_cap':     capBonus.ballistic_armor     += effect.value; break;
+          case 'beam_armor_cap':          capBonus.beam_armor          += effect.value; break;
+          case 'melee_armor_cap':         capBonus.melee_armor         += effect.value; break;
+          case 'thruster_cap':            capBonus.thruster            += effect.value; break;
+          case 'boost_speed_cap':         capBonus.boost_speed         += effect.value; break;
+        }
+      }
+    }
+
     const modified = { ...expanded };
     let shootingDmgPct = 0;
     let meleeDmgPct = 0;
