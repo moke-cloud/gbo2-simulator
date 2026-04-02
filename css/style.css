@@ -1695,17 +1695,17 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 @media (max-width: 768px) {
   .btn-toggle-parts { display: inline-flex; align-items: center; justify-content: center; }
-  #parts-panel .parts-filter,
-  #parts-panel .parts-list {
+  #parts-panel .parts-filter {
     transition: max-height 0.3s ease, opacity 0.3s ease;
     overflow: hidden;
   }
   #parts-panel.collapsed .parts-filter,
   #parts-panel.collapsed .parts-list {
-    max-height: 0;
+    max-height: 0 !important;
     opacity: 0;
     margin: 0;
     padding: 0;
+    overflow: hidden;
   }
 }
 
