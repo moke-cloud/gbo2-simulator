@@ -1353,6 +1353,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
   /* === パーツカード: モバイル完全リデザイン === */
   .part-group {
     margin-bottom: 4px;
+    flex-shrink: 0;
   }
   .part-group-header {
     flex-direction: column;
