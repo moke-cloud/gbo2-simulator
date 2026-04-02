@@ -1342,8 +1342,37 @@ input[type="range"]::-webkit-slider-thumb:hover {
   #parts-panel { max-height: none; }
   .parts-list { max-height: 55vh; overflow-y: auto; }
 
-  /* パーツグループのタッチターゲット */
-  .part-group-header { min-height: 44px; }
+  /* パーツグループ: モバイルでは2行レイアウト */
+  .part-group-header {
+    flex-wrap: wrap;
+    min-height: 44px;
+    padding: 8px 10px;
+    gap: 4px;
+  }
+  .part-group-title {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .part-item-name {
+    white-space: normal;
+    word-break: break-all;
+    font-size: 0.78rem;
+    line-height: 1.3;
+    flex-basis: 100%;
+  }
+  .part-group-actions {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+  .part-lv-range, .part-equipped-lv {
+    font-size: 0.65rem;
+  }
+  .part-item-category {
+    font-size: 0.6rem !important;
+  }
+
   .part-lv-row { min-height: 40px; }
   .btn-own-toggle, .btn-accordion { width: 26px; height: 26px; }
 
@@ -1628,6 +1657,39 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 /* === パーツ装備不可理由tooltip === */
 .part-row[title] { cursor: help; }
+
+/* === パーツパネルトグル === */
+.parts-panel-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-toggle-parts {
+  display: none;
+  background: var(--bg-input);
+  border: 1px solid var(--border-primary);
+  color: var(--text-secondary);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+@media (max-width: 768px) {
+  .btn-toggle-parts { display: inline-flex; align-items: center; justify-content: center; }
+  #parts-panel .parts-filter,
+  #parts-panel .parts-list {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+  }
+  #parts-panel.collapsed .parts-filter,
+  #parts-panel.collapsed .parts-list {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
 
 /* === 構成保存カウンター === */
 .builds-header {

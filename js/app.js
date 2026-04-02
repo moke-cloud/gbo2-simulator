@@ -124,6 +124,16 @@ const App = {
       }
     });
 
+    // パーツパネルトグル（モバイル）
+    const btnToggleParts = document.getElementById('btn-toggle-parts');
+    if (btnToggleParts) {
+      btnToggleParts.addEventListener('click', () => {
+        const panel = document.getElementById('parts-panel');
+        panel.classList.toggle('collapsed');
+        btnToggleParts.textContent = panel.classList.contains('collapsed') ? '▶' : '▼';
+      });
+    }
+
     // 機体LVと強化段階
     document.getElementById('ms-level').addEventListener('change', (e) => {
       this.selectedLevel = parseInt(e.target.value);
