@@ -1,6 +1,6 @@
 {
-  "version": "2026-03-31",
-  "totalParts": 150,
+  "version": "2026-04-02",
+  "totalParts": 151,
   "parts": [
     {
       "name": "射撃強化プログラム",
@@ -216,11 +216,7 @@
       "effects": [
         {
           "type": "shooting_damage_pct",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 3,
-            "max": 10
-          }
+          "value": 1
         }
       ],
       "dpCost": 0,
@@ -240,11 +236,7 @@
       "effects": [
         {
           "type": "shooting_damage_pct",
-          "value": 4,
-          "msLevelScaling": {
-            "perLevel": 2,
-            "max": 10
-          }
+          "value": 4
         }
       ],
       "dpCost": 0,
@@ -264,11 +256,7 @@
       "effects": [
         {
           "type": "melee_damage_pct",
-          "value": 3,
-          "msLevelScaling": {
-            "perLevel": 3,
-            "max": 12
-          }
+          "value": 3
         }
       ],
       "dpCost": 0,
@@ -288,11 +276,7 @@
       "effects": [
         {
           "type": "melee_damage_pct",
-          "value": 6,
-          "msLevelScaling": {
-            "perLevel": 2,
-            "max": 12
-          }
+          "value": 6
         }
       ],
       "dpCost": 0,
@@ -433,11 +417,7 @@
       "effects": [
         {
           "type": "melee_correction",
-          "value": 8,
-          "msLevelScaling": {
-            "perLevel": 2,
-            "max": 16
-          }
+          "value": 5
         }
       ],
       "dpCost": 0,
@@ -457,11 +437,7 @@
       "effects": [
         {
           "type": "shooting_correction",
-          "value": 8,
-          "msLevelScaling": {
-            "perLevel": 2,
-            "max": 16
-          }
+          "value": 5
         }
       ],
       "dpCost": 0,
@@ -1212,11 +1188,7 @@
       "effects": [
         {
           "type": "hp",
-          "value": 300,
-          "msLevelScaling": {
-            "perLevel": 900,
-            "max": 3000
-          }
+          "value": 300
         }
       ],
       "dpCost": 0,
@@ -1233,16 +1205,7 @@
         "long": 2
       },
       "description": "実弾属性から受けるダメージが3%軽減。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
-      "effects": [
-        {
-          "type": "ballistic_damage_cut_pct",
-          "value": 3,
-          "msLevelScaling": {
-            "perLevel": 4,
-            "max": 15
-          }
-        }
-      ],
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -1257,16 +1220,7 @@
         "long": 2
       },
       "description": "ビーム属性から受けるダメージが3%軽減。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
-      "effects": [
-        {
-          "type": "beam_damage_cut_pct",
-          "value": 3,
-          "msLevelScaling": {
-            "perLevel": 4,
-            "max": 15
-          }
-        }
-      ],
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -1281,16 +1235,7 @@
         "long": 1
       },
       "description": "格闘属性から受けるダメージが3%軽減。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
-      "effects": [
-        {
-          "type": "melee_damage_cut_pct",
-          "value": 3,
-          "msLevelScaling": {
-            "perLevel": 4,
-            "max": 15
-          }
-        }
-      ],
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -1308,27 +1253,15 @@
       "effects": [
         {
           "type": "ballistic_armor",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 3,
-            "max": 10
-          }
+          "value": 1
         },
         {
           "type": "beam_armor",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 3,
-            "max": 10
-          }
+          "value": 1
         },
         {
           "type": "melee_armor",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 3,
-            "max": 10
-          }
+          "value": 1
         }
       ],
       "dpCost": 0,
@@ -1348,31 +1281,11 @@
       "effects": [
         {
           "type": "ballistic_armor",
-          "value": 4,
-          "enhanceSteps": [
-            {
-              "minEnhance": 3,
-              "bonus": 3
-            },
-            {
-              "minEnhance": 6,
-              "bonus": 3
-            }
-          ]
+          "value": 4
         },
         {
           "type": "beam_armor",
-          "value": 4,
-          "enhanceSteps": [
-            {
-              "minEnhance": 3,
-              "bonus": 3
-            },
-            {
-              "minEnhance": 6,
-              "bonus": 3
-            }
-          ]
+          "value": 4
         }
       ],
       "dpCost": 0,
@@ -1392,31 +1305,11 @@
       "effects": [
         {
           "type": "beam_armor",
-          "value": 4,
-          "enhanceSteps": [
-            {
-              "minEnhance": 3,
-              "bonus": 3
-            },
-            {
-              "minEnhance": 6,
-              "bonus": 3
-            }
-          ]
+          "value": 4
         },
         {
           "type": "melee_armor",
-          "value": 4,
-          "enhanceSteps": [
-            {
-              "minEnhance": 3,
-              "bonus": 3
-            },
-            {
-              "minEnhance": 6,
-              "bonus": 3
-            }
-          ]
+          "value": 4
         }
       ],
       "dpCost": 0,
@@ -1436,31 +1329,11 @@
       "effects": [
         {
           "type": "ballistic_armor",
-          "value": 4,
-          "enhanceSteps": [
-            {
-              "minEnhance": 3,
-              "bonus": 3
-            },
-            {
-              "minEnhance": 6,
-              "bonus": 3
-            }
-          ]
+          "value": 4
         },
         {
           "type": "melee_armor",
-          "value": 4,
-          "enhanceSteps": [
-            {
-              "minEnhance": 3,
-              "bonus": 3
-            },
-            {
-              "minEnhance": 6,
-              "bonus": 3
-            }
-          ]
+          "value": 4
         }
       ],
       "dpCost": 0,
@@ -1579,27 +1452,15 @@
       "effects": [
         {
           "type": "ballistic_armor",
-          "value": 4,
-          "msLevelScaling": {
-            "perLevel": 1,
-            "max": 8
-          }
+          "value": 2
         },
         {
           "type": "beam_armor",
-          "value": 4,
-          "msLevelScaling": {
-            "perLevel": 1,
-            "max": 8
-          }
+          "value": 2
         },
         {
           "type": "melee_armor",
-          "value": 4,
-          "msLevelScaling": {
-            "perLevel": 1,
-            "max": 8
-          }
+          "value": 2
         }
       ],
       "dpCost": 0,
@@ -1798,11 +1659,7 @@
       "effects": [
         {
           "type": "boost_speed",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 3,
-            "max": 10
-          }
+          "value": 1
         }
       ],
       "dpCost": 0,
@@ -1822,11 +1679,7 @@
       "effects": [
         {
           "type": "thruster",
-          "value": 3,
-          "msLevelScaling": {
-            "perLevel": 4,
-            "max": 15
-          }
+          "value": 3
         }
       ],
       "dpCost": 0,
@@ -2802,6 +2655,21 @@
       "ticketCost": 0
     },
     {
+      "name": "教育型コンピューター［特射］",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 3,
+        "mid": 0,
+        "long": 5
+      },
+      "description": "敵に与える射撃ダメージを4%増加し、射撃属性から受けるダメージを4%軽減する。更に作戦開始から4分経過すると効果が上昇。なお教育型コンピューター系のパーツは複数装備不可。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
       "name": "複合フレーム［Type-A］",
       "level": 1,
       "rarity": 3,
@@ -2814,32 +2682,8 @@
       "description": "リペアツールのHP回復量が15%上昇する。機体HPが200上昇。射撃補正が2増加。強化リストの強化段階が3段階目に達していると追加で機体HPが300上昇し、射撃補正が3増加する。更に6段階目に達していると追加で機体HPが500上昇し、射撃補正が5増加する。なお複合フレーム系パーツは複数装備できない。",
       "effects": [
         {
-          "type": "hp",
-          "value": 200,
-          "enhanceSteps": [
-            {
-              "minEnhance": 3,
-              "bonus": 300
-            },
-            {
-              "minEnhance": 6,
-              "bonus": 500
-            }
-          ]
-        },
-        {
           "type": "shooting_correction",
-          "value": 2,
-          "enhanceSteps": [
-            {
-              "minEnhance": 3,
-              "bonus": 3
-            },
-            {
-              "minEnhance": 6,
-              "bonus": 5
-            }
-          ]
+          "value": 2
         }
       ],
       "dpCost": 0,
@@ -2858,32 +2702,8 @@
       "description": "リペアツールのHP回復量が15%上昇する。機体HPが200上昇。格闘補正が2増加。強化リストの強化段階が3段階目に達していると追加で機体HPが300上昇し、格闘補正が3増加する。更に6段階目に達していると追加で機体HPが500上昇し、格闘補正が5増加する。なお複合フレーム系パーツは複数装備できない。",
       "effects": [
         {
-          "type": "hp",
-          "value": 200,
-          "enhanceSteps": [
-            {
-              "minEnhance": 3,
-              "bonus": 300
-            },
-            {
-              "minEnhance": 6,
-              "bonus": 500
-            }
-          ]
-        },
-        {
           "type": "melee_correction",
-          "value": 2,
-          "enhanceSteps": [
-            {
-              "minEnhance": 3,
-              "bonus": 3
-            },
-            {
-              "minEnhance": 6,
-              "bonus": 5
-            }
-          ]
+          "value": 2
         }
       ],
       "dpCost": 0,
@@ -2958,43 +2778,19 @@
       "effects": [
         {
           "type": "turn_speed",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 1,
-            "max": 5
-          }
+          "value": 1
         },
         {
           "type": "thruster",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 1,
-            "max": 5
-          }
+          "value": 1
         },
         {
           "type": "melee_correction",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 1,
-            "max": 5
-          }
+          "value": 1
         },
         {
           "type": "melee_armor",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 1,
-            "max": 5
-          }
-        },
-        {
-          "type": "boost_speed",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 1,
-            "max": 5
-          }
+          "value": 1
         }
       ],
       "dpCost": 0,
@@ -3014,35 +2810,19 @@
       "effects": [
         {
           "type": "hp",
-          "value": 100,
-          "msLevelScaling": {
-            "perLevel": 100,
-            "max": 500
-          }
+          "value": 100
         },
         {
           "type": "shooting_correction",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 1,
-            "max": 5
-          }
+          "value": 1
         },
         {
           "type": "ballistic_armor",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 1,
-            "max": 5
-          }
+          "value": 1
         },
         {
           "type": "beam_armor",
-          "value": 1,
-          "msLevelScaling": {
-            "perLevel": 1,
-            "max": 5
-          }
+          "value": 1
         }
       ],
       "dpCost": 0,
