@@ -1249,10 +1249,10 @@ const App = {
         <div class="part-group-header">
           <div class="part-group-title">
             <span class="part-item-name">${escapeHtml(name)}</span>
+          </div>
+          <div class="part-group-meta">
             ${lvBadge}
             <span class="part-item-category ${maxLvPart.category}">${categoryMap[maxLvPart.category] || maxLvPart.category}</span>
-          </div>
-          <div class="part-group-actions">
             <div class="part-item-slots">${slotsHtml.join('')}</div>
             <button class="btn-own-toggle ${!isUnowned ? 'owned' : ''}" data-part-name="${escapeHtml(name)}" title="所持/未所持の切り替え">★</button>
             ${hasMultipleLvs ? `<button class="btn-accordion" data-part-group="${escapeHtml(name)}" title="LV一覧を展開">${this._expandedParts.has(name) ? '▲' : '▼'}</button>` : ''}
