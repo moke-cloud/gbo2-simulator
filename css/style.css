@@ -46,6 +46,9 @@
   --color-close: #ff6b6b;
   --color-mid: #ffd93d;
   --color-long: #6bcfff;
+
+  /* Accent */
+  --color-accent: #00b4ff;
   
   /* Typography */
   --font-main: 'Noto Sans JP', sans-serif;
@@ -1306,7 +1309,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
     border-bottom: 1px solid var(--border-primary);
   }
 
-  #sidebar { padding: 12px; }
+  #sidebar { padding: 12px; order: 1; }
+  #content { order: 0; }
+  #parts-panel { order: 2; }
 
   .sidebar-section { padding: 12px; margin-bottom: 8px; }
 
@@ -1565,3 +1570,75 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 /* よろけ耐性の強調表示 */
 .calc-value-accent { color: var(--color-accent); font-weight: 600; }
+
+/* === オンボーディングガイダンス === */
+.onboarding-guide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  min-height: 300px;
+  color: var(--text-secondary);
+}
+.onboarding-guide .onboarding-icon {
+  font-size: 3rem;
+  color: var(--accent-blue);
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+.onboarding-guide h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+.onboarding-guide p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  max-width: 400px;
+  margin-bottom: 1.5rem;
+}
+.onboarding-steps {
+  display: flex;
+  gap: 1.5rem;
+}
+.onboarding-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.onboarding-step .step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.onboarding-guide.hidden { display: none; }
+
+/* === パーツ装備不可理由tooltip === */
+.part-row[title] { cursor: help; }
+
+/* === 構成保存カウンター === */
+.builds-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.builds-counter {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background: var(--bg-input);
+  padding: 2px 8px;
+  border-radius: 10px;
+}

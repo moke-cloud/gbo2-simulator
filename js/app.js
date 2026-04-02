@@ -39,7 +39,15 @@ const App = {
       this.renderSavedBuilds();
       this.updateBuildSelectOptions();
     } catch (e) {
-      // 初期化失敗はサイレントに（UIは機能しない状態になる）
+      const content = document.getElementById('content');
+      if (content) {
+        content.innerHTML = `
+          <div style="padding: 2rem; text-align: center; color: var(--accent-red, #ff4060);">
+            <h2 style="margin-bottom: 1rem;">初期化エラー</h2>
+            <p style="color: var(--text-secondary, #8892a4);">データの読み込みに失敗しました。ページを再読み込みしてください。</p>
+            <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1.5rem; background: var(--accent-blue, #00b4ff); color: #fff; border: none; border-radius: 6px; cursor: pointer;">再読み込み</button>
+          </div>`;
+      }
     }
   },
 
@@ -346,6 +354,10 @@ const App = {
       document.getElementById('btn-optimize').disabled = false;
       document.getElementById('ms-enhance-level').value = "0";
       this.enhanceLevel = 0;
+
+      // ガイダンスを非表示
+      const guide = document.getElementById('onboarding-guide');
+      if (guide) guide.classList.add('hidden');
     }
 
     // 機体切り替え時にスキルトグルをリセット
@@ -629,7 +641,7 @@ const App = {
     document.getElementById('calc-beam-cut').textContent = `${(beCut * 100).toFixed(1)}%`;
     document.getElementById('calc-melee-cut').textContent = `${(mCut * 100).toFixed(1)}%`;
 
-    const avgCut = GBO2Calculator.calcWeightedCutRate(armor, normDmgRatio);
+    const avgCut = bCut * normDmgRatio.ballistic + beCut * normDmgRatio.beam + mCut * normDmgRatio.melee;
     document.getElementById('calc-avg-cut').textContent = `${(avgCut * 100).toFixed(1)}%`;
 
     // スキル+パーツ合算カット率
@@ -928,11 +940,19 @@ const App = {
     document.getElementById('ms-search').value = ms.name;
 
     this.equippedParts = [null, null, null, null, null, null, null, null];
+    const missingParts = [];
     build.equippedParts.forEach((sp, idx) => {
       if (idx >= 8) return;
       const part = this.customParts.find(p => p.name === sp.name && p.level === sp.level);
-      if (part) this.equippedParts[idx] = part;
+      if (part) {
+        this.equippedParts[idx] = part;
+      } else {
+        missingParts.push(`${sp.name} LV${sp.level}`);
+      }
     });
+    if (missingParts.length > 0) {
+      alert(`以下のパーツが見つかりません（データ更新で変更された可能性があります）:\n${missingParts.join('\n')}`);
+    }
 
     this.expansionSkillLevels = { ...build.expansionSkillLevels };
     this.renderExpansionSkillsUI();
@@ -943,6 +963,9 @@ const App = {
   },
 
   deleteBuild(id) {
+    const build = this.savedBuilds.find(b => b.id === id);
+    const name = build ? build.name : '';
+    if (!confirm(`「${name}」を削除しますか？`)) return;
     this.savedBuilds = this.savedBuilds.filter(b => b.id !== id);
     this._persistBuilds();
     this.renderSavedBuilds();
@@ -957,6 +980,8 @@ const App = {
 
   renderSavedBuilds() {
     const container = document.getElementById('saved-builds-list');
+    const counter = document.getElementById('builds-counter');
+    if (counter) counter.textContent = `${this.savedBuilds.length} / 5`;
     if (this.savedBuilds.length === 0) {
       container.innerHTML = '<p class="no-builds-msg">保存済み構成はありません</p>';
       return;
@@ -1007,9 +1032,15 @@ const App = {
   _computeCalcResult(modified, msName, msLevel) {
     const r = this.getNormalizedDamageRatio();
     const ar = this.getNormalizedAtkRatio();
-    const bCut  = GBO2Calculator.calcCutRate(modified.ballistic_armor || 0);
-    const beCut = GBO2Calculator.calcCutRate(modified.beam_armor || 0);
-    const mCut  = GBO2Calculator.calcCutRate(modified.melee_armor || 0);
+    const armorBCut  = GBO2Calculator.calcCutRate(modified.ballistic_armor || 0);
+    const armorBeCut = GBO2Calculator.calcCutRate(modified.beam_armor || 0);
+    const armorMCut  = GBO2Calculator.calcCutRate(modified.melee_armor || 0);
+    const partsBCutPct  = modified.ballisticDamageCutPct || 0;
+    const partsBeCutPct = modified.beamDamageCutPct || 0;
+    const partsMCutPct  = modified.meleeDamageCutPct || 0;
+    const bCut  = partsBCutPct  > 0 ? 1 - (1 - armorBCut)  * (1 - partsBCutPct  / 100) : armorBCut;
+    const beCut = partsBeCutPct > 0 ? 1 - (1 - armorBeCut) * (1 - partsBeCutPct / 100) : armorBeCut;
+    const mCut  = partsMCutPct  > 0 ? 1 - (1 - armorMCut)  * (1 - partsMCutPct  / 100) : armorMCut;
     const avgCut = bCut * r.ballistic + beCut * r.beam + mCut * r.melee;
     const effHP = GBO2Calculator.calcEffectiveHPFromCutRates(
       modified.hp || 0, { ballistic: bCut, beam: beCut, melee: mCut }, r
@@ -1118,6 +1149,7 @@ const App = {
   // === パーツ一覧レンダリング ===
   renderPartsList() {
     const container = document.getElementById('parts-list');
+    const prevScroll = container.scrollTop;
 
     let filtered = this.customParts;
 
@@ -1292,6 +1324,8 @@ const App = {
         this.renderPartsList();
       });
     });
+
+    container.scrollTop = prevScroll;
   }
 };
 

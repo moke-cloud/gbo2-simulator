@@ -180,7 +180,10 @@
 
       <!-- 構成保存 -->
       <section class="sidebar-section" id="build-save-section">
-        <h2 class="section-title"><span class="icon">💾</span> 構成保存</h2>
+        <div class="builds-header">
+          <h2 class="section-title" style="margin:0"><span class="icon">💾</span> 構成保存</h2>
+          <span id="builds-counter" class="builds-counter">0 / 5</span>
+        </div>
         <div class="build-save-form">
           <input type="text" id="build-save-name" placeholder="構成名を入力..." maxlength="20" class="build-name-input">
           <button id="btn-save-build" class="btn-secondary btn-save-build">
@@ -195,6 +198,18 @@
 
     <!-- メインコンテンツ -->
     <div id="content">
+      <!-- 初期ガイダンス（機体選択前） -->
+      <div id="onboarding-guide" class="onboarding-guide">
+        <div class="onboarding-icon">⬡</div>
+        <h2>GBO2 カスタムパーツ シミュレーター</h2>
+        <p>左のサイドバーから機体を選択して、カスタムパーツの効果をシミュレーションできます。</p>
+        <div class="onboarding-steps">
+          <div class="onboarding-step"><span class="step-num">1</span> 機体を選択</div>
+          <div class="onboarding-step"><span class="step-num">2</span> パーツを装備</div>
+          <div class="onboarding-step"><span class="step-num">3</span> 結果を確認</div>
+        </div>
+      </div>
+
       <!-- ステータス表示 -->
       <section id="status-section">
         <h2 class="section-title"><span class="icon">📊</span> ステータス</h2>
