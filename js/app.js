@@ -943,7 +943,10 @@ const App = {
       };
       const usedNames = new Set(currentParts.map(p => p.name));
       const fittable = candidates.filter(p => !usedNames.has(p.name) && GBO2Calculator.canEquip(p, remaining));
-      alert(`該当パーツなし\n空きスロット: 近${remaining.close} 中${remaining.mid} 遠${remaining.long}\nパーツ枠: ${8 - currentParts.length}個\n候補数: ${candidates.length}\n装備可能: ${fittable.length}件\n装備済み: ${[...usedNames].join(', ')}`);
+      const modeLabel = { attack: '攻撃', defense: '防御', thruster: 'スラスター' }[mode] || mode;
+      const blocked = candidates.filter(p => usedNames.has(p.name) && GBO2Calculator.canEquip(p, remaining));
+      const blockedNames = [...new Set(blocked.map(p => p.name))];
+      alert(`${modeLabel}特化: 該当パーツなし\n\n空きスロット: 近${remaining.close} 中${remaining.mid} 遠${remaining.long} / パーツ枠${8 - currentParts.length}個\n装備可能: ${fittable.length}件（${modeLabel}効果あり: ${fittable.filter(p => (p.effects || []).some(e => { const t = e.type; return mode === 'attack' ? ['shooting_correction','melee_correction','shooting_damage_pct','melee_damage_pct'].includes(t) : mode === 'defense' ? ['hp','ballistic_armor','beam_armor','melee_armor','ballistic_damage_cut_pct','beam_damage_cut_pct','melee_damage_cut_pct'].includes(t) : t === 'thruster'; })).length}件）\n${blockedNames.length > 0 ? '同名装備済みで除外: ' + blockedNames.join(', ') + '\n' : ''}\n装備可能パーツ:\n${fittable.map(p => '  ' + p.name + ' LV' + p.level).join('\n') || '  なし'}`);
       return;
     }
 
