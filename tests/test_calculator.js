@@ -188,13 +188,14 @@ const capResult = GBO2Calculator.optimizeFocused(capBase, focusSlots, focusParts
 const capNames = capResult.map(p => p.name);
 assert('上限近接時: Bは不選択(格闘配分0)', !capNames.includes('B'), true);
 
-section('optimize (リファクタ版): 既装備パーツ保持');
+section('optimize (リファクタ版): 同名同LVは重複選択されない');
 const optBase = { ...focusBase };
-const preEquipped = [focusParts[0]]; // A を既装備
+const preEquipped = [focusParts[0]]; // A LV? を既装備
 const optResult = GBO2Calculator.optimize(optBase, focusSlots, focusParts, {
   ...focusConfig, equippedParts: preEquipped, selectedStats: ['shooting_correction']
 });
-assert('既装備Aは重複選択されない', !optResult.map(p => p.name).includes('A'), true);
+// 同名同LVの完全重複は選ばれない（パーツAは1つしかないので重複不可）
+assert('既装備A(同名同LV)は重複選択されない', !optResult.some(p => p.name === 'A' && p.level === preEquipped[0].level), true);
 
 // ===== 結果サマリ =====
 console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);

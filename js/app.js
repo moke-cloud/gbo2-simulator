@@ -860,8 +860,8 @@ const App = {
 
     if (!GBO2Calculator.canEquip(part, remaining)) return;
 
-    // 同名パーツ重複チェック
-    if (this.equippedParts.some(p => p && p.name === part.name)) return;
+    // 同名同LVの完全重複チェック（同名別LVは許可）
+    if (this.equippedParts.some(p => p && p.name === part.name && p.level === part.level)) return;
 
     this.equippedParts[emptyIdx] = part;
     this.updateDisplay();
@@ -941,12 +941,10 @@ const App = {
         mid: maxSlots.mid - usedSlots.mid,
         long: maxSlots.long - usedSlots.long
       };
-      const usedNames = new Set(currentParts.map(p => p.name));
-      const fittable = candidates.filter(p => !usedNames.has(p.name) && GBO2Calculator.canEquip(p, remaining));
+      const usedKeys = new Set(currentParts.map(p => p.name + '\0' + p.level));
+      const fittable = candidates.filter(p => !usedKeys.has(p.name + '\0' + p.level) && GBO2Calculator.canEquip(p, remaining));
       const modeLabel = { attack: '攻撃', defense: '防御', thruster: 'スラスター' }[mode] || mode;
-      const blocked = candidates.filter(p => usedNames.has(p.name) && GBO2Calculator.canEquip(p, remaining));
-      const blockedNames = [...new Set(blocked.map(p => p.name))];
-      alert(`${modeLabel}特化: 該当パーツなし\n\n空きスロット: 近${remaining.close} 中${remaining.mid} 遠${remaining.long} / パーツ枠${8 - currentParts.length}個\n装備可能: ${fittable.length}件（${modeLabel}効果あり: ${fittable.filter(p => (p.effects || []).some(e => { const t = e.type; return mode === 'attack' ? ['shooting_correction','melee_correction','shooting_damage_pct','melee_damage_pct'].includes(t) : mode === 'defense' ? ['hp','ballistic_armor','beam_armor','melee_armor','ballistic_damage_cut_pct','beam_damage_cut_pct','melee_damage_cut_pct'].includes(t) : t === 'thruster'; })).length}件）\n${blockedNames.length > 0 ? '同名装備済みで除外: ' + blockedNames.join(', ') + '\n' : ''}\n装備可能パーツ:\n${fittable.map(p => '  ' + p.name + ' LV' + p.level).join('\n') || '  なし'}`);
+      alert(`${modeLabel}特化: 該当パーツなし\n\n空きスロット: 近${remaining.close} 中${remaining.mid} 遠${remaining.long} / パーツ枠${8 - currentParts.length}個\n装備可能: ${fittable.length}件\n\n装備可能パーツ:\n${fittable.slice(0, 10).map(p => '  ' + p.name + ' LV' + p.level).join('\n') || '  なし'}`);
       return;
     }
 
@@ -1254,7 +1252,7 @@ const App = {
       long: maxSlots.long - usedSlots.long
     };
 
-    const equippedNames = new Set(this.equippedParts.filter(Boolean).map(p => p.name));
+    const equippedKeys = new Set(this.equippedParts.filter(Boolean).map(p => p.name + '\0' + p.level));
     const isFull = this.equippedParts.filter(Boolean).length >= 8;
 
     const categoryMap = {
@@ -1302,7 +1300,7 @@ const App = {
       const lvRowsHtml = levels.map(part => {
         const canEquip = this.selectedMS
           && !isFull
-          && !equippedNames.has(part.name)
+          && !equippedKeys.has(part.name + '\0' + part.level)
           && GBO2Calculator.canEquip(part, remaining);
         const isThisEquipped = equippedPart && equippedPart.level === part.level;
         const lvClass = ['part-lv-row'];
@@ -1380,7 +1378,7 @@ const App = {
           const part = levels[0];
           const canEquip = this.selectedMS
             && !isFull
-            && !equippedNames.has(part.name)
+            && !equippedKeys.has(part.name + '\0' + part.level)
             && GBO2Calculator.canEquip(part, remaining);
           if (canEquip && !this.unownedParts.has(part.name)) {
             this.equipPart(part);

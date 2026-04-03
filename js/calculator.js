@@ -495,12 +495,12 @@ const GBO2Calculator = {
 
     const currentParts = equippedParts.filter(Boolean);
     const usedSlots = { close: 0, mid: 0, long: 0 };
-    const usedNames = new Set();
+    const usedKeys = new Set(); // name+level で重複排除（同名別LVは許可）
     for (const part of currentParts) {
       usedSlots.close += part.slots.close || 0;
       usedSlots.mid   += part.slots.mid   || 0;
       usedSlots.long  += part.slots.long  || 0;
-      usedNames.add(part.name);
+      usedKeys.add(part.name + '\0' + part.level);
     }
 
     const selected = [];
@@ -520,7 +520,7 @@ const GBO2Calculator = {
       let bestGain = 0;
 
       for (const candidate of candidateParts) {
-        if (usedNames.has(candidate.name)) continue;
+        if (usedKeys.has(candidate.name + '\0' + candidate.level)) continue;
         if (!this.canEquip(candidate, remaining)) continue;
 
         const trialParts = [...currentParts, candidate];
@@ -540,7 +540,7 @@ const GBO2Calculator = {
       usedSlots.close += bestPart.slots.close || 0;
       usedSlots.mid   += bestPart.slots.mid   || 0;
       usedSlots.long  += bestPart.slots.long  || 0;
-      usedNames.add(bestPart.name);
+      usedKeys.add(bestPart.name + '\0' + bestPart.level);
     }
 
     return selected;
