@@ -916,16 +916,36 @@ const App = {
 
     const maxSlots = this.getMaxSlots();
     const currentParts = this.equippedParts.filter(Boolean);
+    const candidates = this.customParts.filter(p => !this.unownedParts.has(p.name));
 
-    const result = GBO2Calculator.optimizeFocused(base, maxSlots, this.customParts.filter(p => !this.unownedParts.has(p.name)), {
-      mode,
-      damageRatio: this.getNormalizedDamageRatio(),
-      atkRatio: this.getNormalizedAtkRatio(),
-      msLevel: this.selectedLevel,
-      enhanceLevel: this.enhanceLevel,
-      expansionSkillsList: this.getSelectedExpansionSkills(),
-      equippedParts: currentParts
-    });
+    let result;
+    try {
+      result = GBO2Calculator.optimizeFocused(base, maxSlots, candidates, {
+        mode,
+        damageRatio: this.getNormalizedDamageRatio(),
+        atkRatio: this.getNormalizedAtkRatio(),
+        msLevel: this.selectedLevel,
+        enhanceLevel: this.enhanceLevel,
+        expansionSkillsList: this.getSelectedExpansionSkills(),
+        equippedParts: currentParts
+      });
+    } catch (e) {
+      alert(`最適化エラー: ${e.message}`);
+      return;
+    }
+
+    if (!result || result.length === 0) {
+      const usedSlots = this.getUsedSlots();
+      const remaining = {
+        close: maxSlots.close - usedSlots.close,
+        mid: maxSlots.mid - usedSlots.mid,
+        long: maxSlots.long - usedSlots.long
+      };
+      const usedNames = new Set(currentParts.map(p => p.name));
+      const fittable = candidates.filter(p => !usedNames.has(p.name) && GBO2Calculator.canEquip(p, remaining));
+      alert(`該当パーツなし\n空きスロット: 近${remaining.close} 中${remaining.mid} 遠${remaining.long}\nパーツ枠: ${8 - currentParts.length}個\n候補数: ${candidates.length}\n装備可能: ${fittable.length}件\n装備済み: ${[...usedNames].join(', ')}`);
+      return;
+    }
 
     const newParts = [...this.equippedParts];
     for (const part of result) {
