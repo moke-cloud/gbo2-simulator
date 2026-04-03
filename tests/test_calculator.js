@@ -141,6 +141,61 @@ function computeSimple(hp, ballArm) {
 assert('HP10000 armor=100 → 有効HP20000', computeSimple(10000, 100), 20000);
 assert('HP5000  armor=0   → 有効HP5000',  computeSimple(5000, 0),   5000);
 
+// ===== 10. _greedySelect / optimizeFocused =====
+section('optimizeFocused: 攻撃特化');
+const focusBase = {
+  hp: 15000, ballistic_armor: 20, beam_armor: 20, melee_armor: 10,
+  shooting_correction: 30, melee_correction: 20, speed: 120, thruster: 60
+};
+const focusParts = [
+  { name: 'A', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 15 }] },
+  { name: 'B', slots: { close: 0, mid: 1, long: 0 }, effects: [{ type: 'melee_correction', value: 10 }] },
+  { name: 'C', slots: { close: 0, mid: 0, long: 1 }, effects: [{ type: 'hp', value: 2000 }] },
+  { name: 'D', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'thruster', value: 10 }] },
+  { name: 'E', slots: { close: 0, mid: 1, long: 0 }, effects: [{ type: 'ballistic_armor', value: 8 }] },
+];
+const focusSlots = { close: 3, mid: 3, long: 3 };
+const focusConfig = { msLevel: 1, enhanceLevel: 0, expansionSkillsList: [], equippedParts: [] };
+
+const atkResult = GBO2Calculator.optimizeFocused(focusBase, focusSlots, focusParts, {
+  ...focusConfig, mode: 'attack', atkRatio: { shooting: 0.5, melee: 0.5 }
+});
+const atkNames = atkResult.map(p => p.name);
+assert('攻撃特化: AとBを選択', atkNames.includes('A') && atkNames.includes('B'), true);
+assert('攻撃特化: Dは非選択', !atkNames.includes('D'), true);
+
+section('optimizeFocused: 防御特化');
+const defResult = GBO2Calculator.optimizeFocused(focusBase, focusSlots, focusParts, {
+  ...focusConfig, mode: 'defense', damageRatio: { ballistic: 1/3, beam: 1/3, melee: 1/3 }
+});
+const defNames = defResult.map(p => p.name);
+assert('防御特化: CとEを選択', defNames.includes('C') && defNames.includes('E'), true);
+
+section('optimizeFocused: スラスター特化');
+const thrResult = GBO2Calculator.optimizeFocused(focusBase, focusSlots, focusParts, {
+  ...focusConfig, mode: 'thruster'
+});
+assert('スラスター特化: Dを選択', thrResult.length >= 1 && thrResult[0].name === 'D', true);
+assert('スラスター特化: 他パーツは不選択', thrResult.length, 1);
+
+section('optimizeFocused: 上限到達時に停止');
+const capBase = { ...focusBase, shooting_correction: 95 };
+const capResult = GBO2Calculator.optimizeFocused(capBase, focusSlots, focusParts, {
+  ...focusConfig, mode: 'attack', atkRatio: { shooting: 1, melee: 0 }
+});
+// 射撃補正が95→上限100で5しか効かないが、他に射撃系がないので A は選ばれうる
+// B(格闘)はatk比率melee=0なので貢献0 → 選ばれない
+const capNames = capResult.map(p => p.name);
+assert('上限近接時: Bは不選択(格闘配分0)', !capNames.includes('B'), true);
+
+section('optimize (リファクタ版): 既装備パーツ保持');
+const optBase = { ...focusBase };
+const preEquipped = [focusParts[0]]; // A を既装備
+const optResult = GBO2Calculator.optimize(optBase, focusSlots, focusParts, {
+  ...focusConfig, equippedParts: preEquipped, selectedStats: ['shooting_correction']
+});
+assert('既装備Aは重複選択されない', !optResult.map(p => p.name).includes('A'), true);
+
 // ===== 結果サマリ =====
 console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
 console.log(`結果: ${passed} 件成功 / ${failed} 件失敗 / 計 ${passed + failed} 件`);

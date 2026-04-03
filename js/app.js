@@ -192,6 +192,11 @@ const App = {
     // 自動最適化ボタン
     document.getElementById('btn-optimize').addEventListener('click', () => this.runOptimize());
 
+    // 特化最適化ボタン
+    document.getElementById('btn-focus-attack').addEventListener('click', () => this.runOptimizeFocused('attack'));
+    document.getElementById('btn-focus-defense').addEventListener('click', () => this.runOptimizeFocused('defense'));
+    document.getElementById('btn-focus-thruster').addEventListener('click', () => this.runOptimizeFocused('thruster'));
+
     // パーツクリアボタン
     document.getElementById('btn-clear').addEventListener('click', () => this.clearParts());
 
@@ -362,6 +367,9 @@ const App = {
       ).join('');
       
       document.getElementById('btn-optimize').disabled = false;
+      document.getElementById('btn-focus-attack').disabled = false;
+      document.getElementById('btn-focus-defense').disabled = false;
+      document.getElementById('btn-focus-thruster').disabled = false;
       document.getElementById('ms-enhance-level').value = "0";
       this.enhanceLevel = 0;
 
@@ -900,6 +908,36 @@ const App = {
     this.updateDisplay();
   },
 
+  runOptimizeFocused(mode) {
+    if (!this.selectedMS) return;
+
+    const base = this.getBaseStats();
+    if (!base) return;
+
+    const maxSlots = this.getMaxSlots();
+    const currentParts = this.equippedParts.filter(Boolean);
+
+    const result = GBO2Calculator.optimizeFocused(base, maxSlots, this.customParts.filter(p => !this.unownedParts.has(p.name)), {
+      mode,
+      damageRatio: this.getNormalizedDamageRatio(),
+      atkRatio: this.getNormalizedAtkRatio(),
+      msLevel: this.selectedLevel,
+      enhanceLevel: this.enhanceLevel,
+      expansionSkillsList: this.getSelectedExpansionSkills(),
+      equippedParts: currentParts
+    });
+
+    const newParts = [...this.equippedParts];
+    for (const part of result) {
+      const emptyIdx = newParts.indexOf(null);
+      if (emptyIdx === -1) break;
+      newParts[emptyIdx] = part;
+    }
+    this.equippedParts = newParts;
+
+    this.updateDisplay();
+  },
+
   // === 構成保存・読込・比較 ===
 
   saveBuild(name) {
@@ -969,6 +1007,9 @@ const App = {
     this.activeSkillIndices = new Set();
     this._skillEffectCache = [];
     document.getElementById('btn-optimize').disabled = false;
+    document.getElementById('btn-focus-attack').disabled = false;
+    document.getElementById('btn-focus-defense').disabled = false;
+    document.getElementById('btn-focus-thruster').disabled = false;
     this.updateDisplay();
   },
 

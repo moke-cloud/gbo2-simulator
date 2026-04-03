@@ -458,26 +458,106 @@ const GBO2Calculator = {
   },
 
   /**
-   * 簡易自動最適化（貪欲法）
-   * @param {object} baseStats - 基本ステータス
-   * @param {object} maxSlots - { close, mid, long }
-   * @param {Array} allParts - 全パーツリスト
-   * @param {object} config - 最適化設定
-   * @returns {Array} 最適なパーツ組み合わせ
+   * modified ステータスオブジェクトから STAT_SCALES キーに対応する値を取得
    */
-  optimize(baseStats, maxSlots, allParts, config) {
+  _getModifiedStat(modified, statKey) {
+    const MAP = {
+      shooting_damage_pct: 'shootingDmgPct',
+      melee_damage_pct: 'meleeDmgPct',
+      ballistic_damage_cut_pct: 'ballisticDamageCutPct',
+      beam_damage_cut_pct: 'beamDamageCutPct',
+      melee_damage_cut_pct: 'meleeDamageCutPct',
+      turn_speed: 'turn_speed_ground',
+    };
+    return modified[MAP[statKey] || statKey] || 0;
+  },
+
+  /**
+   * 限界利得再計算付き貪欲法（共通エンジン）
+   * 毎ステップ applyParts を呼び直し、キャップ・逓減・乗算シナジーを正確に反映する。
+   * 計算量 O(N × K)  N=候補パーツ数, K=空きスロット数（最大8）
+   *
+   * @param {object} baseStats - 強化適用済みベースステータス
+   * @param {object} maxSlots - { close, mid, long }
+   * @param {Array} candidateParts - 装備候補パーツ一覧
+   * @param {object} config - { msLevel, enhanceLevel, expansionSkillsList, equippedParts }
+   * @param {function} objectiveFn - (modifiedStats) => number  最大化する目的関数
+   * @returns {Array} 選択されたパーツ配列（空きスロットに追加する分のみ）
+   */
+  _greedySelect(baseStats, maxSlots, candidateParts, config, objectiveFn) {
     const MAX_PARTS = 8;
     const {
-      damageRatio = { ballistic: 1/3, beam: 1/3, melee: 1/3 },
-      atkRatio = { shooting: 0.6, melee: 0.4 },
-      selectedStats = [],
       msLevel = 1,
       enhanceLevel = 0,
       expansionSkillsList = [],
       equippedParts = []
     } = config;
 
-    // 各ステータスのスコアスケール（1単位あたりの重み基準値）
+    const currentParts = equippedParts.filter(Boolean);
+    const usedSlots = { close: 0, mid: 0, long: 0 };
+    const usedNames = new Set();
+    for (const part of currentParts) {
+      usedSlots.close += part.slots.close || 0;
+      usedSlots.mid   += part.slots.mid   || 0;
+      usedSlots.long  += part.slots.long  || 0;
+      usedNames.add(part.name);
+    }
+
+    const selected = [];
+
+    while (currentParts.length < MAX_PARTS) {
+      const remaining = {
+        close: maxSlots.close - usedSlots.close,
+        mid:   maxSlots.mid   - usedSlots.mid,
+        long:  maxSlots.long  - usedSlots.long
+      };
+      if (remaining.close <= 0 && remaining.mid <= 0 && remaining.long <= 0) break;
+
+      const currentModified = this.applyParts(baseStats, currentParts, expansionSkillsList, msLevel, enhanceLevel);
+      const currentValue = objectiveFn(currentModified);
+
+      let bestPart = null;
+      let bestGain = 0;
+
+      for (const candidate of candidateParts) {
+        if (usedNames.has(candidate.name)) continue;
+        if (!this.canEquip(candidate, remaining)) continue;
+
+        const trialParts = [...currentParts, candidate];
+        const trialModified = this.applyParts(baseStats, trialParts, expansionSkillsList, msLevel, enhanceLevel);
+        const gain = objectiveFn(trialModified) - currentValue;
+
+        if (gain > bestGain) {
+          bestGain = gain;
+          bestPart = candidate;
+        }
+      }
+
+      if (!bestPart) break;
+
+      selected.push(bestPart);
+      currentParts.push(bestPart);
+      usedSlots.close += bestPart.slots.close || 0;
+      usedSlots.mid   += bestPart.slots.mid   || 0;
+      usedSlots.long  += bestPart.slots.long  || 0;
+      usedNames.add(bestPart.name);
+    }
+
+    return selected;
+  },
+
+  /**
+   * 汎用自動最適化（限界利得法）
+   * 優先ステータスと被弾/攻撃配分に基づき、加重スコアを最大化する。
+   * applyParts を毎回呼ぶため、キャップ到達・_cap パーツ・per_custom_part を正しく反映。
+   */
+  optimize(baseStats, maxSlots, allParts, config) {
+    const {
+      damageRatio = { ballistic: 1/3, beam: 1/3, melee: 1/3 },
+      atkRatio = { shooting: 0.6, melee: 0.4 },
+      selectedStats = [],
+    } = config;
+
     const STAT_SCALES = {
       hp: 1 / 500,
       ballistic_armor: 1.5,
@@ -496,118 +576,94 @@ const GBO2Calculator = {
       turn_speed: 0.2
     };
 
-    // 拡張スキルによる上限ボーナスを事前計算
-    const { capBonus } = this.applyExpansionSkillsDirect(baseStats, expansionSkillsList);
-    // パーツからの上限ボーナスも既装備分から集計
-    for (const part of equippedParts) {
-      if (!part || !part.effects) continue;
-      for (const effect of part.effects) {
-        const v = this.resolveEffectValue(effect, msLevel, enhanceLevel);
-        switch (effect.type) {
-          case 'shooting_correction_cap': capBonus.shooting_correction += v; break;
-          case 'melee_correction_cap':    capBonus.melee_correction    += v; break;
-          case 'ballistic_armor_cap':     capBonus.ballistic_armor     += v; break;
-          case 'beam_armor_cap':          capBonus.beam_armor          += v; break;
-          case 'melee_armor_cap':         capBonus.melee_armor         += v; break;
-          case 'thruster_cap':            capBonus.thruster            += v; break;
-          case 'boost_speed_cap':         capBonus.boost_speed         += v; break;
-        }
-      }
-    }
-
-    // 拡張スキル適用後のステータスを最適化のベースとする
-    const expandedBase = this.applyParts(baseStats, equippedParts, expansionSkillsList, msLevel, enhanceLevel);
-
-    // 上限の残り余地を計算
-    const caps = {
-      shooting_correction: this.ATTACK_CAP + (capBonus.shooting_correction || 0),
-      melee_correction:    this.ATTACK_CAP + (capBonus.melee_correction    || 0),
-      ballistic_armor:     this.DEFENSE_CAP + (capBonus.ballistic_armor    || 0),
-      beam_armor:          this.DEFENSE_CAP + (capBonus.beam_armor         || 0),
-      melee_armor:         this.DEFENSE_CAP + (capBonus.melee_armor        || 0),
-      thruster:            this.THRUSTER_CAP + (capBonus.thruster          || 0),
-    };
-
-    // selectedStatsが空の場合は全ステータスを均等に使う
     const activeStats = selectedStats.length > 0
       ? selectedStats
       : Object.keys(STAT_SCALES);
     const w = 1 / activeStats.length;
 
-    // 既装備パーツの情報
-    const usedSlots = { close: 0, mid: 0, long: 0 };
-    const usedNames = new Set();
-    for (const part of equippedParts) {
-      if (!part) continue;
-      usedSlots.close += part.slots.close || 0;
-      usedSlots.mid   += part.slots.mid   || 0;
-      usedSlots.long  += part.slots.long  || 0;
-      usedNames.add(part.name);
-    }
-    const existingCount = equippedParts.filter(Boolean).length;
-
-    // 各候補パーツのスコアを計算
-    const scoredParts = allParts.map(part => {
+    const self = this;
+    const objectiveFn = (modified) => {
       let score = 0;
-
-      for (const effect of (part.effects || [])) {
-        if (!activeStats.includes(effect.type)) continue;
-        const effectVal = this.resolveEffectValue(effect, msLevel, enhanceLevel);
-        const scale = STAT_SCALES[effect.type] || 1;
+      for (const stat of activeStats) {
+        const value = self._getModifiedStat(modified, stat);
+        const scale = STAT_SCALES[stat] || 1;
         let weight = w;
 
-        // 防御系は被弾配分で重み付け
-        if (effect.type === 'ballistic_armor') weight *= damageRatio.ballistic * 3;
-        else if (effect.type === 'beam_armor') weight *= damageRatio.beam * 3;
-        else if (effect.type === 'melee_armor') weight *= damageRatio.melee * 3;
-        // 攻撃系は攻撃配分で重み付け
-        else if (effect.type === 'shooting_correction' || effect.type === 'shooting_damage_pct')
+        if (stat === 'ballistic_armor') weight *= damageRatio.ballistic * 3;
+        else if (stat === 'beam_armor') weight *= damageRatio.beam * 3;
+        else if (stat === 'melee_armor') weight *= damageRatio.melee * 3;
+        else if (stat === 'shooting_correction' || stat === 'shooting_damage_pct')
           weight *= atkRatio.shooting;
-        else if (effect.type === 'melee_correction' || effect.type === 'melee_damage_pct')
+        else if (stat === 'melee_correction' || stat === 'melee_damage_pct')
           weight *= atkRatio.melee;
 
-        // 上限に到達済みのステータスはスコア貢献を抑制
-        if (caps[effect.type] !== undefined) {
-          const current = expandedBase[effect.type] || 0;
-          const headroom = caps[effect.type] - current;
-          if (headroom <= 0) continue; // 既に上限到達
-          const usable = Math.min(effectVal, headroom);
-          score += usable * scale * weight;
-        } else {
-          score += effectVal * scale * weight;
-        }
+        score += value * scale * weight;
       }
+      return score;
+    };
 
-      const totalSlots = part.slots.close + part.slots.mid + part.slots.long;
-      const efficiency = totalSlots > 0 ? score / totalSlots : score * 2;
+    return this._greedySelect(baseStats, maxSlots, allParts, config, objectiveFn);
+  },
 
-      return { part, score, efficiency };
-    });
+  /**
+   * カテゴリ特化最適化（限界利得法）
+   * 空きスロットのみを使い、指定カテゴリの実ゲーム指標を最大化する。
+   *
+   * @param {object} baseStats - 強化適用済みベースステータス
+   * @param {object} maxSlots - { close, mid, long }
+   * @param {Array} allParts - 装備候補パーツ一覧
+   * @param {object} config - optimize() と同等 + mode
+   * @param {string} config.mode - 'attack' | 'defense' | 'thruster'
+   * @returns {Array} 選択されたパーツ配列
+   */
+  optimizeFocused(baseStats, maxSlots, allParts, config) {
+    const {
+      mode = 'attack',
+      damageRatio = { ballistic: 1/3, beam: 1/3, melee: 1/3 },
+      atkRatio = { shooting: 0.6, melee: 0.4 },
+    } = config;
 
-    scoredParts.sort((a, b) => b.efficiency - a.efficiency);
+    const self = this;
+    let objectiveFn;
 
-    // 貪欲法で選択（既装備は除外して空きスロットのみ使用）
-    const selected = [];
-    for (const { part } of scoredParts) {
-      if (existingCount + selected.length >= MAX_PARTS) break;
+    switch (mode) {
+      case 'attack':
+        objectiveFn = (modified) => self.calcOffenseScore(
+          modified.shooting_correction || 0,
+          modified.melee_correction || 0,
+          atkRatio,
+          modified.shootingDmgPct || 0,
+          modified.meleeDmgPct || 0
+        );
+        break;
 
-      if (usedNames.has(part.name)) continue;
+      case 'defense':
+        objectiveFn = (modified) => {
+          const armorBCut  = self.calcCutRate(modified.ballistic_armor || 0);
+          const armorBeCut = self.calcCutRate(modified.beam_armor || 0);
+          const armorMCut  = self.calcCutRate(modified.melee_armor || 0);
+          const bCut  = (modified.ballisticDamageCutPct || 0) > 0
+            ? 1 - (1 - armorBCut)  * (1 - modified.ballisticDamageCutPct / 100) : armorBCut;
+          const beCut = (modified.beamDamageCutPct || 0) > 0
+            ? 1 - (1 - armorBeCut) * (1 - modified.beamDamageCutPct / 100) : armorBeCut;
+          const mCut  = (modified.meleeDamageCutPct || 0) > 0
+            ? 1 - (1 - armorMCut)  * (1 - modified.meleeDamageCutPct / 100) : armorMCut;
+          return self.calcEffectiveHPFromCutRates(
+            modified.hp || 0,
+            { ballistic: bCut, beam: beCut, melee: mCut },
+            damageRatio
+          );
+        };
+        break;
 
-      const remaining = {
-        close: maxSlots.close - usedSlots.close,
-        mid: maxSlots.mid - usedSlots.mid,
-        long: maxSlots.long - usedSlots.long
-      };
+      case 'thruster':
+        objectiveFn = (modified) => modified.thruster || 0;
+        break;
 
-      if (this.canEquip(part, remaining)) {
-        selected.push(part);
-        usedSlots.close += part.slots.close;
-        usedSlots.mid += part.slots.mid;
-        usedSlots.long += part.slots.long;
-        usedNames.add(part.name);
-      }
+      default:
+        return [];
     }
 
-    return selected;
+    return this._greedySelect(baseStats, maxSlots, allParts, config, objectiveFn);
   }
 };
