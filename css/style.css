@@ -1776,6 +1776,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 .onboarding-guide.hidden { display: none; }
 
+@media (max-width: 768px) {
+  .onboarding-guide { display: none; }
+}
+
 /* === パーツ装備不可理由tooltip === */
 .part-row[title] { cursor: help; }
 
