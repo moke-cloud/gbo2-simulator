@@ -1275,11 +1275,21 @@ const App = {
       const isEquipped = !!equippedPart;
       const hasMultipleLvs = levels.length > 1;
 
-      // グループヘッダー用スロット情報（最大LV基準）
+      // グループヘッダー用スロット情報（装備中ならその LV、非装備なら LV 範囲）
+      const displayPart = equippedPart || levels[0]; // 装備中LV or 最小LV
       const slotsHtml = [];
-      if (maxLvPart.slots.close > 0) slotsHtml.push(`<span class="slot-close">近${maxLvPart.slots.close}</span>`);
-      if (maxLvPart.slots.mid > 0) slotsHtml.push(`<span class="slot-mid">中${maxLvPart.slots.mid}</span>`);
-      if (maxLvPart.slots.long > 0) slotsHtml.push(`<span class="slot-long">遠${maxLvPart.slots.long}</span>`);
+      if (hasMultipleLvs && !isEquipped) {
+        const minP = levels[0], maxP = levels[levels.length - 1];
+        ['close', 'mid', 'long'].forEach(type => {
+          const label = type === 'close' ? '近' : type === 'mid' ? '中' : '遠';
+          const mn = minP.slots[type] || 0, mx = maxP.slots[type] || 0;
+          if (mx > 0) slotsHtml.push(`<span class="slot-${type}">${label}${mn === mx ? mn : mn + '~' + mx}</span>`);
+        });
+      } else {
+        if (displayPart.slots.close > 0) slotsHtml.push(`<span class="slot-close">近${displayPart.slots.close}</span>`);
+        if (displayPart.slots.mid > 0) slotsHtml.push(`<span class="slot-mid">中${displayPart.slots.mid}</span>`);
+        if (displayPart.slots.long > 0) slotsHtml.push(`<span class="slot-long">遠${displayPart.slots.long}</span>`);
+      }
 
       const groupClasses = ['part-group'];
       if (isUnowned) groupClasses.push('unowned');
