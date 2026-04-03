@@ -400,10 +400,35 @@ const App = {
     return { shooting: shooting / total, melee: melee / total };
   },
 
-  _getActiveSkillDC() {
+  /**
+   * スキルによるダメージカットを属性別に返す
+   * condition が「実弾属性のみ」→ ballistic のみ、「ビーム属性のみ」→ beam のみ、
+   * 「格闘属性のみ」→ melee のみ、それ以外は全属性に適用
+   * @returns {{ ballistic: number, beam: number, melee: number }}
+   */
+  _getActiveSkillDCByType() {
+    const dc = { ballistic: 0, beam: 0, melee: 0 };
     const activeItems = this._skillEffectCache.filter((_, i) => this.activeSkillIndices.has(i));
     const dcItems = activeItems.filter(s => s.category === 'damage_cut');
-    return dcItems.reduce((acc, s) => acc + s.value, 0);
+    for (const item of dcItems) {
+      if (item.condition === '実弾属性のみ') {
+        dc.ballistic += item.value;
+      } else if (item.condition === 'ビーム属性のみ') {
+        dc.beam += item.value;
+      } else if (item.condition === '格闘属性のみ') {
+        dc.melee += item.value;
+      } else {
+        dc.ballistic += item.value;
+        dc.beam += item.value;
+        dc.melee += item.value;
+      }
+    }
+    return dc;
+  },
+
+  _getActiveSkillDC() {
+    const dc = this._getActiveSkillDCByType();
+    return Math.max(dc.ballistic, dc.beam, dc.melee);
   },
 
   // === 表示更新 ===
@@ -707,13 +732,13 @@ const App = {
     const avgCut = bCut * normDmgRatio.ballistic + beCut * normDmgRatio.beam + mCut * normDmgRatio.melee;
     document.getElementById('calc-avg-cut').textContent = `${(avgCut * 100).toFixed(1)}%`;
 
-    // スキル+パーツ合算カット率
-    const skillDC = this._getActiveSkillDC(); // %（スキルによる固定カット）
-    if (skillDC > 0) {
-      // 合算カット率 = 1 - (1 - パーツカット率) × (1 - スキルDC/100)
-      const combB  = (1 - (1 - bCut)  * (1 - skillDC / 100)) * 100;
-      const combBe = (1 - (1 - beCut) * (1 - skillDC / 100)) * 100;
-      const combM  = (1 - (1 - mCut)  * (1 - skillDC / 100)) * 100;
+    // スキル+パーツ合算カット率（属性別）
+    const skillDCByType = this._getActiveSkillDCByType();
+    const hasAnySkillDC = skillDCByType.ballistic > 0 || skillDCByType.beam > 0 || skillDCByType.melee > 0;
+    if (hasAnySkillDC) {
+      const combB  = (1 - (1 - bCut)  * (1 - skillDCByType.ballistic / 100)) * 100;
+      const combBe = (1 - (1 - beCut) * (1 - skillDCByType.beam      / 100)) * 100;
+      const combM  = (1 - (1 - mCut)  * (1 - skillDCByType.melee     / 100)) * 100;
       const combAvg = combB * normDmgRatio.ballistic + combBe * normDmgRatio.beam + combM * normDmgRatio.melee;
       document.getElementById('calc-combined-ballistic').textContent = `${combB.toFixed(1)}%`;
       document.getElementById('calc-combined-beam').textContent = `${combBe.toFixed(1)}%`;
@@ -730,13 +755,12 @@ const App = {
       });
     }
 
-    // 有効HP（スキルDCも考慮: 受ける実ダメージが減る分だけHPを水増し換算）
-    const skillDCFactor = skillDC > 0 ? 1 / (1 - skillDC / 100) : 1;
-    const armorForHP = skillDC > 0
+    // 有効HP（属性別スキルDCも考慮）
+    const armorForHP = hasAnySkillDC
       ? {
-          ballistic: 1 - (1 - bCut) * (1 - skillDC / 100),
-          beam:      1 - (1 - beCut) * (1 - skillDC / 100),
-          melee:     1 - (1 - mCut) * (1 - skillDC / 100)
+          ballistic: 1 - (1 - bCut)  * (1 - skillDCByType.ballistic / 100),
+          beam:      1 - (1 - beCut) * (1 - skillDCByType.beam      / 100),
+          melee:     1 - (1 - mCut)  * (1 - skillDCByType.melee     / 100)
         }
       : {
           ballistic: bCut,
