@@ -1320,6 +1320,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 /* ===== RESPONSIVE ===== */
+/* スティッキーステータスバー: PC/タブレットでは常に非表示 */
+.sticky-stats { display: none !important; }
+
 @media (max-width: 1200px) {
   :root {
     --sidebar-width: 240px;
@@ -1447,6 +1450,56 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
   .part-lv-row { min-height: 44px; padding: 8px 12px; }
   .btn-own-toggle, .btn-accordion { width: 30px; height: 30px; font-size: 0.9rem; }
+
+  /* スティッキーステータスバー (モバイルのみ) */
+  .sticky-stats {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-primary);
+    padding: 6px 8px;
+    display: flex !important;
+    flex-direction: column;
+    gap: 3px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .sticky-stats.hidden { display: none !important; }
+  .sticky-stats-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+  }
+  .ss-row-secondary {
+    border-top: 1px solid var(--border-primary);
+    padding-top: 3px;
+  }
+  .ss-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+  }
+  .ss-label {
+    font-size: 0.55rem;
+    color: var(--text-muted);
+    line-height: 1;
+  }
+  .ss-val {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    font-family: var(--font-mono);
+  }
+  .ss-val.ss-changed {
+    color: var(--accent-cyan);
+  }
+  .ss-slots .ss-val {
+    font-size: 0.65rem;
+    font-weight: 500;
+  }
 
   /* select のフォントサイズ (iOS ズーム防止) */
   select, input[type="text"], input[type="number"] { font-size: 16px; }

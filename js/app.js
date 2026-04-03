@@ -415,6 +415,51 @@ const App = {
     this.updateCalculations();
     this.updateSkillPanel();
     this.renderPartsList();
+    this.updateStickyStats();
+  },
+
+  updateStickyStats() {
+    const bar = document.getElementById('sticky-stats');
+    if (!bar) return;
+    if (!this.selectedMS) { bar.classList.add('hidden'); return; }
+    bar.classList.remove('hidden');
+
+    const base = this.getBaseStats();
+    if (!base) return;
+    const mod = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel);
+    const hasParts = this.equippedParts.some(Boolean);
+
+    const set = (id, val, changed) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = val;
+      el.classList.toggle('ss-changed', changed);
+    };
+
+    set('ss-hp', mod.hp || 0, hasParts && mod.hp !== base.hp);
+    set('ss-shoot', mod.shooting_correction || 0, hasParts && mod.shooting_correction !== base.shooting_correction);
+    set('ss-melee', mod.melee_correction || 0, hasParts && mod.melee_correction !== base.melee_correction);
+    set('ss-bal', mod.ballistic_armor || 0, hasParts && mod.ballistic_armor !== base.ballistic_armor);
+    set('ss-beam', mod.beam_armor || 0, hasParts && mod.beam_armor !== base.beam_armor);
+    set('ss-marm', mod.melee_armor || 0, hasParts && mod.melee_armor !== base.melee_armor);
+    set('ss-thr', mod.thruster || 0, hasParts && mod.thruster !== base.thruster);
+
+    const normDmg = this.getNormalizedDamageRatio();
+    const normAtk = this.getNormalizedAtkRatio();
+    const offScore = GBO2Calculator.calcOffenseScore(mod.shooting_correction||0, mod.melee_correction||0, normAtk, mod.shootingDmgPct||0, mod.meleeDmgPct||0);
+    set('ss-offense', offScore.toFixed(2), hasParts);
+
+    const armorBCut = GBO2Calculator.calcCutRate(mod.ballistic_armor||0);
+    const armorBeCut = GBO2Calculator.calcCutRate(mod.beam_armor||0);
+    const armorMCut = GBO2Calculator.calcCutRate(mod.melee_armor||0);
+    const effHP = GBO2Calculator.calcEffectiveHPFromCutRates(mod.hp||0, {ballistic:armorBCut, beam:armorBeCut, melee:armorMCut}, normDmg);
+    set('ss-ehp', effHP.toLocaleString(), hasParts);
+
+    const maxSlots = this.getMaxSlots();
+    const usedSlots = this.getUsedSlots();
+    set('ss-slot-c', `${usedSlots.close}/${maxSlots.close}`, false);
+    set('ss-slot-m', `${usedSlots.mid}/${maxSlots.mid}`, false);
+    set('ss-slot-l', `${usedSlots.long}/${maxSlots.long}`, false);
   },
 
   updateMSCard() {

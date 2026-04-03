@@ -22,6 +22,26 @@
     </div>
   </header>
 
+  <!-- モバイル用スティッキーステータスバー -->
+  <div id="sticky-stats" class="sticky-stats hidden">
+    <div class="sticky-stats-row">
+      <span class="ss-item"><span class="ss-label">HP</span><span id="ss-hp" class="ss-val">-</span></span>
+      <span class="ss-item"><span class="ss-label">射</span><span id="ss-shoot" class="ss-val">-</span></span>
+      <span class="ss-item"><span class="ss-label">格</span><span id="ss-melee" class="ss-val">-</span></span>
+      <span class="ss-item"><span class="ss-label">実</span><span id="ss-bal" class="ss-val">-</span></span>
+      <span class="ss-item"><span class="ss-label">ビ</span><span id="ss-beam" class="ss-val">-</span></span>
+      <span class="ss-item"><span class="ss-label">格防</span><span id="ss-marm" class="ss-val">-</span></span>
+      <span class="ss-item"><span class="ss-label">スラ</span><span id="ss-thr" class="ss-val">-</span></span>
+    </div>
+    <div class="sticky-stats-row ss-row-secondary">
+      <span class="ss-item"><span class="ss-label">火力</span><span id="ss-offense" class="ss-val">-</span></span>
+      <span class="ss-item"><span class="ss-label">有効HP</span><span id="ss-ehp" class="ss-val">-</span></span>
+      <span class="ss-item ss-slots"><span class="ss-label">近</span><span id="ss-slot-c" class="ss-val">-</span></span>
+      <span class="ss-item ss-slots"><span class="ss-label">中</span><span id="ss-slot-m" class="ss-val">-</span></span>
+      <span class="ss-item ss-slots"><span class="ss-label">遠</span><span id="ss-slot-l" class="ss-val">-</span></span>
+    </div>
+  </div>
+
   <main id="app-main">
     <!-- 左サイドバー: 機体選択 & 設定 -->
     <aside id="sidebar">
@@ -502,7 +522,7 @@
     <p>GBO2 Custom Parts Simulator | データ元: <a href="https://w.atwiki.jp/battle-operation2/" target="_blank" rel="noopener">バトオペ2攻略Wiki</a></p>
   </footer>
 
-  <script src="js/calculator.js?v=20260403e"></script>
-  <script src="js/app.js?v=20260403e"></script>
+  <script src="js/calculator.js?v=20260403f"></script>
+  <script src="js/app.js?v=20260403f"></script>
 </body>
 </html>
