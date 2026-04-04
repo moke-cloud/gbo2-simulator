@@ -1,5 +1,5 @@
 {
-  "version": "2026-04-03",
+  "version": "2026-04-04",
   "totalParts": 151,
   "parts": [
     {
@@ -454,16 +454,7 @@
         "long": 4
       },
       "description": "強襲カテゴリのみ装備可能。射撃補正と格闘補正を7増加。有利カテゴリの敵機に与えるダメージを増加。",
-      "effects": [
-        {
-          "type": "shooting_correction",
-          "value": 7
-        },
-        {
-          "type": "melee_correction",
-          "value": 7
-        }
-      ],
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -1214,16 +1205,7 @@
         "long": 2
       },
       "description": "実弾属性から受けるダメージが3%軽減。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
-      "effects": [
-        {
-          "type": "ballistic_damage_cut_pct",
-          "value": 3,
-          "msLevelScaling": {
-            "perLevel": 4,
-            "max": 15
-          }
-        }
-      ],
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -1238,16 +1220,7 @@
         "long": 2
       },
       "description": "ビーム属性から受けるダメージが3%軽減。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
-      "effects": [
-        {
-          "type": "beam_damage_cut_pct",
-          "value": 3,
-          "msLevelScaling": {
-            "perLevel": 4,
-            "max": 15
-          }
-        }
-      ],
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -1262,16 +1235,7 @@
         "long": 1
       },
       "description": "格闘属性から受けるダメージが3%軽減。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
-      "effects": [
-        {
-          "type": "melee_damage_cut_pct",
-          "value": 3,
-          "msLevelScaling": {
-            "perLevel": 4,
-            "max": 15
-          }
-        }
-      ],
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -1406,20 +1370,7 @@
         "long": 5
       },
       "description": "機体HPに受けるダメージを3%軽減。加えて、緩衝材系スキルの効果である機体HPへのダメージ軽減効果をさらに8%強化。",
-      "effects": [
-        {
-          "type": "ballistic_damage_cut_pct",
-          "value": 3
-        },
-        {
-          "type": "beam_damage_cut_pct",
-          "value": 3
-        },
-        {
-          "type": "melee_damage_cut_pct",
-          "value": 3
-        }
-      ],
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -1546,20 +1497,7 @@
         "long": 3
       },
       "description": "敵から受けるダメージを10%軽減する。更に作戦開始から4分経過すると自機がよろけている場合に受けるダメージを10%軽減する。なお教育型コンピューター系のパーツは複数装備不可。",
-      "effects": [
-        {
-          "type": "ballistic_damage_cut_pct",
-          "value": 10
-        },
-        {
-          "type": "beam_damage_cut_pct",
-          "value": 10
-        },
-        {
-          "type": "melee_damage_cut_pct",
-          "value": 10
-        }
-      ],
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -2279,12 +2217,7 @@
         "long": 4
       },
       "description": "旋回性能（レティクルのレスポンス）が5増加",
-      "effects": [
-        {
-          "type": "turn_speed",
-          "value": 5
-        }
-      ],
+      "effects": [],
       "dpCost": 11700,
       "ticketCost": 40
     },
@@ -2299,12 +2232,7 @@
         "long": 7
       },
       "description": "旋回性能（レティクルのレスポンス）が10増加",
-      "effects": [
-        {
-          "type": "turn_speed",
-          "value": 10
-        }
-      ],
+      "effects": [],
       "dpCost": 34800,
       "ticketCost": 70
     },
@@ -2319,12 +2247,7 @@
         "long": 1
       },
       "description": "旋回性能（レティクルのレスポンス）が15増加",
-      "effects": [
-        {
-          "type": "turn_speed",
-          "value": 15
-        }
-      ],
+      "effects": [],
       "dpCost": 52000,
       "ticketCost": 80
     },
@@ -2727,28 +2650,7 @@
         "long": 6
       },
       "description": "敵に与えるダメージを3%増加させ、機体HPに受けるダメージを3%軽減。更に作戦開始から4分経過すると効果が上昇",
-      "effects": [
-        {
-          "type": "shooting_damage_pct",
-          "value": 3
-        },
-        {
-          "type": "melee_damage_pct",
-          "value": 3
-        },
-        {
-          "type": "ballistic_damage_cut_pct",
-          "value": 3
-        },
-        {
-          "type": "beam_damage_cut_pct",
-          "value": 3
-        },
-        {
-          "type": "melee_damage_cut_pct",
-          "value": 3
-        }
-      ],
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -2763,20 +2665,7 @@
         "long": 5
       },
       "description": "敵に与える射撃ダメージを4%増加し、射撃属性から受けるダメージを4%軽減する。更に作戦開始から4分経過すると効果が上昇。なお教育型コンピューター系のパーツは複数装備不可。",
-      "effects": [
-        {
-          "type": "shooting_damage_pct",
-          "value": 4
-        },
-        {
-          "type": "ballistic_damage_cut_pct",
-          "value": 4
-        },
-        {
-          "type": "beam_damage_cut_pct",
-          "value": 4
-        }
-      ],
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
