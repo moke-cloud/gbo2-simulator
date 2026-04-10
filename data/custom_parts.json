@@ -1,6 +1,6 @@
 {
-  "version": "2026-04-09",
-  "totalParts": 151,
+  "version": "2026-04-10",
+  "totalParts": 152,
   "parts": [
     {
       "name": "射撃強化プログラム",
@@ -475,6 +475,21 @@
           "value": 10
         }
       ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "コネクティングシステム［支援Ⅱ型］",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 0,
+        "mid": 3,
+        "long": 4
+      },
+      "description": "実弾射撃兵装で敵機に与えるダメージが7%増加し実弾、ビーム（残弾式）、その他の残弾式兵装のリロード時間を10%短縮する。支援カテゴリに装備させるとASL（自動照準補正）領域を10拡張。同系統のカスタムパーツは複数装備不可。",
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
