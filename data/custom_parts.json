@@ -1,6 +1,6 @@
 {
-  "version": "2026-04-19",
-  "totalParts": 152,
+  "version": "2026-04-23",
+  "totalParts": 155,
   "parts": [
     {
       "name": "射撃強化プログラム",
@@ -243,6 +243,26 @@
       "ticketCost": 0
     },
     {
+      "name": "オーバーチューン［射撃］",
+      "level": 3,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 6,
+        "mid": 3,
+        "long": 4
+      },
+      "description": "射撃攻撃による敵に与えるダメージが3％増加。機体LVが1上昇するごとにさらに3%増加。同一のパーツ効果による最大上昇値は12%。",
+      "effects": [
+        {
+          "type": "shooting_damage_pct",
+          "value": 3
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
       "name": "オーバーチューン［格闘］",
       "level": 1,
       "rarity": 3,
@@ -277,6 +297,26 @@
         {
           "type": "melee_damage_pct",
           "value": 6
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "オーバーチューン［格闘］",
+      "level": 3,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 3,
+        "mid": 2,
+        "long": 5
+      },
+      "description": "格闘攻撃による敵に与えるダメージが3％増加。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
+      "effects": [
+        {
+          "type": "melee_damage_pct",
+          "value": 3
         }
       ],
       "dpCost": 0,
@@ -1679,6 +1719,26 @@
       ],
       "dpCost": 0,
       "ticketCost": 425
+    },
+    {
+      "name": "オーバーチューン［機動］",
+      "level": 2,
+      "rarity": 3,
+      "category": "mobility",
+      "slots": {
+        "close": 2,
+        "mid": 1,
+        "long": 0
+      },
+      "description": "高速移動が2増加。機体LVが1上昇するごとにさらに1増加。同一のパーツ効果による最大上昇値は5。",
+      "effects": [
+        {
+          "type": "boost_speed",
+          "value": 2
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
     },
     {
       "name": "オーバーチューン［スラスター］",
