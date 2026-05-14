@@ -1,6 +1,6 @@
 {
-  "version": "2026-05-10",
-  "totalParts": 156,
+  "version": "2026-05-14",
+  "totalParts": 157,
   "parts": [
     {
       "name": "射撃強化プログラム",
@@ -1468,6 +1468,30 @@
         {
           "type": "melee_armor",
           "value": 18
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "特殊強化フレーム［Type-C］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 6,
+        "mid": 3,
+        "long": 5
+      },
+      "description": "機体HPが8%増加。耐実弾補正と耐格闘補正が9増加。特殊強化フレーム系パーツは複数装備できない。",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 9
+        },
+        {
+          "type": "melee_armor",
+          "value": 9
         }
       ],
       "dpCost": 0,
