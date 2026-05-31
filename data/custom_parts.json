@@ -1,5 +1,5 @@
 {
-  "version": "2026-05-30",
+  "version": "2026-05-31",
   "totalParts": 157,
   "parts": [
     {
@@ -669,10 +669,6 @@
       },
       "description": "機体HPとシールドHPが2000増加。さらに汎用機に装備させると各部位のHPが30%増加する。同系統のカスタムパーツは複数装備不可。",
       "effects": [
-        {
-          "type": "hp",
-          "value": 2000
-        },
         {
           "type": "shield_hp",
           "value": 2000
