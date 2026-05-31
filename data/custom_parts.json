@@ -216,7 +216,11 @@
       "effects": [
         {
           "type": "shooting_damage_pct",
-          "value": 1
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 3,
+            "max": 10
+          }
         }
       ],
       "dpCost": 0,
@@ -236,7 +240,11 @@
       "effects": [
         {
           "type": "shooting_damage_pct",
-          "value": 4
+          "value": 4,
+          "msLevelScaling": {
+            "perLevel": 2,
+            "max": 10
+          }
         }
       ],
       "dpCost": 0,
@@ -256,7 +264,11 @@
       "effects": [
         {
           "type": "shooting_damage_pct",
-          "value": 3
+          "value": 3,
+          "msLevelScaling": {
+            "perLevel": 3,
+            "max": 12
+          }
         }
       ],
       "dpCost": 0,
@@ -276,7 +288,11 @@
       "effects": [
         {
           "type": "melee_damage_pct",
-          "value": 3
+          "value": 3,
+          "msLevelScaling": {
+            "perLevel": 3,
+            "max": 12
+          }
         }
       ],
       "dpCost": 0,
@@ -296,7 +312,11 @@
       "effects": [
         {
           "type": "melee_damage_pct",
-          "value": 6
+          "value": 6,
+          "msLevelScaling": {
+            "perLevel": 2,
+            "max": 12
+          }
         }
       ],
       "dpCost": 0,
@@ -316,7 +336,11 @@
       "effects": [
         {
           "type": "melee_damage_pct",
-          "value": 3
+          "value": 3,
+          "msLevelScaling": {
+            "perLevel": 4,
+            "max": 15
+          }
         }
       ],
       "dpCost": 0,
@@ -750,10 +774,6 @@
       "description": "シールドHPが400増加",
       "effects": [
         {
-          "type": "hp",
-          "value": 400
-        },
-        {
           "type": "shield_hp",
           "value": 400
         }
@@ -773,10 +793,6 @@
       },
       "description": "シールドHPが600増加",
       "effects": [
-        {
-          "type": "hp",
-          "value": 600
-        },
         {
           "type": "shield_hp",
           "value": 600
@@ -798,10 +814,6 @@
       "description": "シールドHPが800増加",
       "effects": [
         {
-          "type": "hp",
-          "value": 800
-        },
-        {
           "type": "shield_hp",
           "value": 800
         }
@@ -822,10 +834,6 @@
       "description": "シールドHPが1400増加",
       "effects": [
         {
-          "type": "hp",
-          "value": 1400
-        },
-        {
           "type": "shield_hp",
           "value": 1400
         }
@@ -845,10 +853,6 @@
       },
       "description": "シールドHPが1600増加",
       "effects": [
-        {
-          "type": "hp",
-          "value": 1600
-        },
         {
           "type": "shield_hp",
           "value": 1600
@@ -1243,7 +1247,11 @@
       "effects": [
         {
           "type": "hp",
-          "value": 300
+          "value": 300,
+          "msLevelScaling": {
+            "perLevel": 900,
+            "max": 3000
+          }
         }
       ],
       "dpCost": 0,
@@ -1260,7 +1268,16 @@
         "long": 2
       },
       "description": "実弾属性から受けるダメージが3%軽減。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "ballistic_damage_cut_pct",
+          "value": 3,
+          "msLevelScaling": {
+            "perLevel": 4,
+            "max": 15
+          }
+        }
+      ],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -1275,7 +1292,16 @@
         "long": 2
       },
       "description": "ビーム属性から受けるダメージが3%軽減。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "beam_damage_cut_pct",
+          "value": 3,
+          "msLevelScaling": {
+            "perLevel": 4,
+            "max": 15
+          }
+        }
+      ],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -1290,7 +1316,16 @@
         "long": 1
       },
       "description": "格闘属性から受けるダメージが3%軽減。機体LVが1上昇するごとにさらに4%増加。同一のパーツ効果による最大上昇値は15%。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "melee_damage_cut_pct",
+          "value": 3,
+          "msLevelScaling": {
+            "perLevel": 4,
+            "max": 15
+          }
+        }
+      ],
       "dpCost": 0,
       "ticketCost": 0
     },
@@ -1308,15 +1343,27 @@
       "effects": [
         {
           "type": "ballistic_armor",
-          "value": 1
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 3,
+            "max": 10
+          }
         },
         {
           "type": "beam_armor",
-          "value": 1
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 3,
+            "max": 10
+          }
         },
         {
           "type": "melee_armor",
-          "value": 1
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 3,
+            "max": 10
+          }
         }
       ],
       "dpCost": 0,
@@ -1336,11 +1383,31 @@
       "effects": [
         {
           "type": "ballistic_armor",
-          "value": 4
+          "value": 4,
+          "enhanceSteps": [
+            {
+              "minEnhance": 3,
+              "bonus": 3
+            },
+            {
+              "minEnhance": 6,
+              "bonus": 3
+            }
+          ]
         },
         {
           "type": "beam_armor",
-          "value": 4
+          "value": 4,
+          "enhanceSteps": [
+            {
+              "minEnhance": 3,
+              "bonus": 3
+            },
+            {
+              "minEnhance": 6,
+              "bonus": 3
+            }
+          ]
         }
       ],
       "dpCost": 0,
@@ -1360,11 +1427,31 @@
       "effects": [
         {
           "type": "beam_armor",
-          "value": 4
+          "value": 4,
+          "enhanceSteps": [
+            {
+              "minEnhance": 3,
+              "bonus": 3
+            },
+            {
+              "minEnhance": 6,
+              "bonus": 3
+            }
+          ]
         },
         {
           "type": "melee_armor",
-          "value": 4
+          "value": 4,
+          "enhanceSteps": [
+            {
+              "minEnhance": 3,
+              "bonus": 3
+            },
+            {
+              "minEnhance": 6,
+              "bonus": 3
+            }
+          ]
         }
       ],
       "dpCost": 0,
@@ -1384,11 +1471,31 @@
       "effects": [
         {
           "type": "ballistic_armor",
-          "value": 4
+          "value": 4,
+          "enhanceSteps": [
+            {
+              "minEnhance": 3,
+              "bonus": 3
+            },
+            {
+              "minEnhance": 6,
+              "bonus": 3
+            }
+          ]
         },
         {
           "type": "melee_armor",
-          "value": 4
+          "value": 4,
+          "enhanceSteps": [
+            {
+              "minEnhance": 3,
+              "bonus": 3
+            },
+            {
+              "minEnhance": 6,
+              "bonus": 3
+            }
+          ]
         }
       ],
       "dpCost": 0,
@@ -1442,6 +1549,10 @@
       "description": "機体HPが5%増加。耐実弾補正と耐ビーム補正が9増加。特殊強化フレーム系パーツは複数装備できない。",
       "effects": [
         {
+          "type": "hp_pct",
+          "value": 5
+        },
+        {
           "type": "ballistic_armor",
           "value": 9
         },
@@ -1466,6 +1577,10 @@
       "description": "機体HPが5%増加。耐格闘補正が18増加。特殊強化フレーム系パーツは複数装備できない。",
       "effects": [
         {
+          "type": "hp_pct",
+          "value": 5
+        },
+        {
           "type": "melee_armor",
           "value": 18
         }
@@ -1485,6 +1600,10 @@
       },
       "description": "機体HPが8%増加。耐実弾補正と耐格闘補正が9増加。特殊強化フレーム系パーツは複数装備できない。",
       "effects": [
+        {
+          "type": "hp_pct",
+          "value": 8
+        },
         {
           "type": "ballistic_armor",
           "value": 9
@@ -1557,6 +1676,18 @@
       },
       "description": "耐実弾、耐ビーム、耐格闘の各補正が14%増加。機体HPが1200増加。なお特殊強化装置系のパーツは複数装備不可。",
       "effects": [
+        {
+          "type": "ballistic_armor_mult_pct",
+          "value": 14
+        },
+        {
+          "type": "beam_armor_mult_pct",
+          "value": 14
+        },
+        {
+          "type": "melee_armor_mult_pct",
+          "value": 14
+        },
         {
           "type": "hp",
           "value": 1200
@@ -1738,7 +1869,11 @@
       "effects": [
         {
           "type": "boost_speed",
-          "value": 1
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 3,
+            "max": 10
+          }
         }
       ],
       "dpCost": 0,
@@ -1758,7 +1893,11 @@
       "effects": [
         {
           "type": "boost_speed",
-          "value": 2
+          "value": 2,
+          "msLevelScaling": {
+            "perLevel": 1,
+            "max": 5
+          }
         }
       ],
       "dpCost": 0,
@@ -1778,7 +1917,11 @@
       "effects": [
         {
           "type": "thruster",
-          "value": 3
+          "value": 3,
+          "msLevelScaling": {
+            "perLevel": 4,
+            "max": 15
+          }
         }
       ],
       "dpCost": 0,
@@ -2421,7 +2564,16 @@
         "long": 0
       },
       "description": "「脚部HP」に充てられるHPを60%から65%に増加脚部被弾時、機体HPへのダメージを1%軽減。同パーツへの他LV装備時の効果は重複しない。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "legs_hp_alloc_pct",
+          "value": 65
+        },
+        {
+          "type": "legs_hit_damage_cut_pct",
+          "value": 1
+        }
+      ],
       "dpCost": 14100,
       "ticketCost": 45
     },
@@ -2436,7 +2588,16 @@
         "long": 0
       },
       "description": "「脚部HP」に充てられるHPを60%から70%に増加脚部被弾時、機体HPへのダメージを1%軽減。同パーツへの他LV装備時の効果は重複しない。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "legs_hp_alloc_pct",
+          "value": 70
+        },
+        {
+          "type": "legs_hit_damage_cut_pct",
+          "value": 1
+        }
+      ],
       "dpCost": 23800,
       "ticketCost": 65
     },
@@ -2451,7 +2612,16 @@
         "long": 1
       },
       "description": "「脚部HP」に充てられるHPを60%から80%に増加脚部被弾時、機体HPへのダメージを2%軽減。同パーツへの他LV装備時の効果は重複しない。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "legs_hp_alloc_pct",
+          "value": 80
+        },
+        {
+          "type": "legs_hit_damage_cut_pct",
+          "value": 2
+        }
+      ],
       "dpCost": 27700,
       "ticketCost": 75
     },
@@ -2466,7 +2636,16 @@
         "long": 1
       },
       "description": "「脚部HP」に充てられるHPを60%から90%に増加脚部被弾時、機体HPへのダメージを7%軽減。同パーツへの他LV装備時の効果は重複しない。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "legs_hp_alloc_pct",
+          "value": 90
+        },
+        {
+          "type": "legs_hit_damage_cut_pct",
+          "value": 7
+        }
+      ],
       "dpCost": 40700,
       "ticketCost": 75
     },
@@ -2481,7 +2660,16 @@
         "long": 1
       },
       "description": "「頭部HP」に充てられるHPを45%から55%に増加頭部被弾時、機体HPへのダメージを4%軽減。同パーツへの他LV装備時の効果は重複しない。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "head_hp_alloc_pct",
+          "value": 55
+        },
+        {
+          "type": "head_hit_damage_cut_pct",
+          "value": 4
+        }
+      ],
       "dpCost": 4200,
       "ticketCost": 10
     },
@@ -2496,7 +2684,16 @@
         "long": 2
       },
       "description": "「頭部HP」に充てられるHPを45%から75%に増加頭部被弾時、機体HPへのダメージを12%軽減。同パーツへの他LV装備時の効果は重複しない。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "head_hp_alloc_pct",
+          "value": 75
+        },
+        {
+          "type": "head_hit_damage_cut_pct",
+          "value": 12
+        }
+      ],
       "dpCost": 10000,
       "ticketCost": 25
     },
@@ -2511,7 +2708,16 @@
         "long": 3
       },
       "description": "「頭部HP」に充てられるHPを45%から85%に増加頭部被弾時、機体HPへのダメージを15%軽減。同パーツへの他LV装備時の効果は重複しない。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "head_hp_alloc_pct",
+          "value": 85
+        },
+        {
+          "type": "head_hit_damage_cut_pct",
+          "value": 15
+        }
+      ],
       "dpCost": 21700,
       "ticketCost": 45
     },
@@ -2526,7 +2732,16 @@
         "long": 0
       },
       "description": "「背部HP」に充てられるHPを30%から40%に増加背部被弾時、機体HPへのダメージを2%軽減。同パーツへの他LV装備時の効果は重複しない。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "back_hp_alloc_pct",
+          "value": 40
+        },
+        {
+          "type": "back_hit_damage_cut_pct",
+          "value": 2
+        }
+      ],
       "dpCost": 4500,
       "ticketCost": 10
     },
@@ -2541,7 +2756,16 @@
         "long": 0
       },
       "description": "「背部HP」に充てられるHPを30%から55%に増加背部被弾時、機体HPへのダメージを6%軽減。同パーツへの他LV装備時の効果は重複しない。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "back_hp_alloc_pct",
+          "value": 55
+        },
+        {
+          "type": "back_hit_damage_cut_pct",
+          "value": 6
+        }
+      ],
       "dpCost": 10400,
       "ticketCost": 25
     },
@@ -2556,7 +2780,16 @@
         "long": 0
       },
       "description": "「背部HP」に充てられるHPを30%から80%に増加背部被弾時、機体HPへのダメージを13%軽減。同パーツへの他LV装備時の効果は重複しない。",
-      "effects": [],
+      "effects": [
+        {
+          "type": "back_hp_alloc_pct",
+          "value": 80
+        },
+        {
+          "type": "back_hit_damage_cut_pct",
+          "value": 13
+        }
+      ],
       "dpCost": 20500,
       "ticketCost": 55
     },
@@ -2571,7 +2804,20 @@
         "long": 2
       },
       "description": "脚部、頭部、背部への部位ダメージ量が3%増加",
-      "effects": [],
+      "effects": [
+        {
+          "type": "legs_part_damage_pct",
+          "value": 3
+        },
+        {
+          "type": "head_part_damage_pct",
+          "value": 3
+        },
+        {
+          "type": "back_part_damage_pct",
+          "value": 3
+        }
+      ],
       "dpCost": 19500,
       "ticketCost": 65
     },
@@ -2586,7 +2832,20 @@
         "long": 4
       },
       "description": "脚部、頭部、背部への部位ダメージ量が6%増加",
-      "effects": [],
+      "effects": [
+        {
+          "type": "legs_part_damage_pct",
+          "value": 6
+        },
+        {
+          "type": "head_part_damage_pct",
+          "value": 6
+        },
+        {
+          "type": "back_part_damage_pct",
+          "value": 6
+        }
+      ],
       "dpCost": 35000,
       "ticketCost": 80
     },
@@ -2796,8 +3055,32 @@
       "description": "リペアツールのHP回復量が15%上昇する。機体HPが200上昇。射撃補正が2増加。強化リストの強化段階が3段階目に達していると追加で機体HPが300上昇し、射撃補正が3増加する。更に6段階目に達していると追加で機体HPが500上昇し、射撃補正が5増加する。なお複合フレーム系パーツは複数装備できない。",
       "effects": [
         {
+          "type": "hp",
+          "value": 200,
+          "enhanceSteps": [
+            {
+              "minEnhance": 3,
+              "bonus": 300
+            },
+            {
+              "minEnhance": 6,
+              "bonus": 500
+            }
+          ]
+        },
+        {
           "type": "shooting_correction",
-          "value": 2
+          "value": 2,
+          "enhanceSteps": [
+            {
+              "minEnhance": 3,
+              "bonus": 3
+            },
+            {
+              "minEnhance": 6,
+              "bonus": 5
+            }
+          ]
         }
       ],
       "dpCost": 0,
@@ -2816,8 +3099,32 @@
       "description": "リペアツールのHP回復量が15%上昇する。機体HPが200上昇。格闘補正が2増加。強化リストの強化段階が3段階目に達していると追加で機体HPが300上昇し、格闘補正が3増加する。更に6段階目に達していると追加で機体HPが500上昇し、格闘補正が5増加する。なお複合フレーム系パーツは複数装備できない。",
       "effects": [
         {
+          "type": "hp",
+          "value": 200,
+          "enhanceSteps": [
+            {
+              "minEnhance": 3,
+              "bonus": 300
+            },
+            {
+              "minEnhance": 6,
+              "bonus": 500
+            }
+          ]
+        },
+        {
           "type": "melee_correction",
-          "value": 2
+          "value": 2,
+          "enhanceSteps": [
+            {
+              "minEnhance": 3,
+              "bonus": 3
+            },
+            {
+              "minEnhance": 6,
+              "bonus": 5
+            }
+          ]
         }
       ],
       "dpCost": 0,
@@ -2891,20 +3198,44 @@
       "description": "格闘補正、耐格闘補正、高速移動、スラスター、MSの旋回性能が1増加する。機体LVが1上昇するごとに、さらに1増加。本パーツによる最大上昇は機体LV5まで。",
       "effects": [
         {
-          "type": "turn_speed",
-          "value": 1
-        },
-        {
-          "type": "thruster",
-          "value": 1
-        },
-        {
           "type": "melee_correction",
-          "value": 1
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 1,
+            "max": 5
+          }
         },
         {
           "type": "melee_armor",
-          "value": 1
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 1,
+            "max": 5
+          }
+        },
+        {
+          "type": "boost_speed",
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 1,
+            "max": 5
+          }
+        },
+        {
+          "type": "thruster",
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 1,
+            "max": 5
+          }
+        },
+        {
+          "type": "turn_speed",
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 1,
+            "max": 5
+          }
         }
       ],
       "dpCost": 0,
@@ -2924,19 +3255,35 @@
       "effects": [
         {
           "type": "hp",
-          "value": 100
+          "value": 100,
+          "msLevelScaling": {
+            "perLevel": 100,
+            "max": 500
+          }
         },
         {
           "type": "shooting_correction",
-          "value": 1
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 1,
+            "max": 5
+          }
         },
         {
           "type": "ballistic_armor",
-          "value": 1
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 1,
+            "max": 5
+          }
         },
         {
           "type": "beam_armor",
-          "value": 1
+          "value": 1,
+          "msLevelScaling": {
+            "perLevel": 1,
+            "max": 5
+          }
         }
       ],
       "dpCost": 0,
@@ -2954,6 +3301,10 @@
       },
       "description": "格闘補正が20%増加。機体HPが1000増加。なお特殊強化装置系のパーツは複数装備不可。",
       "effects": [
+        {
+          "type": "melee_correction_mult_pct",
+          "value": 20
+        },
         {
           "type": "hp",
           "value": 1000
@@ -2974,6 +3325,10 @@
       },
       "description": "射撃補正が20%増加。機体HPが1000増加。なお特殊強化装置系のパーツは複数装備不可。",
       "effects": [
+        {
+          "type": "shooting_correction_mult_pct",
+          "value": 20
+        },
         {
           "type": "hp",
           "value": 1000

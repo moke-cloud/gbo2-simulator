@@ -17,6 +17,7 @@ const App = {
   damageRatio: { ballistic: 4, beam: 3, melee: 3 },
   atkRatio: { shooting: 3, melee: 2 },
   selectedStats: [],
+  optimizeGoal: 'balance', // 最適化の方針: balance | attack | defense | thruster
   
   partsFilter: 'all',
   partsSearchText: '',
@@ -34,10 +35,13 @@ const App = {
       this.loadSettings();
       await this.loadData();
       this.bindEvents();
+      this.bindExtraEvents();
       this.renderExpansionSkillsUI();
       this.renderPartsList();
       this.renderSavedBuilds();
       this.updateBuildSelectOptions();
+      this.populateOnboardingMeta();
+      this.loadSharedBuildFromUrl();
     } catch (e) {
       const content = document.getElementById('content');
       if (content) {
@@ -189,13 +193,21 @@ const App = {
       this.selectedStats = checked;
     });
 
-    // 自動最適化ボタン
-    document.getElementById('btn-optimize').addEventListener('click', () => this.runOptimize());
+    // 最適化の方針セレクタ
+    const goalGrid = document.getElementById('opt-goal-grid');
+    if (goalGrid) {
+      goalGrid.addEventListener('click', (e) => {
+        const btn = e.target.closest('.opt-goal');
+        if (!btn || btn.disabled) return;
+        goalGrid.querySelectorAll('.opt-goal').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        this.optimizeGoal = btn.dataset.goal;
+        this.updateOptGoalDesc();
+      });
+    }
 
-    // 特化最適化ボタン
-    document.getElementById('btn-focus-attack').addEventListener('click', () => this.runOptimizeFocused('attack'));
-    document.getElementById('btn-focus-defense').addEventListener('click', () => this.runOptimizeFocused('defense'));
-    document.getElementById('btn-focus-thruster').addEventListener('click', () => this.runOptimizeFocused('thruster'));
+    // 自動最適化ボタン（方針に応じてディスパッチ）
+    document.getElementById('btn-optimize').addEventListener('click', () => this.runOptimizeDispatch());
 
     // パーツクリアボタン
     document.getElementById('btn-clear').addEventListener('click', () => this.clearParts());
@@ -244,6 +256,189 @@ const App = {
         this.removePart(idx);
       }
     });
+  },
+
+  // === 追加機能のイベント結線（共有・計算方法モーダル） ===
+  bindExtraEvents() {
+    const on = (id, ev, fn) => { const el = document.getElementById(id); if (el) el.addEventListener(ev, fn); };
+    on('btn-share', 'click', () => this.shareCurrentBuild());
+    on('btn-methodology', 'click', () => this.openMethodology());
+    on('btn-open-methodology', 'click', () => this.openMethodology());
+    on('btn-close-methodology', 'click', () => this.closeMethodology());
+    const overlay = document.getElementById('methodology-modal');
+    if (overlay) overlay.addEventListener('click', (e) => { if (e.target === overlay) this.closeMethodology(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') this.closeMethodology(); });
+  },
+
+  populateOnboardingMeta() {
+    const m = document.getElementById('onboarding-ms-count');
+    const p = document.getElementById('onboarding-parts-count');
+    if (m) m.textContent = this.msData.length.toLocaleString();
+    if (p) p.textContent = new Set(this.customParts.map(x => x.name)).size.toLocaleString();
+  },
+
+  showToast(msg, isError = false) {
+    const el = document.getElementById('toast');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.toggle('toast-error', !!isError);
+    el.classList.remove('hidden');
+    requestAnimationFrame(() => el.classList.add('show'));
+    clearTimeout(this._toastTimer);
+    this._toastTimer = setTimeout(() => {
+      el.classList.remove('show');
+      setTimeout(() => el.classList.add('hidden'), 250);
+    }, 2400);
+  },
+
+  openMethodology() {
+    const m = document.getElementById('methodology-modal');
+    if (m) m.classList.remove('hidden');
+  },
+  closeMethodology() {
+    const m = document.getElementById('methodology-modal');
+    if (m) m.classList.add('hidden');
+  },
+
+  // === 構成共有 ===
+  getCurrentBuildState() {
+    if (!this.selectedMS) return null;
+    return {
+      msName: this.selectedMS.name,
+      msLevel: this.selectedLevel,
+      enhanceLevel: this.enhanceLevel,
+      parts: this.equippedParts.filter(Boolean).map(p => ({ name: p.name, level: p.level })),
+      expansionSkillLevels: this.expansionSkillLevels,
+      activeSkillIndices: Array.from(this.activeSkillIndices),
+      damageRatio: this.damageRatio,
+      atkRatio: this.atkRatio,
+    };
+  },
+
+  async shareCurrentBuild() {
+    const state = this.getCurrentBuildState();
+    if (!state) { this.showToast('先に機体を選択してください', true); return; }
+    const url = BuildShare.encodeToUrl(state);
+    try { history.replaceState(null, '', url); } catch (e) { /* noop */ }
+    let copied = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+        copied = true;
+      }
+    } catch (e) { copied = false; }
+    if (!copied) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        copied = document.execCommand('copy');
+        document.body.removeChild(ta);
+      } catch (e) { copied = false; }
+    }
+    this.showToast(copied ? '共有URLをコピーしました' : '共有URLをアドレスバーに反映しました');
+  },
+
+  loadSharedBuildFromUrl() {
+    const state = BuildShare.readFromUrl();
+    if (!state) return;
+    this.applySharedBuild(state);
+    this.showToast('共有された構成を読み込みました');
+  },
+
+  _syncRatioInputs() {
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.value = v; };
+    set('ratio-ballistic', this.damageRatio.ballistic);
+    set('ratio-beam', this.damageRatio.beam);
+    set('ratio-melee', this.damageRatio.melee);
+    set('atk-shooting', this.atkRatio.shooting);
+    set('atk-melee', this.atkRatio.melee);
+  },
+
+  applySharedBuild(state) {
+    const ms = this.msData.find(m => m.name === state.msName);
+    if (!ms) { this.showToast(`機体「${state.msName}」が見つかりません`, true); return; }
+    this.selectedMS = ms;
+
+    const availableLvs = Object.keys(ms.levels || {}).map(Number).sort((a, b) => a - b);
+    this.selectedLevel = availableLvs.includes(state.msLevel) ? state.msLevel : (availableLvs[0] || 1);
+    this.enhanceLevel = state.enhanceLevel || 0;
+
+    const lvSelect = document.getElementById('ms-level');
+    lvSelect.innerHTML = availableLvs.map(lv =>
+      `<option value="${lv}" ${lv === this.selectedLevel ? 'selected' : ''}>LV${lv}</option>`
+    ).join('');
+    document.getElementById('ms-enhance-level').value = String(this.enhanceLevel);
+    document.getElementById('ms-search').value = ms.name;
+
+    this.equippedParts = [null, null, null, null, null, null, null, null];
+    const missing = [];
+    (state.parts || []).forEach((sp, idx) => {
+      if (idx >= 8) return;
+      const part = this.customParts.find(p => p.name === sp.name && p.level === sp.level);
+      if (part) this.equippedParts[idx] = part;
+      else missing.push(`${sp.name} LV${sp.level}`);
+    });
+
+    if (state.expansionSkillLevels) {
+      Object.keys(this.expansionSkillLevels).forEach(n => { this.expansionSkillLevels[n] = 0; });
+      Object.entries(state.expansionSkillLevels).forEach(([n, lv]) => { this.expansionSkillLevels[n] = lv; });
+      this.renderExpansionSkillsUI();
+    }
+    if (state.damageRatio) { this.damageRatio = { ...state.damageRatio }; }
+    if (state.atkRatio) { this.atkRatio = { ...state.atkRatio }; }
+    this._syncRatioInputs();
+
+    this.activeSkillIndices = new Set();
+    this._skillEffectCache = [];
+    this.enableBuildControls();
+    const guide = document.getElementById('onboarding-guide');
+    if (guide) guide.classList.add('hidden');
+
+    this.updateDisplay();
+
+    // スキルトグル状態を復元（updateSkillPanel がキャッシュ構築後）
+    if (Array.isArray(state.activeSkillIndices) && this._skillEffectCache.length > 0) {
+      this.activeSkillIndices = new Set(state.activeSkillIndices);
+      this.updateSkillPanel();
+      this.updateCalculations();
+    }
+    if (missing.length > 0) {
+      this.showToast(`一部パーツが見つかりません（${missing.length}件）`, true);
+    }
+  },
+
+  // === ビルドサマリー（headline） ===
+  updateSummary() {
+    const section = document.getElementById('summary-section');
+    if (!section) return;
+    const base = this.selectedMS ? this.getBaseStats() : null;
+    if (!base) { section.classList.add('hidden'); return; }
+    section.classList.remove('hidden');
+
+    const mod = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel);
+    const normDmg = this.getNormalizedDamageRatio();
+    const normAtk = this.getNormalizedAtkRatio();
+
+    const shootMul = GBO2Calculator.calcShootingMultiplier(mod.shooting_correction || 0) * (1 + (mod.shootingDmgPct || 0) / 100);
+    const meleeMul = GBO2Calculator.calcMeleeMultiplier(mod.melee_correction || 0) * (1 + (mod.meleeDmgPct || 0) / 100);
+    const offScore = GBO2Calculator.calcOffenseScore(mod.shooting_correction || 0, mod.melee_correction || 0, normAtk, mod.shootingDmgPct || 0, mod.meleeDmgPct || 0);
+
+    const armorBCut = GBO2Calculator.calcCutRate(mod.ballistic_armor || 0);
+    const armorBeCut = GBO2Calculator.calcCutRate(mod.beam_armor || 0);
+    const armorMCut = GBO2Calculator.calcCutRate(mod.melee_armor || 0);
+    const pB = mod.ballisticDamageCutPct || 0, pBe = mod.beamDamageCutPct || 0, pM = mod.meleeDamageCutPct || 0;
+    const bCut = pB > 0 ? 1 - (1 - armorBCut) * (1 - pB / 100) : armorBCut;
+    const beCut = pBe > 0 ? 1 - (1 - armorBeCut) * (1 - pBe / 100) : armorBeCut;
+    const mCut = pM > 0 ? 1 - (1 - armorMCut) * (1 - pM / 100) : armorMCut;
+    const avgCut = bCut * normDmg.ballistic + beCut * normDmg.beam + mCut * normDmg.melee;
+    const effHP = GBO2Calculator.calcEffectiveHPFromCutRates(mod.hp || 0, { ballistic: bCut, beam: beCut, melee: mCut }, normDmg);
+
+    const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+    setText('sum-firepower', `×${offScore.toFixed(2)}`);
+    setText('sum-firepower-sub', `射撃 ×${shootMul.toFixed(2)} / 格闘 ×${meleeMul.toFixed(2)}`);
+    setText('sum-ehp', effHP.toLocaleString());
+    setText('sum-ehp-sub', `加重カット率 ${(avgCut * 100).toFixed(1)}%`);
   },
 
   // === 拡張スキルUI ===
@@ -366,10 +561,7 @@ const App = {
         `<option value="${lv}" ${lv === this.selectedLevel ? 'selected' : ''}>LV${lv}</option>`
       ).join('');
       
-      document.getElementById('btn-optimize').disabled = false;
-      document.getElementById('btn-focus-attack').disabled = false;
-      document.getElementById('btn-focus-defense').disabled = false;
-      document.getElementById('btn-focus-thruster').disabled = false;
+      this.enableBuildControls();
       document.getElementById('ms-enhance-level').value = "0";
       this.enhanceLevel = 0;
 
@@ -441,6 +633,7 @@ const App = {
     this.updateSkillPanel();
     this.renderPartsList();
     this.updateStickyStats();
+    this.updateSummary();
   },
 
   updateStickyStats() {
@@ -472,12 +665,17 @@ const App = {
     const normDmg = this.getNormalizedDamageRatio();
     const normAtk = this.getNormalizedAtkRatio();
     const offScore = GBO2Calculator.calcOffenseScore(mod.shooting_correction||0, mod.melee_correction||0, normAtk, mod.shootingDmgPct||0, mod.meleeDmgPct||0);
-    set('ss-offense', offScore.toFixed(2), hasParts);
+    set('ss-offense', `×${offScore.toFixed(2)}`, hasParts);
 
+    // 装甲カットと属性ダメージ軽減%を乗算合成（サマリー・計算カードと同一ロジック）
     const armorBCut = GBO2Calculator.calcCutRate(mod.ballistic_armor||0);
     const armorBeCut = GBO2Calculator.calcCutRate(mod.beam_armor||0);
     const armorMCut = GBO2Calculator.calcCutRate(mod.melee_armor||0);
-    const effHP = GBO2Calculator.calcEffectiveHPFromCutRates(mod.hp||0, {ballistic:armorBCut, beam:armorBeCut, melee:armorMCut}, normDmg);
+    const pB = mod.ballisticDamageCutPct||0, pBe = mod.beamDamageCutPct||0, pM = mod.meleeDamageCutPct||0;
+    const bCut = pB > 0 ? 1 - (1 - armorBCut) * (1 - pB / 100) : armorBCut;
+    const beCut = pBe > 0 ? 1 - (1 - armorBeCut) * (1 - pBe / 100) : armorBeCut;
+    const mCut = pM > 0 ? 1 - (1 - armorMCut) * (1 - pM / 100) : armorMCut;
+    const effHP = GBO2Calculator.calcEffectiveHPFromCutRates(mod.hp||0, {ballistic:bCut, beam:beCut, melee:mCut}, normDmg);
     set('ss-ehp', effHP.toLocaleString(), hasParts);
 
     const maxSlots = this.getMaxSlots();
@@ -703,9 +901,9 @@ const App = {
       modified.shootingDmgPct || 0,
       modified.meleeDmgPct || 0
     );
-    document.getElementById('calc-offense-score').textContent = `×${offScore.toFixed(3)} (基準)`;
-    document.getElementById('calc-offense-adv').textContent = `×${(offScore * 1.3).toFixed(3)}`;
-    document.getElementById('calc-offense-dis').textContent = `×${(offScore * 0.8).toFixed(3)}`;
+    document.getElementById('calc-offense-score').textContent = `×${offScore.toFixed(2)} (等倍)`;
+    document.getElementById('calc-offense-adv').textContent = `×${(offScore * 1.3).toFixed(2)}`;
+    document.getElementById('calc-offense-dis').textContent = `×${(offScore * 0.8).toFixed(2)}`;
 
     // カット率（パーツのみ）
     const armor = {
@@ -755,20 +953,12 @@ const App = {
       });
     }
 
-    // 有効HP（属性別スキルDCも考慮）
-    const armorForHP = hasAnySkillDC
-      ? {
-          ballistic: 1 - (1 - bCut)  * (1 - skillDCByType.ballistic / 100),
-          beam:      1 - (1 - beCut) * (1 - skillDCByType.beam      / 100),
-          melee:     1 - (1 - mCut)  * (1 - skillDCByType.melee     / 100)
-        }
-      : {
-          ballistic: bCut,
-          beam: beCut,
-          melee: mCut
-        };
-    const effHP = GBO2Calculator.calcEffectiveHPFromCutRates(modified.hp || 0, armorForHP, normDmgRatio);
-    document.getElementById('calc-effective-hp').textContent = effHP.toLocaleString() + ' (基準)';
+    // 有効HP（パーツ＋装甲のみ。スキルDCは上の「合算」カット率行で別途提示し、
+    // サマリー・構成比較と値が一致するようEHP本体には含めない）
+    const effHP = GBO2Calculator.calcEffectiveHPFromCutRates(
+      modified.hp || 0, { ballistic: bCut, beam: beCut, melee: mCut }, normDmgRatio
+    );
+    document.getElementById('calc-effective-hp').textContent = effHP.toLocaleString() + ' (等倍)';
     document.getElementById('calc-effective-hp-adv').textContent = Math.round(effHP / 0.8).toLocaleString();
     document.getElementById('calc-effective-hp-dis').textContent = Math.round(effHP / 1.3).toLocaleString();
   },
@@ -816,10 +1006,14 @@ const App = {
     }
     section.classList.remove('hidden');
 
-    // 項目数が変わった（機体切替・強化段階変更）場合は全ONで再初期化
+    // 項目数が変わった（機体切替・強化段階変更）場合は再初期化。
+    // 既定ONは「常時」効果のみ。瀕死/緊急時・静止時・状態限定の効果は
+    // 既定でOFF（EHP・カット率を過大に見せないため）。ユーザーが任意でON可能。
     if (this._skillEffectCache.length !== effectItems.length) {
       this._skillEffectCache = effectItems;
-      this.activeSkillIndices = new Set(effectItems.map((_, i) => i));
+      this.activeSkillIndices = new Set(
+        effectItems.map((it, i) => (it.condition === '常時' ? i : -1)).filter(i => i >= 0)
+      );
     } else {
       this._skillEffectCache = effectItems;
     }
@@ -944,6 +1138,31 @@ const App = {
   clearParts() {
     this.equippedParts = [null, null, null, null, null, null, null, null];
     this.updateDisplay();
+  },
+
+  // 機体選択後に最適化・共有系コントロールを有効化
+  enableBuildControls() {
+    ['btn-optimize', 'btn-share'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.disabled = false;
+    });
+    document.querySelectorAll('#opt-goal-grid .opt-goal').forEach(b => { b.disabled = false; });
+  },
+
+  updateOptGoalDesc() {
+    const desc = {
+      balance: '優先ステータスと配分をもとに総合スコアを最大化します。',
+      attack: '射撃・格闘の与ダメージ倍率（攻撃配分）を最大化します。',
+      defense: '被弾配分にもとづく有効HPを最大化します。',
+      thruster: 'スラスターを最大化します。',
+    };
+    const el = document.getElementById('opt-goal-desc');
+    if (el) el.textContent = desc[this.optimizeGoal] || '';
+  },
+
+  // 選択中の方針に応じて最適化を実行
+  runOptimizeDispatch() {
+    if (this.optimizeGoal === 'balance') this.runOptimize();
+    else this.runOptimizeFocused(this.optimizeGoal);
   },
 
   runOptimize() {
@@ -1096,10 +1315,7 @@ const App = {
     this.renderExpansionSkillsUI();
     this.activeSkillIndices = new Set();
     this._skillEffectCache = [];
-    document.getElementById('btn-optimize').disabled = false;
-    document.getElementById('btn-focus-attack').disabled = false;
-    document.getElementById('btn-focus-defense').disabled = false;
-    document.getElementById('btn-focus-thruster').disabled = false;
+    this.enableBuildControls();
     this.updateDisplay();
   },
 
@@ -1186,8 +1402,8 @@ const App = {
     const effHP = GBO2Calculator.calcEffectiveHPFromCutRates(
       modified.hp || 0, { ballistic: bCut, beam: beCut, melee: mCut }, r
     );
-    const shootMul = GBO2Calculator.calcShootingMultiplier(modified.shooting_correction || 0);
-    const meleeMul = GBO2Calculator.calcMeleeMultiplier(modified.melee_correction || 0);
+    const shootMul = GBO2Calculator.calcShootingMultiplier(modified.shooting_correction || 0) * (1 + (modified.shootingDmgPct || 0) / 100);
+    const meleeMul = GBO2Calculator.calcMeleeMultiplier(modified.melee_correction || 0) * (1 + (modified.meleeDmgPct || 0) / 100);
     return {
       msName: msName || (this.selectedMS?.name || ''),
       msLevel: msLevel !== undefined ? msLevel : this.selectedLevel,

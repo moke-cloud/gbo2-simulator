@@ -1,10 +1,22 @@
 /**
  * GBO2 ダメージ計算エンジン
- * 戦闘システムwikiページの情報に基づく
+ *
+ * 計算式の根拠（実ゲーム仕様・一次/二次ソースで確認済み）:
+ *   ダメージ = 武器威力 × (100 + 攻撃補正)/100 × (100 − 防御補正)/100 × その他乗算カット
+ *   - 攻撃補正(射撃/格闘): 1pt = +1% の線形バフ。上限100（=与ダメ2倍）
+ *   - 防御補正(耐実弾/耐ビーム/耐格闘): 1pt = 1% の線形カット。上限50（=被ダメ50%減）
+ *   - 部位カット・属性ダメージ軽減等は乗算で合成（例: 0.6 × 0.6 = 0.36）
+ * 出典:
+ *   - ゲームライン 戦闘システム https://gameline.jp/gundam-battleoperation2/game-system/battle-system/
+ *   - バトオペ2攻略wiki(Gamerch) https://gamerch.com/batoope/39352
+ *   - 弱小賢者の備忘録（補正計算） https://note.com/jakushoukennja/n/n1eb582715459
+ *
+ * ※ 旧実装は防御を armor/(100+armor) の逓減近似としていたが、これは誤り。
+ *   実ゲームは 1pt=1% の線形（耐50→50%カット）。本エンジンは線形モデルを採用する。
  */
 
 const GBO2Calculator = {
-  // 三すくみ補正
+  // 三すくみ補正（強襲>支援>汎用>強襲）。有利+30% / 不利-20%
   TYPE_ADVANTAGE: {
     '強襲': { strong: '支援', weak: '汎用' },
     '汎用': { strong: '強襲', weak: '支援' },
@@ -13,26 +25,26 @@ const GBO2Calculator = {
   ADVANTAGE_MULTIPLIER: 1.30,
   DISADVANTAGE_MULTIPLIER: 0.80,
 
-  // 攻撃補正上限: 100 (拡張スキル除く)
-  // 防御補正上限: 50 (拡張スキル除く)
-  ATTACK_CAP: 100,
-  DEFENSE_CAP: 50,
-
-  // スピード上限: 200
-  SPEED_CAP: 200,
-  // スラスター上限: 100
-  THRUSTER_CAP: 100,
+  // 各ステータス上限（拡張スキルによる上限上昇は capBonus で加算）
+  ATTACK_CAP: 100,      // 射撃補正 / 格闘補正
+  DEFENSE_CAP: 50,      // 耐実弾 / 耐ビーム / 耐格闘
+  SPEED_CAP: 200,       // スピード
+  THRUSTER_CAP: 100,    // スラスター
+  BOOST_SPEED_CAP: 300, // 高速移動
+  TURN_CAP: 200,        // 旋回（地上/宇宙）
 
   /**
-   * ダメージカット率を計算
-   * カット率 = 防御補正 / (100 + 防御補正)  (概算)
-   * ※ 実際のゲーム内計算式に基づくと: 
-   *    ダメージ倍率 = 1 / (1 + 防御補正/100) と近似される
-   *    → カット率 = 1 - 1/(1 + armor/100) = armor / (100 + armor)
+   * 防御補正によるダメージカット率（0〜1）を計算
+   * 実ゲーム: 被ダメ倍率 = (100 − 防御補正)/100 → カット率 = 防御補正/100（線形）
+   * 防御補正の上限は素で50（=50%カット）、拡張スキルで上限上昇しうる。引数は
+   * applyParts でキャップ適用済みの値を渡す前提。99 クランプは 0 除算・∞EHP を防ぐ
+   * 安全弁であり、素の防御補正カット自体の仕様上限（通常50）とは別物。
+   * @param {number} armor - 防御補正値（キャップ適用済み）
+   * @returns {number} カット率 0〜0.99
    */
   calcCutRate(armor) {
     if (armor <= 0) return 0;
-    return armor / (100 + armor);
+    return Math.min(armor, 99) / 100;
   },
 
   /**
@@ -174,6 +186,11 @@ const GBO2Calculator = {
       // 旋回
       if ((match = text.match(/旋回(?:性能)?が(\d+)増加/))) {
         modified.turn_speed_ground = (modified.turn_speed_ground || 0) + parseInt(match[1]);
+        modified.turn_speed_space  = (modified.turn_speed_space  || 0) + parseInt(match[1]);
+      }
+      // シールドHP（強化リストで付与される場合）
+      if ((match = text.match(/シールドHPが(\d+)増加/))) {
+        modified.shield_hp = (modified.shield_hp || 0) + parseInt(match[1]);
       }
     }
 
@@ -191,7 +208,7 @@ const GBO2Calculator = {
     const capBonus = {
       shooting_correction: 0, melee_correction: 0,
       ballistic_armor: 0, beam_armor: 0, melee_armor: 0,
-      thruster: 0, boost_speed: 0
+      thruster: 0, boost_speed: 0, speed: 0, turn_speed: 0
     };
 
     for (const skill of (expansionSkillsList || [])) {
@@ -213,6 +230,8 @@ const GBO2Calculator = {
           case 'melee_armor_cap':         capBonus.melee_armor         += eff.value; break;
           case 'thruster_cap':            capBonus.thruster            += eff.value; break;
           case 'boost_speed_cap':         capBonus.boost_speed         += eff.value; break;
+          case 'speed_cap':               capBonus.speed               += eff.value; break;
+          case 'turn_speed_cap':          capBonus.turn_speed          += eff.value; break;
         }
       }
     }
@@ -267,6 +286,8 @@ const GBO2Calculator = {
           case 'melee_armor_cap':         capBonus.melee_armor         += v; break;
           case 'thruster_cap':            capBonus.thruster            += v; break;
           case 'boost_speed_cap':         capBonus.boost_speed         += v; break;
+          case 'speed_cap':               capBonus.speed               += v; break;
+          case 'turn_speed_cap':          capBonus.turn_speed          += v; break;
         }
       }
     }
@@ -277,14 +298,21 @@ const GBO2Calculator = {
     let ballisticDamageCutPct = 0;
     let beamDamageCutPct = 0;
     let meleeDamageCutPct = 0;
+    let ohRecoveryPct = 0;
+    let hpPct = 0;
+    // 補正・装甲の乗算%バフ（「補正がN%増加」等）。フラット加算後にまとめて適用する。
+    const multPct = { shooting_correction: 0, melee_correction: 0, ballistic_armor: 0, beam_armor: 0, melee_armor: 0 };
 
-    const shootingCap    = this.ATTACK_CAP  + (capBonus.shooting_correction || 0);
-    const meleeCap       = this.ATTACK_CAP  + (capBonus.melee_correction    || 0);
-    const ballisticCap   = this.DEFENSE_CAP + (capBonus.ballistic_armor     || 0);
-    const beamCap        = this.DEFENSE_CAP + (capBonus.beam_armor          || 0);
-    const meleeArmorCap  = this.DEFENSE_CAP + (capBonus.melee_armor         || 0);
-    const thrusterCap    = this.THRUSTER_CAP + (capBonus.thruster           || 0);
-    const speedCap       = this.SPEED_CAP   + (capBonus.boost_speed         || 0);
+    const shootingCap    = this.ATTACK_CAP      + (capBonus.shooting_correction || 0);
+    const meleeCap       = this.ATTACK_CAP      + (capBonus.melee_correction    || 0);
+    const ballisticCap   = this.DEFENSE_CAP     + (capBonus.ballistic_armor     || 0);
+    const beamCap        = this.DEFENSE_CAP     + (capBonus.beam_armor          || 0);
+    const meleeArmorCap  = this.DEFENSE_CAP     + (capBonus.melee_armor         || 0);
+    const thrusterCap    = this.THRUSTER_CAP    + (capBonus.thruster            || 0);
+    const speedCap       = this.SPEED_CAP       + (capBonus.speed               || 0);
+    const boostSpeedCap  = this.BOOST_SPEED_CAP + (capBonus.boost_speed         || 0);
+    const turnCap        = this.TURN_CAP        + (capBonus.turn_speed          || 0);
+    const baseHp         = baseStats.hp || 0;  // HP%バフの基準（強化適用済み素のHP）
 
     for (const part of parts) {
       if (!part || !part.effects) continue;
@@ -316,10 +344,14 @@ const GBO2Calculator = {
             modified.thruster = Math.min((modified.thruster || 0) + effectVal, thrusterCap);
             break;
           case 'turn_speed':
-            modified.turn_speed_ground = (modified.turn_speed_ground || 0) + effectVal;
+            modified.turn_speed_ground = Math.min((modified.turn_speed_ground || 0) + effectVal, turnCap);
+            modified.turn_speed_space  = Math.min((modified.turn_speed_space  || 0) + effectVal, turnCap);
             break;
           case 'boost_speed':
-            modified.boost_speed = (modified.boost_speed || 0) + effectVal;
+            modified.boost_speed = Math.min((modified.boost_speed || 0) + effectVal, boostSpeedCap);
+            break;
+          case 'oh_recovery_pct':
+            ohRecoveryPct += effectVal;
             break;
           case 'shooting_damage_pct':
             shootingDmgPct += effectVal;
@@ -336,9 +368,43 @@ const GBO2Calculator = {
           case 'melee_damage_cut_pct':
             meleeDamageCutPct += effectVal;
             break;
+          // 機体HP%バフ（基準HPに対する割合）
+          case 'hp_pct':
+            hpPct += effectVal;
+            break;
+          // 補正・装甲の乗算%バフ（フラット加算後に適用）
+          case 'shooting_correction_mult_pct': multPct.shooting_correction += effectVal; break;
+          case 'melee_correction_mult_pct':    multPct.melee_correction    += effectVal; break;
+          case 'ballistic_armor_mult_pct':     multPct.ballistic_armor     += effectVal; break;
+          case 'beam_armor_mult_pct':          multPct.beam_armor          += effectVal; break;
+          case 'melee_armor_mult_pct':         multPct.melee_armor         += effectVal; break;
+          // 部位特殊装甲・部位与ダメ等（部位HP元データが無く集計不可。値は保持して表示・将来対応用に残す）
+          case 'legs_hp_alloc_pct': case 'head_hp_alloc_pct': case 'back_hp_alloc_pct':
+          case 'legs_hit_damage_cut_pct': case 'head_hit_damage_cut_pct': case 'back_hit_damage_cut_pct':
+          case 'legs_part_damage_pct': case 'head_part_damage_pct': case 'back_part_damage_pct':
+          case 'shield_hp': case 'head_hp': case 'legs_hp': case 'back_hp':
+            modified[effect.type] = (modified[effect.type] || 0) + effectVal;
+            break;
         }
       }
     }
+
+    // 機体HP%バフ: 基準HP（強化適用済みの素HP）に対する割合を加算
+    if (hpPct > 0) {
+      modified.hp = (modified.hp || 0) + Math.round(baseHp * hpPct / 100);
+    }
+
+    // 補正・装甲の乗算%バフ: フラット加算後の値に乗算し、再度キャップにクランプ
+    const applyMult = (key, cap) => {
+      if (multPct[key] > 0) {
+        modified[key] = Math.min(Math.round((modified[key] || 0) * (1 + multPct[key] / 100)), cap);
+      }
+    };
+    applyMult('shooting_correction', shootingCap);
+    applyMult('melee_correction', meleeCap);
+    applyMult('ballistic_armor', ballisticCap);
+    applyMult('beam_armor', beamCap);
+    applyMult('melee_armor', meleeArmorCap);
 
     // per_custom_part 効果：装備中の該当タイプのパーツ数に応じてボーナス
     for (const skill of (expansionSkillsList || [])) {
@@ -357,7 +423,7 @@ const GBO2Calculator = {
             case 'beam_armor':          modified.beam_armor          = Math.min((modified.beam_armor          || 0) + bonus, beamCap); break;
             case 'melee_armor':         modified.melee_armor         = Math.min((modified.melee_armor         || 0) + bonus, meleeArmorCap); break;
             case 'thruster':            modified.thruster            = Math.min((modified.thruster            || 0) + bonus, thrusterCap); break;
-            case 'boost_speed':         modified.boost_speed         = (modified.boost_speed         || 0) + bonus; break;
+            case 'boost_speed':         modified.boost_speed         = Math.min((modified.boost_speed || 0) + bonus, boostSpeedCap); break;
             case 'shield_hp':           modified.shield_hp           = (modified.shield_hp           || 0) + bonus; break;
             case 'reload_oh_reduction_pct': modified.reloadOhReductionPct = (modified.reloadOhReductionPct || 0) + bonus; break;
           }
@@ -370,6 +436,7 @@ const GBO2Calculator = {
     modified.ballisticDamageCutPct = ballisticDamageCutPct;
     modified.beamDamageCutPct = beamDamageCutPct;
     modified.meleeDamageCutPct = meleeDamageCutPct;
+    modified.ohRecoveryPct = ohRecoveryPct;
 
     return modified;
   },
@@ -383,13 +450,15 @@ const GBO2Calculator = {
     const text = skill.effect || '';
     if (!text) return [];
     const results = [];
-
-    // よろけ値 (複数マッチ対応: 動作開始中35%・判定発生中70% など)
-    const staggerRe = /よろけ値を\s*(\d+)%/g;
+    // 条件判定用の前方コンテキスト幅。発動条件（瀕死/静止/高速移動中 等）が
+    // 効果値の手前に離れて書かれることが多いため広めに取る。
+    const CTX = 120;
     let m;
+
+    // よろけ値（被弾よろけ蓄積への補正＝防御的よろけ耐性。「受けた攻撃のよろけ値をX%で計算」等）
+    const staggerRe = /よろけ値を\s*(\d+)%/g;
     while ((m = staggerRe.exec(text)) !== null) {
-      // コンテキストはマッチ前の40文字のみ（マッチ自体の「よろけ」で誤判定しないよう）
-      const ctx = text.substring(Math.max(0, m.index - 40), m.index);
+      const ctx = text.substring(Math.max(0, m.index - CTX), m.index);
       results.push({ category: 'stagger', value: parseInt(m[1]), condition: this._parseCondition(ctx) });
     }
 
@@ -397,17 +466,18 @@ const GBO2Calculator = {
     const dcRe = /被ダメージ\s*[－\-ー]\s*(\d+)%|受けるダメージを(\d+)%軽減|機体HPへのダメージを(\d+)%軽減|ダメージを(\d+)%軽減/g;
     while ((m = dcRe.exec(text)) !== null) {
       const value = parseInt(m[1] ?? m[2] ?? m[3] ?? m[4]);
-      const ctx = text.substring(Math.max(0, m.index - 40), m.index);
+      const ctx = text.substring(Math.max(0, m.index - CTX), m.index);
       results.push({ category: 'damage_cut', value, condition: this._parseCondition(ctx) });
     }
 
     // 火力ボーナス (複数マッチ対応)
-    // 通常形式: 「与えるダメージが X% 増加」「威力が X% 増加」
-    // 短縮形: 「与ダメージ＋X%」「射撃属性与ダメージ＋X%」「格闘属性与ダメージ＋X%」
-    const fpRe = /与えるダメージ(?:が|を)?\s*(\d+)%\s*増加|威力(?:が|を)?\s*(\d+)%\s*増加|攻撃力(?:が|を)?\s*(\d+)%\s*増加|与ダメージ[＋+]\s*(\d+)%/g;
+    // 「与えるダメージが X% 増加/上昇」「威力が X% 増加/上昇」、短縮形「与ダメージ＋X%」。
+    // タックル専用威力（例「タックルの威力が120%増加」）は通常射撃/格闘火力ではないため除外。
+    const fpRe = /与えるダメージ(?:が|を)?\s*(\d+)%\s*(?:増加|上昇)|威力(?:が|を)?\s*(\d+)%\s*(?:増加|上昇)|攻撃力(?:が|を)?\s*(\d+)%\s*(?:増加|上昇)|与ダメージ[＋+]\s*(\d+)%/g;
     while ((m = fpRe.exec(text)) !== null) {
       const value = parseInt(m[1] ?? m[2] ?? m[3] ?? m[4]);
-      const ctx = text.substring(Math.max(0, m.index - 40), m.index);
+      const ctx = text.substring(Math.max(0, m.index - CTX), m.index);
+      if (/タックル/.test(ctx)) continue;
       results.push({ category: 'firepower', value, condition: this._parseCondition(ctx) });
     }
 
@@ -415,6 +485,9 @@ const GBO2Calculator = {
   },
 
   _parseCondition(ctx) {
+    // 緊急時・瀕死発動（常時ではない＝既定ではEHP/カット率に含めない）
+    if (/撃墜される|HPが?\s*\d+\s*%?\s*以下|瀕死|根性|不屈/.test(ctx)) return '瀕死/緊急時';
+    if (/静止射撃|静止状態|停止状態/.test(ctx)) return '静止時';
     if (/判定発生中/.test(ctx)) return '判定発生中';
     if (/動作開始中/.test(ctx)) return '動作開始中';
     if (/実弾属性/.test(ctx)) return '実弾属性のみ';
@@ -558,47 +631,53 @@ const GBO2Calculator = {
       selectedStats = [],
     } = config;
 
-    const STAT_SCALES = {
-      hp: 1 / 500,
-      ballistic_armor: 1.5,
-      beam_armor: 1.5,
-      melee_armor: 1.5,
-      shooting_correction: 2,
-      melee_correction: 2,
-      shooting_damage_pct: 3,
-      melee_damage_pct: 3,
-      ballistic_damage_cut_pct: 3,
-      beam_damage_cut_pct: 3,
-      melee_damage_cut_pct: 3,
-      speed: 0.3,
-      boost_speed: 0.2,
-      thruster: 0.5,
-      turn_speed: 0.2
-    };
+    // ステータス分類。防御系は線形和ではなく有効HPを直接最大化する（カット率の限界価値が
+    // 非線形なため。例: 40→41 と 49→50 では後者の有効HP増が大きい）。
+    const DEF_STATS = new Set(['hp', 'ballistic_armor', 'beam_armor', 'melee_armor',
+      'ballistic_damage_cut_pct', 'beam_damage_cut_pct', 'melee_damage_cut_pct']);
+    const ATK_STATS = new Set(['shooting_correction', 'melee_correction', 'shooting_damage_pct', 'melee_damage_pct']);
+    const MOB_SCALE = { speed: 0.3, boost_speed: 0.2, thruster: 0.5, turn_speed: 0.2 };
 
-    const activeStats = selectedStats.length > 0
-      ? selectedStats
-      : Object.keys(STAT_SCALES);
-    const w = 1 / activeStats.length;
+    const allStats = ['hp', 'ballistic_armor', 'beam_armor', 'melee_armor', 'shooting_correction',
+      'melee_correction', 'shooting_damage_pct', 'melee_damage_pct', 'ballistic_damage_cut_pct',
+      'beam_damage_cut_pct', 'melee_damage_cut_pct', 'speed', 'boost_speed', 'thruster', 'turn_speed'];
+    const activeStats = selectedStats.length > 0 ? selectedStats : allStats;
+    const hasDef = activeStats.some(s => DEF_STATS.has(s));
+    const hasAtk = activeStats.some(s => ATK_STATS.has(s));
 
     const self = this;
     const objectiveFn = (modified) => {
       let score = 0;
-      for (const stat of activeStats) {
-        const value = self._getModifiedStat(modified, stat);
-        const scale = STAT_SCALES[stat] || 1;
-        let weight = w;
 
-        if (stat === 'ballistic_armor') weight *= damageRatio.ballistic * 3;
-        else if (stat === 'beam_armor') weight *= damageRatio.beam * 3;
-        else if (stat === 'melee_armor') weight *= damageRatio.melee * 3;
-        else if (stat === 'shooting_correction' || stat === 'shooting_damage_pct')
-          weight *= atkRatio.shooting;
-        else if (stat === 'melee_correction' || stat === 'melee_damage_pct')
-          weight *= atkRatio.melee;
-
-        score += value * scale * weight;
+      // 防御: 有効HP（装甲カット×属性ダメージ軽減を乗算合成、被弾配分で加重）を直接指標化
+      if (hasDef) {
+        const aB = self.calcCutRate(modified.ballistic_armor || 0);
+        const aBe = self.calcCutRate(modified.beam_armor || 0);
+        const aM = self.calcCutRate(modified.melee_armor || 0);
+        const pB = modified.ballisticDamageCutPct || 0, pBe = modified.beamDamageCutPct || 0, pM = modified.meleeDamageCutPct || 0;
+        const bCut = pB > 0 ? 1 - (1 - aB) * (1 - pB / 100) : aB;
+        const beCut = pBe > 0 ? 1 - (1 - aBe) * (1 - pBe / 100) : aBe;
+        const mCut = pM > 0 ? 1 - (1 - aM) * (1 - pM / 100) : aM;
+        const effHP = self.calcEffectiveHPFromCutRates(
+          modified.hp || 0, { ballistic: bCut, beam: beCut, melee: mCut }, damageRatio
+        );
+        score += effHP / 500;
       }
+
+      // 攻撃: 総合火力スコア（~1〜2）を桁合わせして加点
+      if (hasAtk) {
+        const off = self.calcOffenseScore(
+          modified.shooting_correction || 0, modified.melee_correction || 0,
+          atkRatio, modified.shootingDmgPct || 0, modified.meleeDmgPct || 0
+        );
+        score += off * 100;
+      }
+
+      // 移動系: 選択されたもののみ線形加点
+      for (const stat of activeStats) {
+        if (MOB_SCALE[stat]) score += self._getModifiedStat(modified, stat) * MOB_SCALE[stat];
+      }
+
       return score;
     };
 

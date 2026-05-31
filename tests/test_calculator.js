@@ -29,26 +29,27 @@ function section(name) {
   console.log(`\n── ${name} ──`);
 }
 
-// ===== 1. calcCutRate =====
-section('calcCutRate: 防御値 → カット率');
-assert('armor=0  → cutRate=0',        GBO2Calculator.calcCutRate(0),   0);
-assert('armor=50 → cutRate≈33.3%',    GBO2Calculator.calcCutRate(50),  50/150, 0.0001);
-assert('armor=100 → cutRate=50%',     GBO2Calculator.calcCutRate(100), 100/200, 0.0001);
-assert('armor=200 → cutRate≈66.7%',   GBO2Calculator.calcCutRate(200), 200/300, 0.0001);
-assert('armor=負 → cutRate=0',        GBO2Calculator.calcCutRate(-10), 0);
+// ===== 1. calcCutRate（線形モデル: 防御補正1pt = 1%カット, 上限50） =====
+section('calcCutRate: 防御値 → カット率（線形）');
+assert('armor=0  → cutRate=0',          GBO2Calculator.calcCutRate(0),   0);
+assert('armor=30 → cutRate=30%',        GBO2Calculator.calcCutRate(30),  0.30, 0.0001);
+assert('armor=50 → cutRate=50%(上限)',  GBO2Calculator.calcCutRate(50),  0.50, 0.0001);
+assert('armor=99 → cutRate=99%',        GBO2Calculator.calcCutRate(99),  0.99, 0.0001);
+assert('armor=100→ cutRate=99%(クランプ)', GBO2Calculator.calcCutRate(100), 0.99, 0.0001);
+assert('armor=負 → cutRate=0',          GBO2Calculator.calcCutRate(-10), 0);
 
 // ===== 2. calcWeightedCutRate =====
 section('calcWeightedCutRate: 加重平均カット率');
-const armor3 = { ballistic: 100, beam: 50, melee: 0 };
+const armor3 = { ballistic: 50, beam: 30, melee: 0 };
 const ratioEq = { ballistic: 1/3, beam: 1/3, melee: 1/3 };
-const expected3 = (100/200 + 50/150 + 0) / 3;
+const expected3 = (0.50 + 0.30 + 0) / 3;
 assert('均等比率での加重平均',
   GBO2Calculator.calcWeightedCutRate(armor3, ratioEq), expected3, 0.0001
 );
 // 実弾100% のみ
 const ratioBallOnly = { ballistic: 1, beam: 0, melee: 0 };
 assert('実弾100%比率',
-  GBO2Calculator.calcWeightedCutRate(armor3, ratioBallOnly), 100/200, 0.0001
+  GBO2Calculator.calcWeightedCutRate(armor3, ratioBallOnly), 0.50, 0.0001
 );
 
 // ===== 3. calcShootingMultiplier / calcMeleeMultiplier =====
@@ -64,10 +65,10 @@ const armorZero = { ballistic: 0, beam: 0, melee: 0 };
 assert('防御0 → 有効HP=HP',
   GBO2Calculator.calcEffectiveHP(10000, armorZero, ratioEq), 10000
 );
-// armor=100 全属性 → cutRate=50% → HP÷0.5 = HP×2
-const armor100all = { ballistic: 100, beam: 100, melee: 100 };
-assert('全防御100 均等 → HP×2',
-  GBO2Calculator.calcEffectiveHP(5000, armor100all, ratioEq), 10000
+// armor=50 全属性 → cutRate=50% → HP÷0.5 = HP×2
+const armor50all = { ballistic: 50, beam: 50, melee: 50 };
+assert('全防御50 均等 → HP×2',
+  GBO2Calculator.calcEffectiveHP(5000, armor50all, ratioEq), 10000
 );
 
 // ===== 5. calcEffectiveHPFromCutRates =====
@@ -129,6 +130,49 @@ const afterAtk = GBO2Calculator.applyParts(baseWithHighCorr, attackParts, []);
 assert('射撃補正: 80+40=120 → 上限100でクランプ', afterAtk.shooting_correction, 100);
 assert('格闘補正: 80+10=90  → クランプなし',       afterAtk.melee_correction, 90);
 
+// ===== 8b. applyParts: 高速移動(300)/旋回(200)上限・OH回復累積 =====
+section('applyParts: 高速移動/旋回の上限・OH回復累積');
+const mobBase = {
+  hp: 10000, ballistic_armor: 0, beam_armor: 0, melee_armor: 0,
+  shooting_correction: 0, melee_correction: 0, speed: 130,
+  thruster: 50, boost_speed: 290, turn_speed_ground: 195, turn_speed_space: 195
+};
+const mobParts = [
+  { effects: [{ type: 'boost_speed', value: 30 }] }, // 290+30=320 → 上限300
+  { effects: [{ type: 'turn_speed', value: 20 }] },   // 195+20=215 → 上限200
+  { effects: [{ type: 'oh_recovery_pct', value: 10 }] },
+  { effects: [{ type: 'oh_recovery_pct', value: 15 }] },
+];
+const mobAfter = GBO2Calculator.applyParts(mobBase, mobParts, []);
+assert('高速移動: 290+30=320 → 上限300',     mobAfter.boost_speed, 300);
+assert('旋回(地上): 195+20=215 → 上限200',    mobAfter.turn_speed_ground, 200);
+assert('旋回(宇宙): 195+20=215 → 上限200',    mobAfter.turn_speed_space, 200);
+assert('OH回復: 10+15=25%累積',               mobAfter.ohRecoveryPct, 25);
+
+// ===== 8c. applyParts: HP%バフ・補正乗算%・乗算後キャップ・上限capBonus =====
+section('applyParts: HP%/補正乗算%/上限上昇');
+const pctBase = {
+  hp: 10000, ballistic_armor: 45, beam_armor: 10, melee_armor: 0,
+  shooting_correction: 30, melee_correction: 90, speed: 130, thruster: 50
+};
+// HP%: 基準10000の5% = +500
+const hpPctAfter = GBO2Calculator.applyParts(pctBase, [{ effects: [{ type: 'hp_pct', value: 5 }] }], []);
+assert('HP%+5% → 10000+500=10500', hpPctAfter.hp, 10500);
+// 射撃補正乗算 +20%: 30×1.2=36
+const multAfter = GBO2Calculator.applyParts(pctBase, [{ effects: [{ type: 'shooting_correction_mult_pct', value: 20 }] }], []);
+assert('射撃補正 30×1.2 = 36', multAfter.shooting_correction, 36);
+// 格闘補正乗算 +20%: 90×1.2=108 → 上限100でクランプ
+const meleeMultAfter = GBO2Calculator.applyParts(pctBase, [{ effects: [{ type: 'melee_correction_mult_pct', value: 20 }] }], []);
+assert('格闘補正 90×1.2=108 → 上限100', meleeMultAfter.melee_correction, 100);
+// 耐実弾乗算 +20%: 45×1.2=54 → 上限50でクランプ
+const armMult = GBO2Calculator.applyParts(pctBase, [{ effects: [{ type: 'ballistic_armor_mult_pct', value: 20 }] }], []);
+assert('耐実弾 45×1.2=54 → 上限50', armMult.ballistic_armor, 50);
+// 拡張スキルで射撃補正上限+12 → 90+20(パーツ)=110 → 上限112でクランプされず110
+const capSkill = [{ name: 'X', level: 1, effects: [{ type: 'shooting_correction_cap', value: 12, direct: true }] }];
+const capUpBase = { ...pctBase, shooting_correction: 90 };
+const capAfter = GBO2Calculator.applyParts(capUpBase, [{ effects: [{ type: 'shooting_correction', value: 20 }] }], capSkill);
+assert('上限+12時: 射撃90+20=110 ≤ 112 → 110', capAfter.shooting_correction, 110);
+
 // ===== 9. 構成比較ロジック（スタンドアロン関数テスト）=====
 section('renderCompareResults: 優劣判定ロジック');
 // 直接テストできないが、_computeCalcResult の入力検証
@@ -138,7 +182,7 @@ function computeSimple(hp, ballArm) {
   const cuts = { ballistic: cut, beam: 0, melee: 0 };
   return GBO2Calculator.calcEffectiveHPFromCutRates(hp, cuts, ratio);
 }
-assert('HP10000 armor=100 → 有効HP20000', computeSimple(10000, 100), 20000);
+assert('HP10000 armor=50 → 有効HP20000', computeSimple(10000, 50), 20000);
 assert('HP5000  armor=0   → 有効HP5000',  computeSimple(5000, 0),   5000);
 
 // ===== 10. _greedySelect / optimizeFocused =====
