@@ -1198,24 +1198,13 @@ const App = {
     this.updateDisplay();
   },
 
-  // 名前で装備中パーツを解除（パーツ一覧の「解除」ボタン用）
+  // 名前で装備中パーツを1つ解除（最後に装備したインスタンスから外す。スタック対応）
   removePartByName(name) {
-    const idx = this.equippedParts.findIndex(p => p && p.name === name);
-    if (idx !== -1) this.removePart(idx);
-  },
-
-  // LVタブ選択。同名が既装備なら同じスロットでLVを付け替える（失敗時は元に戻す）
-  selectPartLevel(part) {
-    const idx = this.equippedParts.findIndex(p => p && p.name === part.name);
-    if (idx === -1) { this.equipPart(part); return; }
-    if (this.equippedParts[idx].level === part.level) return; // 同一LV
-    const prev = this.equippedParts[idx];
-    this.equippedParts[idx] = null;
-    const countBefore = this.equippedParts.filter(Boolean).length;
-    this.equipPart(part); // 検証込み（成功すれば updateDisplay 済み）
-    if (this.equippedParts.filter(Boolean).length === countBefore) {
-      this.equippedParts[idx] = prev; // 付け替え失敗 → 復元
-      this.updateDisplay();
+    for (let i = this.equippedParts.length - 1; i >= 0; i--) {
+      if (this.equippedParts[i] && this.equippedParts[i].name === name) {
+        this.removePart(i);
+        return;
+      }
     }
   },
 
@@ -1642,12 +1631,14 @@ const App = {
       if (isUnowned && !this.showUnowned) return '';
 
       const maxLvPart = levels[levels.length - 1];
-      const equippedPart = this.equippedParts.find(p => p && p.name === name);
-      const isEquipped = !!equippedPart;
+      const equippedInstances = equippedList.filter(p => p.name === name);
+      const equippedCount = equippedInstances.length;
+      const isEquipped = equippedCount > 0;
       const hasMultipleLvs = levels.length > 1;
+      const lvCount = (lv) => equippedInstances.filter(p => p.level === lv).length;
 
-      // グループヘッダー用スロット情報（装備中ならその LV、非装備なら LV 範囲）
-      const displayPart = equippedPart || levels[0]; // 装備中LV or 最小LV
+      // グループヘッダー用スロット情報（装備中ならそのLV、非装備ならLV範囲）
+      const displayPart = equippedInstances[0] || levels[0];
       const slotsHtml = [];
       if (hasMultipleLvs && !isEquipped) {
         const minP = levels[0], maxP = levels[levels.length - 1];
@@ -1662,7 +1653,13 @@ const App = {
         if (displayPart.slots.long > 0) slotsHtml.push(`<span class="slot-long">遠${displayPart.slots.long}</span>`);
       }
 
-      // 非装備かつ全LVが既装備パーツと共存不可（同名/○○系/スピード旋回排他）なら丸ごとブロック
+      // 追加で装備できるか。GBO2は通常パーツを同名でもスタック可能なので、
+      // 制限は「○○系の複数装備不可 / スピード旋回排他」とスロット空きのみ。
+      const canAdd = (part) => this.selectedMS && !isFull && !isUnowned
+        && GBO2Calculator.canEquip(part, remaining)
+        && !GBO2Calculator.conflictsWithAny(part, equippedList);
+
+      // 非装備かつ全LVが追加不可（○○系/スピード旋回排他）なら丸ごとブロック表示
       const isBlocked = !isEquipped && this.selectedMS
         && levels.every(part => GBO2Calculator.conflictsWithAny(part, equippedList));
 
@@ -1671,58 +1668,39 @@ const App = {
       if (isEquipped) groupClasses.push('equipped');
       if (isBlocked) groupClasses.push('group-blocked');
 
-      // 大きめのLVタブ（タップしやすい）。同名既装備なら付け替え扱いで空きを判定する。
+      // 大きめのLVタブ。タップでそのLVを1つ装備（同名スタック可）。装備数は ×N で表示。
       const lvTabsHtml = levels.map(part => {
-        const isThisEquipped = isEquipped && equippedPart.level === part.level;
-        let canDo;
-        if (isThisEquipped) {
-          canDo = true;
-        } else if (isEquipped) {
-          // 同名を別LVへ付け替え：旧LVのスロットを解放した上で空きを判定（満杯でも可）
-          const avail = {
-            close: remaining.close + (equippedPart.slots.close || 0),
-            mid: remaining.mid + (equippedPart.slots.mid || 0),
-            long: remaining.long + (equippedPart.slots.long || 0)
-          };
-          canDo = this.selectedMS && !isUnowned && GBO2Calculator.canEquip(part, avail);
-        } else {
-          canDo = this.selectedMS && !isFull && !isUnowned
-            && GBO2Calculator.canEquip(part, remaining)
-            && !GBO2Calculator.conflictsWithAny(part, equippedList);
-        }
+        const cnt = lvCount(part.level);
+        const addable = canAdd(part);
         const slotStr = ['close', 'mid', 'long']
           .filter(t => (part.slots[t] || 0) > 0)
           .map(t => (t === 'close' ? '近' : t === 'mid' ? '中' : '遠') + part.slots[t]).join(' ') || '—';
         const cls = ['lv-tab'];
-        if (isThisEquipped) cls.push('lv-equipped');
-        if (!canDo && !isThisEquipped) cls.push('lv-disabled');
-        return `<button class="${cls.join(' ')}" data-part-name="${escapeHtml(name)}" data-part-lv="${part.level}" ${(!canDo && !isThisEquipped) ? 'disabled' : ''}>
-          <span class="lv-tab-num">LV${part.level}</span><span class="lv-tab-slot">${slotStr}</span>
+        if (cnt > 0) cls.push('lv-equipped');
+        if (!addable) cls.push('lv-disabled');
+        return `<button class="${cls.join(' ')}" data-part-name="${escapeHtml(name)}" data-part-lv="${part.level}" ${addable ? '' : 'disabled'}>
+          <span class="lv-tab-num">LV${part.level}${cnt > 1 ? ` ×${cnt}` : ''}</span><span class="lv-tab-slot">${slotStr}</span>
         </button>`;
       }).join('');
 
-      // 単一LVパーツの装着可否
       const single = levels[0];
-      const singleCanEquip = this.selectedMS && !isFull && !isUnowned
-        && GBO2Calculator.canEquip(single, remaining)
-        && !GBO2Calculator.conflictsWithAny(single, equippedList);
+      const unequipBtn = equippedCount > 0
+        ? `<button class="btn-part-action btn-unequip" data-part-name="${escapeHtml(name)}">解除${equippedCount > 1 ? ` ×${equippedCount}` : ''}</button>`
+        : '';
 
-      // アクション領域（装着/解除ボタン・LVタブ）
+      // アクション領域（LVタブ or 装着ボタン ＋ 解除ボタン）
       let actionsHtml;
       if (hasMultipleLvs) {
-        actionsHtml = `<div class="lv-tabs">${lvTabsHtml}</div>`
-          + (isEquipped ? `<button class="btn-part-action btn-unequip" data-part-name="${escapeHtml(name)}">解除</button>` : '');
-      } else if (isEquipped) {
-        actionsHtml = `<button class="btn-part-action btn-unequip" data-part-name="${escapeHtml(name)}">解除</button>`;
+        actionsHtml = `<div class="lv-tabs">${lvTabsHtml}</div>${unequipBtn}`;
       } else {
-        actionsHtml = `<button class="btn-part-action btn-equip" data-part-name="${escapeHtml(name)}" data-part-lv="${single.level}" ${singleCanEquip ? '' : 'disabled'}>装着</button>`;
+        actionsHtml = `<button class="btn-part-action btn-equip" data-part-name="${escapeHtml(name)}" data-part-lv="${single.level}" ${canAdd(single) ? '' : 'disabled'}>装着</button>${unequipBtn}`;
       }
 
       const lvBadge = isEquipped
-        ? `<span class="part-equipped-lv">LV${equippedPart.level} 装備中</span>`
+        ? `<span class="part-equipped-lv">装備中${equippedCount > 1 ? ` ×${equippedCount}` : ''}</span>`
         : `<span class="part-lv-range">${hasMultipleLvs ? `LV1〜${maxLvPart.level}` : `LV${maxLvPart.level}`}</span>`;
 
-      const detailPart = equippedPart || maxLvPart;
+      const detailPart = equippedInstances[0] || maxLvPart;
 
       return `<div class="${groupClasses.join(' ')}" data-part-group="${escapeHtml(name)}">
         <div class="part-group-header">
@@ -1743,7 +1721,7 @@ const App = {
 
     container.innerHTML = html || '<p class="no-parts">該当するパーツがありません</p>';
 
-    // LVタブ / 装着ボタン → 装備（同名が既装備なら付け替え）
+    // LVタブ / 装着ボタン → そのLVを1つ装備（同名スタック可）
     container.querySelectorAll('.lv-tab:not([disabled]), .btn-equip:not([disabled])').forEach(el => {
       el.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1751,7 +1729,7 @@ const App = {
         const partLv = parseInt(el.dataset.partLv, 10);
         const part = (groupMap[partName] || []).find(p => p.level === partLv);
         if (part && !this.unownedParts.has(partName)) {
-          this.selectPartLevel(part);
+          this.equipPart(part);
         }
       });
     });

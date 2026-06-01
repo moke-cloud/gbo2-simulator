@@ -220,7 +220,7 @@ const thrResult = GBO2Calculator.optimizeFocused(focusBase, focusSlots, focusPar
   ...focusConfig, mode: 'thruster'
 });
 assert('スラスター特化: Dを選択', thrResult.length >= 1 && thrResult[0].name === 'D', true);
-assert('スラスター特化: 他パーツは不選択', thrResult.length, 1);
+assert('スラスター特化: D以外は選ばない', thrResult.every(p => p.name === 'D'), true);
 
 section('optimizeFocused: 上限到達時に停止');
 const capBase = { ...focusBase, shooting_correction: 95 };
@@ -232,14 +232,14 @@ const capResult = GBO2Calculator.optimizeFocused(capBase, focusSlots, focusParts
 const capNames = capResult.map(p => p.name);
 assert('上限近接時: Bは不選択(格闘配分0)', !capNames.includes('B'), true);
 
-section('optimize (リファクタ版): 同名同LVは重複選択されない');
+section('optimize: 通常パーツは既装備と同名でも追加できる(スタック)');
 const optBase = { ...focusBase };
-const preEquipped = [focusParts[0]]; // A LV? を既装備
+const preEquipped = [focusParts[0]]; // A を既装備
 const optResult = GBO2Calculator.optimize(optBase, focusSlots, focusParts, {
   ...focusConfig, equippedParts: preEquipped, selectedStats: ['shooting_correction']
 });
-// 同名同LVの完全重複は選ばれない（パーツAは1つしかないので重複不可）
-assert('既装備A(同名同LV)は重複選択されない', !optResult.some(p => p.name === 'A' && p.level === preEquipped[0].level), true);
+// 通常パーツ(制限なし)は同名でもスタックできるので、既装備Aがあっても追加でAが選ばれうる
+assert('既装備Aと同名でも追加で選択されうる', optResult.some(p => p.name === 'A'), true);
 
 // ===== 11. カスタムパーツ相互排他 (partsConflict / 最適化) =====
 section('排他: partsConflict 基本');
@@ -253,13 +253,23 @@ const pSpeedX = { name: '運動性能強化機構', level: 1, slots: { close: 2,
 const pSpeedY = { name: 'サイコフレーム', level: 1, slots: { close: 1, mid: 1, long: 1 }, effects: [{ type: 'turn_speed', value: 7 }], description: '旋回性能が増加。' };
 const pThruster = { name: '噴射制御装置', level: 1, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'thruster', value: 10 }], description: 'スラスターが増加。' };
 
-assert('同名別LVは共存不可', GBO2Calculator.partsConflict(pSameA1, pSameA3), true);
+assert('通常パーツは同名でも共存可(スタック可)', GBO2Calculator.partsConflict(pSameA1, pSameA3), false);
+assert('通常パーツは同一インスタンスでも共存可', GBO2Calculator.partsConflict(pSameA1, pSameA1), false);
 assert('特殊強化フレーム Type-A と Type-B は共存不可', GBO2Calculator.partsConflict(pFrameA, pFrameB), true);
+assert('特殊強化フレーム Type-A 同士も共存不可(系統で1つ)', GBO2Calculator.partsConflict(pFrameA, pFrameA), true);
 assert('特殊強化装置 γ と α は共存不可(「不可」表記)', GBO2Calculator.partsConflict(pDevG, pDevA), true);
 assert('運動性能強化機構 と 旋回上昇パーツは共存不可', GBO2Calculator.partsConflict(pSpeedX, pSpeedY), true);
 assert('運動性能強化機構 と スラスターのみは共存可', GBO2Calculator.partsConflict(pSpeedX, pThruster), false);
 assert('別系統パーツ同士は共存可', GBO2Calculator.partsConflict(pFrameA, pThruster), false);
 assert('スラスターと旋回パーツは共存可(排他指定なし)', GBO2Calculator.partsConflict(pThruster, pSpeedY), false);
+
+section('スタック: 通常パーツは同名でも複数装備できる');
+const stackPart = { name: '射撃強化プログラム', level: 5, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 5 }], description: '射撃補正が増加。' };
+const stackBase = { ...focusBase, shooting_correction: 0 };
+const stackRes = GBO2Calculator.optimize(stackBase, { close: 5, mid: 0, long: 0 }, [stackPart], {
+  ...focusConfig, selectedStats: ['shooting_correction']
+});
+assert('通常パーツは最適化で複数回選択されうる', stackRes.filter(p => p.name === '射撃強化プログラム').length >= 2, true);
 
 section('排他: 最適化が共存不可パーツを同時選択しない');
 const exParts = [pFrameA, pFrameB, pDevG, pDevA, pSameA1, pSameA3];
@@ -267,13 +277,10 @@ const exSlots = { close: 40, mid: 40, long: 40 }; // スロットは潤沢にし
 const exResult = GBO2Calculator.optimize(focusBase, exSlots, exParts, {
   ...focusConfig, selectedStats: ['hp', 'shooting_correction', 'melee_correction', 'ballistic_armor', 'beam_armor', 'melee_armor']
 });
-const exNames = exResult.map(p => p.name);
 const frameCount = exResult.filter(p => p.name.startsWith('特殊強化フレーム')).length;
 const devCount = exResult.filter(p => p.name.startsWith('特殊強化装置')).length;
-const sameCount = exResult.filter(p => p.name === '射撃強化プログラム').length;
 assert('特殊強化フレーム系は最大1つ', frameCount <= 1, true);
 assert('特殊強化装置系は最大1つ', devCount <= 1, true);
-assert('同名(射撃強化プログラム)は最大1つ', sameCount <= 1, true);
 
 section('排他: 既装備との競合を回避');
 const exResult2 = GBO2Calculator.optimize(focusBase, exSlots, exParts, {

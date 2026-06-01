@@ -544,12 +544,17 @@ const GBO2Calculator = {
     if (part._mutex) return part._mutex;
     const desc = part.description || '';
     const groups = new Set();
-    // 1) 同名パーツ（LV違いも含めて）は1つしか装備できない
-    groups.add('name:' + part.name);
-    // 2) 「○○系パーツは複数装備できない/不可」（特殊強化フレーム/複合装甲材/複合フレーム/特殊強化装置 等）
+    // GBO2では通常のカスタムパーツは同名でも複数装備(スタック)できる。
+    // 制限は「○○系パーツは複数装備できない/不可」等が明記されたものだけ。
+    // 1) 「○○系パーツは複数装備できない/不可」（特殊強化フレーム/複合装甲材/複合フレーム/特殊強化装置 等）
     const fam = desc.match(/(?:なお|また|尚)?\s*([^。、,；\s]+?)系(?:統)?(?:の)?(?:カスタム)?パーツは(?:複数|同時)装備(?:できない|不可)/);
-    if (fam) groups.add('family:' + fam[1].replace(/^(?:なお|また|尚)/, ''));
-    // 3) スピード/旋回 上昇系の排他
+    if (fam) {
+      groups.add('family:' + fam[1].replace(/^(?:なお|また|尚)/, ''));
+    } else if (/複数装備(?:でき(?:ない|ません)|不可)/.test(desc)) {
+      // 系統指定の無い自己制限（このパーツ単体を複数装備不可）→ 同名で1つに限定
+      groups.add('name:' + part.name);
+    }
+    // 2) スピード/旋回 上昇系の排他
     const raisesSpeedTurn = (part.effects || []).some(e =>
       this._SPEED_TURN_TYPES.has(e.type) && (e.value || 0) > 0);
     const speedExclusive = /(?:スピード|旋回性能)(?:または旋回性能)?が上昇するパーツと/.test(desc);
