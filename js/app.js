@@ -248,13 +248,23 @@ const App = {
       this.renderPartsList();
     });
 
-    // 装備スロットクリック（パーツ削除）
+    // 装備スロットクリック
+    // モバイル: スロットをタップ → パーツ選択シートを重ねて表示（✕は取り外し）
+    // デスクトップ: 装備済みスロットのタップで取り外し（従来動作）
     document.getElementById('equipped-parts').addEventListener('click', (e) => {
       const slot = e.target.closest('.part-slot');
-      if (slot && slot.classList.contains('filled')) {
-        const idx = parseInt(slot.dataset.slot);
-        this.removePart(idx);
+      if (!slot) return;
+      const idx = parseInt(slot.dataset.slot);
+      const filled = slot.classList.contains('filled');
+      if (this.isMobileLayout()) {
+        if (filled && e.target.closest('.part-remove')) {
+          this.removePart(idx);
+        } else {
+          this.openPartsSheet();
+        }
+        return;
       }
+      if (filled) this.removePart(idx);
     });
   },
 
@@ -267,7 +277,53 @@ const App = {
     on('btn-close-methodology', 'click', () => this.closeMethodology());
     const overlay = document.getElementById('methodology-modal');
     if (overlay) overlay.addEventListener('click', (e) => { if (e.target === overlay) this.closeMethodology(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') this.closeMethodology(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { this.closeMethodology(); this.closePartsSheet(); }
+    });
+
+    // モバイル用パーツ選択シート
+    on('btn-open-parts', 'click', () => this.openPartsSheet());
+    on('btn-close-parts-sheet', 'click', () => this.closePartsSheet());
+    on('parts-sheet-backdrop', 'click', () => this.closePartsSheet());
+    // デスクトップ幅に戻ったらシートを閉じる
+    window.addEventListener('resize', () => { if (!this.isMobileLayout()) this.closePartsSheet(); });
+  },
+
+  // === モバイル用パーツ選択シート ===
+  isMobileLayout() {
+    return window.matchMedia('(max-width: 860px)').matches;
+  },
+
+  openPartsSheet() {
+    if (!this.isMobileLayout()) return;
+    document.body.classList.add('parts-sheet-open');
+    const bd = document.getElementById('parts-sheet-backdrop');
+    if (bd) bd.classList.remove('hidden');
+    const panel = document.getElementById('parts-panel');
+    if (panel) panel.classList.remove('collapsed');
+    this.updateSheetSlotSummary();
+  },
+
+  closePartsSheet() {
+    document.body.classList.remove('parts-sheet-open');
+    const bd = document.getElementById('parts-sheet-backdrop');
+    if (bd) bd.classList.add('hidden');
+  },
+
+  // シート上部に残りスロット(近/中/遠 使用/上限)をライブ表示する
+  updateSheetSlotSummary() {
+    const el = document.getElementById('sheet-slot-summary');
+    if (!el) return;
+    const max = this.getMaxSlots();
+    const used = this.getUsedSlots();
+    const labels = { close: '近', mid: '中', long: '遠' };
+    const chips = ['close', 'mid', 'long'].map(t => {
+      const u = used[t] || 0;
+      const m = max[t] || 0;
+      const full = m > 0 && u >= m;
+      return `<span class="sheet-slot-chip slot-${t}${full ? ' full' : ''}">${labels[t]} ${u}/${m}</span>`;
+    }).join('');
+    el.innerHTML = `<span class="sheet-slot-label">残スロット</span>${chips}`;
   },
 
   populateOnboardingMeta() {
@@ -837,6 +893,9 @@ const App = {
       document.getElementById(`slot-max-${type}`).textContent = max;
       document.getElementById(`slot-fill-${type}`).style.width = Math.min(pct, 100) + '%';
     });
+
+    // パーツ選択シートが開いていれば残スロット表示も更新
+    this.updateSheetSlotSummary();
   },
 
   updateEquippedParts() {

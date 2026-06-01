@@ -559,6 +559,11 @@ select { cursor: pointer; appearance: none;
 #parts-panel { display: flex; flex-direction: column; padding: var(--gap-md); max-height: calc(100vh - 90px); position: sticky; top: 78px; }
 .parts-panel-title { display: flex; align-items: center; justify-content: space-between; }
 .btn-toggle-parts { display: none; background: var(--bg-raise); border: 1px solid var(--line-strong); color: var(--text-2); cursor: pointer; padding: 3px 9px; }
+
+/* ボトムシート用パーツ (モバイルのみ表示。デスクトップでは隠す) */
+.parts-sheet-head { display: none; }
+.parts-sheet-backdrop { display: none; }
+.btn-open-parts { display: none; }
 .parts-filter { margin-bottom: var(--gap-sm); }
 .filter-tabs { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: var(--gap-sm); }
 .filter-tab { font-size: .74rem; font-weight: 700; cursor: pointer; padding: 5px 11px; color: var(--text-2);
@@ -670,10 +675,52 @@ select { cursor: pointer; appearance: none;
   .summary-section { grid-template-columns: 1fr; }
   .calc-grid { grid-template-columns: 1fr; }
   .equipped-parts { grid-template-columns: repeat(2, 1fr); }
-  #parts-panel { max-height: none; }
-  #parts-panel.collapsed .parts-filter,
-  #parts-panel.collapsed .parts-list { display: none; }
-  .btn-toggle-parts { display: block; }
+  .part-slot { cursor: pointer; }
+
+  /* --- パーツ一覧をボトムシート化 (スロットの近くに重ねて表示) --- */
+  .btn-open-parts {
+    display: block; width: 100%; margin-top: var(--gap-sm);
+    background: rgba(25,227,196,.12); color: var(--teal);
+    border: 1px solid var(--teal-dim); font-weight: 700; font-size: .82rem;
+    padding: 11px; cursor: pointer;
+    clip-path: polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+  }
+  .btn-open-parts:active { background: rgba(25,227,196,.22); }
+
+  #parts-panel {
+    position: fixed; left: 0; right: 0; bottom: 0; top: auto;
+    width: 100%; max-width: none; margin: 0; z-index: 160;
+    max-height: 82vh; overflow: hidden;
+    border: 1px solid var(--teal-dim); border-bottom: none;
+    border-radius: 16px 16px 0 0;
+    transform: translateY(calc(100% + 16px));
+    transition: transform .28s cubic-bezier(.22,.61,.36,1);
+    box-shadow: 0 -10px 34px rgba(0,0,0,.6);
+  }
+  body.parts-sheet-open #parts-panel { transform: translateY(0); }
+
+  .parts-sheet-head { display: block; }
+  .parts-sheet-handle { display: block; width: 42px; height: 4px; border-radius: 3px;
+    background: var(--line-strong); margin: 2px auto 10px; }
+  .parts-sheet-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: var(--gap-sm); }
+  .sheet-slot-summary { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .sheet-slot-label { font-size: .66rem; color: var(--text-3); margin-right: 2px; }
+  .sheet-slot-chip { font-family: var(--font-mono); font-size: .8rem; font-weight: 700; }
+  .sheet-slot-chip.slot-close { color: var(--close); }
+  .sheet-slot-chip.slot-mid { color: var(--mid); }
+  .sheet-slot-chip.slot-long { color: var(--long); }
+  .sheet-slot-chip.full { color: var(--bad); }
+  .btn-close-parts-sheet { flex: none; background: var(--bg-raise); border: 1px solid var(--line-strong);
+    color: var(--text-2); font-weight: 700; font-size: .76rem; padding: 7px 13px; cursor: pointer; }
+  .btn-close-parts-sheet:active { color: var(--bad); border-color: var(--bad); }
+
+  .parts-sheet-backdrop { display: block; position: fixed; inset: 0; z-index: 150;
+    background: rgba(4,7,12,.6); backdrop-filter: blur(2px); }
+  .parts-sheet-backdrop.hidden { display: none; }
+
+  body.parts-sheet-open { overflow: hidden; }
+  .btn-toggle-parts { display: none; }
+
   .compare-controls { flex-direction: column; align-items: stretch; }
   .btn-compare { width: 100% !important; }
 }
