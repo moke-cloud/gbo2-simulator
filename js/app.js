@@ -1198,6 +1198,27 @@ const App = {
     this.updateDisplay();
   },
 
+  // 名前で装備中パーツを解除（パーツ一覧の「解除」ボタン用）
+  removePartByName(name) {
+    const idx = this.equippedParts.findIndex(p => p && p.name === name);
+    if (idx !== -1) this.removePart(idx);
+  },
+
+  // LVタブ選択。同名が既装備なら同じスロットでLVを付け替える（失敗時は元に戻す）
+  selectPartLevel(part) {
+    const idx = this.equippedParts.findIndex(p => p && p.name === part.name);
+    if (idx === -1) { this.equipPart(part); return; }
+    if (this.equippedParts[idx].level === part.level) return; // 同一LV
+    const prev = this.equippedParts[idx];
+    this.equippedParts[idx] = null;
+    const countBefore = this.equippedParts.filter(Boolean).length;
+    this.equipPart(part); // 検証込み（成功すれば updateDisplay 済み）
+    if (this.equippedParts.filter(Boolean).length === countBefore) {
+      this.equippedParts[idx] = prev; // 付け替え失敗 → 復元
+      this.updateDisplay();
+    }
+  },
+
   clearParts() {
     this.equippedParts = [null, null, null, null, null, null, null, null];
     this.updateDisplay();
@@ -1650,97 +1671,97 @@ const App = {
       if (isEquipped) groupClasses.push('equipped');
       if (isBlocked) groupClasses.push('group-blocked');
 
-      // LV行のHTML（アコーディオン内）
-      const lvRowsHtml = levels.map(part => {
-        const canEquip = this.selectedMS
-          && !isFull
-          && !equippedKeys.has(part.name + '\0' + part.level)
-          && GBO2Calculator.canEquip(part, remaining)
-          && !GBO2Calculator.conflictsWithAny(part, equippedList);
-        const isThisEquipped = equippedPart && equippedPart.level === part.level;
-        const lvClass = ['part-lv-row'];
-        if (!canEquip && !isThisEquipped) lvClass.push('unequippable');
-        if (isThisEquipped) lvClass.push('lv-equipped');
-        return `<div class="${lvClass.join(' ')}" data-part-name="${escapeHtml(name)}" data-part-lv="${part.level}">
-          <span class="lv-badge">LV${part.level}</span>
-          <span class="lv-desc">${escapeHtml(part.description)}</span>
-          ${isThisEquipped ? '<span class="lv-equipped-badge">装備中</span>' : ''}
-        </div>`;
+      // 大きめのLVタブ（タップしやすい）。同名既装備なら付け替え扱いで空きを判定する。
+      const lvTabsHtml = levels.map(part => {
+        const isThisEquipped = isEquipped && equippedPart.level === part.level;
+        let canDo;
+        if (isThisEquipped) {
+          canDo = true;
+        } else if (isEquipped) {
+          // 同名を別LVへ付け替え：旧LVのスロットを解放した上で空きを判定（満杯でも可）
+          const avail = {
+            close: remaining.close + (equippedPart.slots.close || 0),
+            mid: remaining.mid + (equippedPart.slots.mid || 0),
+            long: remaining.long + (equippedPart.slots.long || 0)
+          };
+          canDo = this.selectedMS && !isUnowned && GBO2Calculator.canEquip(part, avail);
+        } else {
+          canDo = this.selectedMS && !isFull && !isUnowned
+            && GBO2Calculator.canEquip(part, remaining)
+            && !GBO2Calculator.conflictsWithAny(part, equippedList);
+        }
+        const slotStr = ['close', 'mid', 'long']
+          .filter(t => (part.slots[t] || 0) > 0)
+          .map(t => (t === 'close' ? '近' : t === 'mid' ? '中' : '遠') + part.slots[t]).join(' ') || '—';
+        const cls = ['lv-tab'];
+        if (isThisEquipped) cls.push('lv-equipped');
+        if (!canDo && !isThisEquipped) cls.push('lv-disabled');
+        return `<button class="${cls.join(' ')}" data-part-name="${escapeHtml(name)}" data-part-lv="${part.level}" ${(!canDo && !isThisEquipped) ? 'disabled' : ''}>
+          <span class="lv-tab-num">LV${part.level}</span><span class="lv-tab-slot">${slotStr}</span>
+        </button>`;
       }).join('');
+
+      // 単一LVパーツの装着可否
+      const single = levels[0];
+      const singleCanEquip = this.selectedMS && !isFull && !isUnowned
+        && GBO2Calculator.canEquip(single, remaining)
+        && !GBO2Calculator.conflictsWithAny(single, equippedList);
+
+      // アクション領域（装着/解除ボタン・LVタブ）
+      let actionsHtml;
+      if (hasMultipleLvs) {
+        actionsHtml = `<div class="lv-tabs">${lvTabsHtml}</div>`
+          + (isEquipped ? `<button class="btn-part-action btn-unequip" data-part-name="${escapeHtml(name)}">解除</button>` : '');
+      } else if (isEquipped) {
+        actionsHtml = `<button class="btn-part-action btn-unequip" data-part-name="${escapeHtml(name)}">解除</button>`;
+      } else {
+        actionsHtml = `<button class="btn-part-action btn-equip" data-part-name="${escapeHtml(name)}" data-part-lv="${single.level}" ${singleCanEquip ? '' : 'disabled'}>装着</button>`;
+      }
 
       const lvBadge = isEquipped
         ? `<span class="part-equipped-lv">LV${equippedPart.level} 装備中</span>`
         : `<span class="part-lv-range">${hasMultipleLvs ? `LV1〜${maxLvPart.level}` : `LV${maxLvPart.level}`}</span>`;
 
+      const detailPart = equippedPart || maxLvPart;
+
       return `<div class="${groupClasses.join(' ')}" data-part-group="${escapeHtml(name)}">
         <div class="part-group-header">
           <div class="part-group-title">
             <span class="part-item-name">${escapeHtml(name)}</span>
+            <button class="btn-own-toggle ${!isUnowned ? 'owned' : ''}" data-part-name="${escapeHtml(name)}" title="所持/未所持の切り替え">★</button>
           </div>
           <div class="part-group-meta">
             ${lvBadge}
             <span class="part-item-category ${maxLvPart.category}">${categoryMap[maxLvPart.category] || maxLvPart.category}</span>
             <div class="part-item-slots">${slotsHtml.join('')}</div>
-            <button class="btn-own-toggle ${!isUnowned ? 'owned' : ''}" data-part-name="${escapeHtml(name)}" title="所持/未所持の切り替え">★</button>
-            ${hasMultipleLvs ? `<button class="btn-accordion" data-part-group="${escapeHtml(name)}" title="LV一覧を展開">${this._expandedParts.has(name) ? '▲' : '▼'}</button>` : ''}
           </div>
         </div>
-        ${hasMultipleLvs ? `<div class="part-lv-list${this._expandedParts.has(name) ? '' : ' collapsed'}">${lvRowsHtml}</div>` : `<div class="part-item-detail">${escapeHtml(maxLvPart.description)}</div>`}
+        <div class="part-actions">${actionsHtml}</div>
+        <div class="part-item-detail">${escapeHtml(detailPart.description)}</div>
       </div>`;
     }).join('');
 
     container.innerHTML = html || '<p class="no-parts">該当するパーツがありません</p>';
 
-    // アコーディオントグル
-    container.querySelectorAll('.btn-accordion').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    // LVタブ / 装着ボタン → 装備（同名が既装備なら付け替え）
+    container.querySelectorAll('.lv-tab:not([disabled]), .btn-equip:not([disabled])').forEach(el => {
+      el.addEventListener('click', (e) => {
         e.stopPropagation();
-        const groupName = btn.dataset.partGroup;
-        const groupEl = container.querySelector(`.part-group[data-part-group="${CSS.escape(groupName)}"]`);
-        const lvList = groupEl && groupEl.querySelector('.part-lv-list');
-        if (!lvList) return;
-        const isCollapsed = lvList.classList.contains('collapsed');
-        lvList.classList.toggle('collapsed', !isCollapsed);
-        btn.textContent = isCollapsed ? '▲' : '▼';
-        if (isCollapsed) {
-          this._expandedParts.add(groupName);
-        } else {
-          this._expandedParts.delete(groupName);
-        }
-      });
-    });
-
-    // LV行クリックで装備
-    container.querySelectorAll('.part-lv-row:not(.unequippable)').forEach(row => {
-      row.addEventListener('click', (e) => {
-        if (e.target.closest('.btn-own-toggle')) return;
-        const partName = row.dataset.partName;
-        const partLv = parseInt(row.dataset.partLv, 10);
+        const partName = el.dataset.partName;
+        const partLv = parseInt(el.dataset.partLv, 10);
         const part = (groupMap[partName] || []).find(p => p.level === partLv);
         if (part && !this.unownedParts.has(partName)) {
-          this.equipPart(part);
+          this.selectPartLevel(part);
         }
       });
     });
 
-    // LVが1つだけのグループ: ヘッダークリックで装備
-    container.querySelectorAll('.part-group').forEach(groupEl => {
-      const groupName = groupEl.dataset.partGroup;
-      const levels = groupMap[groupName] || [];
-      if (levels.length === 1) {
-        groupEl.querySelector('.part-group-header').addEventListener('click', (e) => {
-          if (e.target.closest('.btn-own-toggle') || e.target.closest('.btn-accordion')) return;
-          const part = levels[0];
-          const canEquip = this.selectedMS
-            && !isFull
-            && !equippedKeys.has(part.name + '\0' + part.level)
-            && GBO2Calculator.canEquip(part, remaining)
-            && !GBO2Calculator.conflictsWithAny(part, equippedList);
-          if (canEquip && !this.unownedParts.has(part.name)) {
-            this.equipPart(part);
-          }
-        });
-      }
+    // 解除ボタン
+    container.querySelectorAll('.btn-unequip').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.removePartByName(el.dataset.partName);
+      });
     });
 
     // 所持トグルの処理
