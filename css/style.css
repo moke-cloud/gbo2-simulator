@@ -489,8 +489,10 @@ select { cursor: pointer; appearance: none;
 .part-slot.filled:hover { border-color: var(--bad); box-shadow: 0 0 12px rgba(255,79,107,.2); }
 .part-name { font-size: .72rem; font-weight: 700; color: var(--text); line-height: 1.2; }
 .part-lv { font-family: var(--font-mono); font-size: .66rem; color: var(--teal); }
-.part-remove { position: absolute; top: 3px; right: 5px; font-size: .7rem; color: var(--text-3); }
-.part-slot.filled:hover .part-remove { color: var(--bad); }
+.part-remove { position: absolute; top: 2px; right: 3px; width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center; line-height: 1;
+  font-size: .72rem; color: var(--text-3); border-radius: 4px; }
+.part-slot.filled:hover .part-remove { color: var(--bad); background: rgba(255,90,106,.14); }
 
 /* ===== CALC RESULTS ===== */
 .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-md); }
@@ -700,6 +702,12 @@ select { cursor: pointer; appearance: none;
   .calc-grid { grid-template-columns: 1fr; }
   .equipped-parts { grid-template-columns: repeat(2, 1fr); }
   .part-slot { cursor: pointer; }
+  /* スマホはホバーが無いので、装備済みスロットの解除✕を常時はっきり表示（タップで即解除） */
+  .part-slot.filled { padding-right: 26px; }
+  .part-slot.filled .part-remove {
+    width: 24px; height: 24px; top: 3px; right: 3px; font-size: .9rem;
+    color: var(--bad); background: rgba(255,90,106,.16); border: 1px solid rgba(255,90,106,.42);
+  }
 
   /* パーツ一覧: タップしやすい大きさに */
   .part-actions { gap: 8px; padding: 4px 12px 12px; }

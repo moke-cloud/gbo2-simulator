@@ -249,22 +249,17 @@ const App = {
     });
 
     // 装備スロットクリック
-    // モバイル: スロットをタップ → パーツ選択シートを重ねて表示（✕は取り外し）
-    // デスクトップ: 装備済みスロットのタップで取り外し（従来動作）
+    // 装備済みスロット → タップで即解除（PC/スマホ共通、✕が目印）
+    // 空きスロット(スマホ) → パーツ選択シートを開く
     document.getElementById('equipped-parts').addEventListener('click', (e) => {
       const slot = e.target.closest('.part-slot');
       if (!slot) return;
       const idx = parseInt(slot.dataset.slot);
-      const filled = slot.classList.contains('filled');
-      if (this.isMobileLayout()) {
-        if (filled && e.target.closest('.part-remove')) {
-          this.removePart(idx);
-        } else {
-          this.openPartsSheet();
-        }
-        return;
+      if (slot.classList.contains('filled')) {
+        this.removePart(idx);
+      } else if (this.isMobileLayout()) {
+        this.openPartsSheet();
       }
-      if (filled) this.removePart(idx);
     });
   },
 
