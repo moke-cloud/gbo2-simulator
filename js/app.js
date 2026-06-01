@@ -1182,8 +1182,12 @@ const App = {
 
     if (!GBO2Calculator.canEquip(part, remaining)) return;
 
-    // 同名同LVの完全重複チェック（同名別LVは許可）
-    if (this.equippedParts.some(p => p && p.name === part.name && p.level === part.level)) return;
+    // 相互排他チェック（同名LV違い・○○系・スピード/旋回上昇系は同時装備不可）
+    const conflictPart = this.equippedParts.find(p => p && GBO2Calculator.partsConflict(p, part));
+    if (conflictPart) {
+      this.showToast(`「${conflictPart.name}」とは同時に装備できません`, true);
+      return;
+    }
 
     this.equippedParts[emptyIdx] = part;
     this.updateDisplay();
@@ -1596,8 +1600,9 @@ const App = {
       long: maxSlots.long - usedSlots.long
     };
 
-    const equippedKeys = new Set(this.equippedParts.filter(Boolean).map(p => p.name + '\0' + p.level));
-    const isFull = this.equippedParts.filter(Boolean).length >= 8;
+    const equippedList = this.equippedParts.filter(Boolean);
+    const equippedKeys = new Set(equippedList.map(p => p.name + '\0' + p.level));
+    const isFull = equippedList.length >= 8;
 
     const categoryMap = {
       attack: '攻撃',
@@ -1636,16 +1641,22 @@ const App = {
         if (displayPart.slots.long > 0) slotsHtml.push(`<span class="slot-long">遠${displayPart.slots.long}</span>`);
       }
 
+      // 非装備かつ全LVが既装備パーツと共存不可（同名/○○系/スピード旋回排他）なら丸ごとブロック
+      const isBlocked = !isEquipped && this.selectedMS
+        && levels.every(part => GBO2Calculator.conflictsWithAny(part, equippedList));
+
       const groupClasses = ['part-group'];
       if (isUnowned) groupClasses.push('unowned');
       if (isEquipped) groupClasses.push('equipped');
+      if (isBlocked) groupClasses.push('group-blocked');
 
       // LV行のHTML（アコーディオン内）
       const lvRowsHtml = levels.map(part => {
         const canEquip = this.selectedMS
           && !isFull
           && !equippedKeys.has(part.name + '\0' + part.level)
-          && GBO2Calculator.canEquip(part, remaining);
+          && GBO2Calculator.canEquip(part, remaining)
+          && !GBO2Calculator.conflictsWithAny(part, equippedList);
         const isThisEquipped = equippedPart && equippedPart.level === part.level;
         const lvClass = ['part-lv-row'];
         if (!canEquip && !isThisEquipped) lvClass.push('unequippable');
@@ -1723,7 +1734,8 @@ const App = {
           const canEquip = this.selectedMS
             && !isFull
             && !equippedKeys.has(part.name + '\0' + part.level)
-            && GBO2Calculator.canEquip(part, remaining);
+            && GBO2Calculator.canEquip(part, remaining)
+            && !GBO2Calculator.conflictsWithAny(part, equippedList);
           if (canEquip && !this.unownedParts.has(part.name)) {
             this.equipPart(part);
           }

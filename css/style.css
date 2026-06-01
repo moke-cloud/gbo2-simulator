@@ -580,6 +580,10 @@ select { cursor: pointer; appearance: none;
 .part-group:hover { border-color: var(--line-strong); }
 .part-group.equipped { border-left: 2px solid var(--teal); }
 .part-group.unowned { opacity: .5; }
+/* 既装備パーツと同時装備できない（同名/○○系/スピード旋回排他）グループ */
+.part-group.group-blocked { opacity: .42; }
+.part-group.group-blocked .part-group-header { cursor: not-allowed; }
+.part-group.group-blocked .part-item-name::after { content: " ⊘ 排他"; font-size: .62rem; color: var(--bad); font-weight: 700; }
 .part-group-header { display: flex; flex-direction: column; gap: 5px; padding: 8px 10px; cursor: pointer; }
 .part-group-title { display: flex; align-items: center; gap: 6px; }
 .part-item-name { font-size: .82rem; font-weight: 700; color: var(--text); line-height: 1.25; }

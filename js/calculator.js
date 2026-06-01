@@ -530,6 +530,51 @@ const GBO2Calculator = {
     );
   },
 
+  // ===== カスタムパーツの相互排他（GBO2の「複数装備できない」制約） =====
+  // ルールは custom_parts.json の name / description / effects から導出する。
+  _SPEED_TURN_TYPES: new Set(['speed', 'turn_speed', 'turn_speed_ground', 'turn_speed_space']),
+
+  /**
+   * パーツの排他メタ情報を算出（パーツに非列挙でキャッシュ）。
+   * - groups: 共有すると共存不可になるキー集合（同名 / ○○系）
+   * - raisesSpeedTurn: スピードまたは旋回が上昇する
+   * - speedExclusive: 「スピード/旋回が上昇するパーツと同時装備不可」を持つ
+   */
+  partMutex(part) {
+    if (part._mutex) return part._mutex;
+    const desc = part.description || '';
+    const groups = new Set();
+    // 1) 同名パーツ（LV違いも含めて）は1つしか装備できない
+    groups.add('name:' + part.name);
+    // 2) 「○○系パーツは複数装備できない/不可」（特殊強化フレーム/複合装甲材/複合フレーム/特殊強化装置 等）
+    const fam = desc.match(/(?:なお|また|尚)?\s*([^。、,；\s]+?)系(?:統)?(?:の)?(?:カスタム)?パーツは(?:複数|同時)装備(?:できない|不可)/);
+    if (fam) groups.add('family:' + fam[1].replace(/^(?:なお|また|尚)/, ''));
+    // 3) スピード/旋回 上昇系の排他
+    const raisesSpeedTurn = (part.effects || []).some(e =>
+      this._SPEED_TURN_TYPES.has(e.type) && (e.value || 0) > 0);
+    const speedExclusive = /(?:スピード|旋回性能)(?:または旋回性能)?が上昇するパーツと/.test(desc);
+    const meta = { groups, raisesSpeedTurn, speedExclusive };
+    try { Object.defineProperty(part, '_mutex', { value: meta, enumerable: false, configurable: true }); }
+    catch (_) { /* frozen object などは無視 */ }
+    return meta;
+  },
+
+  /** 2つのパーツが同時装備できない場合 true（同一/同名インスタンスも対象） */
+  partsConflict(a, b) {
+    if (!a || !b) return false;
+    const ma = this.partMutex(a), mb = this.partMutex(b);
+    for (const g of ma.groups) if (mb.groups.has(g)) return true; // 同名 / 同系統
+    // スピード/旋回上昇系: 片方が排他指定で他方が speed/turn を上げるなら不可
+    if ((ma.speedExclusive && mb.raisesSpeedTurn) || (mb.speedExclusive && ma.raisesSpeedTurn)) return true;
+    return false;
+  },
+
+  /** part が equippedList のいずれかと共存不可なら true */
+  conflictsWithAny(part, equippedList) {
+    for (const p of equippedList) if (p && this.partsConflict(part, p)) return true;
+    return false;
+  },
+
   /**
    * modified ステータスオブジェクトから STAT_SCALES キーに対応する値を取得
    */
@@ -568,12 +613,10 @@ const GBO2Calculator = {
 
     const currentParts = equippedParts.filter(Boolean);
     const usedSlots = { close: 0, mid: 0, long: 0 };
-    const usedKeys = new Set(); // name+level で重複排除（同名別LVは許可）
     for (const part of currentParts) {
       usedSlots.close += part.slots.close || 0;
       usedSlots.mid   += part.slots.mid   || 0;
       usedSlots.long  += part.slots.long  || 0;
-      usedKeys.add(part.name + '\0' + part.level);
     }
 
     const selected = [];
@@ -593,7 +636,8 @@ const GBO2Calculator = {
       let bestGain = 0;
 
       for (const candidate of candidateParts) {
-        if (usedKeys.has(candidate.name + '\0' + candidate.level)) continue;
+        // 同名(LV違い含む)・○○系・スピード/旋回排他で既選択と共存不可なものを除外
+        if (this.conflictsWithAny(candidate, currentParts)) continue;
         if (!this.canEquip(candidate, remaining)) continue;
 
         const trialParts = [...currentParts, candidate];
@@ -613,7 +657,6 @@ const GBO2Calculator = {
       usedSlots.close += bestPart.slots.close || 0;
       usedSlots.mid   += bestPart.slots.mid   || 0;
       usedSlots.long  += bestPart.slots.long  || 0;
-      usedKeys.add(bestPart.name + '\0' + bestPart.level);
     }
 
     return selected;

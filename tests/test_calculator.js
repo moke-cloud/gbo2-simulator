@@ -241,6 +241,47 @@ const optResult = GBO2Calculator.optimize(optBase, focusSlots, focusParts, {
 // 同名同LVの完全重複は選ばれない（パーツAは1つしかないので重複不可）
 assert('既装備A(同名同LV)は重複選択されない', !optResult.some(p => p.name === 'A' && p.level === preEquipped[0].level), true);
 
+// ===== 11. カスタムパーツ相互排他 (partsConflict / 最適化) =====
+section('排他: partsConflict 基本');
+const pSameA1 = { name: '射撃強化プログラム', level: 1, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 4 }], description: '射撃補正が増加。' };
+const pSameA3 = { name: '射撃強化プログラム', level: 3, slots: { close: 2, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 8 }], description: '射撃補正が増加。' };
+const pFrameA = { name: '特殊強化フレーム［Type-A］', level: 1, slots: { close: 3, mid: 7, long: 5 }, effects: [{ type: 'hp_pct', value: 5 }], description: '機体HPが5%増加。耐実弾補正と耐ビーム補正が9増加。特殊強化フレーム系パーツは複数装備できない。' };
+const pFrameB = { name: '特殊強化フレーム［Type-B］', level: 1, slots: { close: 11, mid: 1, long: 3 }, effects: [{ type: 'hp_pct', value: 5 }], description: '機体HPが5%増加。耐格闘補正が18増加。特殊強化フレーム系パーツは複数装備できない。' };
+const pDevG = { name: '特殊強化装置［Type-γ］', level: 1, slots: { close: 4, mid: 4, long: 4 }, effects: [{ type: 'hp', value: 1200 }], description: '各補正が14%増加。機体HPが1200増加。なお特殊強化装置系のパーツは複数装備不可。' };
+const pDevA = { name: '特殊強化装置［Type-α］', level: 1, slots: { close: 4, mid: 4, long: 4 }, effects: [{ type: 'hp', value: 1000 }], description: '格闘補正が20%増加。機体HPが1000増加。なお特殊強化装置系のパーツは複数装備不可。' };
+const pSpeedX = { name: '運動性能強化機構', level: 1, slots: { close: 2, mid: 2, long: 2 }, effects: [{ type: 'speed', value: 10 }, { type: 'turn_speed', value: 5 }], description: 'スピードが10増加し、旋回性能が5増加。なおスピードまたは旋回性能が上昇するパーツとの同時装備は行えない。' };
+const pSpeedY = { name: 'サイコフレーム', level: 1, slots: { close: 1, mid: 1, long: 1 }, effects: [{ type: 'turn_speed', value: 7 }], description: '旋回性能が増加。' };
+const pThruster = { name: '噴射制御装置', level: 1, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'thruster', value: 10 }], description: 'スラスターが増加。' };
+
+assert('同名別LVは共存不可', GBO2Calculator.partsConflict(pSameA1, pSameA3), true);
+assert('特殊強化フレーム Type-A と Type-B は共存不可', GBO2Calculator.partsConflict(pFrameA, pFrameB), true);
+assert('特殊強化装置 γ と α は共存不可(「不可」表記)', GBO2Calculator.partsConflict(pDevG, pDevA), true);
+assert('運動性能強化機構 と 旋回上昇パーツは共存不可', GBO2Calculator.partsConflict(pSpeedX, pSpeedY), true);
+assert('運動性能強化機構 と スラスターのみは共存可', GBO2Calculator.partsConflict(pSpeedX, pThruster), false);
+assert('別系統パーツ同士は共存可', GBO2Calculator.partsConflict(pFrameA, pThruster), false);
+assert('スラスターと旋回パーツは共存可(排他指定なし)', GBO2Calculator.partsConflict(pThruster, pSpeedY), false);
+
+section('排他: 最適化が共存不可パーツを同時選択しない');
+const exParts = [pFrameA, pFrameB, pDevG, pDevA, pSameA1, pSameA3];
+const exSlots = { close: 40, mid: 40, long: 40 }; // スロットは潤沢にして排他のみで制限
+const exResult = GBO2Calculator.optimize(focusBase, exSlots, exParts, {
+  ...focusConfig, selectedStats: ['hp', 'shooting_correction', 'melee_correction', 'ballistic_armor', 'beam_armor', 'melee_armor']
+});
+const exNames = exResult.map(p => p.name);
+const frameCount = exResult.filter(p => p.name.startsWith('特殊強化フレーム')).length;
+const devCount = exResult.filter(p => p.name.startsWith('特殊強化装置')).length;
+const sameCount = exResult.filter(p => p.name === '射撃強化プログラム').length;
+assert('特殊強化フレーム系は最大1つ', frameCount <= 1, true);
+assert('特殊強化装置系は最大1つ', devCount <= 1, true);
+assert('同名(射撃強化プログラム)は最大1つ', sameCount <= 1, true);
+
+section('排他: 既装備との競合を回避');
+const exResult2 = GBO2Calculator.optimize(focusBase, exSlots, exParts, {
+  ...focusConfig, equippedParts: [pFrameA], selectedStats: ['hp', 'melee_correction']
+});
+assert('既装備 特殊強化フレームType-A がある時 Type-B を追加しない',
+  !exResult2.some(p => p.name === '特殊強化フレーム［Type-B］'), true);
+
 // ===== 結果サマリ =====
 console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
 console.log(`結果: ${passed} 件成功 / ${failed} 件失敗 / 計 ${passed + failed} 件`);
