@@ -567,6 +567,8 @@ const GBO2Calculator = {
   /** 2つのパーツが同時装備できない場合 true（同一/同名インスタンスも対象） */
   partsConflict(a, b) {
     if (!a || !b) return false;
+    // 全く同じパーツ（同名・同レベル）は重複装備不可。同名でもLV違いは装備可。
+    if (a.name === b.name && (a.level || 0) === (b.level || 0)) return true;
     const ma = this.partMutex(a), mb = this.partMutex(b);
     for (const g of ma.groups) if (mb.groups.has(g)) return true; // 同名 / 同系統
     // スピード/旋回上昇系: 片方が排他指定で他方が speed/turn を上げるなら不可
@@ -792,5 +794,113 @@ const GBO2Calculator = {
     }
 
     return this._greedySelect(baseStats, maxSlots, allParts, config, objectiveFn);
+  },
+
+  // 目標値（下限）最適化で参照するステータスの素の上限値（拡張スキルで上昇しうる）。
+  // 目標がこの値を超える場合はスロット数に関係なく到達不可なのでメッセージで明示する。
+  STAT_HARD_CAP: {
+    ballistic_armor: 50, beam_armor: 50, melee_armor: 50,
+    shooting_correction: 100, melee_correction: 100,
+    speed: 200, thruster: 100, boost_speed: 300, turn_speed: 200,
+  },
+
+  /**
+   * 目標値（下限）最適化：指定した各ステータスの「最低◯◯以上」を全て満たすパーツ構成を
+   * 空きスロットから探索する。満たせない場合も最善構成と不足情報を返す（呼び出し側で
+   * メッセージ化する）。各目標を均等に正規化した不足量を最も減らすパーツを貪欲に追加する。
+   *
+   * @param {object} baseStats - 強化適用済みベースステータス
+   * @param {object} maxSlots - { close, mid, long }
+   * @param {Array} allParts - 装備候補パーツ一覧
+   * @param {object} config - { targets:{statKey:minValue}, msLevel, enhanceLevel, expansionSkillsList, equippedParts }
+   * @returns {{parts:Array, allMet:boolean, results:Array, remainingSlots:object, usedAllSlots:boolean}}
+   */
+  optimizeToTargets(baseStats, maxSlots, allParts, config) {
+    const {
+      targets = {},
+      msLevel = 1,
+      enhanceLevel = 0,
+      expansionSkillsList = [],
+      equippedParts = [],
+    } = config;
+
+    const MAX_PARTS = 8;
+    const targetEntries = Object.entries(targets)
+      .filter(([, v]) => typeof v === 'number' && v > 0);
+
+    const currentParts = equippedParts.filter(Boolean);
+    const usedSlots = { close: 0, mid: 0, long: 0 };
+    for (const p of currentParts) {
+      usedSlots.close += p.slots.close || 0;
+      usedSlots.mid   += p.slots.mid   || 0;
+      usedSlots.long  += p.slots.long  || 0;
+    }
+
+    const statOf = (modified, key) => this._getModifiedStat(modified, key);
+    const selected = [];
+
+    // 不足の正規化合計（各目標を 1 として均等扱い）を最も減らすパーツを貪欲に追加
+    while (currentParts.length < MAX_PARTS && targetEntries.length > 0) {
+      const remaining = {
+        close: maxSlots.close - usedSlots.close,
+        mid:   maxSlots.mid   - usedSlots.mid,
+        long:  maxSlots.long  - usedSlots.long,
+      };
+      if (remaining.close <= 0 && remaining.mid <= 0 && remaining.long <= 0) break;
+
+      const curMod = this.applyParts(baseStats, currentParts, expansionSkillsList, msLevel, enhanceLevel);
+      const deficits = targetEntries
+        .map(([k, t]) => ({ k, t, def: Math.max(0, t - statOf(curMod, k)) }))
+        .filter(d => d.def > 0);
+      if (deficits.length === 0) break; // 全目標達成
+
+      let bestPart = null;
+      let bestReduction = 0;
+      for (const cand of allParts) {
+        if (this.conflictsWithAny(cand, currentParts)) continue;
+        if (!this.canEquip(cand, remaining)) continue;
+        const trialMod = this.applyParts(baseStats, [...currentParts, cand], expansionSkillsList, msLevel, enhanceLevel);
+        let reduction = 0;
+        for (const d of deficits) {
+          const newDef = Math.max(0, d.t - statOf(trialMod, d.k));
+          reduction += (d.def - newDef) / d.t; // 目標値で正規化した不足削減量
+        }
+        if (reduction > bestReduction) { bestReduction = reduction; bestPart = cand; }
+      }
+      if (!bestPart) break; // これ以上不足を減らせるパーツが無い
+
+      selected.push(bestPart);
+      currentParts.push(bestPart);
+      usedSlots.close += bestPart.slots.close || 0;
+      usedSlots.mid   += bestPart.slots.mid   || 0;
+      usedSlots.long  += bestPart.slots.long  || 0;
+    }
+
+    const finalMod = this.applyParts(baseStats, currentParts, expansionSkillsList, msLevel, enhanceLevel);
+    const results = targetEntries.map(([k, t]) => {
+      const achieved = statOf(finalMod, k);
+      const cap = this.STAT_HARD_CAP[k];
+      return {
+        stat: k,
+        target: t,
+        achieved,
+        met: achieved >= t,
+        deficit: Math.max(0, t - achieved),
+        capExceeded: cap != null && t > cap,
+        cap: cap != null ? cap : null,
+      };
+    });
+    const remainingSlots = {
+      close: maxSlots.close - usedSlots.close,
+      mid:   maxSlots.mid   - usedSlots.mid,
+      long:  maxSlots.long  - usedSlots.long,
+    };
+    return {
+      parts: selected,
+      allMet: results.every(r => r.met),
+      results,
+      remainingSlots,
+      usedAllSlots: remainingSlots.close <= 0 && remainingSlots.mid <= 0 && remainingSlots.long <= 0,
+    };
   }
 };

@@ -232,14 +232,17 @@ const capResult = GBO2Calculator.optimizeFocused(capBase, focusSlots, focusParts
 const capNames = capResult.map(p => p.name);
 assert('上限近接時: Bは不選択(格闘配分0)', !capNames.includes('B'), true);
 
-section('optimize: 通常パーツは既装備と同名でも追加できる(スタック)');
+section('optimize: 同名+同LVは重複不可 / LV違いは追加可');
 const optBase = { ...focusBase };
-const preEquipped = [focusParts[0]]; // A を既装備
-const optResult = GBO2Calculator.optimize(optBase, focusSlots, focusParts, {
+const aLv1 = { name: 'A', level: 1, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 15 }] };
+const aLv2 = { name: 'A', level: 2, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 20 }] };
+const preEquipped = [aLv1]; // A LV1 を既装備
+const optResult = GBO2Calculator.optimize(optBase, focusSlots, [aLv1, aLv2], {
   ...focusConfig, equippedParts: preEquipped, selectedStats: ['shooting_correction']
 });
-// 通常パーツ(制限なし)は同名でもスタックできるので、既装備Aがあっても追加でAが選ばれうる
-assert('既装備Aと同名でも追加で選択されうる', optResult.some(p => p.name === 'A'), true);
+// 同名+同LV(A LV1)は重複不可。同名でもLV違い(A LV2)は追加できる。
+assert('既装備と同名+同LV(A LV1)は重複追加されない', optResult.some(p => p.name === 'A' && p.level === 1), false);
+assert('同名でもLV違い(A LV2)は追加されうる', optResult.some(p => p.name === 'A' && p.level === 2), true);
 
 // ===== 11. カスタムパーツ相互排他 (partsConflict / 最適化) =====
 section('排他: partsConflict 基本');
@@ -253,8 +256,8 @@ const pSpeedX = { name: '運動性能強化機構', level: 1, slots: { close: 2,
 const pSpeedY = { name: 'サイコフレーム', level: 1, slots: { close: 1, mid: 1, long: 1 }, effects: [{ type: 'turn_speed', value: 7 }], description: '旋回性能が増加。' };
 const pThruster = { name: '噴射制御装置', level: 1, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'thruster', value: 10 }], description: 'スラスターが増加。' };
 
-assert('通常パーツは同名でも共存可(スタック可)', GBO2Calculator.partsConflict(pSameA1, pSameA3), false);
-assert('通常パーツは同一インスタンスでも共存可', GBO2Calculator.partsConflict(pSameA1, pSameA1), false);
+assert('通常パーツは同名でもLV違いなら共存可', GBO2Calculator.partsConflict(pSameA1, pSameA3), false);
+assert('全く同じパーツ(同名+同LV)は重複不可', GBO2Calculator.partsConflict(pSameA1, pSameA1), true);
 assert('特殊強化フレーム Type-A と Type-B は共存不可', GBO2Calculator.partsConflict(pFrameA, pFrameB), true);
 assert('特殊強化フレーム Type-A 同士も共存不可(系統で1つ)', GBO2Calculator.partsConflict(pFrameA, pFrameA), true);
 assert('特殊強化装置 γ と α は共存不可(「不可」表記)', GBO2Calculator.partsConflict(pDevG, pDevA), true);
@@ -263,13 +266,18 @@ assert('運動性能強化機構 と スラスターのみは共存可', GBO2Cal
 assert('別系統パーツ同士は共存可', GBO2Calculator.partsConflict(pFrameA, pThruster), false);
 assert('スラスターと旋回パーツは共存可(排他指定なし)', GBO2Calculator.partsConflict(pThruster, pSpeedY), false);
 
-section('スタック: 通常パーツは同名でも複数装備できる');
-const stackPart = { name: '射撃強化プログラム', level: 5, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 5 }], description: '射撃補正が増加。' };
+section('重複: 同名+同LVは複数装備できない / LV違いは可');
+const stackPartLv5 = { name: '射撃強化プログラム', level: 5, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 5 }], description: '射撃補正が増加。' };
+const stackPartLv1 = { name: '射撃強化プログラム', level: 1, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 3 }], description: '射撃補正が増加。' };
 const stackBase = { ...focusBase, shooting_correction: 0 };
-const stackRes = GBO2Calculator.optimize(stackBase, { close: 5, mid: 0, long: 0 }, [stackPart], {
+const stackResSame = GBO2Calculator.optimize(stackBase, { close: 5, mid: 0, long: 0 }, [stackPartLv5], {
   ...focusConfig, selectedStats: ['shooting_correction']
 });
-assert('通常パーツは最適化で複数回選択されうる', stackRes.filter(p => p.name === '射撃強化プログラム').length >= 2, true);
+assert('同名+同LVは最適化で1つだけ(重複しない)', stackResSame.filter(p => p.name === '射撃強化プログラム').length, 1);
+const stackResMixed = GBO2Calculator.optimize(stackBase, { close: 5, mid: 0, long: 0 }, [stackPartLv5, stackPartLv1], {
+  ...focusConfig, selectedStats: ['shooting_correction']
+});
+assert('同名でもLV違いは併用されうる', stackResMixed.filter(p => p.name === '射撃強化プログラム').length >= 2, true);
 
 section('排他: 最適化が共存不可パーツを同時選択しない');
 const exParts = [pFrameA, pFrameB, pDevG, pDevA, pSameA1, pSameA3];
@@ -288,6 +296,61 @@ const exResult2 = GBO2Calculator.optimize(focusBase, exSlots, exParts, {
 });
 assert('既装備 特殊強化フレームType-A がある時 Type-B を追加しない',
   !exResult2.some(p => p.name === '特殊強化フレーム［Type-B］'), true);
+
+// ===== 12. 拡張スキル: カスタムパーツ複合拡張α (per_custom_part) =====
+section('拡張スキル: 複合拡張α(攻撃タイプ毎にHP/スラスター/高速移動/リロード短縮)');
+const compAlphaLv5 = {
+  name: 'カスタムパーツ複合拡張α', level: 5, category: 'custom_parts',
+  effects: [{
+    type: 'per_custom_part', targetPartTypes: ['attack'],
+    perPartEffects: [
+      { type: 'hp', value: 250 }, { type: 'thruster', value: 2 },
+      { type: 'boost_speed', value: 2 }, { type: 'reload_oh_reduction_pct', value: 1 },
+    ],
+  }],
+};
+const compBase = { hp: 19500, thruster: 55, boost_speed: 220, shooting_correction: 30, melee_correction: 20, ballistic_armor: 20, beam_armor: 20, melee_armor: 10 };
+const atk3 = [
+  { name: '射撃強化プログラム', level: 1, category: 'attack', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 4 }], description: '射撃補正が増加。' },
+  { name: '射撃強化プログラム', level: 2, category: 'attack', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 5 }], description: '射撃補正が増加。' },
+  { name: '射撃強化プログラム', level: 3, category: 'attack', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 7 }], description: '射撃補正が増加。' },
+];
+const compMod = GBO2Calculator.applyParts(compBase, atk3, [compAlphaLv5], 1, 0);
+assert('複合拡張α: HP +250×3=750', compMod.hp - compBase.hp, 750);
+assert('複合拡張α: スラスター +2×3=6', compMod.thruster - compBase.thruster, 6);
+assert('複合拡張α: 高速移動 +2×3=6', compMod.boost_speed - compBase.boost_speed, 6);
+assert('複合拡張α: リロード/OH短縮 -1%×3=-3%', compMod.reloadOhReductionPct, 3);
+// 攻撃タイプ以外のパーツには発動しない
+const def1 = [{ name: 'シールド補強材', level: 1, category: 'defense', slots: { close: 0, mid: 1, long: 0 }, effects: [{ type: 'hp', value: 500 }], description: '機体HPが増加。' }];
+const compModDef = GBO2Calculator.applyParts(compBase, def1, [compAlphaLv5], 1, 0);
+assert('複合拡張α: 防御タイプには発動しない(HP増分はパーツ分のみ)', compModDef.hp - compBase.hp, 500);
+
+// ===== 13. 目標値(下限)最適化 optimizeToTargets =====
+section('目標値最適化: 達成可能ケース');
+const tgtBase = { hp: 15000, ballistic_armor: 20, beam_armor: 20, melee_armor: 10, shooting_correction: 30, melee_correction: 20, speed: 120, thruster: 50 };
+// 同名+同LV重複は不可のため、目標到達には個々のパーツが十分強いか、複数の別パーツが必要。
+const tgtParts = [
+  { name: 'P-armor', level: 1, category: 'defense', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'ballistic_armor', value: 15 }], description: '耐実弾補正が増加。' },
+  { name: 'P-thr', level: 1, category: 'defense', slots: { close: 0, mid: 1, long: 0 }, effects: [{ type: 'thruster', value: 20 }], description: 'スラスターが増加。' },
+  { name: 'P-hp', level: 1, category: 'support', slots: { close: 0, mid: 0, long: 1 }, effects: [{ type: 'hp', value: 2000 }], description: '機体HPが増加。' },
+];
+const tgtSlots = { close: 5, mid: 5, long: 5 };
+const tgtCfg = { msLevel: 1, enhanceLevel: 0, expansionSkillsList: [], equippedParts: [] };
+const feasible = GBO2Calculator.optimizeToTargets(tgtBase, tgtSlots, tgtParts, { ...tgtCfg, targets: { ballistic_armor: 35, thruster: 70 } });
+assert('達成可能: allMet=true', feasible.allMet, true);
+assert('達成可能: 耐実弾が目標35以上', feasible.results.find(r => r.stat === 'ballistic_armor').achieved >= 35, true);
+assert('達成可能: スラスターが目標70以上', feasible.results.find(r => r.stat === 'thruster').achieved >= 70, true);
+
+section('目標値最適化: スロット不足で未達');
+const tinySlots = { close: 1, mid: 0, long: 0 };
+const infeasSlot = GBO2Calculator.optimizeToTargets(tgtBase, tinySlots, tgtParts, { ...tgtCfg, targets: { ballistic_armor: 40, thruster: 90, hp: 20000 } });
+assert('スロット不足: allMet=false', infeasSlot.allMet, false);
+assert('スロット不足: usedAllSlots=true', infeasSlot.usedAllSlots, true);
+
+section('目標値最適化: ステータス上限超過で到達不可');
+const capInfeas = GBO2Calculator.optimizeToTargets(tgtBase, tgtSlots, tgtParts, { ...tgtCfg, targets: { ballistic_armor: 60 } });
+assert('上限超過: allMet=false', capInfeas.allMet, false);
+assert('上限超過: capExceeded=true (上限50)', capInfeas.results.find(r => r.stat === 'ballistic_armor').capExceeded, true);
 
 // ===== 結果サマリ =====
 console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);

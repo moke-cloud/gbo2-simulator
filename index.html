@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oxanium:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260601e">
+  <link rel="stylesheet" href="css/style.css?v=20260602a">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230a0e14'/%3E%3Cpath d='M4 4 L28 4 L28 24 L24 28 L4 28 Z' fill='none' stroke='%2300e0c6' stroke-width='2'/%3E%3Ctext x='16' y='22' font-family='Arial Black,sans-serif' font-size='15' font-weight='900' text-anchor='middle' fill='%2300e0c6'%3EGB%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -158,9 +158,28 @@
             <button class="opt-goal opt-goal-attack" data-goal="attack" disabled>火力重視</button>
             <button class="opt-goal opt-goal-defense" data-goal="defense" disabled>耐久重視</button>
             <button class="opt-goal opt-goal-thruster" data-goal="thruster" disabled>スラスター</button>
+            <button class="opt-goal opt-goal-target" data-goal="target" disabled>目標値</button>
           </div>
           <p class="opt-goal-desc" id="opt-goal-desc">優先ステータスと配分をもとに総合スコアを最大化します。</p>
         </div>
+
+        <!-- 目標値（下限）モードの希望値入力パネル -->
+        <div class="opt-target-panel hidden" id="opt-target-panel">
+          <p class="opt-target-help">満たしたいステータスに「最低◯◯以上」を入力（空欄は無視）。装備済みパーツは保持し、空きスロットで全条件を満たす構成を探します。</p>
+          <div class="opt-target-grid">
+            <label class="opt-target-item"><span>機体HP</span><input type="number" id="opt-target-hp" min="0" step="100" placeholder="指定なし"></label>
+            <label class="opt-target-item"><span>耐実弾</span><input type="number" id="opt-target-ballistic_armor" min="0" placeholder="指定なし"></label>
+            <label class="opt-target-item"><span>耐ビーム</span><input type="number" id="opt-target-beam_armor" min="0" placeholder="指定なし"></label>
+            <label class="opt-target-item"><span>耐格闘</span><input type="number" id="opt-target-melee_armor" min="0" placeholder="指定なし"></label>
+            <label class="opt-target-item"><span>射撃補正</span><input type="number" id="opt-target-shooting_correction" min="0" placeholder="指定なし"></label>
+            <label class="opt-target-item"><span>格闘補正</span><input type="number" id="opt-target-melee_correction" min="0" placeholder="指定なし"></label>
+            <label class="opt-target-item"><span>スピード</span><input type="number" id="opt-target-speed" min="0" placeholder="指定なし"></label>
+            <label class="opt-target-item"><span>高速移動</span><input type="number" id="opt-target-boost_speed" min="0" placeholder="指定なし"></label>
+            <label class="opt-target-item"><span>スラスター</span><input type="number" id="opt-target-thruster" min="0" placeholder="指定なし"></label>
+            <label class="opt-target-item"><span>旋回(地上)</span><input type="number" id="opt-target-turn_speed" min="0" placeholder="指定なし"></label>
+          </div>
+        </div>
+        <div class="opt-target-result hidden" id="opt-target-result"></div>
 
         <button id="btn-optimize" class="btn-primary" disabled>
           <span class="btn-icon">⚡</span> 空きスロットを最適化
@@ -359,6 +378,8 @@
             </div>
           </div>
         </div>
+        <!-- 数値ステータスに出ない特殊効果（複合拡張α等のリロード/OH短縮・OH回復） -->
+        <div id="special-effects" class="special-effects hidden"></div>
       </section>
 
       <!-- スロット & パーツ配置 -->
@@ -612,8 +633,8 @@
     <p>GBO2 Custom Parts Simulator | データ元: <a href="https://w.atwiki.jp/battle-operation2/" target="_blank" rel="noopener">バトオペ2攻略Wiki</a> | 非公式ファンツール</p>
   </footer>
 
-  <script src="js/calculator.js?v=20260601e"></script>
-  <script src="js/share.js?v=20260601e"></script>
-  <script src="js/app.js?v=20260601e"></script>
+  <script src="js/calculator.js?v=20260602a"></script>
+  <script src="js/share.js?v=20260602a"></script>
+  <script src="js/app.js?v=20260602a"></script>
 </body>
 </html>

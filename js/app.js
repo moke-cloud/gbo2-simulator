@@ -873,6 +873,30 @@ const App = {
         document.getElementById(`${prefix}-modified`).classList.add('hidden');
       }
     }
+
+    // ステータス枠に出ない特殊効果（複合拡張α等のリロード/OH短縮・OH回復）を表示
+    this.updateSpecialEffects(modified);
+  },
+
+  // 数値ステータスに反映されない特殊効果を「特殊効果」行として表示する。
+  // 例: カスタムパーツ複合拡張αの「兵装のリロード/OH時間短縮」、oh_recovery系パーツのOH回復。
+  updateSpecialEffects(modified) {
+    const container = document.getElementById('special-effects');
+    if (!container) return;
+    const items = [];
+    const reloadOh = Math.round(modified.reloadOhReductionPct || 0);
+    if (reloadOh > 0) items.push(`リロード/OH時間 −${reloadOh}%`);
+    const ohRecovery = Math.round(modified.ohRecoveryPct || 0);
+    if (ohRecovery > 0) items.push(`OH回復 +${ohRecovery}%`);
+
+    if (items.length === 0) {
+      container.classList.add('hidden');
+      container.innerHTML = '';
+      return;
+    }
+    container.classList.remove('hidden');
+    container.innerHTML = `<span class="special-effects-label">特殊効果</span>` +
+      items.map(t => `<span class="special-effect-chip">${t}</span>`).join('');
   },
 
   updateSlots() {
@@ -1177,7 +1201,14 @@ const App = {
 
     if (!GBO2Calculator.canEquip(part, remaining)) return;
 
-    // 相互排他チェック（同名LV違い・○○系・スピード/旋回上昇系は同時装備不可）
+    // 全く同じパーツ（同名・同LV）の重複は不可。同名でもLV違いは装備できる。
+    const dup = this.equippedParts.find(p => p && p.name === part.name && p.level === part.level);
+    if (dup) {
+      this.showToast(`「${part.name} LV${part.level}」は既に装備済みです（同じパーツの重複装備はできません）`, true);
+      return;
+    }
+
+    // 相互排他チェック（○○系・スピード/旋回上昇系は同時装備不可）
     const conflictPart = this.equippedParts.find(p => p && GBO2Calculator.partsConflict(p, part));
     if (conflictPart) {
       this.showToast(`「${conflictPart.name}」とは同時に装備できません`, true);
@@ -1222,14 +1253,24 @@ const App = {
       attack: '射撃・格闘の与ダメージ倍率（攻撃配分）を最大化します。',
       defense: '被弾配分にもとづく有効HPを最大化します。',
       thruster: 'スラスターを最大化します。',
+      target: '各ステータスに「最低◯◯以上」の希望値を設定し、全て満たす構成を探します。無理な場合は不足を表示します。',
     };
     const el = document.getElementById('opt-goal-desc');
     if (el) el.textContent = desc[this.optimizeGoal] || '';
+    // 目標値モードのときだけ希望値入力パネルを表示
+    const panel = document.getElementById('opt-target-panel');
+    if (panel) panel.classList.toggle('hidden', this.optimizeGoal !== 'target');
+    // モードを変えたら前回の結果表示は隠す
+    if (this.optimizeGoal !== 'target') {
+      const box = document.getElementById('opt-target-result');
+      if (box) box.classList.add('hidden');
+    }
   },
 
   // 選択中の方針に応じて最適化を実行
   runOptimizeDispatch() {
     if (this.optimizeGoal === 'balance') this.runOptimize();
+    else if (this.optimizeGoal === 'target') this.runOptimizeTargets();
     else this.runOptimizeFocused(this.optimizeGoal);
   },
 
@@ -1313,6 +1354,124 @@ const App = {
     this.equippedParts = newParts;
 
     this.updateDisplay();
+  },
+
+  // 目標値（下限）最適化で指定できるステータス（キー → ラベル）
+  TARGET_STATS: [
+    { key: 'hp', label: '機体HP' },
+    { key: 'ballistic_armor', label: '耐実弾' },
+    { key: 'beam_armor', label: '耐ビーム' },
+    { key: 'melee_armor', label: '耐格闘' },
+    { key: 'shooting_correction', label: '射撃補正' },
+    { key: 'melee_correction', label: '格闘補正' },
+    { key: 'speed', label: 'スピード' },
+    { key: 'boost_speed', label: '高速移動' },
+    { key: 'thruster', label: 'スラスター' },
+    { key: 'turn_speed', label: '旋回(地上)' },
+  ],
+
+  // 希望値入力欄から { statKey: minValue } を読む（空欄・0・負値は無視）
+  readOptimizeTargets() {
+    const targets = {};
+    for (const { key } of this.TARGET_STATS) {
+      const el = document.getElementById('opt-target-' + key);
+      if (!el) continue;
+      const v = parseInt(el.value, 10);
+      if (Number.isFinite(v) && v > 0) targets[key] = v;
+    }
+    return targets;
+  },
+
+  // 希望値（下限）を全て満たすパーツ構成を探す。無理な場合も不足内訳をメッセージ表示。
+  runOptimizeTargets() {
+    if (!this.selectedMS) return;
+    const base = this.getBaseStats();
+    if (!base) return;
+
+    const targets = this.readOptimizeTargets();
+    if (Object.keys(targets).length === 0) {
+      this.renderTargetResult({ empty: true });
+      return;
+    }
+
+    const maxSlots = this.getMaxSlots();
+    const currentParts = this.equippedParts.filter(Boolean);
+    const candidates = this.customParts.filter(p => !this.unownedParts.has(p.name));
+
+    let outcome;
+    try {
+      outcome = GBO2Calculator.optimizeToTargets(base, maxSlots, candidates, {
+        targets,
+        msLevel: this.selectedLevel,
+        enhanceLevel: this.enhanceLevel,
+        expansionSkillsList: this.getSelectedExpansionSkills(),
+        equippedParts: currentParts,
+      });
+    } catch (e) {
+      this.renderTargetResult({ error: e.message });
+      return;
+    }
+
+    // 提案パーツを空きスロットに装備
+    const newParts = [...this.equippedParts];
+    for (const part of outcome.parts) {
+      const emptyIdx = newParts.indexOf(null);
+      if (emptyIdx === -1) break;
+      newParts[emptyIdx] = part;
+    }
+    this.equippedParts = newParts;
+    this.updateDisplay();
+    this.renderTargetResult(outcome);
+  },
+
+  // 目標値最適化の結果（達成/未達の内訳と理由）を最適化欄にインライン表示する
+  renderTargetResult(outcome) {
+    const box = document.getElementById('opt-target-result');
+    if (!box) return;
+    const labelOf = (k) => (this.TARGET_STATS.find(s => s.key === k) || {}).label || k;
+    box.classList.remove('hidden');
+
+    if (outcome.empty) {
+      box.className = 'opt-target-result warn';
+      box.innerHTML = '希望値を1つ以上入力してください。';
+      return;
+    }
+    if (outcome.error) {
+      box.className = 'opt-target-result fail';
+      box.innerHTML = `エラー: ${outcome.error}`;
+      return;
+    }
+
+    const rows = outcome.results.map(r => {
+      const cls = r.met ? 'tr-met' : 'tr-unmet';
+      const icon = r.met ? '✓' : '✗';
+      const note = r.met ? ''
+        : `<span class="tr-note">あと ${r.deficit}${r.capExceeded ? `・上限${r.cap}超` : ''}</span>`;
+      return `<div class="opt-tr ${cls}"><span class="tr-icon">${icon}</span>` +
+        `<span class="tr-name">${labelOf(r.stat)}</span>` +
+        `<span class="tr-val">${r.achieved} / 目標 ${r.target}</span>${note}</div>`;
+    }).join('');
+
+    let summary, cls;
+    if (outcome.allMet) {
+      cls = 'ok';
+      summary = '✅ すべての希望値を満たしました。';
+    } else {
+      cls = 'fail';
+      const unmet = outcome.results.filter(r => !r.met);
+      const capOnly = unmet.every(r => r.capExceeded);
+      let reason;
+      if (capOnly) {
+        reason = 'ステータス上限を超える目標です。拡張スキルで上限を上げると到達できる場合があります。';
+      } else if (outcome.usedAllSlots) {
+        reason = '空きスロットを使い切りました。スロット構成的にこれ以上は到達できません。';
+      } else {
+        reason = 'これ以上希望値に寄与するパーツがありません（該当パーツ不足、または上限到達）。';
+      }
+      summary = `⚠️ ${unmet.length}件の希望値を満たせませんでした。<br><span class="tr-reason">${reason}</span>`;
+    }
+    box.className = 'opt-target-result ' + cls;
+    box.innerHTML = `<div class="opt-tr-summary">${summary}</div>${rows}`;
   },
 
   // === 構成保存・読込・比較 ===
@@ -1648,8 +1807,8 @@ const App = {
         if (displayPart.slots.long > 0) slotsHtml.push(`<span class="slot-long">遠${displayPart.slots.long}</span>`);
       }
 
-      // 追加で装備できるか。GBO2は通常パーツを同名でもスタック可能なので、
-      // 制限は「○○系の複数装備不可 / スピード旋回排他」とスロット空きのみ。
+      // 追加で装備できるか。全く同じパーツ（同名・同LV）の重複は不可。同名でもLV違いは可。
+      // 加えて「○○系の複数装備不可 / スピード旋回排他」とスロット空きで判定（partsConflict）。
       const canAdd = (part) => this.selectedMS && !isFull && !isUnowned
         && GBO2Calculator.canEquip(part, remaining)
         && !GBO2Calculator.conflictsWithAny(part, equippedList);
@@ -1663,7 +1822,7 @@ const App = {
       if (isEquipped) groupClasses.push('equipped');
       if (isBlocked) groupClasses.push('group-blocked');
 
-      // 大きめのLVタブ。タップでそのLVを1つ装備（同名スタック可）。装備数は ×N で表示。
+      // 大きめのLVタブ。タップでそのLVを1つ装備。装備済みLV（同名・同LV）は重複不可で自動的に無効化。
       const lvTabsHtml = levels.map(part => {
         const cnt = lvCount(part.level);
         const addable = canAdd(part);
@@ -1716,7 +1875,7 @@ const App = {
 
     container.innerHTML = html || '<p class="no-parts">該当するパーツがありません</p>';
 
-    // LVタブ / 装着ボタン → そのLVを1つ装備（同名スタック可）
+    // LVタブ / 装着ボタン → そのLVを1つ装備（同名・同LVの重複は equipPart 側で拒否）
     container.querySelectorAll('.lv-tab:not([disabled]), .btn-equip:not([disabled])').forEach(el => {
       el.addEventListener('click', (e) => {
         e.stopPropagation();

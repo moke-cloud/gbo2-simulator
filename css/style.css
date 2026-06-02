@@ -346,7 +346,51 @@ select { cursor: pointer; appearance: none;
 .opt-goal-attack.active     { color: var(--cat-attack);   border-color: var(--cat-attack);   background: rgba(255,90,106,.12); box-shadow: 0 0 10px rgba(255,90,106,.3); }
 .opt-goal-defense.active    { color: var(--cat-defense);  border-color: var(--cat-defense);  background: rgba(77,155,255,.12); box-shadow: 0 0 10px rgba(77,155,255,.3); }
 .opt-goal-thruster.active   { color: var(--cat-mobility); border-color: var(--cat-mobility); background: rgba(52,224,122,.12); box-shadow: 0 0 10px rgba(52,224,122,.3); }
+.opt-goal-target            { grid-column: 1 / -1; }
+.opt-goal-target.active     { color: var(--warn); border-color: var(--warn); background: rgba(255,194,77,.12); box-shadow: 0 0 10px rgba(255,194,77,.3); }
 .opt-goal-desc { font-size: .72rem; color: var(--text-3); line-height: 1.5; margin-top: 7px; min-height: 2.1em; }
+
+/* 目標値（下限）モード: 希望値入力パネル */
+.opt-target-panel { margin-top: var(--gap-sm); border-top: 1px dashed var(--line-soft); padding-top: var(--gap-sm); }
+.opt-target-panel.hidden { display: none; }
+.opt-target-help { font-size: .7rem; color: var(--text-3); line-height: 1.5; margin: 0 0 var(--gap-sm); }
+.opt-target-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.opt-target-item { display: flex; align-items: center; gap: 6px; font-size: .72rem; color: var(--text-2); }
+.opt-target-item span { flex: 0 0 4.6em; }
+.opt-target-item input {
+  flex: 1 1 auto; min-width: 0; width: 100%; padding: 5px 6px;
+  background: var(--bg-input); border: 1px solid var(--line-strong); color: var(--text);
+  font-family: var(--font-mono); font-size: .76rem;
+}
+.opt-target-item input:focus { border-color: var(--warn); outline: none; }
+
+/* 目標値最適化の結果表示 */
+.opt-target-result { margin-top: var(--gap-sm); padding: 9px 10px; font-size: .74rem; line-height: 1.5;
+  border: 1px solid var(--line-strong); background: var(--bg-deep); }
+.opt-target-result.hidden { display: none; }
+.opt-target-result.ok   { border-color: var(--good); background: rgba(52,224,122,.08); }
+.opt-target-result.fail { border-color: var(--warn); background: rgba(255,194,77,.08); }
+.opt-target-result.warn { border-color: var(--warn); color: var(--warn); }
+.opt-tr-summary { font-weight: 700; margin-bottom: 6px; }
+.opt-tr-summary .tr-reason { display: block; font-weight: 500; font-size: .7rem; color: var(--text-2); margin-top: 3px; }
+.opt-tr { display: flex; align-items: baseline; gap: 6px; padding: 2px 0; font-family: var(--font-mono); }
+.opt-tr .tr-icon { flex: 0 0 1em; font-weight: 700; }
+.opt-tr.tr-met .tr-icon   { color: var(--good); }
+.opt-tr.tr-unmet .tr-icon { color: var(--bad); }
+.opt-tr .tr-name { flex: 0 0 4.6em; color: var(--text-2); font-family: var(--font-base); }
+.opt-tr .tr-val  { color: var(--text); }
+.opt-tr.tr-unmet .tr-val { color: var(--text-2); }
+.opt-tr .tr-note { color: var(--bad); font-size: .68rem; }
+
+/* 特殊効果（数値ステータスに出ない効果: リロード/OH短縮・OH回復） */
+.special-effects { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: var(--gap-sm);
+  padding-top: var(--gap-sm); border-top: 1px dashed var(--line-soft); }
+.special-effects.hidden { display: none; }
+.special-effects-label { font-size: .68rem; font-weight: 700; color: var(--text-3); letter-spacing: .04em; }
+.special-effect-chip {
+  font-family: var(--font-mono); font-size: .72rem; color: var(--teal);
+  padding: 2px 8px; background: rgba(25,227,196,.1); border: 1px solid var(--teal-dim);
+}
 
 /* Advanced settings (collapsible) */
 .opt-advanced { margin-top: var(--gap-md); border-top: 1px dashed var(--line-soft); padding-top: var(--gap-sm); }
@@ -489,10 +533,15 @@ select { cursor: pointer; appearance: none;
 .part-slot.filled:hover { border-color: var(--bad); box-shadow: 0 0 12px rgba(255,79,107,.2); }
 .part-name { font-size: .72rem; font-weight: 700; color: var(--text); line-height: 1.2; }
 .part-lv { font-family: var(--font-mono); font-size: .66rem; color: var(--teal); }
-.part-remove { position: absolute; top: 2px; right: 3px; width: 18px; height: 18px;
+/* 取り外し✕ボタン: 常時はっきり見える大きめのタップ領域に（小さくて押しづらい問題の対策） */
+.part-remove { position: absolute; top: 3px; right: 3px; width: 26px; height: 26px;
   display: flex; align-items: center; justify-content: center; line-height: 1;
-  font-size: .72rem; color: var(--text-3); border-radius: 4px; }
-.part-slot.filled:hover .part-remove { color: var(--bad); background: rgba(255,90,106,.14); }
+  font-size: 1rem; font-weight: 700; color: var(--bad); border-radius: 5px;
+  background: rgba(255,90,106,.14); border: 1px solid rgba(255,90,106,.4);
+  transition: var(--tr-fast); }
+.part-slot.filled { padding-right: 30px; }
+.part-slot.filled:hover .part-remove,
+.part-remove:hover { color: #fff; background: var(--bad); border-color: var(--bad); box-shadow: 0 0 8px rgba(255,79,107,.5); }
 
 /* ===== CALC RESULTS ===== */
 .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-md); }
