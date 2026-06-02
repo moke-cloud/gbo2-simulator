@@ -797,12 +797,11 @@ const App = {
       long: slots.long?.[String(this.selectedLevel)] || 0
     };
 
-    // 複合拡張パーツスロット: 強化段階で解放済み＆現在MSレベルで有効なもののみ加算
+    // 複合拡張パーツスロット: 強化段階で解放済み＆現在MSレベルで有効なもののみ加算。
+    // 同名強化は最高Lvのみ採用（上限開放でLv1+Lv2が二重計上されるのを防ぐ）。
     const enhancements = this.selectedMS.enhancements || [];
     const msLevel = this.selectedLevel;
-    const slotBonus = enhancements
-      .filter(e => !e.ms_levels || e.ms_levels.length === 0 || e.ms_levels.includes(msLevel))
-      .slice(0, this.enhanceLevel)
+    const slotBonus = GBO2Calculator.resolveActiveEnhancements(enhancements, this.enhanceLevel, msLevel)
       .filter(e => (e.skill_name || '').includes('複合拡張パーツスロット'))
       .reduce((sum, e) => {
         const effectText = GBO2Calculator.resolveEnhancementEffect(e, msLevel);

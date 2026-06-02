@@ -134,14 +134,46 @@ const GBO2Calculator = {
     return enhancement.effect || '';
   },
 
+  /**
+   * 強化リスト名から「ベース強化名」と「強化Lv」を分離する。
+   * 例: "耐ビーム装甲補強 Lv4" → { base: "耐ビーム装甲補強", lv: 4 }
+   */
+  _enhancementBase(skillName) {
+    const m = /^(.*)\s+Lv(\d+)$/.exec(skillName || '');
+    return m ? { base: m[1], lv: parseInt(m[2], 10) } : { base: skillName || '', lv: 0 };
+  },
+
+  /**
+   * 現在のMSレベル・強化段階で「実際に適用される強化」配列を返す。
+   *   1) ms_levels で現MSレベルに該当する強化のみ
+   *   2) 強化段階数 (level) 件にスライス
+   *   3) 同名(ベース名が同じ)強化は最高Lvのみ採用＝置換。上限開放で同じ強化が
+   *      Lv1とLv4の2エントリに分かれて二重計上される問題を防ぐ
+   * applyEnhancements(ステータス) と getMaxSlots(スロット) で共用する。
+   * @returns {Array} 適用すべき強化エントリ配列
+   */
+  resolveActiveEnhancements(enhancements, level, msLevel) {
+    if (level <= 0 || !enhancements || enhancements.length === 0) return [];
+    const sliced = enhancements
+      .filter(e => !e.ms_levels || e.ms_levels.length === 0 || e.ms_levels.includes(msLevel))
+      .slice(0, level);
+    // ベース名ごとに最高Lvエントリだけ残す（出現順は維持）
+    const bestByBase = new Map();
+    for (const e of sliced) {
+      const { base, lv } = this._enhancementBase(e.skill_name);
+      const cur = bestByBase.get(base);
+      if (!cur || lv > cur.lv) bestByBase.set(base, { entry: e, lv });
+    }
+    const keep = new Set([...bestByBase.values()].map(v => v.entry));
+    return sliced.filter(e => keep.has(e));
+  },
+
   applyEnhancements(baseStats, enhancements, level, msLevel) {
     if (level <= 0 || !enhancements || enhancements.length === 0) return baseStats;
 
     const modified = { ...baseStats };
 
-    const targetEnhancements = enhancements
-      .filter(e => !e.ms_levels || e.ms_levels.length === 0 || e.ms_levels.includes(msLevel))
-      .slice(0, level);
+    const targetEnhancements = this.resolveActiveEnhancements(enhancements, level, msLevel);
 
     for (const enhancement of targetEnhancements) {
       const text = this.resolveEnhancementEffect(enhancement, msLevel);

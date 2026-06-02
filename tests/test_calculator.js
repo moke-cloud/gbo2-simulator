@@ -352,6 +352,30 @@ const capInfeas = GBO2Calculator.optimizeToTargets(tgtBase, tgtSlots, tgtParts, 
 assert('上限超過: allMet=false', capInfeas.allMet, false);
 assert('上限超過: capExceeded=true (上限50)', capInfeas.results.find(r => r.stat === 'ballistic_armor').capExceeded, true);
 
+// ===== 14. 強化リスト: 同名強化(上限開放)の置換（二重計上しない） =====
+section('強化: 同名強化は最高Lvのみ採用（上限開放の二重計上を防ぐ）');
+const enhListDup = [
+  { skill_name: '耐ビーム装甲補強 Lv1', effect: '耐ビーム補正が1増加', ms_levels: [1, 2] },
+  { skill_name: 'AD-PA Lv1', effect: '格闘補正が1増加', ms_levels: [1, 2] },
+  { skill_name: 'シールド構造強化 Lv1', effect: 'シールドHPが100増加', ms_levels: [1, 2] },
+  { skill_name: '複合拡張パーツスロット Lv1', effect: '近・中・遠のパーツスロットが1スロずつ増加', ms_levels: [1, 2] },
+  { skill_name: '耐ビーム装甲補強 Lv4', effect: '耐ビーム補正が5増加', ms_levels: [1, 2] },
+  { skill_name: 'AD-PA Lv4', effect: '格闘補正が5増加', ms_levels: [1, 2] },
+];
+const enhBase = { hp: 29000, beam_armor: 37, melee_correction: 44 };
+// 強化6段階・MS LV2: 耐ビームは Lv1(+1)+Lv4(+5) ではなく Lv4(+5) のみ → 37+5=42
+const enhMod6 = GBO2Calculator.applyEnhancements(enhBase, enhListDup, 6, 2);
+assert('上限開放: 耐ビームは最高Lv(+5)で置換 (二重計上なし)', enhMod6.beam_armor, 42);
+assert('上限開放: 格闘補正は最高Lv(+5)で置換', enhMod6.melee_correction, 49);
+// Lv4到達前(4段階)は Lv1(+1)
+const enhMod4 = GBO2Calculator.applyEnhancements(enhBase, enhListDup, 4, 2);
+assert('4段階(上限開放前): 耐ビームはLv1(+1)', enhMod4.beam_armor, 38);
+// resolveActiveEnhancements: 6エントリ → ベース名4種に集約
+const active6 = GBO2Calculator.resolveActiveEnhancements(enhListDup, 6, 2);
+assert('適用強化は4種(同名は最高Lvのみ)', active6.length, 4);
+assert('採用された耐ビームはLv4', active6.some(e => e.skill_name === '耐ビーム装甲補強 Lv4'), true);
+assert('Lv1の耐ビームは不採用', active6.some(e => e.skill_name === '耐ビーム装甲補強 Lv1'), false);
+
 // ===== 結果サマリ =====
 console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
 console.log(`結果: ${passed} 件成功 / ${failed} 件失敗 / 計 ${passed + failed} 件`);
