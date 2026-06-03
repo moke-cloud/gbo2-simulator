@@ -559,6 +559,7 @@ select { cursor: pointer; appearance: none;
 .calc-value-accent { color: var(--teal); }
 .calc-row.highlight { margin-top: 5px; padding-top: 9px; border-top: 1px solid var(--line-soft); }
 .calc-row.highlight .calc-label { color: var(--text); font-weight: 700; }
+.calc-sublabel { color: var(--text-3); font-size: .66rem; font-weight: 400; }
 .calc-row.highlight .calc-value { font-size: 1.05rem; color: var(--teal); }
 .calc-section-label { color: var(--text-3); font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
   border-top: 1px dashed var(--line-soft); margin-top: 6px; padding-top: 8px; }
@@ -573,6 +574,17 @@ select { cursor: pointer; appearance: none;
 /* ===== SKILLS ===== */
 .skills-summary { margin-bottom: var(--gap-md); }
 .skill-toggles-list { display: flex; flex-direction: column; gap: 6px; }
+/* 発動条件ごとの折りたたみグループ */
+.skill-group { border: 1px solid var(--line-soft); background: var(--bg-deep); }
+.skill-group + .skill-group { margin-top: 2px; }
+.skill-group-summary { display: flex; align-items: center; gap: 8px; padding: 6px 10px; cursor: pointer; list-style: none; user-select: none; font-size: .76rem; }
+.skill-group-summary::-webkit-details-marker { display: none; }
+.skill-group-summary::before { content: '▸'; color: var(--text-secondary); font-size: .7rem; transition: var(--tr-fast); }
+.skill-group[open] > .skill-group-summary::before { transform: rotate(90deg); }
+.skill-group-cond { font-weight: 700; color: var(--text); flex: 1; }
+.skill-group-count { font-family: var(--font-mono); color: var(--text-secondary); }
+.skill-group-count b { color: var(--teal); }
+.skill-group-body { display: flex; flex-direction: column; gap: 6px; padding: 0 6px 8px; }
 .skill-toggle-item { background: var(--bg-deep); border: 1px solid var(--line-soft); padding: 8px 10px; opacity: .55; transition: var(--tr-fast); }
 .skill-toggle-item.active { opacity: 1; border-color: var(--line-strong); border-left: 2px solid var(--teal); }
 .skill-toggle-header { display: flex; align-items: center; gap: 8px; }
@@ -581,6 +593,7 @@ select { cursor: pointer; appearance: none;
 .skill-category-badge.stagger { background: rgba(255,194,77,.16); color: var(--warn); }
 .skill-category-badge.damage_cut { background: rgba(77,155,255,.16); color: var(--info); }
 .skill-category-badge.firepower { background: rgba(255,122,61,.16); color: var(--orange); }
+.skill-category-badge.stat_bonus { background: rgba(70,225,180,.16); color: var(--teal); }
 .skill-effect-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 5px; font-size: .74rem; color: var(--text-2); }
 .skill-effect-value { font-family: var(--font-mono); font-weight: 700; color: var(--teal); }
 

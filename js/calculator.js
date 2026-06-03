@@ -100,6 +100,60 @@ const GBO2Calculator = {
   },
 
   /**
+   * HP閾値で発動するダメージカット/耐性上昇を考慮した「区間加重 有効HP」を計算する。
+   * HPバーをしきい値で区切り、各区間で発動中スキルのカット（装甲上昇＋被ダメ%軽減）を
+   * 乗算合成して区間ごとの実効HPを合算する。閾値=1（HP非依存・常時/発動中ON）の効果は
+   * 全区間に適用される。EHP本体（装甲＋パーツのみ）には影響を与えない独立計算。
+   *
+   * @param {number} hp - 最大HP（しきい値で変化しない素のHP）
+   * @param {{ballistic,beam,melee}} armor - 装甲補正pt（パーツ込み・スキル装甲ボーナスは含めない）
+   * @param {{ballistic,beam,melee}} partsCutPct - パーツの属性ダメージカット%（常時）
+   * @param {Array} effects - [{threshold:0〜1, dcPct?:{ballistic,beam,melee}, armorAdd?:{ballistic,beam,melee}}]
+   * @param {{ballistic,beam,melee}} damageRatio - 被弾配分（正規化済み）
+   * @returns {number} 区間加重 有効HP
+   */
+  calcThresholdedEffectiveHP(hp, armor, partsCutPct, effects, damageRatio) {
+    if (!hp || hp <= 0) return 0;
+    const list = effects || [];
+    // 区間境界 = 1.0 と 各しきい値(0<t<1) と 0.0
+    const ths = [...new Set(list.map(e => e.threshold).filter(t => t > 0 && t < 1))].sort((a, b) => b - a);
+    const bounds = [1, ...ths, 0];
+    // 装甲上限: 素のパーツ装甲が上限超なら（拡張スキルcap）それを維持、通常は素上限50
+    const armorCap = {
+      ballistic: Math.max(armor.ballistic || 0, this.DEFENSE_CAP),
+      beam:      Math.max(armor.beam || 0,      this.DEFENSE_CAP),
+      melee:     Math.max(armor.melee || 0,     this.DEFENSE_CAP),
+    };
+    const cutFor = (active, attr) => {
+      let arm = armor[attr] || 0;
+      for (const s of active) arm += (s.armorAdd && s.armorAdd[attr]) || 0;
+      arm = Math.min(arm, armorCap[attr]);
+      let cut = this.calcCutRate(arm);
+      const pPct = partsCutPct[attr] || 0;
+      if (pPct > 0) cut = 1 - (1 - cut) * (1 - pPct / 100);
+      for (const s of active) {
+        const dc = (s.dcPct && s.dcPct[attr]) || 0;
+        if (dc > 0) cut = 1 - (1 - cut) * (1 - dc / 100);
+      }
+      return cut;
+    };
+    let ehp = 0;
+    for (let i = 0; i < bounds.length - 1; i++) {
+      const hi = bounds[i], lo = bounds[i + 1];
+      const frac = hi - lo;
+      if (frac <= 0) continue;
+      // この区間（HP割合 lo〜hi）で発動中の効果 = しきい値が区間上端以上
+      const active = list.filter(s => (s.threshold || 1) >= hi - 1e-9);
+      const bCut  = cutFor(active, 'ballistic');
+      const beCut = cutFor(active, 'beam');
+      const mCut  = cutFor(active, 'melee');
+      const wCut = bCut * damageRatio.ballistic + beCut * damageRatio.beam + mCut * damageRatio.melee;
+      ehp += (hp * frac) / (1 - wCut);
+    }
+    return Math.round(ehp);
+  },
+
+  /**
    * 総合火力スコアを計算
    * @param {number} shootingCorr - 射撃補正値
    * @param {number} meleeCorr - 格闘補正値
@@ -299,9 +353,11 @@ const GBO2Calculator = {
    * @param {Array} expansionSkillsList - 選択中の拡張スキル配列 (デフォルト: [])
    * @param {number} msLevel - 機体レベル (デフォルト: 1)
    * @param {number} enhanceLevel - 強化段階 (デフォルト: 0)
+   * @param {object} skillStatBonuses - 発動系スキル（バイオセンサー等）による一律ステータス
+   *        上昇のフラット加算（キー→値）。火力に限らず補正・装甲・移動を加算し、各上限へクランプ。
    * @returns {object} 修正後のステータス
    */
-  applyParts(baseStats, parts, expansionSkillsList = [], msLevel = 1, enhanceLevel = 0) {
+  applyParts(baseStats, parts, expansionSkillsList = [], msLevel = 1, enhanceLevel = 0, skillStatBonuses = {}) {
     // 拡張スキルの直接効果を適用し上限値ボーナスを取得
     const { stats: expanded, capBonus } = this.applyExpansionSkillsDirect(baseStats, expansionSkillsList);
 
@@ -438,6 +494,27 @@ const GBO2Calculator = {
     applyMult('beam_armor', beamCap);
     applyMult('melee_armor', meleeArmorCap);
 
+    // 発動系スキル（バイオセンサー等）の一律ステータス上昇をフラット加算し、各上限へクランプ。
+    // パーツ・乗算バフ適用後に重ねる（スキルバフは独立した加算レイヤーとして扱う）。
+    const sb = skillStatBonuses || {};
+    const addSkillBonus = (key, cap) => {
+      const v = sb[key] || 0;
+      if (v) modified[key] = Math.min((modified[key] || 0) + v, cap);
+    };
+    if (sb.hp) modified.hp = (modified.hp || 0) + sb.hp;
+    addSkillBonus('shooting_correction', shootingCap);
+    addSkillBonus('melee_correction', meleeCap);
+    addSkillBonus('ballistic_armor', ballisticCap);
+    addSkillBonus('beam_armor', beamCap);
+    addSkillBonus('melee_armor', meleeArmorCap);
+    addSkillBonus('speed', speedCap);
+    addSkillBonus('thruster', thrusterCap);
+    addSkillBonus('boost_speed', boostSpeedCap);
+    if (sb.turn_speed) {
+      modified.turn_speed_ground = Math.min((modified.turn_speed_ground || 0) + sb.turn_speed, turnCap);
+      modified.turn_speed_space  = Math.min((modified.turn_speed_space  || 0) + sb.turn_speed, turnCap);
+    }
+
     // per_custom_part 効果：装備中の該当タイプのパーツ数に応じてボーナス
     for (const skill of (expansionSkillsList || [])) {
       for (const expEff of (skill.effects || [])) {
@@ -513,7 +590,123 @@ const GBO2Calculator = {
       results.push({ category: 'firepower', value, condition: this._parseCondition(ctx) });
     }
 
+    // ステータス一律上昇（火力に限らない）。
+    // バイオセンサー等の「システム発動で各種ステータスが上昇する」効果を捕捉する。
+    // 例: 「発動中は・射撃補正＋10・格闘補正＋20・スピード＋15・高速移動＋20・旋回＋15」
+    // 「○○＋N」「○○が N 増加/上昇」の2形式に対応。フラット加算（整数）のみが対象で、
+    // 「N%上昇」（乗算）・減少（－/低下）・「スラスター消費」減は除外する。
+    // 強化リスト由来は applyEnhancements で既にベースへ加算済みのため、呼び出し側
+    // （_buildSkillEffectItems）で stat_bonus を除外して二重計上を防ぐ。
+    const statBonus = this._extractStatBonuses(text);
+    if (Object.keys(statBonus.bonuses).length > 0) {
+      results.push({
+        category: 'stat_bonus',
+        bonuses: statBonus.bonuses,
+        condition: this._parseActivationCondition(text, statBonus.firstIdx),
+      });
+    }
+
+    // HP閾値で発動するスキル（瀕死/緊急時等）には発動しきい値を付与する。
+    // 「発動考慮 有効HP」（区間加重EHP）で、しきい値以下の区間だけ効果を適用するために使う。
+    const hpThreshold = this._parseHpThreshold(text);
+    if (hpThreshold != null) for (const r of results) r.hpThreshold = hpThreshold;
+
     return results;
+  },
+
+  /**
+   * スキル文からHP発動しきい値（最大HPに対する割合 0〜1）を抽出する。
+   * 「HPが50%以下」→0.5。明示%の無い 瀕死/根性/不屈 は 0.5 で近似。無ければ null。
+   * @param {string} text
+   * @returns {number|null}
+   */
+  _parseHpThreshold(text) {
+    const m = (text || '').match(/HPが?\s*(\d+)\s*%?\s*以下/);
+    if (m) { const p = parseInt(m[1], 10); if (p > 0 && p < 100) return p / 100; }
+    if (/瀕死|根性|不屈/.test(text || '')) return 0.5;
+    return null;
+  },
+
+  // ステータス名 → 内部キー。長い/限定的な名前を先に並べ、部分一致の誤マッチを防ぐ
+  // （例: 「耐格闘補正」を「格闘補正」より先に判定する）。
+  _STAT_NAME_TO_KEY: [
+    ['耐実弾補正', 'ballistic_armor'],
+    ['耐ビーム補正', 'beam_armor'],
+    ['耐格闘補正', 'melee_armor'],
+    ['射撃補正', 'shooting_correction'],
+    ['格闘補正', 'melee_correction'],
+    ['高速移動', 'boost_speed'],
+    ['スピード', 'speed'],
+    ['スラスター', 'thruster'],
+    ['旋回性能', 'turn_speed'],
+    ['旋回', 'turn_speed'],
+    ['機体HP', 'hp'],
+  ],
+
+  /**
+   * スキル/強化テキストからフラットなステータス上昇量を抽出する。
+   * @param {string} text
+   * @returns {{bonuses: object, firstIdx: number}} bonuses はキー→加算値、firstIdx は最初の一致位置
+   */
+  _extractStatBonuses(text) {
+    if (!this._statBonusRe) {
+      const names = this._STAT_NAME_TO_KEY.map(([n]) => n).join('|');
+      // 「(名前)(が)? ＋N」または「(名前)が N 増加/上昇」。% を伴う乗算表現は弾く。
+      this._statBonusRe = new RegExp(
+        `(${names})(?:が)?\\s*(?:[＋+]\\s*(\\d+)(?!\\s*%)|(\\d+)\\s*(?:増加|上昇))`, 'g');
+      this._statNameToKey = new Map(this._STAT_NAME_TO_KEY);
+    }
+    const re = this._statBonusRe;
+    re.lastIndex = 0;
+    const bonuses = {};
+    let firstIdx = -1, m;
+    while ((m = re.exec(text)) !== null) {
+      const key = this._statNameToKey.get(m[1]);
+      const val = parseInt(m[2] ?? m[3], 10);
+      if (!key || !Number.isFinite(val) || val <= 0) continue;
+      bonuses[key] = (bonuses[key] || 0) + val;
+      if (firstIdx < 0) firstIdx = m.index;
+    }
+    return { bonuses, firstIdx };
+  },
+
+  /**
+   * ステータス一律上昇（stat_bonus）専用の発動条件判定。
+   * 一般の _parseCondition は広い前方文脈を見るため、防御系プロセ（例「射撃攻撃による
+   * 被弾時のリアクションを軽減」）を「射撃時のみ」と誤検出しやすい。stat_bonus では
+   * (1)発動条件文（先頭文のHP閾値/自動発動）、(2)効果直前の「・○○中・」状態タグ、を
+   * 優先して読む。属性限定の誤検出は条件付きトグル（発動中）へ丸め、常時パッシブの
+   * 除外判定が誤って効かないようにする。
+   * @param {string} text - スキル効果全文
+   * @param {number} idx - 最初のステータス上昇マッチ位置
+   * @returns {string} 条件ラベル
+   */
+  _parseActivationCondition(text, idx) {
+    const head = (text.split(/[。\n]/)[0] || '');                 // 発動条件を述べる先頭文
+    const sepEnd = Math.max(text.lastIndexOf('。', idx), text.lastIndexOf('\n', idx));
+    const local = text.substring(sepEnd + 1, idx);                // 効果値の直前クローズ（・タグ列）
+    const scope = head + '' + local;
+
+    // 1) HP閾値・撃墜回避での自動発動 → 瀕死/緊急時
+    if (/撃墜される|HPが?\s*\d+\s*%?\s*以下|瀕死|根性|不屈/.test(scope)) return '瀕死/緊急時';
+    // 2) 手動発動（タッチパッド/任意発動）
+    if (/タッチパッド|任意発動|任意で発動|長押しで発動/.test(scope)) return '発動中（手動）';
+    // 3) 効果直前の「・○○中・」状態タグ（格闘兵装装備中 等）を最優先で採用
+    const bullets = local.split('・').map(s => s.trim()).filter(Boolean);
+    const tag = bullets.length ? bullets[bullets.length - 1] : '';
+    if (tag && tag.length <= 18 && !/[＋+]\s*\d/.test(tag) && /(?:装備中|発動中|展開中|移動中|攻撃中|発生中|開始中|変形中|状態|時|場合)/.test(tag)) {
+      if (/高速移動|ブースト/.test(tag)) return '高速移動中';
+      const cleaned = tag
+        .replace(/^(?:さらに|なお|また|かつ|同時に|その際|その他)/u, '')
+        .replace(/(?:の|は|に|、)$/u, '');
+      return cleaned || tag;
+    }
+    // 4) 既存の汎用判定（広い窓）にフォールバック。属性限定の誤検出は「発動中」に丸める
+    //    （常時に丸めると base 込みとして除外され、計上できなくなるため避ける）。
+    const wide = text.substring(Math.max(0, idx - 120), idx);
+    const c = this._parseCondition(wide);
+    if (['射撃時のみ', '実弾属性のみ', 'ビーム属性のみ', '格闘属性のみ'].includes(c)) return '発動中';
+    return c;
   },
 
   _parseCondition(ctx) {

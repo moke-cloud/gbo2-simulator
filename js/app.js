@@ -12,7 +12,8 @@ const App = {
   selectedLevel: 1,
   equippedParts: [null, null, null, null, null, null, null, null],
   savedBuilds: [], // 保存済み構成リスト
-  
+  MAX_SAVED_BUILDS: 50, // 構成保存の上限件数
+
   // 設定（比率は整数で保持、計算時に正規化）
   damageRatio: { ballistic: 4, beam: 3, melee: 3 },
   atkRatio: { shooting: 3, melee: 2 },
@@ -26,6 +27,8 @@ const App = {
   enhanceLevel: 0, // 強化施設段階
   activeSkillIndices: new Set(), // ONになっているスキルのインデックス
   _skillEffectCache: [], // 現在表示中の計算可能スキルリスト
+  _openSkillGroups: new Set(), // 展開中のスキル条件グループ（折りたたみ状態の保持）
+  _skillGroupConds: [], // 描画中のスキルグループ条件（index→条件文字列）
   expansionSkillsData: [], // enhancement_skills.json の全拡張スキルデータ
   expansionSkillLevels: {}, // {skillName: selectedLevel} e.g. {'射撃補正拡張': 3, ...}
   _expandedParts: new Set(), // アコーディオン展開中のパーツ名
@@ -448,12 +451,8 @@ const App = {
 
     this.updateDisplay();
 
-    // スキルトグル状態を復元（updateSkillPanel がキャッシュ構築後）
-    if (Array.isArray(state.activeSkillIndices) && this._skillEffectCache.length > 0) {
-      this.activeSkillIndices = new Set(state.activeSkillIndices);
-      this.updateSkillPanel();
-      this.updateCalculations();
-    }
+    // スキルトグル状態を復元（updateSkillPanel がキャッシュ構築後）。
+    this._restoreSkillToggles(state.activeSkillIndices);
     if (missing.length > 0) {
       this.showToast(`一部パーツが見つかりません（${missing.length}件）`, true);
     }
@@ -467,7 +466,7 @@ const App = {
     if (!base) { section.classList.add('hidden'); return; }
     section.classList.remove('hidden');
 
-    const mod = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel);
+    const mod = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses());
     const normDmg = this.getNormalizedDamageRatio();
     const normAtk = this.getNormalizedAtkRatio();
 
@@ -621,9 +620,10 @@ const App = {
       if (guide) guide.classList.add('hidden');
     }
 
-    // 機体切り替え時にスキルトグルをリセット
+    // 機体切り替え時にスキルトグル・折りたたみ状態をリセット
     this.activeSkillIndices = new Set();
     this._skillEffectCache = [];
+    this._openSkillGroups = new Set();
     this.clearParts();
     this.updateDisplay();
   },
@@ -674,14 +674,49 @@ const App = {
     return Math.max(dc.ballistic, dc.beam, dc.melee);
   },
 
+  /**
+   * 「発動考慮 有効HP」用に、ONになっている有効HP関与スキル（ダメージカット／耐性上昇）を
+   * しきい値付きの効果リストへ変換する。HP閾値の無いもの（常時/発動中ON）は threshold=1
+   * （全区間に適用）。calcThresholdedEffectiveHP へ渡す。
+   * @returns {Array} [{threshold, dcPct?, armorAdd?}]
+   */
+  _getThresholdEHPEffects() {
+    const effects = [];
+    this._skillEffectCache.forEach((it, i) => {
+      if (!this.activeSkillIndices.has(i)) return;
+      const threshold = (typeof it.hpThreshold === 'number') ? it.hpThreshold : 1;
+      if (it.category === 'damage_cut') {
+        const v = Number(it.value) || 0;
+        if (v <= 0) return;
+        const dcPct = { ballistic: 0, beam: 0, melee: 0 };
+        if (it.condition === '実弾属性のみ') dcPct.ballistic = v;
+        else if (it.condition === 'ビーム属性のみ') dcPct.beam = v;
+        else if (it.condition === '格闘属性のみ') dcPct.melee = v;
+        else { dcPct.ballistic = v; dcPct.beam = v; dcPct.melee = v; }
+        effects.push({ threshold, dcPct });
+      } else if (it.category === 'stat_bonus') {
+        const b = it.bonuses || {};
+        const armorAdd = {
+          ballistic: b.ballistic_armor || 0,
+          beam: b.beam_armor || 0,
+          melee: b.melee_armor || 0,
+        };
+        if (armorAdd.ballistic || armorAdd.beam || armorAdd.melee) effects.push({ threshold, armorAdd });
+      }
+    });
+    return effects;
+  },
+
   // === 表示更新 ===
   updateDisplay() {
     this.updateMSCard();
+    // スキルパネルを先に評価して activeSkillIndices（既定ON）を確定させてから
+    // 各ステータス計算へスキルの一律上昇を反映する。
+    this.updateSkillPanel();
     this.updateStats();
     this.updateSlots();
     this.updateEquippedParts();
     this.updateCalculations();
-    this.updateSkillPanel();
     this.renderPartsList();
     this.updateStickyStats();
     this.updateSummary();
@@ -695,7 +730,7 @@ const App = {
 
     const base = this.getBaseStats();
     if (!base) return;
-    const mod = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel);
+    const mod = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses());
     const hasParts = this.equippedParts.some(Boolean);
 
     const set = (id, val, changed) => {
@@ -711,7 +746,10 @@ const App = {
     set('ss-bal', mod.ballistic_armor || 0, hasParts && mod.ballistic_armor !== base.ballistic_armor);
     set('ss-beam', mod.beam_armor || 0, hasParts && mod.beam_armor !== base.beam_armor);
     set('ss-marm', mod.melee_armor || 0, hasParts && mod.melee_armor !== base.melee_armor);
+    set('ss-speed', mod.speed || 0, mod.speed !== base.speed);
+    set('ss-boost', mod.boost_speed || 0, mod.boost_speed !== base.boost_speed);
     set('ss-thr', mod.thruster || 0, hasParts && mod.thruster !== base.thruster);
+    set('ss-turn', mod.turn_speed_ground || 0, (mod.turn_speed_ground || 0) !== (base.turn_speed_ground || 0));
 
     const normDmg = this.getNormalizedDamageRatio();
     const normAtk = this.getNormalizedAtkRatio();
@@ -788,6 +826,76 @@ const App = {
     return result;
   },
 
+  /**
+   * MS固有スキル＋解放済み強化リストから「計算可能なスキル効果項目」リストを構築する。
+   * updateSkillPanel（現在構成のトグル）と calcStatsFromBuild（保存構成の比較）で共用し、
+   * インデックス（activeSkillIndices）の整合を保つため同一の並び・条件で生成する。
+   * 強化リスト由来の stat_bonus は applyEnhancements で既にベースへ加算済みのため除外する
+   * （二重計上防止）。
+   * @returns {Array} [{skillLabel, category, value?, bonuses?, condition}]
+   */
+  _buildSkillEffectItems(ms, msLevel, enhanceLevel) {
+    const items = [];
+    for (const skill of (ms?.skills || [])) {
+      if (typeof skill !== 'object') continue;
+      // 「常時」発動の一律ステータス上昇（スラスター出力強化等）は、ゲーム内/Wikiの
+      // ベース値に既に織り込まれているため除外する（トグルONによる二重計上を防ぐ）。
+      // 条件付き（発動中/瀕死/高速移動中など状況限定でベース非込み）の上昇のみ、
+      // 任意ONのトグルとして残す（バイオセンサー等）。
+      const effects = GBO2Calculator.extractSkillEffects(skill)
+        .filter(e => !(e.category === 'stat_bonus' && e.condition === '常時'));
+      for (const eff of effects) items.push({ skillLabel: `${skill.name} ${skill.level}`, ...eff });
+    }
+    const enhancements = ms?.enhancements || [];
+    const activeEnhs = enhancements
+      .filter(e => !e.ms_levels || e.ms_levels.length === 0 || e.ms_levels.includes(msLevel))
+      .slice(0, enhanceLevel);
+    for (const enh of activeEnhs) {
+      const resolvedEffect = GBO2Calculator.resolveEnhancementEffect(enh, msLevel);
+      const resolved = { ...enh, effect: resolvedEffect };
+      const effects = GBO2Calculator.extractSkillEffects(resolved)
+        .filter(e => e.category !== 'stat_bonus'); // ベースへ加算済み → 二重計上を防ぐ
+      for (const eff of effects) items.push({ skillLabel: enh.skill_name, ...eff });
+    }
+    return items;
+  },
+
+  /**
+   * スキル効果項目のうち、ONになっている stat_bonus を属性別に合算する。
+   * @param {Array} items - _buildSkillEffectItems の戻り値
+   * @param {Set<number>} activeIndices - ONインデックス集合
+   * @returns {object} { shooting_correction, melee_correction, ... } のフラット加算
+   */
+  _aggregateSkillStatBonuses(items, activeIndices) {
+    const sb = {};
+    items.forEach((it, i) => {
+      if (it.category !== 'stat_bonus' || !activeIndices.has(i)) return;
+      for (const [k, v] of Object.entries(it.bonuses || {})) sb[k] = (sb[k] || 0) + v;
+    });
+    return sb;
+  },
+
+  /** 現在構成でONになっているスキルの一律ステータス上昇を返す（applyParts へ渡す） */
+  getActiveSkillStatBonuses() {
+    if (!this.selectedMS) return {};
+    const items = this._buildSkillEffectItems(this.selectedMS, this.selectedLevel, this.enhanceLevel);
+    return this._aggregateSkillStatBonuses(items, this.activeSkillIndices);
+  },
+
+  /**
+   * 保存/共有された ON スキルトグルを復元し、全ステータス表示へ反映する。
+   * updateSkillPanel がキャッシュを構築済みであること（= updateDisplay 後）が前提。
+   */
+  _restoreSkillToggles(savedIndices) {
+    if (!Array.isArray(savedIndices) || this._skillEffectCache.length === 0) return;
+    this.activeSkillIndices = new Set(savedIndices);
+    this.updateSkillPanel();
+    this.updateStats();
+    this.updateCalculations();
+    this.updateStickyStats();
+    this.updateSummary();
+  },
+
   getMaxSlots() {
     if (!this.selectedMS || !this.selectedMS.slots) return { close: 0, mid: 0, long: 0 };
     const slots = this.selectedMS.slots;
@@ -852,7 +960,7 @@ const App = {
       return;
     }
 
-    const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel);
+    const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses());
     const hasParts = this.equippedParts.some(Boolean);
 
     for (const [key, prefix] of Object.entries(statMap)) {
@@ -961,7 +1069,7 @@ const App = {
     const normDmgRatio = this.getNormalizedDamageRatio();
     const normAtkRatio = this.getNormalizedAtkRatio();
 
-    const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel);
+    const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses());
 
     // 射撃・格闘倍率
     const shootMul = GBO2Calculator.calcShootingMultiplier(modified.shooting_correction || 0) * (1 + (modified.shootingDmgPct || 0) / 100);
@@ -1038,6 +1146,30 @@ const App = {
     document.getElementById('calc-effective-hp').textContent = effHP.toLocaleString() + ' (等倍)';
     document.getElementById('calc-effective-hp-adv').textContent = Math.round(effHP / 0.8).toLocaleString();
     document.getElementById('calc-effective-hp-dis').textContent = Math.round(effHP / 1.3).toLocaleString();
+
+    // 発動考慮 有効HP: ONになっているダメージカット/耐性上昇スキルを、HP閾値で区間分割して
+    // 反映した実効HP。装甲・パーツカットはスキル装甲ボーナスを含まない素のパーツ構成で評価し、
+    // スキルの装甲上昇/被ダメ軽減を区間ごとに上乗せする（しきい値以下の帯のみ）。
+    const thEffects = this._getThresholdEHPEffects();
+    const thRow = document.getElementById('threshold-ehp-row');
+    if (thEffects.length > 0) {
+      const partsOnly = GBO2Calculator.applyParts(
+        base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(),
+        this.selectedLevel, this.enhanceLevel
+      );
+      const thEHP = GBO2Calculator.calcThresholdedEffectiveHP(
+        partsOnly.hp || 0,
+        { ballistic: partsOnly.ballistic_armor || 0, beam: partsOnly.beam_armor || 0, melee: partsOnly.melee_armor || 0 },
+        { ballistic: partsOnly.ballisticDamageCutPct || 0, beam: partsOnly.beamDamageCutPct || 0, melee: partsOnly.meleeDamageCutPct || 0 },
+        thEffects, normDmgRatio
+      );
+      document.getElementById('calc-threshold-ehp').textContent = thEHP.toLocaleString() + ' (等倍)';
+      document.getElementById('calc-threshold-ehp-adv').textContent = Math.round(thEHP / 0.8).toLocaleString();
+      document.getElementById('calc-threshold-ehp-dis').textContent = Math.round(thEHP / 1.3).toLocaleString();
+      thRow.style.display = '';
+    } else {
+      thRow.style.display = 'none';
+    }
   },
 
   // === スキルパネル ===
@@ -1048,34 +1180,9 @@ const App = {
       return;
     }
 
-    // 効果項目リストを構築（1効果=1トグル）
-    // effectItems: [{skillLabel, category, value, condition}]
-    const effectItems = [];
-
-    const pushEffects = (skillLabel, effectsArr) => {
-      for (const eff of effectsArr) {
-        effectItems.push({ skillLabel, ...eff });
-      }
-    };
-
-    // 機体固有スキル
-    for (const skill of (this.selectedMS.skills || [])) {
-      if (typeof skill !== 'object') continue;
-      const effects = GBO2Calculator.extractSkillEffects(skill);
-      if (effects.length > 0) pushEffects(`${skill.name} ${skill.level}`, effects);
-    }
-
-    // 強化リスト（現在の強化段階で解放済み、バリアント解決済み）
-    const enhancements = this.selectedMS.enhancements || [];
-    const activeEnhs = enhancements
-      .filter(e => !e.ms_levels || e.ms_levels.length === 0 || e.ms_levels.includes(this.selectedLevel))
-      .slice(0, this.enhanceLevel);
-    for (const enh of activeEnhs) {
-      const resolvedEffect = GBO2Calculator.resolveEnhancementEffect(enh, this.selectedLevel);
-      const resolved = { ...enh, effect: resolvedEffect };
-      const effects = GBO2Calculator.extractSkillEffects(resolved);
-      if (effects.length > 0) pushEffects(enh.skill_name, effects);
-    }
+    // 効果項目リストを構築（1効果=1トグル）。MS固有スキル＋解放済み強化リストを共通生成。
+    // effectItems: [{skillLabel, category, value?|bonuses?, condition}]
+    const effectItems = this._buildSkillEffectItems(this.selectedMS, this.selectedLevel, this.enhanceLevel);
 
     if (effectItems.length === 0) {
       section.classList.add('hidden');
@@ -1084,12 +1191,16 @@ const App = {
     section.classList.remove('hidden');
 
     // 項目数が変わった（機体切替・強化段階変更）場合は再初期化。
-    // 既定ONは「常時」効果のみ。瀕死/緊急時・静止時・状態限定の効果は
-    // 既定でOFF（EHP・カット率を過大に見せないため）。ユーザーが任意でON可能。
+    // 既定ONは「常時」の火力/ダメージカット/よろけ効果のみ。瀕死/緊急時・静止時・
+    // 状態限定の効果は既定OFF（EHP・カット率を過大に見せないため）。ユーザーが任意ON可能。
+    // ステータス一律上昇（stat_bonus）はここでは全て条件付き（常時パッシブは
+    // _buildSkillEffectItems で既に除外済み＝ベース込み）のため、常に既定OFFで提示する。
     if (this._skillEffectCache.length !== effectItems.length) {
       this._skillEffectCache = effectItems;
       this.activeSkillIndices = new Set(
-        effectItems.map((it, i) => (it.condition === '常時' ? i : -1)).filter(i => i >= 0)
+        effectItems
+          .map((it, i) => (it.condition === '常時' && it.category !== 'stat_bonus' ? i : -1))
+          .filter(i => i >= 0)
       );
     } else {
       this._skillEffectCache = effectItems;
@@ -1143,20 +1254,29 @@ const App = {
       document.getElementById('firepower-skill-row').style.display = 'none';
     }
 
-    // トグルリスト描画（1効果=1行）
-    const catLabel = { stagger: 'よろけ値', damage_cut: 'ダメージカット', firepower: '火力' };
+    // トグルリスト描画（発動条件ごとにグルーピング＋折りたたみ）。1効果=1行。
+    const catLabel = { stagger: 'よろけ値', damage_cut: 'ダメージカット', firepower: '火力', stat_bonus: 'ステータス' };
     const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    const safeCategory = (c) => ['stagger', 'damage_cut', 'firepower'].includes(c) ? c : '';
-    const container = document.getElementById('skill-toggles-list');
-    container.innerHTML = effectItems.map((item, i) => {
+    const safeCategory = (c) => ['stagger', 'damage_cut', 'firepower', 'stat_bonus'].includes(c) ? c : '';
+
+    const renderItem = (item, i) => {
       const isOn = this.activeSkillIndices.has(i);
       const badge = catLabel[item.category] || '';
       const cat = safeCategory(item.category);
-      const valueText = item.category === 'stagger'
-        ? `よろけ値を ${Number(item.value)}% で計算`
-        : item.category === 'damage_cut'
-        ? `被ダメージ -${Number(item.value)}%`
-        : `ダメージ +${Number(item.value)}%`;
+      let valueText, valueChip;
+      if (item.category === 'stat_bonus') {
+        valueText = this._formatStatBonuses(item.bonuses);
+        valueChip = '';
+      } else if (item.category === 'stagger') {
+        valueText = `よろけ値を ${Number(item.value)}% で計算`;
+        valueChip = `×${(Number(item.value) / 100).toFixed(2)}`;
+      } else if (item.category === 'damage_cut') {
+        valueText = `被ダメージ -${Number(item.value)}%`;
+        valueChip = `-${Number(item.value)}%`;
+      } else {
+        valueText = `ダメージ +${Number(item.value)}%`;
+        valueChip = `+${Number(item.value)}%`;
+      }
       return `
         <div class="skill-toggle-item ${isOn ? 'active' : ''}">
           <div class="skill-toggle-header">
@@ -1168,11 +1288,58 @@ const App = {
             <span class="skill-category-badge ${cat}">${esc(badge)}</span>
           </div>
           <div class="skill-effect-row">
-            <span>【${esc(item.condition)}】${valueText}</span>
-            <span class="skill-effect-value">${item.category === 'stagger' ? `×${(Number(item.value) / 100).toFixed(2)}` : (item.category === 'damage_cut' ? `-${Number(item.value)}%` : `+${Number(item.value)}%`)}</span>
+            <span class="skill-effect-desc">${esc(valueText)}</span>
+            <span class="skill-effect-value">${esc(valueChip)}</span>
           </div>
         </div>`;
+    };
+
+    // 発動条件ごとにグルーピング（出現順を維持・「常時」のみ先頭固定）
+    const groups = new Map();
+    effectItems.forEach((item, i) => {
+      const key = item.condition || '常時';
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push({ item, i });
+    });
+    const orderedConds = [...groups.keys()].sort((a, b) => (a === '常時' ? -1 : b === '常時' ? 1 : 0));
+    this._skillGroupConds = orderedConds;
+
+    // 既定の開閉: 「常時」＝常に開く / ONを含むグループは開く / 手動展開を記憶
+    const container = document.getElementById('skill-toggles-list');
+    container.innerHTML = orderedConds.map((cond, gi) => {
+      const entries = groups.get(cond);
+      const onCount = entries.filter(e => this.activeSkillIndices.has(e.i)).length;
+      const open = cond === '常時' || onCount > 0 || this._openSkillGroups.has(cond);
+      const body = entries.map(e => renderItem(e.item, e.i)).join('');
+      return `
+        <details class="skill-group" ${open ? 'open' : ''} ontoggle="App._onSkillGroupToggle(${gi}, this.open)">
+          <summary class="skill-group-summary">
+            <span class="skill-group-cond">【${esc(cond)}】</span>
+            <span class="skill-group-count">${onCount > 0 ? `<b>${onCount}</b> / ` : ''}${entries.length}件</span>
+          </summary>
+          <div class="skill-group-body">${body}</div>
+        </details>`;
     }).join('');
+  },
+
+  // スキルグループ <details> の開閉状態を記憶（再描画で維持するため）
+  _onSkillGroupToggle(gi, open) {
+    const cond = (this._skillGroupConds || [])[gi];
+    if (!cond) return;
+    if (open) this._openSkillGroups.add(cond);
+    else this._openSkillGroups.delete(cond);
+  },
+
+  // stat_bonus の bonuses オブジェクトを「射撃補正+10 / 高速移動+20」形式の文字列にする
+  _STAT_BONUS_LABELS: {
+    hp: '機体HP', shooting_correction: '射撃補正', melee_correction: '格闘補正',
+    ballistic_armor: '耐実弾', beam_armor: '耐ビーム', melee_armor: '耐格闘',
+    speed: 'スピード', boost_speed: '高速移動', thruster: 'スラスター', turn_speed: '旋回',
+  },
+  _formatStatBonuses(bonuses) {
+    return Object.entries(bonuses || {})
+      .map(([k, v]) => `${this._STAT_BONUS_LABELS[k] || k}+${v}`)
+      .join(' / ');
   },
 
   toggleSkill(idx) {
@@ -1182,7 +1349,11 @@ const App = {
       this.activeSkillIndices.add(idx);
     }
     this.updateSkillPanel();
+    // 発動系スキルの一律ステータス上昇を全ステータス表示へ反映
+    this.updateStats();
     this.updateCalculations();
+    this.updateStickyStats();
+    this.updateSummary();
   },
 
   // === パーツ操作 ===
@@ -1480,8 +1651,8 @@ const App = {
       alert('機体を選択してください');
       return;
     }
-    if (this.savedBuilds.length >= 5) {
-      alert('保存上限（5件）です。不要な構成を削除してください。');
+    if (this.savedBuilds.length >= this.MAX_SAVED_BUILDS) {
+      alert(`保存上限（${this.MAX_SAVED_BUILDS}件）です。不要な構成を削除してください。`);
       return;
     }
     const trimmed = name.trim() || `構成${this.savedBuilds.length + 1}`;
@@ -1543,6 +1714,8 @@ const App = {
     this._skillEffectCache = [];
     this.enableBuildControls();
     this.updateDisplay();
+    // 保存時の ON スキルトグル状態を復元（比較機能と整合）。
+    this._restoreSkillToggles(build.activeSkillIndices);
   },
 
   deleteBuild(id) {
@@ -1564,14 +1737,14 @@ const App = {
   renderSavedBuilds() {
     const container = document.getElementById('saved-builds-list');
     const counter = document.getElementById('builds-counter');
-    if (counter) counter.textContent = `${this.savedBuilds.length} / 5`;
+    if (counter) counter.textContent = `${this.savedBuilds.length} / ${this.MAX_SAVED_BUILDS}`;
     if (this.savedBuilds.length === 0) {
       container.innerHTML = '<p class="no-builds-msg">保存済み構成はありません</p>';
       return;
     }
     const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     container.innerHTML = `
-      <div class="builds-count">${this.savedBuilds.length} / 5 件</div>
+      <div class="builds-count">${this.savedBuilds.length} / ${this.MAX_SAVED_BUILDS} 件</div>
       ${this.savedBuilds.map(b => `
         <div class="saved-build-item">
           <div class="build-item-info">
@@ -1640,7 +1813,9 @@ const App = {
       shooting_correction: modified.shooting_correction || 0,
       melee_correction: modified.melee_correction || 0,
       speed: modified.speed || 0,
+      boost_speed: modified.boost_speed || 0,
       thruster: modified.thruster || 0,
+      turn_speed: modified.turn_speed_ground || 0,
       bCut, beCut, mCut, avgCut, effectiveHP: effHP,
       shootingMultiplier: shootMul,
       meleeMultiplier: meleeMul,
@@ -1653,7 +1828,7 @@ const App = {
       const base = this.getBaseStats();
       if (!base) return null;
       const expSkills = this.getSelectedExpansionSkills();
-      const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), expSkills, this.selectedLevel, this.enhanceLevel);
+      const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), expSkills, this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses());
       return this._computeCalcResult(modified, this.selectedMS.name, this.selectedLevel);
     }
     const ms = this.msData.find(m => m.name === buildData.msName);
@@ -1672,7 +1847,10 @@ const App = {
       .map(([name, lv]) => this.expansionSkillsData.find(s => s.name === name && s.level === lv))
       .filter(Boolean);
 
-    const modified = GBO2Calculator.applyParts(base, parts, expSkills, buildData.msLevel || 1, buildData.enhanceLevel || 0);
+    // 保存構成で ON だったスキルの一律ステータス上昇を復元して反映
+    const savedItems = this._buildSkillEffectItems(ms, buildData.msLevel, buildData.enhanceLevel || 0);
+    const savedBonuses = this._aggregateSkillStatBonuses(savedItems, new Set(buildData.activeSkillIndices || []));
+    const modified = GBO2Calculator.applyParts(base, parts, expSkills, buildData.msLevel || 1, buildData.enhanceLevel || 0, savedBonuses);
     return this._computeCalcResult(modified, buildData.msName, buildData.msLevel);
   },
 
@@ -1703,7 +1881,9 @@ const App = {
       { label: '射撃補正',    va: a.shooting_correction, vb: b.shooting_correction, fmt: v => String(v) },
       { label: '格闘補正',    va: a.melee_correction,    vb: b.melee_correction,    fmt: v => String(v) },
       { label: 'スピード',    va: a.speed,               vb: b.speed,               fmt: v => String(v) },
+      { label: '高速移動',    va: a.boost_speed,         vb: b.boost_speed,         fmt: v => String(v) },
       { label: 'スラスター',  va: a.thruster,            vb: b.thruster,            fmt: v => String(v) },
+      { label: '旋回(地上)',  va: a.turn_speed,          vb: b.turn_speed,          fmt: v => String(v) },
       { label: '射撃倍率',    va: a.shootingMultiplier,  vb: b.shootingMultiplier,  fmt: v => `×${v.toFixed(2)}` },
       { label: '格闘倍率',    va: a.meleeMultiplier,     vb: b.meleeMultiplier,     fmt: v => `×${v.toFixed(2)}` },
       { label: '加重カット率', va: a.avgCut,             vb: b.avgCut,              fmt: v => `${(v*100).toFixed(1)}%` },

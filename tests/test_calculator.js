@@ -376,6 +376,96 @@ assert('適用強化は4種(同名は最高Lvのみ)', active6.length, 4);
 assert('採用された耐ビームはLv4', active6.some(e => e.skill_name === '耐ビーム装甲補強 Lv4'), true);
 assert('Lv1の耐ビームは不採用', active6.some(e => e.skill_name === '耐ビーム装甲補強 Lv1'), false);
 
+// ===== 15. スキルによる一律ステータス上昇（バイオセンサー等。火力に限らない） =====
+section('extractSkillEffects: ステータス一律上昇の抽出');
+const bioK = {
+  name: '能力UP「バイオセンサーK」?', level: 'LV1',
+  effect: '機体HPが50%以下になった際に発動。発動中は機動力と攻撃力が上昇する。・射撃補正＋10・格闘補正＋20・スピード＋15・高速移動＋20・旋回＋15・スラスター消費－50%',
+};
+const bioEffects = GBO2Calculator.extractSkillEffects(bioK);
+const bioStat = bioEffects.find(e => e.category === 'stat_bonus');
+assert('stat_bonus が抽出される', !!bioStat, true);
+assert('射撃補正+10', bioStat.bonuses.shooting_correction, 10);
+assert('格闘補正+20', bioStat.bonuses.melee_correction, 20);
+assert('スピード+15', bioStat.bonuses.speed, 15);
+assert('高速移動+20', bioStat.bonuses.boost_speed, 20);
+assert('旋回+15', bioStat.bonuses.turn_speed, 15);
+assert('スラスター消費－50%は誤検出しない', bioStat.bonuses.thruster, undefined);
+assert('発動条件は瀕死/緊急時（既定OFF）', bioStat.condition, '瀕死/緊急時');
+
+section('extractSkillEffects: 増加/上昇形と%形の判別');
+const incForm = GBO2Calculator.extractSkillEffects({ effect: '耐実弾補正が8増加し、スラスターが12上昇する' });
+const incStat = incForm.find(e => e.category === 'stat_bonus');
+assert('「N増加」形: 耐実弾+8', incStat.bonuses.ballistic_armor, 8);
+assert('「N上昇」形: スラスター+12', incStat.bonuses.thruster, 12);
+// 「N%上昇」は乗算表現なのでフラット加算には含めない
+const pctForm = GBO2Calculator.extractSkillEffects({ effect: 'スピードが20%上昇する' });
+assert('「N%上昇」はstat_bonusに含めない', pctForm.some(e => e.category === 'stat_bonus'), false);
+// 「耐格闘補正」を「格闘補正」と二重に拾わない
+const meleeArmorOnly = GBO2Calculator.extractSkillEffects({ effect: '耐格闘補正＋6' });
+const maStat = meleeArmorOnly.find(e => e.category === 'stat_bonus');
+assert('耐格闘補正＋6 → melee_armorのみ', maStat.bonuses.melee_armor, 6);
+assert('耐格闘補正は格闘補正に混入しない', maStat.bonuses.melee_correction, undefined);
+
+section('applyParts: スキル一律上昇のフラット加算と上限クランプ');
+const sbBase = { hp: 20000, shooting_correction: 0, melee_correction: 0, ballistic_armor: 0,
+  beam_armor: 0, melee_armor: 0, speed: 130, thruster: 60, boost_speed: 200, turn_speed_ground: 60, turn_speed_space: 60 };
+const sbBonuses = { shooting_correction: 10, melee_correction: 20, speed: 15, boost_speed: 20, turn_speed: 15, hp: 1000 };
+const sbMod = GBO2Calculator.applyParts(sbBase, [], [], 1, 0, sbBonuses);
+assert('射撃補正 0+10', sbMod.shooting_correction, 10);
+assert('格闘補正 0+20', sbMod.melee_correction, 20);
+assert('スピード 130+15', sbMod.speed, 145);
+assert('高速移動 200+20', sbMod.boost_speed, 220);
+assert('旋回(地上) 60+15', sbMod.turn_speed_ground, 75);
+assert('旋回(宇宙) 60+15', sbMod.turn_speed_space, 75);
+assert('HP 20000+1000', sbMod.hp, 21000);
+// 上限クランプ: 射撃補正の素上限100を超えない
+const sbCapMod = GBO2Calculator.applyParts({ shooting_correction: 95 }, [], [], 1, 0, { shooting_correction: 20 });
+assert('射撃補正は素上限100でクランプ', sbCapMod.shooting_correction, 100);
+// パーツ加算とスキル加算は両立し合算される
+const sbWithPart = GBO2Calculator.applyParts({ ballistic_armor: 10 },
+  [{ effects: [{ type: 'ballistic_armor', value: 10 }], slots: { close: 1, mid: 0, long: 0 } }], [], 1, 0,
+  { ballistic_armor: 8 });
+assert('パーツ+10 とスキル+8 を合算 (10+10+8=28)', sbWithPart.ballistic_armor, 28);
+
+// ===== 16. HP閾値発動スキルの「発動考慮 有効HP」（区間加重） =====
+section('_parseHpThreshold: HP発動しきい値の抽出');
+assert('「HPが50%以下」→0.5', GBO2Calculator._parseHpThreshold('機体HPが50%以下になった際に発動'), 0.5, 0.0001);
+assert('「HPが30%以下」→0.3', GBO2Calculator._parseHpThreshold('HPが30%以下で発動'), 0.3, 0.0001);
+assert('瀕死(明示%なし)→0.5近似', GBO2Calculator._parseHpThreshold('瀕死状態で発動'), 0.5, 0.0001);
+assert('閾値なし→null', GBO2Calculator._parseHpThreshold('常時発動する'), null);
+
+section('calcThresholdedEffectiveHP: 区間加重 有効HP');
+const dr = { ballistic: 1/3, beam: 1/3, melee: 1/3 };
+const armor0 = { ballistic: 0, beam: 0, melee: 0 };
+const noCut = { ballistic: 0, beam: 0, melee: 0 };
+// 効果なし → HPそのまま（カット0）
+assert('効果なし→HP等倍', GBO2Calculator.calcThresholdedEffectiveHP(20000, armor0, noCut, [], dr), 20000);
+// 閾値1.0（常時/発動中ON）の被ダメ−30% は全区間に適用 → 20000/0.7
+const wholeBar = GBO2Calculator.calcThresholdedEffectiveHP(20000, armor0, noCut,
+  [{ threshold: 1, dcPct: { ballistic: 30, beam: 30, melee: 30 } }], dr);
+assert('全区間 −30% → 20000/0.7', wholeBar, Math.round(20000 / 0.7));
+// HP50%以下で−30%（装甲0）→ 上半分=素/下半分=0.7。 0.5*20000/1 + 0.5*20000/0.7
+const windowed = GBO2Calculator.calcThresholdedEffectiveHP(20000, armor0, noCut,
+  [{ threshold: 0.5, dcPct: { ballistic: 30, beam: 30, melee: 30 } }], dr);
+const expectWindowed = Math.round(0.5 * 20000 / 1 + 0.5 * 20000 / 0.7);
+assert('HP50%以下−30% → 区間加重', windowed, expectWindowed);
+// 窓考慮は全区間適用より小さい（過大計上を避ける）
+assert('窓考慮 < 全区間適用', windowed < wholeBar, true);
+// しきい値以下で耐性+20（装甲20→cut20%）。上半分=20000(cut0)→/1, 下半分 cut20%→/0.8
+const armorWindow = GBO2Calculator.calcThresholdedEffectiveHP(20000, armor0, noCut,
+  [{ threshold: 0.5, armorAdd: { ballistic: 20, beam: 20, melee: 20 } }], dr);
+assert('HP50%以下 耐性+20 → 区間加重', armorWindow, Math.round(0.5 * 20000 + 0.5 * 20000 / 0.8));
+// 複数しきい値（50%で−20、30%で追加−20）: 3区間に分割される
+const multi = GBO2Calculator.calcThresholdedEffectiveHP(30000, armor0, noCut, [
+  { threshold: 0.5, dcPct: { ballistic: 20, beam: 20, melee: 20 } },
+  { threshold: 0.3, dcPct: { ballistic: 20, beam: 20, melee: 20 } },
+], dr);
+// 上[1.0-0.5]=0.5*30000/1, 中[0.5-0.3]=0.2*30000/0.8, 下[0.3-0]=0.3*30000/(1-(1-0.8*0.8))
+const cutBottom = 1 - 0.8 * 0.8; // 20%と20%を乗算合成 = 36%
+const expectMulti = Math.round(0.5 * 30000 / 1 + 0.2 * 30000 / 0.8 + 0.3 * 30000 / (1 - cutBottom));
+assert('複数しきい値で3区間加重', multi, expectMulti);
+
 // ===== 結果サマリ =====
 console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
 console.log(`結果: ${passed} 件成功 / ${failed} 件失敗 / 計 ${passed + failed} 件`);
