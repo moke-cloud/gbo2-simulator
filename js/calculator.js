@@ -33,6 +33,61 @@ const GBO2Calculator = {
   BOOST_SPEED_CAP: 300, // 高速移動
   TURN_CAP: 200,        // 旋回（地上/宇宙）
 
+  // cap上昇エフェクトの type → 上限ボーナスを足し込む stat キー。
+  // 拡張スキル（耐ビーム補正拡張 等）と新型装甲系カスタムパーツ（新型耐ビーム装甲 等）が
+  // 持つ「○○の上限値が N 増加」を一元的に解釈する単一の情報源。
+  // applyParts のクランプと optimizeToTargets の到達可否判定の両方で共用し、
+  // 上限定義の二重管理（＝50超を見落とす原因）を防ぐ。
+  CAP_EFFECT_TO_KEY: {
+    shooting_correction_cap: 'shooting_correction',
+    melee_correction_cap:    'melee_correction',
+    ballistic_armor_cap:     'ballistic_armor',
+    beam_armor_cap:          'beam_armor',
+    melee_armor_cap:         'melee_armor',
+    thruster_cap:            'thruster',
+    boost_speed_cap:         'boost_speed',
+    speed_cap:               'speed',
+    turn_speed_cap:          'turn_speed',
+  },
+
+  // capBonus の初期オブジェクト（全キー0）を生成する
+  _emptyCapBonus() {
+    return {
+      shooting_correction: 0, melee_correction: 0,
+      ballistic_armor: 0, beam_armor: 0, melee_armor: 0,
+      thruster: 0, boost_speed: 0, speed: 0, turn_speed: 0,
+    };
+  },
+
+  /**
+   * 拡張スキル（direct な cap 効果）＋装備パーツ（cap 効果）から上限値ボーナスを集計する。
+   * applyParts のクランプ上限と、目標値最適化の到達可否判定で共用する。
+   * @param {Array} parts - 装備パーツ配列
+   * @param {Array} expansionSkillsList - 選択中の拡張スキル配列
+   * @param {number} msLevel
+   * @param {number} enhanceLevel
+   * @returns {object} capBonus（stat キー → 上限加算値）
+   */
+  collectCapBonus(parts, expansionSkillsList, msLevel = 1, enhanceLevel = 0) {
+    const capBonus = this._emptyCapBonus();
+    const MAP = this.CAP_EFFECT_TO_KEY;
+    for (const skill of (expansionSkillsList || [])) {
+      for (const eff of (skill.effects || [])) {
+        if (eff.type === 'per_custom_part' || !eff.direct) continue;
+        const key = MAP[eff.type];
+        if (key) capBonus[key] += eff.value;
+      }
+    }
+    for (const part of (parts || [])) {
+      if (!part || !part.effects) continue;
+      for (const eff of part.effects) {
+        const key = MAP[eff.type];
+        if (key) capBonus[key] += this.resolveEffectValue(eff, msLevel, enhanceLevel);
+      }
+    }
+    return capBonus;
+  },
+
   /**
    * 防御補正によるダメージカット率（0〜1）を計算
    * 実ゲーム: 被ダメ倍率 = (100 − 防御補正)/100 → カット率 = 防御補正/100（線形）
@@ -291,15 +346,14 @@ const GBO2Calculator = {
    */
   applyExpansionSkillsDirect(baseStats, expansionSkillsList) {
     const stats = { ...baseStats };
-    const capBonus = {
-      shooting_correction: 0, melee_correction: 0,
-      ballistic_armor: 0, beam_armor: 0, melee_armor: 0,
-      thruster: 0, boost_speed: 0, speed: 0, turn_speed: 0
-    };
+    const capBonus = this._emptyCapBonus();
+    const CAP_MAP = this.CAP_EFFECT_TO_KEY;
 
     for (const skill of (expansionSkillsList || [])) {
       for (const eff of (skill.effects || [])) {
         if (eff.type === 'per_custom_part' || !eff.direct) continue;
+        const capKey = CAP_MAP[eff.type];
+        if (capKey) { capBonus[capKey] += eff.value; continue; }
         switch (eff.type) {
           case 'shooting_correction':   stats.shooting_correction = (stats.shooting_correction || 0) + eff.value; break;
           case 'melee_correction':      stats.melee_correction    = (stats.melee_correction    || 0) + eff.value; break;
@@ -309,15 +363,6 @@ const GBO2Calculator = {
           case 'thruster':              stats.thruster            = (stats.thruster            || 0) + eff.value; break;
           case 'boost_speed':           stats.boost_speed         = (stats.boost_speed         || 0) + eff.value; break;
           case 'hp':                    stats.hp                  = (stats.hp                  || 0) + eff.value; break;
-          case 'shooting_correction_cap': capBonus.shooting_correction += eff.value; break;
-          case 'melee_correction_cap':    capBonus.melee_correction    += eff.value; break;
-          case 'ballistic_armor_cap':     capBonus.ballistic_armor     += eff.value; break;
-          case 'beam_armor_cap':          capBonus.beam_armor          += eff.value; break;
-          case 'melee_armor_cap':         capBonus.melee_armor         += eff.value; break;
-          case 'thruster_cap':            capBonus.thruster            += eff.value; break;
-          case 'boost_speed_cap':         capBonus.boost_speed         += eff.value; break;
-          case 'speed_cap':               capBonus.speed               += eff.value; break;
-          case 'turn_speed_cap':          capBonus.turn_speed          += eff.value; break;
         }
       }
     }
@@ -362,21 +407,12 @@ const GBO2Calculator = {
     const { stats: expanded, capBonus } = this.applyExpansionSkillsDirect(baseStats, expansionSkillsList);
 
     // パーツからも上限ボーナスを収集（先に集めてから上限値を確定する）
+    const CAP_MAP = this.CAP_EFFECT_TO_KEY;
     for (const part of parts) {
       if (!part || !part.effects) continue;
       for (const effect of part.effects) {
-        const v = this.resolveEffectValue(effect, msLevel, enhanceLevel);
-        switch (effect.type) {
-          case 'shooting_correction_cap': capBonus.shooting_correction += v; break;
-          case 'melee_correction_cap':    capBonus.melee_correction    += v; break;
-          case 'ballistic_armor_cap':     capBonus.ballistic_armor     += v; break;
-          case 'beam_armor_cap':          capBonus.beam_armor          += v; break;
-          case 'melee_armor_cap':         capBonus.melee_armor         += v; break;
-          case 'thruster_cap':            capBonus.thruster            += v; break;
-          case 'boost_speed_cap':         capBonus.boost_speed         += v; break;
-          case 'speed_cap':               capBonus.speed               += v; break;
-          case 'turn_speed_cap':          capBonus.turn_speed          += v; break;
-        }
+        const capKey = CAP_MAP[effect.type];
+        if (capKey) capBonus[capKey] += this.resolveEffectValue(effect, msLevel, enhanceLevel);
       }
     }
 
@@ -1021,8 +1057,10 @@ const GBO2Calculator = {
     return this._greedySelect(baseStats, maxSlots, allParts, config, objectiveFn);
   },
 
-  // 目標値（下限）最適化で参照するステータスの素の上限値（拡張スキルで上昇しうる）。
-  // 目標がこの値を超える場合はスロット数に関係なく到達不可なのでメッセージで明示する。
+  // 目標値（下限）最適化で参照するステータスの「素の」上限値。
+  // 実際の到達可能上限は、選択中の拡張スキルcap＋装備可能な新型装甲系パーツcapを
+  // 加算した動的値（_reachableCap / optimizeToTargets 内で算出）。素値だけで判定すると
+  // 耐性50超（新型装甲・拡張スキル）を誤って到達不可と表示してしまうので注意。
   STAT_HARD_CAP: {
     ballistic_armor: 50, beam_armor: 50, melee_armor: 50,
     shooting_correction: 100, melee_correction: 100,
@@ -1101,18 +1139,27 @@ const GBO2Calculator = {
       usedSlots.long  += bestPart.slots.long  || 0;
     }
 
+    // 到達可能な実効上限 = 素の上限 + 選択中拡張スキルのcap + 装備可能な最大cap上昇パーツ。
+    // 新型装甲系cap（新型耐ビーム装甲 等）は複数装備不可のため候補中の「単一最大」を採用する。
+    // これにより耐性50超が可能なケースを capExceeded として誤判定しない。
+    const skillCapBonus = this.collectCapBonus([], expansionSkillsList, msLevel, enhanceLevel);
+    const bestPartCapBonus = this._maxPartCapBonus(allParts, msLevel, enhanceLevel);
+
     const finalMod = this.applyParts(baseStats, currentParts, expansionSkillsList, msLevel, enhanceLevel);
     const results = targetEntries.map(([k, t]) => {
       const achieved = statOf(finalMod, k);
-      const cap = this.STAT_HARD_CAP[k];
+      const hard = this.STAT_HARD_CAP[k];
+      const reachableCap = hard != null
+        ? hard + (skillCapBonus[k] || 0) + (bestPartCapBonus[k] || 0)
+        : null;
       return {
         stat: k,
         target: t,
         achieved,
         met: achieved >= t,
         deficit: Math.max(0, t - achieved),
-        capExceeded: cap != null && t > cap,
-        cap: cap != null ? cap : null,
+        capExceeded: reachableCap != null && t > reachableCap,
+        cap: reachableCap,
       };
     });
     const remainingSlots = {
@@ -1126,6 +1173,168 @@ const GBO2Calculator = {
       results,
       remainingSlots,
       usedAllSlots: remainingSlots.close <= 0 && remainingSlots.mid <= 0 && remainingSlots.long <= 0,
+    };
+  },
+
+  /**
+   * 候補パーツ群の中で、各 stat について単一パーツが与える最大の上限上昇量を返す。
+   * 新型装甲系 cap パーツは複数装備不可のため「最大1枚」を到達可能上限の見積りに用いる。
+   * @param {Array} parts
+   * @param {number} msLevel
+   * @param {number} enhanceLevel
+   * @returns {object} stat キー → 単一パーツ最大cap上昇量
+   */
+  _maxPartCapBonus(parts, msLevel = 1, enhanceLevel = 0) {
+    const best = this._emptyCapBonus();
+    const MAP = this.CAP_EFFECT_TO_KEY;
+    for (const part of (parts || [])) {
+      if (!part || !part.effects) continue;
+      for (const eff of part.effects) {
+        const key = MAP[eff.type];
+        if (!key) continue;
+        const v = this.resolveEffectValue(eff, msLevel, enhanceLevel);
+        if (v > best[key]) best[key] = v;
+      }
+    }
+    return best;
+  },
+
+  /**
+   * ある拡張スキル（全レベルのエントリ配列）が影響しうる stat キーの集合を返す。
+   * 直接フラット効果（耐ビーム+N）と上限上昇効果（耐ビーム上限+N）の両方を対象 stat とみなす。
+   * @param {Array} skillLevelEntries - 同名スキルの全レベルエントリ [{level, effects}, ...]
+   * @returns {Set<string>}
+   */
+  _statKeysAffectedBySkill(skillLevelEntries) {
+    const keys = new Set();
+    const CAP_MAP = this.CAP_EFFECT_TO_KEY;
+    const DIRECT = new Set(['shooting_correction', 'melee_correction',
+      'ballistic_armor', 'beam_armor', 'melee_armor', 'thruster', 'boost_speed', 'speed', 'hp']);
+    for (const entry of (skillLevelEntries || [])) {
+      for (const eff of (entry.effects || [])) {
+        if (CAP_MAP[eff.type]) keys.add(CAP_MAP[eff.type]);
+        else if (DIRECT.has(eff.type)) keys.add(eff.type);
+        else if (eff.type === 'per_custom_part') {
+          for (const pe of (eff.perPartEffects || [])) if (DIRECT.has(pe.type)) keys.add(pe.type);
+        }
+      }
+    }
+    return keys;
+  },
+
+  /**
+   * 目標値最適化で未達のステータスについて、付けると到達に寄与する拡張スキルを提案する。
+   * 現在の拡張スキル選択を起点に、未達 stat に効くスキルだけを対象として段階的にレベルを
+   * 引き上げ、各候補で実際にパーツ最適化(optimizeToTargets)を再実行して効果を検証する貪欲法。
+   *
+   * @param {object} baseStats
+   * @param {object} maxSlots
+   * @param {Array} allParts - 装備候補パーツ
+   * @param {object} config - {
+   *     targets, msLevel, enhanceLevel, equippedParts,
+   *     currentSkillLevels: {skillName: level},          // 現在の拡張スキル選択（0=未装備）
+   *     expansionSkillsData: [{name, level, effects}, ...] // 全拡張スキル（レベル別エントリ）
+   *   }
+   * @returns {{
+   *     suggestions: Array<{name, fromLevel, toLevel}>,
+   *     projectedLevels: object,            // 提案適用後の {skillName: level}
+   *     projectedSkillsList: Array,         // 提案適用後の拡張スキルオブジェクト配列
+   *     baselineOutcome, projectedOutcome,  // 適用前/後の optimizeToTargets 結果
+   *     improved: boolean,
+   *     resolvesAll: boolean                // 提案適用で全目標を満たせるか
+   *   }}
+   */
+  suggestExpansionSkills(baseStats, maxSlots, allParts, config) {
+    const {
+      targets = {},
+      msLevel = 1,
+      enhanceLevel = 0,
+      equippedParts = [],
+      currentSkillLevels = {},
+      expansionSkillsData = [],
+    } = config;
+
+    // スキル名 → レベル別エントリ（昇順）
+    const byName = new Map();
+    for (const s of expansionSkillsData) {
+      if (!byName.has(s.name)) byName.set(s.name, []);
+      byName.get(s.name).push(s);
+    }
+    for (const arr of byName.values()) arr.sort((a, b) => a.level - b.level);
+
+    const buildList = (levels) => {
+      const list = [];
+      for (const [name, lv] of Object.entries(levels)) {
+        if (!lv) continue;
+        const entry = (byName.get(name) || []).find(s => s.level === lv);
+        if (entry) list.push(entry);
+      }
+      return list;
+    };
+    const runOpt = (levels) => this.optimizeToTargets(baseStats, maxSlots, allParts, {
+      targets, msLevel, enhanceLevel, equippedParts, expansionSkillsList: buildList(levels),
+    });
+    // 正規化不足合計（小さいほど良い）と未達件数で構成の良さを評価する
+    const score = (outcome) => {
+      let deficit = 0, unmet = 0;
+      for (const r of outcome.results) {
+        if (!r.met) { unmet++; deficit += r.deficit / r.target; }
+      }
+      return { unmet, deficit };
+    };
+    const better = (a, b) => a.unmet !== b.unmet ? a.unmet < b.unmet : a.deficit < b.deficit - 1e-9;
+
+    const levels = { ...currentSkillLevels };
+    const baselineOutcome = runOpt(levels);
+    let currentOutcome = baselineOutcome;
+    let currentScore = score(currentOutcome);
+
+    const MAX_ITER = 8;
+    for (let iter = 0; iter < MAX_ITER && currentScore.unmet > 0; iter++) {
+      const unmetStats = new Set(currentOutcome.results.filter(r => !r.met).map(r => r.stat));
+
+      let bestPick = null; // {name, level, outcome, score}
+      for (const [name, entries] of byName.entries()) {
+        const maxLv = entries[entries.length - 1].level;
+        const cur = levels[name] || 0;
+        if (cur >= maxLv) continue;
+        // 未達 stat に1つでも効くスキルのみ試す（探索枝刈り）
+        const affects = this._statKeysAffectedBySkill(entries);
+        let relevant = false;
+        for (const s of unmetStats) if (affects.has(s)) { relevant = true; break; }
+        if (!relevant) continue;
+
+        for (let lv = cur + 1; lv <= maxLv; lv++) {
+          const trialLevels = { ...levels, [name]: lv };
+          const trialOutcome = runOpt(trialLevels);
+          const trialScore = score(trialOutcome);
+          if (!better(trialScore, currentScore)) continue;
+          if (!bestPick || better(trialScore, bestPick.score)) {
+            bestPick = { name, level: lv, outcome: trialOutcome, score: trialScore };
+          }
+        }
+      }
+
+      if (!bestPick) break; // これ以上効く拡張スキルが無い
+      levels[bestPick.name] = bestPick.level;
+      currentOutcome = bestPick.outcome;
+      currentScore = bestPick.score;
+    }
+
+    const suggestions = [];
+    for (const [name, lv] of Object.entries(levels)) {
+      const from = currentSkillLevels[name] || 0;
+      if (lv > from) suggestions.push({ name, fromLevel: from, toLevel: lv });
+    }
+
+    return {
+      suggestions,
+      projectedLevels: levels,
+      projectedSkillsList: buildList(levels),
+      baselineOutcome,
+      projectedOutcome: currentOutcome,
+      improved: suggestions.length > 0,
+      resolvesAll: currentOutcome.allMet,
     };
   }
 };

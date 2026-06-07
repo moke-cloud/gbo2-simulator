@@ -351,6 +351,75 @@ section('目標値最適化: ステータス上限超過で到達不可');
 const capInfeas = GBO2Calculator.optimizeToTargets(tgtBase, tgtSlots, tgtParts, { ...tgtCfg, targets: { ballistic_armor: 60 } });
 assert('上限超過: allMet=false', capInfeas.allMet, false);
 assert('上限超過: capExceeded=true (上限50)', capInfeas.results.find(r => r.stat === 'ballistic_armor').capExceeded, true);
+assert('上限超過: 到達可能上限=50 (cap上昇要素なし)', capInfeas.results.find(r => r.stat === 'ballistic_armor').cap, 50);
+
+// ===== 13b. 目標値最適化: 耐性50超（新型装甲系cap・拡張スキルcap）を考慮 =====
+section('目標値最適化: 新型装甲系cap部品で到達可能上限が上がり capExceeded にならない');
+// 新型耐ビーム装甲: 耐ビーム+12 かつ 上限+20 → 到達可能上限 50+20=70
+const capPart = { name: '新型耐ビーム装甲', level: 1, category: 'defense', slots: { close: 1, mid: 0, long: 0 },
+  effects: [{ type: 'beam_armor', value: 12 }, { type: 'beam_armor_cap', value: 20 }],
+  description: '耐ビーム補正が増加し上限値も増加。新型装甲系パーツは複数装備することは不可。' };
+const beamBase = { ...tgtBase, beam_armor: 40 };
+const capPartParts = [capPart,
+  { name: 'B-armor', level: 1, category: 'defense', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'beam_armor', value: 10 }], description: '耐ビーム補正が増加。' }];
+const capPartOut = GBO2Calculator.optimizeToTargets(beamBase, tgtSlots, capPartParts, { ...tgtCfg, targets: { beam_armor: 58 } });
+const capPartRow = capPartOut.results.find(r => r.stat === 'beam_armor');
+assert('新型装甲cap: 到達可能上限=70 (50+20)', capPartRow.cap, 70);
+assert('新型装甲cap: 目標58は capExceeded=false', capPartRow.capExceeded, false);
+assert('新型装甲cap: 実際に50超を達成 (40+12+10=62)', capPartRow.achieved, 62);
+assert('新型装甲cap: 目標58を達成', capPartRow.met, true);
+
+section('目標値最適化: 拡張スキルcapで到達可能上限が上がる');
+// 耐ビーム補正拡張 Lv5: 耐ビーム+12 / 上限+10 → 到達可能上限 50+10=60
+const beamCapSkill = [{ name: '耐ビーム補正拡張', level: 5,
+  effects: [{ type: 'beam_armor', value: 12, direct: true }, { type: 'beam_armor_cap', value: 10, direct: true }] }];
+const skillCapOut = GBO2Calculator.optimizeToTargets(beamBase, tgtSlots,
+  [{ name: 'B-armor', level: 1, category: 'defense', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'beam_armor', value: 10 }], description: '耐ビーム補正が増加。' }],
+  { ...tgtCfg, expansionSkillsList: beamCapSkill, targets: { beam_armor: 55 } });
+const skillCapRow = skillCapOut.results.find(r => r.stat === 'beam_armor');
+assert('拡張スキルcap: 到達可能上限=60 (50+10)', skillCapRow.cap, 60);
+assert('拡張スキルcap: 目標55は capExceeded=false', skillCapRow.capExceeded, false);
+assert('拡張スキルcap: 50超を達成 (40+12+10=62→cap60)', skillCapRow.achieved, 60);
+
+section('collectCapBonus: 拡張スキル+パーツのcapを合算');
+const cb = GBO2Calculator.collectCapBonus([capPart], beamCapSkill, 1, 0);
+assert('collectCapBonus: 耐ビーム上限 = skill10 + part20 = 30', cb.beam_armor, 30);
+assert('collectCapBonus: 他statは0', cb.ballistic_armor, 0);
+
+section('_maxPartCapBonus: 単一パーツの最大cap上昇（新型装甲は複数不可のため合算しない）');
+const mpc = GBO2Calculator._maxPartCapBonus([capPart, capPart], 1, 0);
+assert('_maxPartCapBonus: 耐ビームは単一最大の20 (40にしない)', mpc.beam_armor, 20);
+
+// ===== 13c. 拡張スキル提案 suggestExpansionSkills =====
+section('拡張スキル提案: 未選択時に目標到達に効くスキルを提案する');
+const suggestSkillData = [
+  { name: '耐ビーム補正拡張', level: 1, effects: [{ type: 'beam_armor', value: 2, direct: true }, { type: 'beam_armor_cap', value: 2, direct: true }] },
+  { name: '耐ビーム補正拡張', level: 2, effects: [{ type: 'beam_armor', value: 3, direct: true }, { type: 'beam_armor_cap', value: 3, direct: true }] },
+  { name: '耐ビーム補正拡張', level: 3, effects: [{ type: 'beam_armor', value: 4, direct: true }, { type: 'beam_armor_cap', value: 4, direct: true }] },
+  { name: '耐ビーム補正拡張', level: 4, effects: [{ type: 'beam_armor', value: 8, direct: true }, { type: 'beam_armor_cap', value: 6, direct: true }] },
+  { name: '耐ビーム補正拡張', level: 5, effects: [{ type: 'beam_armor', value: 12, direct: true }, { type: 'beam_armor_cap', value: 10, direct: true }] },
+  { name: 'スラスター拡張', level: 1, effects: [{ type: 'thruster', value: 5, direct: true }, { type: 'thruster_cap', value: 4, direct: true }] },
+];
+// 候補は耐ビーム+10×1枚のみ → 素では 40+10=50 が上限。目標58には拡張スキルcap+flatが必要。
+const suggestParts = [{ name: 'B-armor', level: 1, category: 'defense', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'beam_armor', value: 10 }], description: '耐ビーム補正が増加。' }];
+const sug = GBO2Calculator.suggestExpansionSkills(beamBase, tgtSlots, suggestParts,
+  { targets: { beam_armor: 58 }, currentSkillLevels: {}, expansionSkillsData: suggestSkillData, equippedParts: [] });
+assert('提案: improved=true', sug.improved, true);
+assert('提案: 耐ビーム補正拡張を提案', sug.suggestions.some(s => s.name === '耐ビーム補正拡張'), true);
+assert('提案: 無関係なスラスター拡張は提案しない', sug.suggestions.some(s => s.name === 'スラスター拡張'), false);
+assert('提案: 適用後の方が不足が減る', sug.projectedOutcome.results.find(r => r.stat === 'beam_armor').deficit
+  < sug.baselineOutcome.results.find(r => r.stat === 'beam_armor').deficit, true);
+
+section('拡張スキル提案: 拡張スキル不要なら提案しない');
+// 候補が十分(耐ビーム+20×複数枠) → 素で目標到達 → 提案なし
+const ampleParts = [
+  { name: 'BA1', level: 1, category: 'defense', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'beam_armor', value: 6 }], description: '耐ビーム補正が増加。' },
+  { name: 'BA2', level: 1, category: 'defense', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'beam_armor', value: 6 }], description: '耐ビーム補正が増加。' },
+];
+const sugNone = GBO2Calculator.suggestExpansionSkills(beamBase, tgtSlots, ampleParts,
+  { targets: { beam_armor: 50 }, currentSkillLevels: {}, expansionSkillsData: suggestSkillData, equippedParts: [] });
+assert('提案不要: baseline で全目標達成', sugNone.baselineOutcome.allMet, true);
+assert('提案不要: improved=false', sugNone.improved, false);
 
 // ===== 14. 強化リスト: 同名強化(上限開放)の置換（二重計上しない） =====
 section('強化: 同名強化は最高Lvのみ採用（上限開放の二重計上を防ぐ）');

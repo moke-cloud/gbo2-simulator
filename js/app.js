@@ -1568,6 +1568,10 @@ const App = {
     const currentParts = this.equippedParts.filter(Boolean);
     const candidates = this.customParts.filter(p => !this.unownedParts.has(p.name));
 
+    // 拡張スキル提案を適用したとき、同じ初期スロット状態から再最適化できるよう保持する
+    // （自動追加されたパーツを含めないことで、提案プレビューと再最適化の結果を一致させる）。
+    this._targetOptBaseParts = [...this.equippedParts];
+
     let outcome;
     try {
       outcome = GBO2Calculator.optimizeToTargets(base, maxSlots, candidates, {
@@ -1591,11 +1595,63 @@ const App = {
     }
     this.equippedParts = newParts;
     this.updateDisplay();
-    this.renderTargetResult(outcome);
+
+    // 未達がある場合、目標到達に効く拡張スキルを提案する（未選択・不足どちらでも有効）。
+    let suggestion = null;
+    if (!outcome.allMet && this.expansionSkillsData.length > 0) {
+      try {
+        suggestion = GBO2Calculator.suggestExpansionSkills(base, maxSlots, candidates, {
+          targets,
+          msLevel: this.selectedLevel,
+          enhanceLevel: this.enhanceLevel,
+          equippedParts: currentParts,
+          currentSkillLevels: this.expansionSkillLevels,
+          expansionSkillsData: this.expansionSkillsData,
+        });
+      } catch (e) {
+        suggestion = null;
+      }
+    }
+    this._lastTargetSuggestion = suggestion;
+    this.renderTargetResult(outcome, suggestion);
   },
 
-  // 目標値最適化の結果（達成/未達の内訳と理由）を最適化欄にインライン表示する
-  renderTargetResult(outcome) {
+  // 拡張スキル提案を適用：自動追加前の状態へ戻し、提案レベルを設定して目標値最適化を再実行する。
+  applyExpansionSuggestion() {
+    const sug = this._lastTargetSuggestion;
+    if (!sug || !sug.improved) return;
+    if (this._targetOptBaseParts) this.equippedParts = [...this._targetOptBaseParts];
+    for (const [name, lv] of Object.entries(sug.projectedLevels)) {
+      this.expansionSkillLevels[name] = lv;
+    }
+    this.renderExpansionSkillsUI();
+    this.runOptimizeTargets();
+    const names = sug.suggestions.map(s => `${s.name} LV${s.toLevel}`).join('・');
+    this.showToast(`拡張スキルを提案値（${names}）に設定して再最適化しました`);
+  },
+
+  // 拡張スキル提案ブロックのHTMLを生成する（未達かつ有効な提案がある場合のみ）
+  _renderSuggestionHtml(suggestion) {
+    if (!suggestion || !suggestion.improved) return '';
+    const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const chips = suggestion.suggestions.map(s => {
+      const fromTxt = s.fromLevel > 0 ? `LV${s.fromLevel}→` : '';
+      return `<span class="opt-suggest-chip">${esc(s.name)} ${fromTxt}LV${s.toLevel}</span>`;
+    }).join('');
+    const lead = suggestion.resolvesAll
+      ? 'この拡張スキルを付けると、すべての希望値に到達できます。'
+      : 'この拡張スキルを付けると、希望値に近づきます（上限が上がり、未達が減少）。';
+    return `<div class="opt-suggest">
+      <div class="opt-suggest-head">💡 拡張スキルの提案</div>
+      <div class="opt-suggest-body">${lead}</div>
+      <div class="opt-suggest-chips">${chips}</div>
+      <button type="button" class="opt-suggest-apply" id="opt-suggest-apply">この拡張スキルを設定して再最適化</button>
+    </div>`;
+  },
+
+  // 目標値最適化の結果（達成/未達の内訳と理由）を最適化欄にインライン表示する。
+  // suggestion: suggestExpansionSkills の戻り値（未達時のみ・任意）
+  renderTargetResult(outcome, suggestion = null) {
     const box = document.getElementById('opt-target-result');
     if (!box) return;
     const labelOf = (k) => (this.TARGET_STATS.find(s => s.key === k) || {}).label || k;
@@ -1615,6 +1671,7 @@ const App = {
     const rows = outcome.results.map(r => {
       const cls = r.met ? 'tr-met' : 'tr-unmet';
       const icon = r.met ? '✓' : '✗';
+      // 到達可能上限（拡張スキル・新型装甲cap込み）を超える目標のみ「上限超」を明示する
       const note = r.met ? ''
         : `<span class="tr-note">あと ${r.deficit}${r.capExceeded ? `・上限${r.cap}超` : ''}</span>`;
       return `<div class="opt-tr ${cls}"><span class="tr-icon">${icon}</span>` +
@@ -1622,6 +1679,7 @@ const App = {
         `<span class="tr-val">${r.achieved} / 目標 ${r.target}</span>${note}</div>`;
     }).join('');
 
+    const hasSuggestion = suggestion && suggestion.improved;
     let summary, cls;
     if (outcome.allMet) {
       cls = 'ok';
@@ -1631,8 +1689,13 @@ const App = {
       const unmet = outcome.results.filter(r => !r.met);
       const capOnly = unmet.every(r => r.capExceeded);
       let reason;
-      if (capOnly) {
-        reason = 'ステータス上限を超える目標です。拡張スキルで上限を上げると到達できる場合があります。';
+      if (hasSuggestion) {
+        // 具体的な提案がある場合は提案ブロックに委ねる（重複した一般論を出さない）
+        reason = capOnly
+          ? '現状ではステータス上限を超える目標ですが、下記の拡張スキルで上限を上げれば到達に近づきます。'
+          : 'パーツだけでは不足しています。下記の拡張スキルの追加が有効です。';
+      } else if (capOnly) {
+        reason = '到達可能な上限（拡張スキル・新型装甲の上限上昇を含む）を超える目標です。これ以上は到達できません。';
       } else if (outcome.usedAllSlots) {
         reason = '空きスロットを使い切りました。スロット構成的にこれ以上は到達できません。';
       } else {
@@ -1640,8 +1703,15 @@ const App = {
       }
       summary = `⚠️ ${unmet.length}件の希望値を満たせませんでした。<br><span class="tr-reason">${reason}</span>`;
     }
+    const suggestHtml = this._renderSuggestionHtml(suggestion);
     box.className = 'opt-target-result ' + cls;
-    box.innerHTML = `<div class="opt-tr-summary">${summary}</div>${rows}`;
+    box.innerHTML = `<div class="opt-tr-summary">${summary}</div>${rows}${suggestHtml}`;
+
+    // 提案の「適用」ボタンにハンドラを接続（App は const のため inline onclick 不可）
+    if (suggestHtml) {
+      const applyBtn = document.getElementById('opt-suggest-apply');
+      if (applyBtn) applyBtn.addEventListener('click', () => this.applyExpansionSuggestion());
+    }
   },
 
   // === 構成保存・読込・比較 ===

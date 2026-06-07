@@ -382,6 +382,19 @@ select { cursor: pointer; appearance: none;
 .opt-tr.tr-unmet .tr-val { color: var(--text-2); }
 .opt-tr .tr-note { color: var(--bad); font-size: .68rem; }
 
+/* 拡張スキル提案ブロック（目標値未達時に表示） */
+.opt-suggest { margin-top: 8px; padding: 8px 9px; border: 1px solid var(--accent-blue, #00b4ff);
+  border-radius: 5px; background: rgba(0,180,255,.07); }
+.opt-suggest-head { font-weight: 700; font-size: .74rem; color: var(--accent-blue, #00b4ff); margin-bottom: 4px; }
+.opt-suggest-body { font-size: .7rem; color: var(--text-2); line-height: 1.5; margin-bottom: 6px; }
+.opt-suggest-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.opt-suggest-chip { font-family: var(--font-mono); font-size: .7rem; color: var(--text);
+  padding: 2px 8px; background: rgba(0,180,255,.12); border: 1px solid var(--accent-blue, #00b4ff); border-radius: 3px; }
+.opt-suggest-apply { width: 100%; padding: 7px 10px; font-size: .74rem; font-weight: 700; cursor: pointer;
+  color: var(--accent-blue, #00b4ff); background: rgba(0,180,255,.1);
+  border: 1px solid var(--accent-blue, #00b4ff); border-radius: 4px; transition: background .15s; }
+.opt-suggest-apply:hover { background: rgba(0,180,255,.22); }
+
 /* 特殊効果（数値ステータスに出ない効果: リロード/OH短縮・OH回復） */
 .special-effects { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: var(--gap-sm);
   padding-top: var(--gap-sm); border-top: 1px dashed var(--line-soft); }
