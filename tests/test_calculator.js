@@ -266,6 +266,22 @@ assert('運動性能強化機構 と スラスターのみは共存可', GBO2Cal
 assert('別系統パーツ同士は共存可', GBO2Calculator.partsConflict(pFrameA, pThruster), false);
 assert('スラスターと旋回パーツは共存可(排他指定なし)', GBO2Calculator.partsConflict(pThruster, pSpeedY), false);
 
+// 新型装甲系: 「複数装備することは不可」のように「装備」と「不可」の間に語が挟まる表記でも系統排他を検出する
+const pArmorBeam = { name: '新型耐ビーム装甲', level: 1, slots: { close: 1, mid: 1, long: 9 }, effects: [{ type: 'beam_armor', value: 12 }, { type: 'beam_armor_cap', value: 20 }], description: '耐ビーム補正が12増加し、耐ビーム補正の上限値が20増加する。自機がよろけている場合、ビーム属性から受けるダメージを軽減する。新型装甲系パーツは複数装備することは不可。' };
+const pArmorBall = { name: '新型耐実弾装甲', level: 1, slots: { close: 1, mid: 0, long: 5 }, effects: [{ type: 'ballistic_armor', value: 12 }, { type: 'ballistic_armor_cap', value: 20 }], description: '耐実弾補正が12増加し、耐実弾補正の上限値が20増加する。自機がよろけている場合、実弾属性から受けるダメージを軽減する。新型装甲系パーツは複数装備することは不可。' };
+const pArmorMelee = { name: '新型耐格闘装甲', level: 1, slots: { close: 1, mid: 0, long: 3 }, effects: [{ type: 'melee_armor', value: 12 }, { type: 'melee_armor_cap', value: 20 }], description: '耐格闘補正が12増加し、耐格闘補正の上限値が20増加する。自機がよろけている場合、格闘属性から受けるダメージを軽減する。新型装甲系パーツは複数装備することは不可。' };
+assert('新型装甲系 耐ビーム と 耐実弾 は共存不可(複数装備することは不可)', GBO2Calculator.partsConflict(pArmorBeam, pArmorBall), true);
+assert('新型装甲系 耐ビーム と 耐格闘 は共存不可', GBO2Calculator.partsConflict(pArmorBeam, pArmorMelee), true);
+assert('新型装甲系 同種(耐ビーム同士)も共存不可', GBO2Calculator.partsConflict(pArmorBeam, pArmorBeam), true);
+assert('新型装甲系 と 別系統パーツは共存可', GBO2Calculator.partsConflict(pArmorBeam, pThruster), false);
+
+// 最適化(optimize)でも新型装甲系は1枚しか選ばれない
+const armorBase = { ...focusBase, ballistic_armor: 0, beam_armor: 0, melee_armor: 0 };
+const armorOptRes = GBO2Calculator.optimize(armorBase, { close: 8, mid: 8, long: 30 }, [pArmorBeam, pArmorBall, pArmorMelee], {
+  ...focusConfig, selectedStats: ['ballistic_armor', 'beam_armor', 'melee_armor']
+});
+assert('最適化: 新型装甲系は系統で1枚だけ選択される', armorOptRes.filter(p => /新型.*装甲/.test(p.name)).length, 1);
+
 section('重複: 同名+同LVは複数装備できない / LV違いは可');
 const stackPartLv5 = { name: '射撃強化プログラム', level: 5, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 5 }], description: '射撃補正が増加。' };
 const stackPartLv1 = { name: '射撃強化プログラム', level: 1, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 3 }], description: '射撃補正が増加。' };
