@@ -975,6 +975,8 @@ const App = {
 
     const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses());
     const hasParts = this.equippedParts.some(Boolean);
+    const overflow = modified._overflow || {};
+    const caps = modified._caps || {};
 
     for (const [key, prefix] of Object.entries(statMap)) {
       const baseVal = base[key] || 0;
@@ -992,10 +994,37 @@ const App = {
         document.getElementById(`${prefix}-arrow`).classList.add('hidden');
         document.getElementById(`${prefix}-modified`).classList.add('hidden');
       }
+
+      // 上限クランプで捨てられた分（無駄）を「超過 +N」として表示
+      this._renderStatOverflow(prefix, overflow[key], caps[key]);
     }
 
     // ステータス枠に出ない特殊効果（複合拡張α等のリロード/OH短縮・OH回復）を表示
     this.updateSpecialEffects(modified);
+  },
+
+  // 上限超過（無駄）バッジを stat カードへ表示/更新する。over>0 のときのみ生成・表示。
+  // .stat-values は flex-wrap のため、専用 span が base→modified の下段に折り返して並ぶ。
+  _renderStatOverflow(prefix, over, cap) {
+    const overId = `${prefix}-over`;
+    let overEl = document.getElementById(overId);
+    if (over > 0) {
+      if (!overEl) {
+        const modEl = document.getElementById(`${prefix}-modified`);
+        if (!modEl || !modEl.parentNode) return;
+        overEl = document.createElement('span');
+        overEl.id = overId;
+        overEl.className = 'stat-over';
+        modEl.parentNode.appendChild(overEl);
+      }
+      overEl.textContent = `上限超過 +${over}`;
+      overEl.title = cap != null
+        ? `上限${cap}を${over}超過。この分は無駄になっています`
+        : `上限を${over}超過。この分は無駄になっています`;
+      overEl.classList.remove('hidden');
+    } else if (overEl) {
+      overEl.classList.add('hidden');
+    }
   },
 
   // 数値ステータスに反映されない特殊効果を「特殊効果」行として表示する。

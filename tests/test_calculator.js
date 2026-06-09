@@ -173,6 +173,27 @@ const capUpBase = { ...pctBase, shooting_correction: 90 };
 const capAfter = GBO2Calculator.applyParts(capUpBase, [{ effects: [{ type: 'shooting_correction', value: 20 }] }], capSkill);
 assert('上限+12時: 射撃90+20=110 ≤ 112 → 110', capAfter.shooting_correction, 110);
 
+// ===== 8d. applyParts: 上限超過（無駄）の集計 _overflow =====
+section('applyParts: 上限超過（無駄）の可視化 _overflow');
+// 射撃80+40=120 → 上限100、無駄20 / 格闘80+10=90 → 無駄なし
+const ovAtk = GBO2Calculator.applyParts(baseWithHighCorr, attackParts, []);
+assert('射撃補正の超過 +20 を計上',          ovAtk._overflow.shooting_correction, 20);
+assert('格闘補正は超過なし（キー無し）',     ovAtk._overflow.melee_correction, undefined);
+// 高速移動290+30=320 → 上限300、無駄20 / 旋回195+20=215 → 上限200、無駄15
+const ovMob = GBO2Calculator.applyParts(mobBase, mobParts, []);
+assert('高速移動の超過 +20 を計上',          ovMob._overflow.boost_speed, 20);
+assert('旋回(地上)の超過 +15 を計上',        ovMob._overflow.turn_speed_ground, 15);
+// 乗算で上限超過: 格闘90×1.2=108 → 上限100、無駄8
+const ovMult = GBO2Calculator.applyParts(pctBase, [{ effects: [{ type: 'melee_correction_mult_pct', value: 20 }] }], []);
+assert('乗算%での超過 格闘108-100=+8',       ovMult._overflow.melee_correction, 8);
+// 上限ちょうど（クランプ無し）は超過なし
+const ovExact = GBO2Calculator.applyParts({ ...baseStats, shooting_correction: 60 },
+  [{ effects: [{ type: 'shooting_correction', value: 40 }] }], []); // 60+40=100 ちょうど
+assert('上限ちょうど100は超過なし',          ovExact._overflow.shooting_correction, undefined);
+assert('パーツ無し時は _overflow 空',         Object.keys(GBO2Calculator.applyParts(baseStats, [], [])._overflow).length, 0);
+// 拡張スキルで上限+12 → 90+20=110 ≤ 112 はクランプされず超過なし
+assert('上限上昇で収まる場合は超過なし',     capAfter._overflow.shooting_correction, undefined);
+
 // ===== 9. 構成比較ロジック（スタンドアロン関数テスト）=====
 section('renderCompareResults: 優劣判定ロジック');
 // 直接テストできないが、_computeCalcResult の入力検証

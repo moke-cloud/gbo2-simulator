@@ -438,6 +438,23 @@ const GBO2Calculator = {
     const turnCap        = this.TURN_CAP        + (capBonus.turn_speed          || 0);
     const baseHp         = baseStats.hp || 0;  // HP%バフの基準（強化適用済み素のHP）
 
+    // 上限クランプで捨てられた分（＝無駄になった補正/装甲/移動値）を可視化するため、
+    // クランプ前の理論値を並走集計する。modified への加算と完全に同じ順序・同じ effectVal で
+    // 積み上げるが Math.min を掛けない点だけが異なる（クランプの単一情報源を二重化しない）。
+    const CAPPED = {
+      shooting_correction: shootingCap, melee_correction: meleeCap,
+      ballistic_armor: ballisticCap, beam_armor: beamCap, melee_armor: meleeArmorCap,
+      speed: speedCap, thruster: thrusterCap, boost_speed: boostSpeedCap,
+      turn_speed_ground: turnCap, turn_speed_space: turnCap,
+    };
+    const uncapped = {};
+    for (const k of Object.keys(CAPPED)) uncapped[k] = modified[k] || 0;
+    // 1つの stat キーへ add を加算しつつ、理論値（uncapped）も並走加算する
+    const clampAdd = (key, add) => {
+      uncapped[key] = (uncapped[key] || 0) + add;
+      modified[key] = Math.min((modified[key] || 0) + add, CAPPED[key]);
+    };
+
     for (const part of parts) {
       if (!part || !part.effects) continue;
       for (const effect of part.effects) {
@@ -447,32 +464,32 @@ const GBO2Calculator = {
             modified.hp = (modified.hp || 0) + effectVal;
             break;
           case 'ballistic_armor':
-            modified.ballistic_armor = Math.min((modified.ballistic_armor || 0) + effectVal, ballisticCap);
+            clampAdd('ballistic_armor', effectVal);
             break;
           case 'beam_armor':
-            modified.beam_armor = Math.min((modified.beam_armor || 0) + effectVal, beamCap);
+            clampAdd('beam_armor', effectVal);
             break;
           case 'melee_armor':
-            modified.melee_armor = Math.min((modified.melee_armor || 0) + effectVal, meleeArmorCap);
+            clampAdd('melee_armor', effectVal);
             break;
           case 'shooting_correction':
-            modified.shooting_correction = Math.min((modified.shooting_correction || 0) + effectVal, shootingCap);
+            clampAdd('shooting_correction', effectVal);
             break;
           case 'melee_correction':
-            modified.melee_correction = Math.min((modified.melee_correction || 0) + effectVal, meleeCap);
+            clampAdd('melee_correction', effectVal);
             break;
           case 'speed':
-            modified.speed = Math.min((modified.speed || 0) + effectVal, speedCap);
+            clampAdd('speed', effectVal);
             break;
           case 'thruster':
-            modified.thruster = Math.min((modified.thruster || 0) + effectVal, thrusterCap);
+            clampAdd('thruster', effectVal);
             break;
           case 'turn_speed':
-            modified.turn_speed_ground = Math.min((modified.turn_speed_ground || 0) + effectVal, turnCap);
-            modified.turn_speed_space  = Math.min((modified.turn_speed_space  || 0) + effectVal, turnCap);
+            clampAdd('turn_speed_ground', effectVal);
+            clampAdd('turn_speed_space', effectVal);
             break;
           case 'boost_speed':
-            modified.boost_speed = Math.min((modified.boost_speed || 0) + effectVal, boostSpeedCap);
+            clampAdd('boost_speed', effectVal);
             break;
           case 'oh_recovery_pct':
             ohRecoveryPct += effectVal;
@@ -519,36 +536,39 @@ const GBO2Calculator = {
     }
 
     // 補正・装甲の乗算%バフ: フラット加算後の値に乗算し、再度キャップにクランプ
-    const applyMult = (key, cap) => {
+    // （理論値 uncapped 側も同率で乗算してクランプ前の値を保つ）
+    const applyMult = (key) => {
       if (multPct[key] > 0) {
-        modified[key] = Math.min(Math.round((modified[key] || 0) * (1 + multPct[key] / 100)), cap);
+        const f = 1 + multPct[key] / 100;
+        uncapped[key] = Math.round((uncapped[key] || 0) * f);
+        modified[key] = Math.min(Math.round((modified[key] || 0) * f), CAPPED[key]);
       }
     };
-    applyMult('shooting_correction', shootingCap);
-    applyMult('melee_correction', meleeCap);
-    applyMult('ballistic_armor', ballisticCap);
-    applyMult('beam_armor', beamCap);
-    applyMult('melee_armor', meleeArmorCap);
+    applyMult('shooting_correction');
+    applyMult('melee_correction');
+    applyMult('ballistic_armor');
+    applyMult('beam_armor');
+    applyMult('melee_armor');
 
     // 発動系スキル（バイオセンサー等）の一律ステータス上昇をフラット加算し、各上限へクランプ。
     // パーツ・乗算バフ適用後に重ねる（スキルバフは独立した加算レイヤーとして扱う）。
     const sb = skillStatBonuses || {};
-    const addSkillBonus = (key, cap) => {
+    const addSkillBonus = (key) => {
       const v = sb[key] || 0;
-      if (v) modified[key] = Math.min((modified[key] || 0) + v, cap);
+      if (v) clampAdd(key, v);
     };
     if (sb.hp) modified.hp = (modified.hp || 0) + sb.hp;
-    addSkillBonus('shooting_correction', shootingCap);
-    addSkillBonus('melee_correction', meleeCap);
-    addSkillBonus('ballistic_armor', ballisticCap);
-    addSkillBonus('beam_armor', beamCap);
-    addSkillBonus('melee_armor', meleeArmorCap);
-    addSkillBonus('speed', speedCap);
-    addSkillBonus('thruster', thrusterCap);
-    addSkillBonus('boost_speed', boostSpeedCap);
+    addSkillBonus('shooting_correction');
+    addSkillBonus('melee_correction');
+    addSkillBonus('ballistic_armor');
+    addSkillBonus('beam_armor');
+    addSkillBonus('melee_armor');
+    addSkillBonus('speed');
+    addSkillBonus('thruster');
+    addSkillBonus('boost_speed');
     if (sb.turn_speed) {
-      modified.turn_speed_ground = Math.min((modified.turn_speed_ground || 0) + sb.turn_speed, turnCap);
-      modified.turn_speed_space  = Math.min((modified.turn_speed_space  || 0) + sb.turn_speed, turnCap);
+      clampAdd('turn_speed_ground', sb.turn_speed);
+      clampAdd('turn_speed_space', sb.turn_speed);
     }
 
     // per_custom_part 効果：装備中の該当タイプのパーツ数に応じてボーナス
@@ -562,13 +582,13 @@ const GBO2Calculator = {
           const bonus = perPart.value * matchCount;
           switch (perPart.type) {
             case 'hp':                  modified.hp                  = (modified.hp                  || 0) + bonus; break;
-            case 'shooting_correction': modified.shooting_correction = Math.min((modified.shooting_correction || 0) + bonus, shootingCap); break;
-            case 'melee_correction':    modified.melee_correction    = Math.min((modified.melee_correction    || 0) + bonus, meleeCap); break;
-            case 'ballistic_armor':     modified.ballistic_armor     = Math.min((modified.ballistic_armor     || 0) + bonus, ballisticCap); break;
-            case 'beam_armor':          modified.beam_armor          = Math.min((modified.beam_armor          || 0) + bonus, beamCap); break;
-            case 'melee_armor':         modified.melee_armor         = Math.min((modified.melee_armor         || 0) + bonus, meleeArmorCap); break;
-            case 'thruster':            modified.thruster            = Math.min((modified.thruster            || 0) + bonus, thrusterCap); break;
-            case 'boost_speed':         modified.boost_speed         = Math.min((modified.boost_speed || 0) + bonus, boostSpeedCap); break;
+            case 'shooting_correction': clampAdd('shooting_correction', bonus); break;
+            case 'melee_correction':    clampAdd('melee_correction', bonus); break;
+            case 'ballistic_armor':     clampAdd('ballistic_armor', bonus); break;
+            case 'beam_armor':          clampAdd('beam_armor', bonus); break;
+            case 'melee_armor':         clampAdd('melee_armor', bonus); break;
+            case 'thruster':            clampAdd('thruster', bonus); break;
+            case 'boost_speed':         clampAdd('boost_speed', bonus); break;
             case 'shield_hp':           modified.shield_hp           = (modified.shield_hp           || 0) + bonus; break;
             case 'reload_oh_reduction_pct': modified.reloadOhReductionPct = (modified.reloadOhReductionPct || 0) + bonus; break;
           }
@@ -582,6 +602,17 @@ const GBO2Calculator = {
     modified.beamDamageCutPct = beamDamageCutPct;
     modified.meleeDamageCutPct = meleeDamageCutPct;
     modified.ohRecoveryPct = ohRecoveryPct;
+
+    // 上限超過（無駄）の集計：クランプで捨てられた分を stat キー → 超過量で返す。
+    // 素の値が単独で上限超のとき（パーツ無加算）は誤検出しないよう、加算で上限を
+    // 超えた場合（uncapped が素のベースより大きい）に限って計上する。
+    const overflow = {};
+    for (const [key, cap] of Object.entries(CAPPED)) {
+      const over = Math.round((uncapped[key] || 0) - cap);
+      if (over > 0 && (uncapped[key] || 0) > (baseStats[key] || 0)) overflow[key] = over;
+    }
+    modified._caps = { ...CAPPED };
+    modified._overflow = overflow;
 
     return modified;
   },

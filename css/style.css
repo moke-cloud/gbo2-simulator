@@ -511,6 +511,11 @@ select { cursor: pointer; appearance: none;
 .stat-arrow { color: var(--text-3); font-size: .8rem; }
 .stat-modified { font-size: 1.02rem; font-weight: 700; color: var(--good); text-shadow: 0 0 10px rgba(52,224,122,.3); }
 .stat-modified.decreased { color: var(--bad); text-shadow: 0 0 10px rgba(255,79,107,.3); }
+.stat-over {
+  flex-basis: 100%; text-align: center; cursor: help;
+  font-family: var(--font-display); font-size: .62rem; font-weight: 700;
+  letter-spacing: .03em; color: var(--warn);
+}
 
 /* ===== SLOTS ===== */
 .slot-bars { display: flex; flex-direction: column; gap: var(--gap-sm); margin-bottom: var(--gap-md); }
