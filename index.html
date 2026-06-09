@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oxanium:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260607a">
+  <link rel="stylesheet" href="css/style.css?v=20260609a">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230a0e14'/%3E%3Cpath d='M4 4 L28 4 L28 24 L24 28 L4 28 Z' fill='none' stroke='%2300e0c6' stroke-width='2'/%3E%3Ctext x='16' y='22' font-family='Arial Black,sans-serif' font-size='15' font-weight='900' text-anchor='middle' fill='%2300e0c6'%3EGB%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -385,6 +385,16 @@
         <div id="special-effects" class="special-effects hidden"></div>
       </section>
 
+      <!-- 基準構成との常時比較（保存構成をピン留め→現在の構成とライブ比較） -->
+      <section id="baseline-compare-section" class="panel hidden">
+        <div class="baseline-cmp-header">
+          <h2 class="section-title" style="margin:0"><span class="icon">⚖</span> 基準構成との比較</h2>
+          <button id="btn-clear-baseline" class="btn-clear-baseline" type="button" title="基準を解除">基準解除 ✕</button>
+        </div>
+        <p class="baseline-cmp-hint">保存構成の📌で基準を設定。現在いじっている構成との差分（Δ）をリアルタイム表示します。</p>
+        <div id="baseline-compare-body" class="baseline-cmp-body"></div>
+      </section>
+
       <!-- スロット & パーツ配置 -->
       <section id="slots-section" class="panel">
         <h2 class="section-title"><span class="icon">◎</span> パーツスロット</h2>
@@ -644,8 +654,8 @@
     <p>GBO2 Custom Parts Simulator | データ元: <a href="https://w.atwiki.jp/battle-operation2/" target="_blank" rel="noopener">バトオペ2攻略Wiki</a> | 非公式ファンツール</p>
   </footer>
 
-  <script src="js/calculator.js?v=20260607a"></script>
-  <script src="js/share.js?v=20260607a"></script>
-  <script src="js/app.js?v=20260607a"></script>
+  <script src="js/calculator.js?v=20260609a"></script>
+  <script src="js/share.js?v=20260609a"></script>
+  <script src="js/app.js?v=20260609a"></script>
 </body>
 </html>

@@ -632,6 +632,34 @@ select { cursor: pointer; appearance: none;
 .cmp-better { color: var(--good); }
 .cmp-worse { color: var(--text-3); }
 
+/* ===== BASELINE (常時) 比較 ===== */
+.baseline-cmp-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.baseline-cmp-hint { font-size: .7rem; color: var(--text-3); margin: 6px 0 10px; }
+.btn-clear-baseline {
+  flex: none; font-size: .72rem; font-weight: 700; cursor: pointer; padding: 5px 10px;
+  background: var(--bg-raise); border: 1px solid var(--line-strong); color: var(--text-2);
+  transition: var(--tr-fast);
+}
+.btn-clear-baseline:hover { color: var(--bad); border-color: var(--bad); }
+.baseline-table .cmp-delta { letter-spacing: .02em; }
+.cmp-up   { color: var(--good); }
+.cmp-down { color: var(--bad); }
+.cmp-eq   { color: var(--text-3); }
+
+/* 保存構成リストの基準ピン */
+.btn-pin-build {
+  font-size: .72rem; cursor: pointer; padding: 5px 8px; line-height: 1;
+  background: var(--bg-raise); border: 1px solid var(--line-strong); color: var(--text-3);
+  transition: var(--tr-fast); filter: grayscale(1) opacity(.6);
+}
+.btn-pin-build:hover { filter: none; border-color: var(--teal-dim); }
+.btn-pin-build.active { filter: none; border-color: var(--teal); background: rgba(25,227,196,.12); }
+.saved-build-item.is-baseline { border-left-color: var(--teal); background: rgba(25,227,196,.06); }
+.baseline-tag {
+  display: inline-block; font-size: .6rem; font-weight: 700; padding: 1px 5px; vertical-align: middle;
+  color: var(--bg-deep); background: var(--teal); border-radius: 2px; font-family: var(--font-display);
+}
+
 /* ===== PARTS PANEL ===== */
 #parts-panel { display: flex; flex-direction: column; padding: var(--gap-md); max-height: calc(100vh - 90px); position: sticky; top: 78px; }
 .parts-panel-title { display: flex; align-items: center; justify-content: space-between; }

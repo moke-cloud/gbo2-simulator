@@ -13,6 +13,7 @@ const App = {
   equippedParts: [null, null, null, null, null, null, null, null],
   savedBuilds: [], // 保存済み構成リスト
   MAX_SAVED_BUILDS: 50, // 構成保存の上限件数
+  comparisonBaselineId: null, // 「基準」としてピン留めした保存構成のID（常時比較用）
 
   // 設定（比率は整数で保持、計算時に正規化）
   damageRatio: { ballistic: 4, beam: 3, melee: 3 },
@@ -97,6 +98,13 @@ const App = {
 
       const savedBuilds = localStorage.getItem('gbo2_saved_builds');
       if (savedBuilds) this.savedBuilds = JSON.parse(savedBuilds);
+
+      const baselineId = localStorage.getItem('gbo2_baseline_id');
+      if (baselineId !== null && baselineId !== '') {
+        const id = Number(baselineId);
+        // 削除済み構成を指していないか検証してから採用する
+        if (this.savedBuilds.some(b => b.id === id)) this.comparisonBaselineId = id;
+      }
     } catch (e) {
       // 設定読み込み失敗時はデフォルト値を使用
     }
@@ -227,6 +235,10 @@ const App = {
 
     // 構成比較
     document.getElementById('btn-compare').addEventListener('click', () => this.runCompareBuild());
+
+    // 基準構成との常時比較（ピン解除）
+    const clearBaselineBtn = document.getElementById('btn-clear-baseline');
+    if (clearBaselineBtn) clearBaselineBtn.addEventListener('click', () => this.clearBaseline());
 
     // パーツカテゴリフィルター
     document.getElementById('parts-category-tabs').addEventListener('click', (e) => {
@@ -720,6 +732,7 @@ const App = {
     this.renderPartsList();
     this.updateStickyStats();
     this.updateSummary();
+    this.updateBaselineCompare();
   },
 
   updateStickyStats() {
@@ -1782,6 +1795,13 @@ const App = {
     this.renderExpansionSkillsUI();
     this.activeSkillIndices = new Set();
     this._skillEffectCache = [];
+
+    // 「既存構成を編集」ワークフロー: 読み込んだ構成を自動で基準にピン留めし、
+    // 以降の手直しを常時その元構成と比較できるようにする（基準解除でいつでも外せる）。
+    this.comparisonBaselineId = build.id;
+    this._persistBaseline();
+    this.renderSavedBuilds();
+
     this.enableBuildControls();
     this.updateDisplay();
     // 保存時の ON スキルトグル状態を復元（比較機能と整合）。
@@ -1793,15 +1813,46 @@ const App = {
     const name = build ? build.name : '';
     if (!confirm(`「${name}」を削除しますか？`)) return;
     this.savedBuilds = this.savedBuilds.filter(b => b.id !== id);
+    // 基準にピン留め中の構成を削除したらピンも解除する
+    if (this.comparisonBaselineId === id) {
+      this.comparisonBaselineId = null;
+      this._persistBaseline();
+    }
     this._persistBuilds();
     this.renderSavedBuilds();
     this.updateBuildSelectOptions();
+    this.updateBaselineCompare();
   },
 
   _persistBuilds() {
     try {
       localStorage.setItem('gbo2_saved_builds', JSON.stringify(this.savedBuilds));
     } catch (e) { /* storage full or private mode */ }
+  },
+
+  _persistBaseline() {
+    try {
+      if (this.comparisonBaselineId === null) {
+        localStorage.removeItem('gbo2_baseline_id');
+      } else {
+        localStorage.setItem('gbo2_baseline_id', String(this.comparisonBaselineId));
+      }
+    } catch (e) { /* storage full or private mode */ }
+  },
+
+  // 保存構成の「基準」ピンをトグルする（同じIDを再指定で解除）
+  pinBaseline(id) {
+    this.comparisonBaselineId = (this.comparisonBaselineId === id) ? null : id;
+    this._persistBaseline();
+    this.renderSavedBuilds();
+    this.updateBaselineCompare();
+  },
+
+  clearBaseline() {
+    this.comparisonBaselineId = null;
+    this._persistBaseline();
+    this.renderSavedBuilds();
+    this.updateBaselineCompare();
   },
 
   renderSavedBuilds() {
@@ -1815,20 +1866,26 @@ const App = {
     const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     container.innerHTML = `
       <div class="builds-count">${this.savedBuilds.length} / ${this.MAX_SAVED_BUILDS} 件</div>
-      ${this.savedBuilds.map(b => `
-        <div class="saved-build-item">
+      ${this.savedBuilds.map(b => {
+        const pinned = b.id === this.comparisonBaselineId;
+        return `
+        <div class="saved-build-item ${pinned ? 'is-baseline' : ''}">
           <div class="build-item-info">
-            <span class="build-item-name">${esc(b.name)}</span>
+            <span class="build-item-name">${pinned ? '<span class="baseline-tag">基準</span> ' : ''}${esc(b.name)}</span>
             <span class="build-item-ms">${esc(b.msName)} LV${b.msLevel}</span>
             <span class="build-item-date">${esc(b.timestamp)}</span>
           </div>
           <div class="build-item-actions">
+            <button class="btn-pin-build ${pinned ? 'active' : ''}" data-id="${b.id}" title="${pinned ? '基準を解除' : '基準にして常時比較'}">📌</button>
             <button class="btn-load-build" data-id="${b.id}">読込</button>
             <button class="btn-delete-build" data-id="${b.id}" title="削除">✕</button>
           </div>
         </div>
-      `).join('')}
+      `; }).join('')}
     `;
+    container.querySelectorAll('.btn-pin-build').forEach(btn =>
+      btn.addEventListener('click', () => this.pinBaseline(Number(btn.dataset.id)))
+    );
     container.querySelectorAll('.btn-load-build').forEach(btn =>
       btn.addEventListener('click', () => this.loadBuild(Number(btn.dataset.id)))
     );
@@ -1941,30 +1998,54 @@ const App = {
     this.renderCompareResults(resultA, resultB, nameA, nameB);
   },
 
+  /**
+   * 構成比較・基準比較で共用する行定義（_computeCalcResult のキーで参照）。
+   * すべて「値が高いほど良い」ステータス。kind: 'int'(整数) | 'mult'(×倍率) | 'pct'(カット率%)。
+   * @returns {Array<{label:string, key:string, kind:string, fmt:(v:number)=>string}>}
+   */
+  _compareRowDefs() {
+    return [
+      { label: '機体HP',      key: 'hp',                 kind: 'int',  fmt: v => v.toLocaleString() },
+      { label: '耐実弾',      key: 'ballistic_armor',    kind: 'int',  fmt: v => String(v) },
+      { label: '耐ビーム',    key: 'beam_armor',         kind: 'int',  fmt: v => String(v) },
+      { label: '耐格闘',      key: 'melee_armor',        kind: 'int',  fmt: v => String(v) },
+      { label: '射撃補正',    key: 'shooting_correction', kind: 'int', fmt: v => String(v) },
+      { label: '格闘補正',    key: 'melee_correction',   kind: 'int',  fmt: v => String(v) },
+      { label: 'スピード',    key: 'speed',              kind: 'int',  fmt: v => String(v) },
+      { label: '高速移動',    key: 'boost_speed',        kind: 'int',  fmt: v => String(v) },
+      { label: 'スラスター',  key: 'thruster',           kind: 'int',  fmt: v => String(v) },
+      { label: '旋回(地上)',  key: 'turn_speed',         kind: 'int',  fmt: v => String(v) },
+      { label: '射撃倍率',    key: 'shootingMultiplier', kind: 'mult', fmt: v => `×${v.toFixed(2)}` },
+      { label: '格闘倍率',    key: 'meleeMultiplier',    kind: 'mult', fmt: v => `×${v.toFixed(2)}` },
+      { label: '加重カット率', key: 'avgCut',            kind: 'pct',  fmt: v => `${(v*100).toFixed(1)}%` },
+      { label: '有効HP',      key: 'effectiveHP',        kind: 'int',  fmt: v => v.toLocaleString() },
+    ];
+  },
+
+  /**
+   * 差分（現在 − 基準）を符号付きで整形し、改善/悪化/同値のクラスを返す。
+   * @returns {{text:string, cls:string}}
+   */
+  _formatDelta(def, diff) {
+    const eps = def.kind === 'pct' ? 0.00005 : def.kind === 'mult' ? 0.005 : 0.5;
+    if (Math.abs(diff) < eps) return { text: '±0', cls: 'cmp-eq' };
+    const sign = diff > 0 ? '+' : '−';
+    const a = Math.abs(diff);
+    const mag = def.kind === 'pct'  ? `${(a * 100).toFixed(1)}%`
+              : def.kind === 'mult' ? a.toFixed(2)
+              : Math.round(a).toLocaleString();
+    return { text: `${sign}${mag}`, cls: diff > 0 ? 'cmp-up' : 'cmp-down' };
+  },
+
   renderCompareResults(a, b, nameA, nameB) {
     const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    const rows = [
-      { label: '機体HP',      va: a.hp,                  vb: b.hp,                  fmt: v => v.toLocaleString() },
-      { label: '耐実弾',      va: a.ballistic_armor,     vb: b.ballistic_armor,     fmt: v => String(v) },
-      { label: '耐ビーム',    va: a.beam_armor,          vb: b.beam_armor,          fmt: v => String(v) },
-      { label: '耐格闘',      va: a.melee_armor,         vb: b.melee_armor,         fmt: v => String(v) },
-      { label: '射撃補正',    va: a.shooting_correction, vb: b.shooting_correction, fmt: v => String(v) },
-      { label: '格闘補正',    va: a.melee_correction,    vb: b.melee_correction,    fmt: v => String(v) },
-      { label: 'スピード',    va: a.speed,               vb: b.speed,               fmt: v => String(v) },
-      { label: '高速移動',    va: a.boost_speed,         vb: b.boost_speed,         fmt: v => String(v) },
-      { label: 'スラスター',  va: a.thruster,            vb: b.thruster,            fmt: v => String(v) },
-      { label: '旋回(地上)',  va: a.turn_speed,          vb: b.turn_speed,          fmt: v => String(v) },
-      { label: '射撃倍率',    va: a.shootingMultiplier,  vb: b.shootingMultiplier,  fmt: v => `×${v.toFixed(2)}` },
-      { label: '格闘倍率',    va: a.meleeMultiplier,     vb: b.meleeMultiplier,     fmt: v => `×${v.toFixed(2)}` },
-      { label: '加重カット率', va: a.avgCut,             vb: b.avgCut,              fmt: v => `${(v*100).toFixed(1)}%` },
-      { label: '有効HP',      va: a.effectiveHP,         vb: b.effectiveHP,         fmt: v => v.toLocaleString() },
-    ];
-    const tbody = rows.map(row => {
-      const aWin = row.va > row.vb, bWin = row.vb > row.va;
+    const tbody = this._compareRowDefs().map(def => {
+      const va = a[def.key], vb = b[def.key];
+      const aWin = va > vb, bWin = vb > va;
       return `<tr>
-        <td class="cmp-label">${row.label}</td>
-        <td class="cmp-val ${aWin ? 'cmp-better' : bWin ? 'cmp-worse' : ''}">${row.fmt(row.va)}</td>
-        <td class="cmp-val ${bWin ? 'cmp-better' : aWin ? 'cmp-worse' : ''}">${row.fmt(row.vb)}</td>
+        <td class="cmp-label">${def.label}</td>
+        <td class="cmp-val ${aWin ? 'cmp-better' : bWin ? 'cmp-worse' : ''}">${def.fmt(va)}</td>
+        <td class="cmp-val ${bWin ? 'cmp-better' : aWin ? 'cmp-worse' : ''}">${def.fmt(vb)}</td>
       </tr>`;
     }).join('');
     const container = document.getElementById('compare-results');
@@ -1977,6 +2058,52 @@ const App = {
       <tbody>${tbody}</tbody>
     </table>`;
     container.classList.remove('hidden');
+  },
+
+  /**
+   * 基準にピン留めした保存構成と「現在の構成」を常時比較するパネルを更新する。
+   * updateDisplay から毎回呼ばれ、パーツ・スキル・LV変更にライブ追従する。
+   */
+  updateBaselineCompare() {
+    const section = document.getElementById('baseline-compare-section');
+    if (!section) return;
+    const build = this.comparisonBaselineId != null
+      ? this.savedBuilds.find(b => b.id === this.comparisonBaselineId)
+      : null;
+    if (!build || !this.selectedMS) { section.classList.add('hidden'); return; }
+
+    const baseResult = this.calcStatsFromBuild(build);
+    const curResult = this.calcStatsFromBuild('current');
+    if (!baseResult || !curResult) { section.classList.add('hidden'); return; }
+
+    section.classList.remove('hidden');
+    this.renderBaselineCompare(build, baseResult, curResult);
+  },
+
+  renderBaselineCompare(build, base, cur) {
+    const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const tbody = this._compareRowDefs().map(def => {
+      const vb = base[def.key], vc = cur[def.key];
+      const delta = this._formatDelta(def, vc - vb);
+      const curCls = vc > vb ? 'cmp-better' : vc < vb ? 'cmp-worse' : '';
+      return `<tr>
+        <td class="cmp-label">${def.label}</td>
+        <td class="cmp-val">${def.fmt(vb)}</td>
+        <td class="cmp-val ${curCls}">${def.fmt(vc)}</td>
+        <td class="cmp-val cmp-delta ${delta.cls}">${delta.text}</td>
+      </tr>`;
+    }).join('');
+    const body = document.getElementById('baseline-compare-body');
+    if (!body) return;
+    body.innerHTML = `<table class="compare-table baseline-table">
+      <thead><tr>
+        <th></th>
+        <th class="cmp-header">基準<br><span class="cmp-ms">${esc(build.name)} / ${esc(base.msName)} LV${base.msLevel}</span></th>
+        <th class="cmp-header">現在<br><span class="cmp-ms">${esc(cur.msName)} LV${cur.msLevel}</span></th>
+        <th class="cmp-header">Δ<br><span class="cmp-ms">現在−基準</span></th>
+      </tr></thead>
+      <tbody>${tbody}</tbody>
+    </table>`;
   },
 
   // === パーツ一覧レンダリング ===
