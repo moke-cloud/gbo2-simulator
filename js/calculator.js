@@ -1379,9 +1379,10 @@ const GBO2Calculator = {
   //   端数処理: 補正係数は小数第3位以下切り捨て、威力との乗算は各段で floor（実測準拠）。
   //   出典: gameline.jp戦闘システム / note.com/jakushoukennja/n1eb582715459(実測) / atwiki pages/83.html
 
-  // 格闘の方向補正倍率。項の存在は確定済みだが数値は未確定（DESIGN §A-4）。
-  // TODO(§A-4): atwiki pages/83.html 全文精読で正面/側面/背面の実倍率を確定したら差し替える。
-  WEAPON_DIRECTION_MULTIPLIERS: { front: 1.0, side: 1.0, back: 1.0 },
+  // 格闘の方向補正倍率（格闘入力方向: N格/横格/下格）。
+  // Wiki武器ページの「格闘方向補正」表で確認した標準倍率（2026-06-10・DESIGN §A-4）。
+  // 武器ごとの上書き（本武器倍率カラム）は weapon.directionMul で渡す。
+  WEAPON_DIRECTION_MULTIPLIERS: { n: 1.0, side: 0.75, down: 1.3 },
 
   // 武器属性 → 防御補正キー。special は帰属未確定のため暫定で実弾扱い（DESIGN §A-2）。
   ATTR_TO_ARMOR_KEY: { ballistic: 'ballistic', beam: 'beam', melee: 'melee', special: 'ballistic' },
@@ -1452,13 +1453,13 @@ const GBO2Calculator = {
    * @param {object} weapon - 選択モード解決済み武器 {name, category, attribute, power, hits, special?, notes?}
    * @param {object} attacker - 戦闘プロファイル {category, msLevel, correction:{shooting,melee}, dmgPct:{shooting,melee}, skillConditions[]}
    * @param {object} defender - 戦闘プロファイル {category, armor:{ballistic,beam,melee}, cutPct:{...}, skillConditions[]}
-   * @param {object} opts - {msLevelAtk?, direction?: 'front'|'side'|'back', triad?: 'auto'|'advantage'|'disadvantage'|'none', activeConditions?: Set<string>}
+   * @param {object} opts - {msLevelAtk?, direction?: 'n'|'side'|'down', triad?: 'auto'|'advantage'|'disadvantage'|'none', activeConditions?: Set<string>}
    * @returns {{perHit:number, perVolley:number, byDirection:object|null, breakdown:object, notes:string, unmodeled:string[]}}
    */
   calcWeaponDamage(weapon, attacker, defender, opts = {}) {
     const {
       msLevelAtk = attacker.msLevel || 1,
-      direction = 'front',
+      direction = 'n',
       triad = 'auto',
       activeConditions = new Set(),
     } = opts;
@@ -1508,7 +1509,8 @@ const GBO2Calculator = {
       return this._floorDmg(dmg * triadMul);
     };
 
-    const DIR = this.WEAPON_DIRECTION_MULTIPLIERS;
+    // 標準倍率 + 武器ごとの上書き（Wiki「本武器倍率」カラム由来・パーサが weapon.directionMul に格納）
+    const DIR = { ...this.WEAPON_DIRECTION_MULTIPLIERS, ...(weapon.directionMul || {}) };
     const directionMul = isMelee ? (DIR[direction] ?? 1) : 1;
     const perHit = computeFor(directionMul);
     const hits = weapon.hits || 1;
@@ -1518,7 +1520,7 @@ const GBO2Calculator = {
       perHit,
       perVolley: perHit * hits,
       byDirection: isMelee
-        ? { front: computeFor(DIR.front), side: computeFor(DIR.side), back: computeFor(DIR.back) }
+        ? { n: computeFor(DIR.n), side: computeFor(DIR.side), down: computeFor(DIR.down) }
         : null,
       breakdown: {
         basePower, atkCorrMul,

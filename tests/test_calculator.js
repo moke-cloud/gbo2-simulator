@@ -598,9 +598,19 @@ const noTriad = { triad: 'none' };
   const r = GBO2Calculator.calcWeaponDamage(
     w, mkAtk({ correction: { shooting: 0, melee: 39 } }),
     mkDef({ armor: { ballistic: 0, beam: 0, melee: 26 } }), noTriad);
-  assert('実測回帰 2875×1.39×0.74 → 2957', r.perHit, 2957);
+  assert('実測回帰(N格) 2875×1.39×0.74 → 2957', r.perHit, 2957);
   assert('格闘は byDirection を返す', r.byDirection !== null, true);
-  assert('方向暫定1.0: back も同値', r.byDirection.back, 2957);
+  // 標準方向倍率（Wiki格闘方向補正表: N100%/横75%/下130%）
+  assert('N格 = 等倍', r.byDirection.n, 2957);
+  assert('横格 ×0.75 floor', r.byDirection.side, 2217);
+  assert('下格 ×1.30 floor', r.byDirection.down, 3844);
+  // 武器ごとの上書き（本武器倍率カラム）: 横格100%の武器
+  const wOverride = { ...w, directionMul: { side: 1.0 } };
+  const rOv = GBO2Calculator.calcWeaponDamage(
+    wOverride, mkAtk({ correction: { shooting: 0, melee: 39 } }),
+    mkDef({ armor: { ballistic: 0, beam: 0, melee: 26 } }), noTriad);
+  assert('武器別上書き: 横格100%', rOv.byDirection.side, 2957);
+  assert('上書き対象外の下格は標準130%', rOv.byDirection.down, 3844);
 }
 
 // 射撃ビーム: floor(1500×1.5)=2250 → floor(2250×0.70)=1575

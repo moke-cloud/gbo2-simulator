@@ -2257,17 +2257,17 @@ const App = {
 
   _renderDsimToggles(atkConds, defConds, esc) {
     const box = document.getElementById('dsim-toggles');
-    const group = (label, conds) => conds.length === 0 ? '' : `
+    // 空でもグループ見出しを出し「機能が無い」ように見えるのを防ぐ
+    const group = (label, conds) => `
       <div class="dsim-toggle-group">
         <span class="dsim-toggle-side">${label}</span>
-        ${conds.map(c => `
+        ${conds.length === 0 ? '<span class="dsim-no-toggles">ダメージに影響するスキルなし</span>' : conds.map(c => `
           <label class="dsim-toggle">
             <input type="checkbox" data-cond="${esc(c.id)}" ${this.dsim.activeConditions.has(c.id) ? 'checked' : ''}>
             <span>${esc(c.label)}</span>
           </label>`).join('')}
       </div>`;
-    const html = group('攻撃側', atkConds) + group('防御側', defConds);
-    box.innerHTML = html || '<p class="dsim-no-toggles">ダメージに影響するスキルはありません</p>';
+    box.innerHTML = group('攻撃側', atkConds) + group('防御側', defConds);
     box.querySelectorAll('input[data-cond]').forEach(cb =>
       cb.addEventListener('change', () => {
         const next = new Set(this.dsim.activeConditions);
@@ -2286,9 +2286,9 @@ const App = {
     // 格闘=方向3値 / 射撃=1発・斉射・よろけ値（DESIGN §6-2）
     const mainRow = r.byDirection
       ? `<div class="dsim-dmg-row">
-           <div class="dsim-dmg"><span class="dsim-dmg-label">正面</span><span class="dsim-dmg-val">${fmt(r.byDirection.front)}</span></div>
-           <div class="dsim-dmg"><span class="dsim-dmg-label">側面</span><span class="dsim-dmg-val">${fmt(r.byDirection.side)}</span></div>
-           <div class="dsim-dmg"><span class="dsim-dmg-label">背面</span><span class="dsim-dmg-val">${fmt(r.byDirection.back)}</span></div>
+           <div class="dsim-dmg"><span class="dsim-dmg-label">N格</span><span class="dsim-dmg-val">${fmt(r.byDirection.n)}</span></div>
+           <div class="dsim-dmg"><span class="dsim-dmg-label">横格</span><span class="dsim-dmg-val">${fmt(r.byDirection.side)}</span></div>
+           <div class="dsim-dmg"><span class="dsim-dmg-label">下格</span><span class="dsim-dmg-val">${fmt(r.byDirection.down)}</span></div>
          </div>`
       : `<div class="dsim-dmg-row">
            <div class="dsim-dmg"><span class="dsim-dmg-label">1発</span><span class="dsim-dmg-val">${fmt(r.perHit)}</span></div>
