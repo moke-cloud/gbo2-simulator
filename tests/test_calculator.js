@@ -572,6 +572,131 @@ const cutBottom = 1 - 0.8 * 0.8; // 20%と20%を乗算合成 = 36%
 const expectMulti = Math.round(0.5 * 30000 / 1 + 0.2 * 30000 / 0.8 + 0.3 * 30000 / (1 - cutBottom));
 assert('複数しきい値で3区間加重', multi, expectMulti);
 
+// ===== calcWeaponDamage: 武装ベース静的ダメージ（正準順序・段ごとfloor） =====
+section('calcWeaponDamage: 基本式と実測回帰');
+
+const mkAtk = (over = {}) => ({
+  name: 'ATK', category: '汎用', msLevel: 1,
+  correction: { shooting: 0, melee: 0 },
+  dmgPct: { shooting: 0, melee: 0 },
+  skillConditions: [],
+  ...over,
+});
+const mkDef = (over = {}) => ({
+  name: 'DEF', category: '汎用',
+  armor: { ballistic: 0, beam: 0, melee: 0 },
+  cutPct: { ballistic: 0, beam: 0, melee: 0 },
+  skillConditions: [],
+  ...over,
+});
+const noTriad = { triad: 'none' };
+
+// 実測回帰（note弱小賢者: 威力2875×格闘補正39×対格闘26 → 2957）
+// floor段: floor(2875×1.39)=3996 → floor(3996×0.74)=2957
+{
+  const w = { name: 'サーベル', category: 'melee', attribute: 'melee', power: { '1': 2875 }, hits: 1 };
+  const r = GBO2Calculator.calcWeaponDamage(
+    w, mkAtk({ correction: { shooting: 0, melee: 39 } }),
+    mkDef({ armor: { ballistic: 0, beam: 0, melee: 26 } }), noTriad);
+  assert('実測回帰 2875×1.39×0.74 → 2957', r.perHit, 2957);
+  assert('格闘は byDirection を返す', r.byDirection !== null, true);
+  assert('方向暫定1.0: back も同値', r.byDirection.back, 2957);
+}
+
+// 射撃ビーム: floor(1500×1.5)=2250 → floor(2250×0.70)=1575
+{
+  const w = { name: 'BR', category: 'shooting', attribute: 'beam', power: { '1': 1500 }, hits: 1 };
+  const atk = mkAtk({ correction: { shooting: 50, melee: 0 } });
+  const def = mkDef({ armor: { ballistic: 0, beam: 30, melee: 0 } });
+  const r = GBO2Calculator.calcWeaponDamage(w, atk, def, noTriad);
+  assert('ビーム: 威力×射撃補正×耐ビーム', r.perHit, 1575);
+  assert('射撃は byDirection=null', r.byDirection, null);
+  // 三すくみ有利: floor(1575×1.30)=2047 (2047.5切捨て)
+  const rAdv = GBO2Calculator.calcWeaponDamage(w, atk, def, { triad: 'advantage' });
+  assert('三すくみ有利 ×1.30 floor', rAdv.perHit, 2047);
+}
+
+section('calcWeaponDamage: 三すくみ自動判定');
+{
+  const w = { name: 'MG', category: 'shooting', attribute: 'ballistic', power: { '1': 1000 }, hits: 1 };
+  const def強襲 = mkDef({ category: '強襲' });
+  const def支援 = mkDef({ category: '支援' });
+  const def汎用 = mkDef({ category: '汎用' });
+  const atk汎用 = mkAtk({ category: '汎用' });
+  assert('汎用→強襲 = 有利1300', GBO2Calculator.calcWeaponDamage(w, atk汎用, def強襲, { triad: 'auto' }).perHit, 1300);
+  assert('汎用→支援 = 不利800',  GBO2Calculator.calcWeaponDamage(w, atk汎用, def支援, { triad: 'auto' }).perHit, 800);
+  assert('汎用→汎用 = 等倍1000', GBO2Calculator.calcWeaponDamage(w, atk汎用, def汎用, { triad: 'auto' }).perHit, 1000);
+}
+
+section('calcWeaponDamage: スキル/パーツ補正の乗算とON/OFF');
+{
+  const w = { name: 'BR', category: 'shooting', attribute: 'beam', power: { '1': 1500 }, hits: 1 };
+  // パーツ常時与ダメ%: floor(1500×1.10)=1650
+  const rParts = GBO2Calculator.calcWeaponDamage(
+    w, mkAtk({ dmgPct: { shooting: 10, melee: 0 } }), mkDef(), noTriad);
+  assert('パーツ射撃与ダメ+10%', rParts.perHit, 1650);
+
+  // firepowerスキル ON: floor(1500×1.15)=1725 / OFF: 1500
+  const atkSkill = mkAtk({ skillConditions: [
+    { id: 'a1', side: 'attacker', category: 'firepower', value: 15, condition: '常時' },
+  ]});
+  assert('firepower ON で乗算',
+    GBO2Calculator.calcWeaponDamage(w, atkSkill, mkDef(), { triad: 'none', activeConditions: new Set(['a1']) }).perHit, 1725);
+  assert('firepower OFF は等倍',
+    GBO2Calculator.calcWeaponDamage(w, atkSkill, mkDef(), { triad: 'none', activeConditions: new Set() }).perHit, 1500);
+
+  // 防御側 damage_cut 20% ON: floor(1500×0.80)=1200
+  const defSkill = mkDef({ skillConditions: [
+    { id: 'd1', side: 'defender', category: 'damage_cut', value: 20, condition: '瀕死/緊急時' },
+  ]});
+  assert('防御スキルカット ON',
+    GBO2Calculator.calcWeaponDamage(w, mkAtk(), defSkill, { triad: 'none', activeConditions: new Set(['d1']) }).perHit, 1200);
+
+  // 属性限定スキル: ビーム属性のみ → 実弾武器には乗らない
+  const atkBeamOnly = mkAtk({ skillConditions: [
+    { id: 'a2', side: 'attacker', category: 'firepower', value: 20, condition: 'ビーム属性のみ' },
+  ]});
+  const wBallistic = { name: 'MG', category: 'shooting', attribute: 'ballistic', power: { '1': 1500 }, hits: 1 };
+  const on = { triad: 'none', activeConditions: new Set(['a2']) };
+  assert('ビーム限定スキルはビーム武器に適用',
+    GBO2Calculator.calcWeaponDamage(w, atkBeamOnly, mkDef(), on).perHit, 1800);
+  assert('ビーム限定スキルは実弾武器に非適用',
+    GBO2Calculator.calcWeaponDamage(wBallistic, atkBeamOnly, mkDef(), on).perHit, 1500);
+}
+
+section('calcWeaponDamage: 属性カット合成・多段ヒット・LV威力・特殊属性');
+{
+  // 装甲カット×パーツ属性カット%の乗算合成: floor(1500×0.50)=750 → floor(750×0.80)=600
+  const w = { name: 'BR', category: 'shooting', attribute: 'beam', power: { '1': 1500 }, hits: 1 };
+  const def = mkDef({ armor: { ballistic: 0, beam: 50, melee: 0 }, cutPct: { ballistic: 0, beam: 20, melee: 0 } });
+  assert('装甲50×属性カット20%乗算合成',
+    GBO2Calculator.calcWeaponDamage(w, mkAtk(), def, noTriad).perHit, 600);
+
+  // 多段ヒット: perVolley = perHit × hits
+  const wG = { name: 'Gランチャー', category: 'shooting', attribute: 'ballistic', power: { '1': 1400 }, hits: 2 };
+  const rG = GBO2Calculator.calcWeaponDamage(wG, mkAtk(), mkDef(), noTriad);
+  assert('hits=2 で perVolley=2倍', rG.perVolley, 2800);
+
+  // LV別威力: msLevelAtk=2 → power['2']
+  const wLv = { name: 'BR', category: 'shooting', attribute: 'beam', power: { '1': 2200, '2': 2400 }, hits: 1 };
+  assert('LV2威力を解決',
+    GBO2Calculator.calcWeaponDamage(wLv, mkAtk(), mkDef(), { triad: 'none', msLevelAtk: 2 }).perHit, 2400);
+  assert('LV欠落はLV1へフォールバック',
+    GBO2Calculator.calcWeaponDamage(wLv, mkAtk(), mkDef(), { triad: 'none', msLevelAtk: 3 }).perHit, 2200);
+
+  // 特殊属性: 暫定で耐実弾を引く（§A-2）+ unmodeled 明示
+  const wSp = { name: 'ミサイル', category: 'shooting', attribute: 'special', power: { '1': 1000 }, hits: 1 };
+  const defB = mkDef({ armor: { ballistic: 30, beam: 0, melee: 0 } });
+  const rSp = GBO2Calculator.calcWeaponDamage(wSp, mkAtk(), defB, noTriad);
+  assert('特殊属性は暫定実弾扱い', rSp.perHit, 700);
+  assert('特殊属性は unmodeled に明示', rSp.unmodeled.some(s => s.includes('特殊属性')), true);
+
+  // breakdown の基本フィールド
+  const rB = GBO2Calculator.calcWeaponDamage(w, mkAtk({ correction: { shooting: 39, melee: 0 } }), mkDef(), noTriad);
+  assert('breakdown.atkCorrMul', rB.breakdown.atkCorrMul, 1.39, 0.0001);
+  assert('breakdown.basePower', rB.breakdown.basePower, 1500);
+}
+
 // ===== 結果サマリ =====
 console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
 console.log(`結果: ${passed} 件成功 / ${failed} 件失敗 / 計 ${passed + failed} 件`);

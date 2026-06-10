@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oxanium:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260609b">
+  <link rel="stylesheet" href="css/style.css?v=20260610a">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230a0e14'/%3E%3Cpath d='M4 4 L28 4 L28 24 L24 28 L4 28 Z' fill='none' stroke='%2300e0c6' stroke-width='2'/%3E%3Ctext x='16' y='22' font-family='Arial Black,sans-serif' font-size='15' font-weight='900' text-anchor='middle' fill='%2300e0c6'%3EGB%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -573,6 +573,47 @@
         </div>
         <div id="compare-results" class="compare-results hidden"></div>
       </section>
+
+      <!-- ダメージシミュレーション（保存構成2つの対戦・1武装フォーカス詳細） -->
+      <section id="damage-sim-section" class="panel hidden">
+        <h2 class="section-title"><span class="icon">⚔</span> ダメージシミュレーション</h2>
+        <div class="dsim-matchup">
+          <div class="compare-select-row">
+            <label class="compare-label" for="dsim-build-atk">攻撃</label>
+            <select id="dsim-build-atk" class="filter-select compare-select" aria-label="攻撃側の構成">
+              <option value="">-- 選択 --</option>
+            </select>
+          </div>
+          <span class="dsim-arrow" aria-hidden="true">→</span>
+          <div class="compare-select-row">
+            <label class="compare-label" for="dsim-build-def">防御</label>
+            <select id="dsim-build-def" class="filter-select compare-select" aria-label="防御側の構成">
+              <option value="">-- 選択 --</option>
+            </select>
+          </div>
+          <button id="dsim-swap" class="btn-secondary dsim-swap" type="button" title="攻守を入れ替え" aria-label="攻守を入れ替え">⇄ 入替</button>
+        </div>
+        <div id="dsim-body" class="hidden">
+          <div class="dsim-weapon-nav">
+            <button id="dsim-weapon-prev" class="dsim-nav-btn" type="button" aria-label="前の武装">◀</button>
+            <select id="dsim-weapon" class="filter-select dsim-weapon-select" aria-label="武装を選択"></select>
+            <button id="dsim-weapon-next" class="dsim-nav-btn" type="button" aria-label="次の武装">▶</button>
+          </div>
+          <div id="dsim-mode-row" class="dsim-mode-row hidden" role="group" aria-label="威力モード"></div>
+          <div id="dsim-card" class="dsim-card"></div>
+          <div id="dsim-toggles" class="dsim-toggles"></div>
+          <div class="dsim-opts">
+            <label class="compare-label" for="dsim-triad">三すくみ</label>
+            <select id="dsim-triad" class="filter-select" aria-label="三すくみ補正">
+              <option value="auto">自動</option>
+              <option value="advantage">有利</option>
+              <option value="disadvantage">不利</option>
+              <option value="none">等倍</option>
+            </select>
+          </div>
+        </div>
+        <p id="dsim-empty" class="dsim-empty">攻撃側と防御側の構成を選択してください</p>
+      </section>
     </div>
 
     <!-- モバイル用: パーツ選択シートの背景 -->
@@ -654,8 +695,8 @@
     <p>GBO2 Custom Parts Simulator | データ元: <a href="https://w.atwiki.jp/battle-operation2/" target="_blank" rel="noopener">バトオペ2攻略Wiki</a> | 非公式ファンツール</p>
   </footer>
 
-  <script src="js/calculator.js?v=20260609b"></script>
-  <script src="js/share.js?v=20260609b"></script>
-  <script src="js/app.js?v=20260609b"></script>
+  <script src="js/calculator.js?v=20260610a"></script>
+  <script src="js/share.js?v=20260610a"></script>
+  <script src="js/app.js?v=20260610a"></script>
 </body>
 </html>

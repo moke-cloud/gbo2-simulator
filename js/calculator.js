@@ -1368,5 +1368,167 @@ const GBO2Calculator = {
       improved: suggestions.length > 0,
       resolvesAll: currentOutcome.allMet,
     };
+  },
+
+  // ===== ダメージシミュレーション（武装ベースの静的与ダメ計算） =====
+  //
+  // 式（deep research 2026-06-10 で確定・docs/DAMAGE_SIMULATION_DESIGN.md §5）:
+  //   ダメージ = 武器威力 ×(機体攻撃補正 × その他攻撃補正) ×(機体防御補正 × その他防御補正)
+  //              × [格闘方向補正] × [連撃補正] × 三すくみ補正
+  //   適用順序は 攻撃→防御→格闘方向→連撃→三すくみ で固定。
+  //   端数処理: 補正係数は小数第3位以下切り捨て、威力との乗算は各段で floor（実測準拠）。
+  //   出典: gameline.jp戦闘システム / note.com/jakushoukennja/n1eb582715459(実測) / atwiki pages/83.html
+
+  // 格闘の方向補正倍率。項の存在は確定済みだが数値は未確定（DESIGN §A-4）。
+  // TODO(§A-4): atwiki pages/83.html 全文精読で正面/側面/背面の実倍率を確定したら差し替える。
+  WEAPON_DIRECTION_MULTIPLIERS: { front: 1.0, side: 1.0, back: 1.0 },
+
+  // 武器属性 → 防御補正キー。special は帰属未確定のため暫定で実弾扱い（DESIGN §A-2）。
+  ATTR_TO_ARMOR_KEY: { ballistic: 'ballistic', beam: 'beam', melee: 'melee', special: 'ballistic' },
+
+  // 補正係数の端数処理: 小数第3位以下を切り捨て（=小数2桁で保持）。
+  // ε は浮動小数点誤差対策（例 1.15*100=114.999… が 114 に落ちるのを防ぐ）。
+  // 真の端数は 0.01 単位でしか発生しないため 1e-6 で誤切り上げは起きない。
+  _truncMul(v) {
+    return Math.floor(v * 100 + 1e-6) / 100;
+  },
+
+  // 威力との乗算段の floor（整数化）。ε は同上の FP 誤差対策。
+  _floorDmg(x) {
+    return Math.floor(x + 1e-6);
+  },
+
+  /**
+   * 武器威力を機体LVで解決する。LV欠落は LV1 → 先頭値へフォールバック。
+   * @param {object|number} power - LV別威力 dict（{"1":2200,"2":2400}）または数値
+   */
+  resolveWeaponPower(power, msLevel) {
+    if (power == null) return 0;
+    if (typeof power === 'number') return power;
+    const v = power[String(msLevel)] ?? power['1'] ?? Object.values(power)[0];
+    return v || 0;
+  },
+
+  /**
+   * 三すくみ倍率を解決する。auto は攻守カテゴリから判定。
+   * %は諸説あり（パッチ変動）のため既存定数 1.30/0.80 を採用（DESIGN §A-5）。
+   */
+  resolveTriadMultiplier(triad, atkCategory, defCategory) {
+    if (triad === 'none') return 1;
+    if (triad === 'advantage') return this.ADVANTAGE_MULTIPLIER;
+    if (triad === 'disadvantage') return this.DISADVANTAGE_MULTIPLIER;
+    const rel = this.TYPE_ADVANTAGE[atkCategory];
+    if (!rel) return 1;
+    if (rel.strong === defCategory) return this.ADVANTAGE_MULTIPLIER;
+    if (rel.weak === defCategory) return this.DISADVANTAGE_MULTIPLIER;
+    return 1;
+  },
+
+  // 属性/カテゴリ限定スキルが選択中の武器に適用されるか
+  _weaponSkillApplies(cond, weapon) {
+    switch (cond.condition) {
+      case '実弾属性のみ':  return weapon.attribute === 'ballistic';
+      case 'ビーム属性のみ': return weapon.attribute === 'beam';
+      case '格闘属性のみ':  return weapon.attribute === 'melee';
+      case '射撃時のみ':    return weapon.category === 'shooting';
+      default: return true; // 常時/瀕死/静止等は ON トグル自体が条件を表す
+    }
+  },
+
+  // ON 中のスキル条件から指定 side/category の乗算係数列を作る（各々独立乗算 = 異カテゴリ乗算則）
+  _collectSkillFactors(conditions, side, category, weapon, activeConditions, toFactor) {
+    const factors = [];
+    for (const c of (conditions || [])) {
+      if (c.side !== side || c.category !== category) continue;
+      if (!activeConditions.has(c.id)) continue;
+      if (!this._weaponSkillApplies(c, weapon)) continue;
+      factors.push(this._truncMul(toFactor(c.value)));
+    }
+    return factors;
+  },
+
+  /**
+   * 1武装の静的与ダメージを計算する（ピュア関数・DESIGN §5-1）。
+   * @param {object} weapon - 選択モード解決済み武器 {name, category, attribute, power, hits, special?, notes?}
+   * @param {object} attacker - 戦闘プロファイル {category, msLevel, correction:{shooting,melee}, dmgPct:{shooting,melee}, skillConditions[]}
+   * @param {object} defender - 戦闘プロファイル {category, armor:{ballistic,beam,melee}, cutPct:{...}, skillConditions[]}
+   * @param {object} opts - {msLevelAtk?, direction?: 'front'|'side'|'back', triad?: 'auto'|'advantage'|'disadvantage'|'none', activeConditions?: Set<string>}
+   * @returns {{perHit:number, perVolley:number, byDirection:object|null, breakdown:object, notes:string, unmodeled:string[]}}
+   */
+  calcWeaponDamage(weapon, attacker, defender, opts = {}) {
+    const {
+      msLevelAtk = attacker.msLevel || 1,
+      direction = 'front',
+      triad = 'auto',
+      activeConditions = new Set(),
+    } = opts;
+
+    const basePower = this.resolveWeaponPower(weapon.power, msLevelAtk);
+    const unmodeled = [];
+    if (!basePower) unmodeled.push('威力データなし');
+
+    const isMelee = weapon.attribute === 'melee';
+    const corr = isMelee ? (attacker.correction.melee || 0) : (attacker.correction.shooting || 0);
+    const atkCorrMul = this._truncMul((100 + corr) / 100);
+
+    // その他攻撃補正: パーツ常時与ダメ% + ON の firepower スキル（各々独立乗算）
+    const atkFactors = [];
+    const partsDmgPct = isMelee ? (attacker.dmgPct?.melee || 0) : (attacker.dmgPct?.shooting || 0);
+    if (partsDmgPct) atkFactors.push(this._truncMul(1 + partsDmgPct / 100));
+    atkFactors.push(...this._collectSkillFactors(
+      attacker.skillConditions, 'attacker', 'firepower', weapon, activeConditions, v => 1 + v / 100));
+
+    // 防御: 属性→装甲の線形カット ×(1−カット)、パーツ属性カット%・ON防御スキルは乗算合成
+    const armorKey = this.ATTR_TO_ARMOR_KEY[weapon.attribute] || 'ballistic';
+    if (weapon.attribute === 'special') unmodeled.push('特殊属性の防御対応は未確定（暫定: 実弾扱い）');
+    const defCutMul = this._truncMul(1 - this.calcCutRate(defender.armor[armorKey] || 0));
+    const defFactors = [];
+    const partsCutPct = defender.cutPct?.[armorKey] || 0;
+    if (partsCutPct) defFactors.push(this._truncMul(1 - partsCutPct / 100));
+    defFactors.push(...this._collectSkillFactors(
+      defender.skillConditions, 'defender', 'damage_cut', weapon, activeConditions, v => 1 - v / 100));
+
+    // 耐性無視/貫通: 挙動未確定のため未モデル（×1）。TODO(§A-3)
+    const resistIgnoreMul = 1;
+    const sp = weapon.special || {};
+    if (sp.penetration || sp.resistIgnore) unmodeled.push('耐性無視/貫通は未モデル（§A-3 未確定）');
+    if (sp.heavyAttack) unmodeled.push('ヘビーアタック倍率は未モデル（§A-4 未確定）');
+    if (sp.comboCorrection) unmodeled.push('コンボ段数別倍率は未対応（後段）');
+
+    const triadMul = this.resolveTriadMultiplier(triad, attacker.category, defender.category);
+
+    // 正準順序: 攻撃→防御→(耐性無視)→格闘方向→三すくみ。各段 floor（連撃補正は Phase 1 対象外）
+    const computeFor = (dirMul) => {
+      let dmg = this._floorDmg(basePower * atkCorrMul);
+      for (const f of atkFactors) dmg = this._floorDmg(dmg * f);
+      dmg = this._floorDmg(dmg * defCutMul);
+      for (const f of defFactors) dmg = this._floorDmg(dmg * f);
+      dmg = this._floorDmg(dmg * resistIgnoreMul);
+      dmg = this._floorDmg(dmg * dirMul);
+      return this._floorDmg(dmg * triadMul);
+    };
+
+    const DIR = this.WEAPON_DIRECTION_MULTIPLIERS;
+    const directionMul = isMelee ? (DIR[direction] ?? 1) : 1;
+    const perHit = computeFor(directionMul);
+    const hits = weapon.hits || 1;
+    const product = arr => arr.reduce((a, b) => a * b, 1);
+
+    return {
+      perHit,
+      perVolley: perHit * hits,
+      byDirection: isMelee
+        ? { front: computeFor(DIR.front), side: computeFor(DIR.side), back: computeFor(DIR.back) }
+        : null,
+      breakdown: {
+        basePower, atkCorrMul,
+        atkSkillMul: this._truncMul(product(atkFactors)),
+        defCutMul,
+        defSkillMul: this._truncMul(product(defFactors)),
+        triadMul, directionMul, resistIgnoreMul, hits,
+      },
+      notes: weapon.notes || '',
+      unmodeled,
+    };
   }
 };

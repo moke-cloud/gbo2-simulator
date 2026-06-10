@@ -12,6 +12,9 @@ const App = {
   selectedLevel: 1,
   equippedParts: [null, null, null, null, null, null, null, null],
   savedBuilds: [], // 保存済み構成リスト
+  msWeapons: {},   // 機体名 → 武装配列（data/ms_weapons.json・ダメージシミュレーション用）
+  // ダメージシミュレーションUI状態
+  dsim: { weaponIdx: 0, modeKey: null, triad: 'auto', activeConditions: new Set(), needsToggleInit: true },
   MAX_SAVED_BUILDS: 50, // 構成保存の上限件数
   comparisonBaselineId: null, // 「基準」としてピン留めした保存構成のID（常時比較用）
 
@@ -85,6 +88,15 @@ const App = {
       names.forEach(n => { if (!(n in this.expansionSkillLevels)) this.expansionSkillLevels[n] = 0; });
     } catch (e) {
       this.expansionSkillsData = [];
+    }
+
+    try {
+      // 武装データ（機体名 → weapons[]）。未収録機体はダメージシミュレーションで「未収録」表示
+      const wpRes = await fetch('data/ms_weapons.json');
+      const wpData = await wpRes.json();
+      this.msWeapons = wpData.weapons || {};
+    } catch (e) {
+      this.msWeapons = {};
     }
   },
 
@@ -235,6 +247,9 @@ const App = {
 
     // 構成比較
     document.getElementById('btn-compare').addEventListener('click', () => this.runCompareBuild());
+
+    // ダメージシミュレーション
+    this.bindDamageSimEvents();
 
     // 基準構成との常時比較（ピン解除）
     const clearBaselineBtn = document.getElementById('btn-clear-baseline');
@@ -733,6 +748,16 @@ const App = {
     this.updateStickyStats();
     this.updateSummary();
     this.updateBaselineCompare();
+    this.updateDamageSimLive();
+  },
+
+  // ダメージシミュレーションが「現在の構成」を参照中なら編集にライブ追従させる
+  updateDamageSimLive() {
+    const section = document.getElementById('damage-sim-section');
+    if (!section || section.classList.contains('hidden')) return;
+    const atkSel = document.getElementById('dsim-build-atk');
+    const defSel = document.getElementById('dsim-build-def');
+    if (atkSel?.value === 'current' || defSel?.value === 'current') this.renderDamageSim();
   },
 
   updateStickyStats() {
@@ -1925,7 +1950,10 @@ const App = {
 
   updateBuildSelectOptions() {
     const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    [document.getElementById('compare-build-a'), document.getElementById('compare-build-b')].forEach(sel => {
+    [
+      document.getElementById('compare-build-a'), document.getElementById('compare-build-b'),
+      document.getElementById('dsim-build-atk'), document.getElementById('dsim-build-def'),
+    ].forEach(sel => {
       if (!sel) return;
       const prev = sel.value;
       sel.innerHTML = `
@@ -1939,6 +1967,11 @@ const App = {
     });
     const sec = document.getElementById('compare-section');
     if (sec) sec.classList.toggle('hidden', this.savedBuilds.length === 0);
+    const dsimSec = document.getElementById('damage-sim-section');
+    if (dsimSec) {
+      dsimSec.classList.toggle('hidden', this.savedBuilds.length === 0);
+      if (this.savedBuilds.length > 0) this.renderDamageSim();
+    }
   },
 
   _computeCalcResult(modified, msName, msLevel) {
@@ -2008,6 +2041,286 @@ const App = {
     const savedBonuses = this._aggregateSkillStatBonuses(savedItems, new Set(buildData.activeSkillIndices || []));
     const modified = GBO2Calculator.applyParts(base, parts, expSkills, buildData.msLevel || 1, buildData.enhanceLevel || 0, savedBonuses);
     return this._computeCalcResult(modified, buildData.msName, buildData.msLevel);
+  },
+
+  /**
+   * ダメージシミュレーション用の戦闘プロファイルを構築する（DESIGN §4-3）。
+   * calcStatsFromBuild と同じ applyParts 経路で modified を算出するが、
+   * 整形済み計算結果ではなく「生ステータス＋カテゴリ＋武装＋条件付きスキル」を返す。
+   * @param {object|'current'} buildData - 保存構成 or 現在の構成
+   * @returns {object|null} プロファイル（機体未選択/未発見時は null）
+   */
+  getCombatProfile(buildData) {
+    let ms, msLevel, enhanceLevel, modified, activeIdx, buildName;
+    if (buildData === 'current') {
+      if (!this.selectedMS) return null;
+      const base = this.getBaseStats();
+      if (!base) return null;
+      ms = this.selectedMS;
+      msLevel = this.selectedLevel;
+      enhanceLevel = this.enhanceLevel;
+      activeIdx = this.activeSkillIndices;
+      buildName = '現在の構成';
+      modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean),
+        this.getSelectedExpansionSkills(), msLevel, enhanceLevel, this.getActiveSkillStatBonuses());
+    } else {
+      ms = this.msData.find(m => m.name === buildData.msName);
+      if (!ms) return null;
+      const lvData = ms.levels?.[String(buildData.msLevel)];
+      if (!lvData) return null;
+      msLevel = buildData.msLevel;
+      enhanceLevel = buildData.enhanceLevel || 0;
+      activeIdx = new Set(buildData.activeSkillIndices || []);
+      buildName = buildData.name;
+      const base = GBO2Calculator.applyEnhancements({ ...lvData }, ms.enhancements || [], enhanceLevel, msLevel);
+      const parts = (buildData.equippedParts || [])
+        .map(sp => this.customParts.find(p => p.name === sp.name && p.level === sp.level))
+        .filter(Boolean);
+      const expSkills = Object.entries(buildData.expansionSkillLevels || {})
+        .filter(([, lv]) => lv > 0)
+        .map(([name, lv]) => this.expansionSkillsData.find(s => s.name === name && s.level === lv))
+        .filter(Boolean);
+      const items = this._buildSkillEffectItems(ms, msLevel, enhanceLevel);
+      const bonuses = this._aggregateSkillStatBonuses(items, activeIdx);
+      modified = GBO2Calculator.applyParts(base, parts, expSkills, msLevel, enhanceLevel, bonuses);
+    }
+
+    // 条件付きスキル → ダメージ計算トグル。firepower=攻撃側 / damage_cut=防御側。
+    // id はスキル効果itemsのインデックスに紐付け（保存ONの復元と同じ並び）。
+    // 「常時」または保存時ONのスキルは初期ON（DESIGN §5-4）。
+    const items = this._buildSkillEffectItems(ms, msLevel, enhanceLevel);
+    const skillConditions = [];
+    items.forEach((it, i) => {
+      if (it.category !== 'firepower' && it.category !== 'damage_cut') return;
+      const isAtk = it.category === 'firepower';
+      skillConditions.push({
+        id: `sc-${i}`,
+        side: isAtk ? 'attacker' : 'defender',
+        label: `${it.skillLabel}（${it.condition}）${isAtk ? '与ダメ+' : 'カット'}${it.value}%`,
+        category: it.category,
+        value: it.value,
+        condition: it.condition,
+        defaultOn: it.condition === '常時' || activeIdx.has(i),
+      });
+    });
+
+    return {
+      name: ms.name,
+      buildName,
+      msLevel,
+      category: ms.category,
+      hp: modified.hp || 0,
+      armor: {
+        ballistic: modified.ballistic_armor || 0,
+        beam: modified.beam_armor || 0,
+        melee: modified.melee_armor || 0,
+      },
+      correction: {
+        shooting: modified.shooting_correction || 0,
+        melee: modified.melee_correction || 0,
+      },
+      dmgPct: { shooting: modified.shootingDmgPct || 0, melee: modified.meleeDmgPct || 0 },
+      cutPct: {
+        ballistic: modified.ballisticDamageCutPct || 0,
+        beam: modified.beamDamageCutPct || 0,
+        melee: modified.meleeDamageCutPct || 0,
+      },
+      weapons: this.msWeapons[ms.name] || [],
+      skillConditions,
+    };
+  },
+
+  // === ダメージシミュレーション UI（DESIGN §6: 1武装フォーカス詳細） ===
+  DSIM_ATTR_LABEL: { ballistic: '実弾', beam: 'ビーム', melee: '格闘', special: '特殊' },
+
+  bindDamageSimEvents() {
+    const atkSel = document.getElementById('dsim-build-atk');
+    const defSel = document.getElementById('dsim-build-def');
+    if (!atkSel || !defSel) return;
+    atkSel.addEventListener('change', () => this.onDsimBuildChange());
+    defSel.addEventListener('change', () => this.onDsimBuildChange());
+    document.getElementById('dsim-swap').addEventListener('click', () => {
+      const a = atkSel.value;
+      atkSel.value = defSel.value;
+      defSel.value = a;
+      this.onDsimBuildChange();
+    });
+    document.getElementById('dsim-weapon').addEventListener('change', (e) => {
+      this.dsim.weaponIdx = Number(e.target.value);
+      this.dsim.modeKey = null;
+      this.renderDamageSim();
+    });
+    document.getElementById('dsim-weapon-prev').addEventListener('click', () => this.stepDsimWeapon(-1));
+    document.getElementById('dsim-weapon-next').addEventListener('click', () => this.stepDsimWeapon(1));
+    document.getElementById('dsim-triad').addEventListener('change', (e) => {
+      this.dsim.triad = e.target.value;
+      this.renderDamageSim();
+    });
+  },
+
+  onDsimBuildChange() {
+    this.dsim.weaponIdx = 0;
+    this.dsim.modeKey = null;
+    this.dsim.needsToggleInit = true;
+    this.renderDamageSim();
+  },
+
+  stepDsimWeapon(delta) {
+    const sel = document.getElementById('dsim-weapon');
+    const count = sel.options.length;
+    if (count === 0) return;
+    this.dsim.weaponIdx = (this.dsim.weaponIdx + delta + count) % count;
+    this.dsim.modeKey = null;
+    this.renderDamageSim();
+  },
+
+  // 「現在の構成」または保存構成IDから戦闘プロファイルを取得し、トグルIDを攻守で名前空間分離する
+  _dsimProfile(value, prefix) {
+    const item = value === 'current' ? 'current' : this.savedBuilds.find(b => b.id === Number(value));
+    if (!item) return null;
+    const p = this.getCombatProfile(item);
+    if (!p) return null;
+    return { ...p, skillConditions: p.skillConditions.map(c => ({ ...c, id: `${prefix}-${c.id}` })) };
+  },
+
+  renderDamageSim() {
+    const section = document.getElementById('damage-sim-section');
+    const body = document.getElementById('dsim-body');
+    const empty = document.getElementById('dsim-empty');
+    if (!section || section.classList.contains('hidden')) return;
+
+    const atkVal = document.getElementById('dsim-build-atk').value;
+    const defVal = document.getElementById('dsim-build-def').value;
+    const atkP = atkVal ? this._dsimProfile(atkVal, 'atk') : null;
+    const defP = defVal ? this._dsimProfile(defVal, 'def') : null;
+    if (!atkP || !defP) {
+      body.classList.add('hidden');
+      empty.classList.remove('hidden');
+      empty.textContent = '攻撃側と防御側の構成を選択してください';
+      return;
+    }
+
+    // 武装プルダウン（shield は与ダメ計算対象外・DESIGN §6-2）
+    const weapons = (atkP.weapons || []).filter(w => w.category !== 'shield');
+    if (weapons.length === 0) {
+      body.classList.add('hidden');
+      empty.classList.remove('hidden');
+      empty.textContent = `「${atkP.name}」は武装データ未収録です（順次追加予定）`;
+      return;
+    }
+    empty.classList.add('hidden');
+    body.classList.remove('hidden');
+
+    if (this.dsim.weaponIdx >= weapons.length) this.dsim.weaponIdx = 0;
+    const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const wSel = document.getElementById('dsim-weapon');
+    wSel.innerHTML = weapons.map((w, i) =>
+      `<option value="${i}">${esc(w.name)}（${this.DSIM_ATTR_LABEL[w.attribute] || '?'}）</option>`).join('');
+    wSel.value = String(this.dsim.weaponIdx);
+
+    // 威力モード（非集束/集束・通常/変形）: modes がある武器のみセグメントボタン表示
+    const weapon = weapons[this.dsim.weaponIdx];
+    const modeRow = document.getElementById('dsim-mode-row');
+    let resolved = weapon;
+    if (Array.isArray(weapon.modes) && weapon.modes.length > 0) {
+      const modeKey = this.dsim.modeKey ?? weapon.modes[0].key;
+      const mode = weapon.modes.find(m => m.key === modeKey) || weapon.modes[0];
+      this.dsim.modeKey = mode.key;
+      resolved = { ...weapon, power: mode.power, special: { ...(weapon.special || {}), ...(mode.special || {}) } };
+      modeRow.classList.remove('hidden');
+      modeRow.innerHTML = weapon.modes.map(m =>
+        `<button type="button" class="dsim-mode-btn ${m.key === mode.key ? 'active' : ''}" data-mode="${esc(m.key)}" aria-pressed="${m.key === mode.key}">${esc(m.label)}</button>`).join('');
+      modeRow.querySelectorAll('.dsim-mode-btn').forEach(btn =>
+        btn.addEventListener('click', () => { this.dsim.modeKey = btn.dataset.mode; this.renderDamageSim(); }));
+    } else {
+      modeRow.classList.add('hidden');
+      modeRow.innerHTML = '';
+    }
+
+    // スキル条件トグル: 構成変更時のみ defaultOn（常時＋保存ON）で初期化（DESIGN §5-4）
+    const atkConds = atkP.skillConditions.filter(c => c.side === 'attacker');
+    const defConds = defP.skillConditions.filter(c => c.side === 'defender');
+    if (this.dsim.needsToggleInit) {
+      this.dsim.activeConditions = new Set(
+        [...atkConds, ...defConds].filter(c => c.defaultOn).map(c => c.id));
+      this.dsim.needsToggleInit = false;
+    }
+    this._renderDsimToggles(atkConds, defConds, esc);
+
+    const result = GBO2Calculator.calcWeaponDamage(resolved, atkP, defP, {
+      msLevelAtk: atkP.msLevel,
+      triad: this.dsim.triad,
+      activeConditions: this.dsim.activeConditions,
+    });
+    this._renderDsimCard(resolved, atkP, defP, result, esc);
+  },
+
+  _renderDsimToggles(atkConds, defConds, esc) {
+    const box = document.getElementById('dsim-toggles');
+    const group = (label, conds) => conds.length === 0 ? '' : `
+      <div class="dsim-toggle-group">
+        <span class="dsim-toggle-side">${label}</span>
+        ${conds.map(c => `
+          <label class="dsim-toggle">
+            <input type="checkbox" data-cond="${esc(c.id)}" ${this.dsim.activeConditions.has(c.id) ? 'checked' : ''}>
+            <span>${esc(c.label)}</span>
+          </label>`).join('')}
+      </div>`;
+    const html = group('攻撃側', atkConds) + group('防御側', defConds);
+    box.innerHTML = html || '<p class="dsim-no-toggles">ダメージに影響するスキルはありません</p>';
+    box.querySelectorAll('input[data-cond]').forEach(cb =>
+      cb.addEventListener('change', () => {
+        const next = new Set(this.dsim.activeConditions);
+        if (cb.checked) next.add(cb.dataset.cond); else next.delete(cb.dataset.cond);
+        this.dsim.activeConditions = next;
+        this.renderDamageSim();
+      }));
+  },
+
+  _renderDsimCard(weapon, atkP, defP, r, esc) {
+    const card = document.getElementById('dsim-card');
+    const attrLabel = this.DSIM_ATTR_LABEL[weapon.attribute] || '?';
+    const fmt = v => v.toLocaleString();
+    const b = r.breakdown;
+
+    // 格闘=方向3値 / 射撃=1発・斉射・よろけ値（DESIGN §6-2）
+    const mainRow = r.byDirection
+      ? `<div class="dsim-dmg-row">
+           <div class="dsim-dmg"><span class="dsim-dmg-label">正面</span><span class="dsim-dmg-val">${fmt(r.byDirection.front)}</span></div>
+           <div class="dsim-dmg"><span class="dsim-dmg-label">側面</span><span class="dsim-dmg-val">${fmt(r.byDirection.side)}</span></div>
+           <div class="dsim-dmg"><span class="dsim-dmg-label">背面</span><span class="dsim-dmg-val">${fmt(r.byDirection.back)}</span></div>
+         </div>`
+      : `<div class="dsim-dmg-row">
+           <div class="dsim-dmg"><span class="dsim-dmg-label">1発</span><span class="dsim-dmg-val">${fmt(r.perHit)}</span></div>
+           <div class="dsim-dmg"><span class="dsim-dmg-label">斉射${b.hits > 1 ? `（×${b.hits}）` : ''}</span><span class="dsim-dmg-val">${fmt(r.perVolley)}</span></div>
+           <div class="dsim-dmg"><span class="dsim-dmg-label">よろけ値</span><span class="dsim-dmg-val">${weapon.staggerValue != null ? weapon.staggerValue + '%' : '—'}</span></div>
+         </div>`;
+
+    const mulParts = [
+      `${fmt(b.basePower)}`,
+      `×${b.atkCorrMul.toFixed(2)} 攻撃補正`,
+      b.atkSkillMul !== 1 ? `×${b.atkSkillMul.toFixed(2)} 与ダメスキル` : '',
+      `×${b.defCutMul.toFixed(2)} 防御補正`,
+      b.defSkillMul !== 1 ? `×${b.defSkillMul.toFixed(2)} 防御スキル` : '',
+      b.directionMul !== 1 ? `×${b.directionMul.toFixed(2)} 方向` : '',
+      b.triadMul !== 1 ? `×${b.triadMul.toFixed(2)} 三すくみ` : '',
+    ].filter(Boolean).join(' ');
+
+    card.innerHTML = `
+      <div class="dsim-card-head">
+        <span class="dsim-weapon-name">${esc(weapon.name)}</span>
+        <span class="dsim-attr-badge dsim-attr-${esc(weapon.attribute || 'none')}">${attrLabel}</span>
+      </div>
+      <div class="dsim-vs">${esc(atkP.name)} LV${atkP.msLevel} → ${esc(defP.name)} LV${defP.msLevel}
+        ${b.triadMul !== 1 ? `<span class="dsim-triad-tag">三すくみ${b.triadMul > 1 ? '有利' : '不利'} ×${b.triadMul.toFixed(2)}</span>` : ''}</div>
+      ${mainRow}
+      <details class="dsim-breakdown">
+        <summary>内訳</summary>
+        <div class="dsim-breakdown-body">${mulParts}（各段で小数切り捨て）</div>
+      </details>
+      ${weapon.notes ? `<div class="dsim-notes">備考: ${esc(weapon.notes)}</div>` : ''}
+      ${r.unmodeled.length > 0 ? `<div class="dsim-unmodeled">⚠ 未モデル: ${r.unmodeled.map(esc).join(' / ')}</div>` : ''}
+    `;
   },
 
   runCompareBuild() {

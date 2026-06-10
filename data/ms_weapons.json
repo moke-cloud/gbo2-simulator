@@ -1,0 +1,99 @@
+{
+  "version": "seed-manual-20260610",
+  "source": "atwiki battle-operation2 pageId 7554（リゼルN型）2026-06-09 実機確認値の手入力seed。Phase 1-D の parse_ms_weapons.py 出力で置換予定。威力はWiki武装表の実数値、解析しきれない特殊効果は notes に原文保全。",
+  "weapons": {
+    "リゼルN型": [
+      {
+        "name": "リゼルN型用ビーム・ライフル",
+        "category": "shooting",
+        "attribute": "beam",
+        "power": { "1": 2200, "2": 2400 },
+        "hits": 1,
+        "modes": null,
+        "magazine": null,
+        "rangeM": 300,
+        "staggerValue": 30,
+        "chargeable": true,
+        "special": {},
+        "notes": "集束可/集束時大よろけ/倍率1.727/よろけ値30%"
+      },
+      {
+        "name": "リゼルN型用B・サーベル",
+        "category": "melee",
+        "attribute": "melee",
+        "power": { "1": 2500, "2": 2700 },
+        "hits": 1,
+        "modes": null,
+        "special": { "heavyAttack": true },
+        "notes": "クールタイム2秒/ヘビーアタック対応"
+      },
+      {
+        "name": "リゼルN型用S内B・キャノン",
+        "category": "shooting",
+        "attribute": "beam",
+        "power": { "1": 850 },
+        "hits": 1,
+        "chargeable": true,
+        "modes": [
+          { "key": "normal", "label": "非集束", "power": { "1": 850 } },
+          { "key": "charged", "label": "集束", "power": { "1": 2800 }, "special": { "penetration": true } }
+        ],
+        "special": {},
+        "notes": "ヒート式/集束時ユニット貫通効果有"
+      },
+      {
+        "name": "リゼルN型用頭部バルカン砲",
+        "category": "shooting",
+        "attribute": "ballistic",
+        "power": { "1": 130 },
+        "hits": 1,
+        "magazine": 50,
+        "staggerValue": 6,
+        "special": {},
+        "notes": "弾数50/600発毎分/DPS1300/よろけ値6%"
+      },
+      {
+        "name": "リゼルN型用腕部G・ランチャー",
+        "category": "shooting",
+        "attribute": "ballistic",
+        "power": { "1": 1400 },
+        "hits": 2,
+        "staggerValue": 35,
+        "special": {},
+        "notes": "2発連続発射/よろけ値35%×2"
+      },
+      {
+        "name": "リゼルN型用L・B・サーベル",
+        "category": "melee",
+        "attribute": "melee",
+        "power": { "1": 2600, "2": 2800 },
+        "hits": 1,
+        "special": {},
+        "notes": "空中格闘制御対応"
+      },
+      {
+        "name": "リゼルN型用S内B・C（変形）",
+        "category": "shooting",
+        "attribute": "beam",
+        "power": { "1": 1100 },
+        "hits": 1,
+        "chargeable": true,
+        "modes": [
+          { "key": "normal", "label": "非集束", "power": { "1": 1100 } },
+          { "key": "charged", "label": "集束", "power": { "1": 2000 } }
+        ],
+        "special": {},
+        "notes": "変形時のみ使用可"
+      },
+      {
+        "name": "リゼルN型用B・C内蔵シールド",
+        "category": "shield",
+        "attribute": null,
+        "power": null,
+        "hits": 0,
+        "special": {},
+        "notes": "シールド（威力表は防御/HP系・与ダメ計算対象外）"
+      }
+    ]
+  }
+}

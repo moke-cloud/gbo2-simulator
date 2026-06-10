@@ -879,3 +879,62 @@ select { cursor: pointer; appearance: none;
   .ss-label { font-size: .54rem; }
   .ss-val { font-size: .7rem; }
 }
+
+/* ===== ダメージシミュレーション ===== */
+.dsim-matchup {
+  display: flex; align-items: flex-end; gap: var(--gap-sm); flex-wrap: wrap;
+  margin-bottom: var(--gap-md);
+}
+.dsim-matchup .compare-select-row { flex: 1 1 150px; min-width: 130px; }
+.dsim-arrow { color: var(--teal); font-weight: 700; padding-bottom: 8px; }
+.dsim-swap { white-space: nowrap; }
+.dsim-weapon-nav { display: flex; gap: var(--gap-xs); align-items: center; margin-bottom: var(--gap-sm); }
+.dsim-weapon-select { flex: 1; min-width: 0; }
+.dsim-nav-btn {
+  background: var(--bg-raise); border: 1px solid var(--line); color: var(--text-2);
+  padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: .8rem;
+}
+.dsim-nav-btn:hover { border-color: var(--teal); color: var(--teal); }
+.dsim-mode-row { display: flex; gap: var(--gap-xs); margin-bottom: var(--gap-sm); }
+.dsim-mode-btn {
+  background: var(--bg-input); border: 1px solid var(--line); color: var(--text-2);
+  padding: 6px 14px; cursor: pointer; border-radius: 4px; font-size: .78rem;
+}
+.dsim-mode-btn.active { color: var(--teal); border-color: var(--teal); background: rgba(25,227,196,.10); }
+.dsim-card {
+  background: var(--bg-panel-2); border: 1px solid var(--line);
+  padding: var(--gap-md); border-radius: 6px; margin-bottom: var(--gap-md);
+}
+.dsim-card-head { display: flex; align-items: center; gap: var(--gap-sm); flex-wrap: wrap; margin-bottom: 4px; }
+.dsim-weapon-name { font-weight: 700; font-size: .95rem; }
+.dsim-attr-badge { font-size: .68rem; padding: 2px 8px; border-radius: 3px; font-weight: 700; }
+.dsim-attr-ballistic { background: rgba(255,194,77,.16);  color: var(--warn); }
+.dsim-attr-beam      { background: rgba(77,155,255,.16);  color: var(--cat-defense); }
+.dsim-attr-melee     { background: rgba(255,90,106,.16);  color: var(--cat-attack); }
+.dsim-attr-special   { background: rgba(185,139,255,.16); color: var(--cat-special); }
+.dsim-vs { font-size: .74rem; color: var(--text-2); margin-bottom: var(--gap-sm); }
+.dsim-triad-tag { color: var(--teal); margin-left: 6px; }
+.dsim-dmg-row { display: flex; gap: var(--gap-sm); flex-wrap: wrap; margin-bottom: var(--gap-sm); }
+.dsim-dmg {
+  flex: 1 1 90px; background: var(--bg-input); border: 1px solid var(--line);
+  border-radius: 4px; padding: 8px 10px; text-align: center;
+}
+.dsim-dmg-label { display: block; font-size: .68rem; color: var(--text-3); margin-bottom: 2px; }
+.dsim-dmg-val { font-size: 1.25rem; font-weight: 700; color: var(--teal); font-variant-numeric: tabular-nums; }
+.dsim-breakdown summary { cursor: pointer; font-size: .74rem; color: var(--text-2); }
+.dsim-breakdown-body { font-size: .74rem; color: var(--text-2); padding: 6px 0 2px; line-height: 1.7; }
+.dsim-notes { font-size: .72rem; color: var(--text-3); margin-top: 6px; }
+.dsim-unmodeled { font-size: .72rem; color: var(--warn); margin-top: 6px; }
+.dsim-toggles { margin-bottom: var(--gap-md); }
+.dsim-toggle-group { display: flex; flex-wrap: wrap; gap: var(--gap-xs) var(--gap-sm); align-items: center; margin-bottom: var(--gap-xs); }
+.dsim-toggle-side { font-size: .7rem; color: var(--text-3); font-weight: 700; min-width: 46px; }
+.dsim-toggle {
+  display: inline-flex; align-items: center; gap: 4px; font-size: .74rem; color: var(--text-2);
+  background: var(--bg-input); border: 1px solid var(--line); border-radius: 4px;
+  padding: 4px 8px; cursor: pointer;
+}
+.dsim-toggle:has(input:checked) { color: var(--teal); border-color: var(--teal-dim); }
+.dsim-no-toggles { font-size: .74rem; color: var(--text-3); }
+.dsim-opts { display: flex; align-items: center; gap: var(--gap-sm); }
+.dsim-empty { font-size: .8rem; color: var(--text-3); padding: var(--gap-sm) 0; }
+.dsim-opts .compare-label { white-space: nowrap; margin-bottom: 0; }
