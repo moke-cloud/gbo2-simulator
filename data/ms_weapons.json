@@ -1,5 +1,5 @@
 {
- "version": "hbc4552afec55",
+ "version": "h76c303943cfb",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -6010,7 +6010,7 @@
      "3": 220
     },
     "hits": 1,
-    "notes": "10発同時発射/約0.8秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/よろけ値：0%",
+    "notes": "10発同時発射×2回攻撃/約0.8秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/よろけ値：0%",
     "rangeM": 300,
     "staggerValue": 0,
     "chargeable": false,
@@ -6027,9 +6027,9 @@
      "3": 350
     },
     "hits": 1,
-    "notes": "10発同時発射/約0.8秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/よろけ値：7% x10",
+    "notes": "10発同時発射/約0.8秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/よろけ値：0%",
     "rangeM": 250,
-    "staggerValue": 7,
+    "staggerValue": 0,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -6252,16 +6252,16 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 125,
-     "2": 131,
-     "3": 138,
-     "4": 145
+     "1": 150,
+     "2": 170,
+     "3": 190,
+     "4": 210
     },
     "hits": 1,
-    "notes": "移動射撃可/よろけ値：8%（13HIT）/局部補正：1.2倍/シールド補正：1.2倍",
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：9%（12HIT）/局部補正：1.2倍/シールド補正：1.2倍",
     "magazine": 30,
     "rangeM": 250,
-    "staggerValue": 8,
+    "staggerValue": 9,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -6271,10 +6271,10 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2800,
-     "2": 2940,
-     "3": 3080,
-     "4": 3220
+     "1": 2900,
+     "2": 3100,
+     "3": 3300,
+     "4": 3500
     },
     "hits": 1,
     "notes": "",
@@ -24468,10 +24468,10 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 2200,
-     "2": 2310,
-     "3": 2420,
-     "4": 2530
+     "1": 2300,
+     "2": 2500,
+     "3": 2700,
+     "4": 2900
     },
     "hits": 1,
     "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/よろけ値：10%/局部補正：1.1倍/シールド補正：1.1倍",
@@ -24486,13 +24486,13 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2400,
-     "2": 2520,
-     "3": 2640,
-     "4": 2850
+     "1": 2500,
+     "2": 2700,
+     "3": 2900,
+     "4": 3100
     },
     "hits": 1,
-    "notes": "スキル「/ヘビーアタック/」対応/集束時間：2.5秒/頭部・脚部補正：1.0倍（1.0倍）/背部補正：1.1倍（1.1倍）/シールド補正：1.2倍（1.8倍）",
+    "notes": "スキル「/ヘビーアタック/」対応/集束時間：2秒/頭部・脚部補正：1.0倍（1.0倍）/背部補正：1.1倍（1.1倍）/シールド補正：1.2倍（1.8倍）",
     "staggerValue": null,
     "chargeable": false,
     "special": {},
@@ -24527,10 +24527,10 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 500,
-     "2": 525,
-     "3": 550,
-     "4": 575
+     "1": 600,
+     "2": 700,
+     "3": 800,
+     "4": 900
     },
     "hits": 1,
     "notes": "移動射撃可/ひるみ有/よろけ値：35%（3HIT）/局部補正：0.8倍/シールド補正：1.0倍",
@@ -24546,10 +24546,10 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1100,
-     "2": 1200,
-     "3": 1300,
-     "4": 1400
+     "1": 1200,
+     "2": 1350,
+     "3": 1500,
+     "4": 1650
     },
     "hits": 1,
     "notes": "二発同時発射/射撃時静止/よろけ有/よろけ値：20% x2/局部補正：1.0倍/シールド補正：1.5倍",
@@ -28534,7 +28534,9 @@
     "attribute": "ballistic",
     "power": {
      "1": 110,
-     "2": 115
+     "2": 115,
+     "3": 121,
+     "4": 127
     },
     "hits": 1,
     "notes": "移動射撃可/よろけ値：8%（13HIT）",
@@ -28551,7 +28553,9 @@
     "attribute": "ballistic",
     "power": {
      "1": 50,
-     "2": 52
+     "2": 52,
+     "3": 55,
+     "4": 57
     },
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/よろけ値：2%（50HIT）",
@@ -28568,7 +28572,9 @@
     "attribute": "ballistic",
     "power": {
      "1": 1000,
-     "2": 1050
+     "2": 1050,
+     "3": 1100,
+     "4": 1150
     },
     "hits": 1,
     "notes": "移動射撃可/ひるみ有/よろけ値：30%",
@@ -43973,7 +43979,8 @@
       "key": "charged",
       "label": "集束",
       "power": {
-       "1": 950
+       "1": 950,
+       "2": 1000
       }
      }
     ]
@@ -62178,10 +62185,10 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 2900
+     "1": 3000
     },
     "hits": 1,
-    "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：1.5秒/倍率：1.17倍/よろけ値：30%（65%）",
+    "notes": "Eパック式弾数所持/移動射撃可/スキル「フィン・ノズル制御機構」対応/スキル発動中、ブースト射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：1.5秒/倍率：1.2倍/よろけ値：30%（65%）",
     "rangeM": 400,
     "staggerValue": 30,
     "chargeable": true,
@@ -62191,14 +62198,14 @@
       "key": "normal",
       "label": "非集束",
       "power": {
-       "1": 2900
+       "1": 3000
       }
      },
      {
       "key": "charged",
       "label": "集束",
       "power": {
-       "1": 3400
+       "1": 3600
       }
      }
     ]
@@ -62241,9 +62248,9 @@
      "1": 600
     },
     "hits": 4,
-    "notes": "Eパック式弾数所持/4発連続発射/移動射撃可/スキル「フィン・ノズル制御機構」対応/スキル発動中、ブースト射撃可/特殊射撃中、3発連続発射/ASL（自動照準補正）有/よろけ値：20% x4/局部補正：?倍/シールド補正：?倍",
+    "notes": "Eパック式弾数所持/単押しで単発射撃/長押しで4発連続発射/移動射撃可/スキル「フィン・ノズル制御機構」対応/スキル発動中、ブースト射撃可/特殊射撃中、3発連続発射/ASL（自動照準補正）有/よろけ値：25% x4/局部補正：?倍/シールド補正：?倍",
     "rangeM": 400,
-    "staggerValue": 20,
+    "staggerValue": 25,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -62253,10 +62260,10 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1500
+     "1": 1600
     },
     "hits": 1,
-    "notes": "移動射撃可/空中射撃可/スキル「フィン・ノズル制御機構」対応/スキル発動中、ブースト射撃可/非集束時ひるみ有/集束可/集束時よろけ有/集束時爆風範囲有/集束時間：2.5秒/倍率：2.67倍/よろけ値：65%（65%）",
+    "notes": "移動射撃可/空中射撃可/スキル「フィン・ノズル制御機構」対応/スキル発動中、ブースト射撃可/非集束時ひるみ有/集束可/集束時よろけ有/集束時爆風範囲有/集束時間：2秒/倍率：2.5倍/よろけ値：65%（100%）",
     "rangeM": 400,
     "staggerValue": 65,
     "chargeable": true,
@@ -62266,7 +62273,7 @@
       "key": "normal",
       "label": "非集束",
       "power": {
-       "1": 1500
+       "1": 1600
       }
      },
      {
@@ -63629,7 +63636,7 @@
      "1": 2800
     },
     "hits": 1,
-    "notes": "Eパック式弾数所持/移動射撃可/スキル「/バイオ脳制御機構?/」/スキル発動中ブースト射撃可/即撃ちよろけ有/よろけ値：20%",
+    "notes": "Eパック式弾数所持/移動射撃可/スキル「/バイオ脳制御機構/」/スキル発動中ブースト射撃可/即撃ちよろけ有/よろけ値：20%",
     "rangeM": 400,
     "staggerValue": 20,
     "chargeable": false,
@@ -63646,7 +63653,7 @@
      "3": 2200
     },
     "hits": 1,
-    "notes": "移動射撃可/スキル「/バイオ脳制御機構?/」/スキル発動中ブースト射撃可/よろけ有/よろけ値：60%/局部補正：？倍/シールド補正：？倍/アマクサ用ビーム・ライフルに付属/武装Lvは機体Lv依存",
+    "notes": "移動射撃可/スキル「/バイオ脳制御機構/」/スキル発動中ブースト射撃可/よろけ有/よろけ値：60%/局部補正：？倍/シールド補正：？倍/アマクサ用ビーム・ライフルに付属/武装Lvは機体Lv依存",
     "magazine": 1,
     "rangeM": 300,
     "staggerValue": 60,
@@ -65425,7 +65432,7 @@
      "1": 500
     },
     "hits": 1,
-    "notes": "移動射撃可/スキル「最大出力（T）」対応/スキル発動中、ブースト射撃可/ASL（自動照準補正）有/非集束時単発射撃 ＋二発同時発射 x4回攻撃/非集束時照準誘導効果有/集束可/集束時単発射撃 ＋4発同時発射 x2回攻撃/集束時よろけ有/集束時間：1.5秒/倍率：1.1倍/よろけ値：35%＋35% x2発 x4射（17%＋17% x4発 x2射）",
+    "notes": "移動射撃可/スキル「最大出力（T）」対応/スキル発動中、前方ブースト射撃可/ASL（自動照準補正）有/非集束時単発射撃 ＋二発同時発射 x4回攻撃/非集束時照準誘導効果有/集束可/集束時単発射撃 ＋4発同時発射 x2回攻撃/集束時よろけ有/集束時間：1.5秒/倍率：1.1倍/よろけ値：35%＋35% x2発 x4射（17%＋17% x4発 x2射）",
     "rangeM": 300,
     "staggerValue": 35,
     "chargeable": true,
@@ -66968,7 +66975,7 @@
      "1": 700
     },
     "hits": 1,
-    "notes": "二発同時発射/射撃時静止/空中射撃可/よろけ値：13% x2%/スキル「阿頼耶識システム（リミッター解除）」対応/スキル発動中、リロード時間50%短縮/腕部200mm砲に付属/武装Lvは機体Lv依存",
+    "notes": "二発同時発射/射撃時静止/空中射撃可/よろけ値：13% x2/スキル「阿頼耶識システム（リミッター解除）」対応/スキル発動中、リロード時間50%短縮/腕部200mm砲に付属/武装Lvは機体Lv依存",
     "magazine": 20,
     "rangeM": 350,
     "staggerValue": 13,
@@ -67016,7 +67023,7 @@
      "1": 1500
     },
     "hits": 1,
-    "notes": "二発同時発射/射撃時静止/空中射撃可/大よろけ有/よろけ値：10% x2%/スキル「阿頼耶識システム（リミッター解除）」対応/スキル発動中、リロード時間50%短縮/腕部ロケット砲に付属/武装Lvは機体Lv依存",
+    "notes": "二発同時発射/射撃時静止/空中射撃可/大よろけ有/よろけ値：10% x2/スキル「阿頼耶識システム（リミッター解除）」対応/スキル発動中、リロード時間50%短縮/腕部ロケット砲に付属/武装Lvは機体Lv依存",
     "magazine": 6,
     "rangeM": 200,
     "staggerValue": 10,
@@ -67082,7 +67089,7 @@
      "1": 2900
     },
     "hits": 1,
-    "notes": "スキル「空中格闘制御」対応/スキル「/ヘビーアタック/」対応/集束時間：1秒/スキル「阿頼耶識システム（リミッター解除）」対応/スキル発動中、連撃補正上昇",
+    "notes": "スキル「/ヘビーアタック/」対応/集束時間：1秒/スキル「阿頼耶識システム（リミッター解除）」対応/スキル発動中、連撃補正上昇",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -67558,7 +67565,7 @@
      "1": 2800
     },
     "hits": 1,
-    "notes": "移動射撃可/よろけ有/よろけ値：80%br()V2ガンダム用B・R［ML］に付属/武装Lvは機体Lv依存",
+    "notes": "移動射撃可/よろけ有/よろけ値：80%/V2ガンダム用B・R［ML］に付属/武装Lvは機体Lv依存",
     "magazine": 1,
     "rangeM": 250,
     "staggerValue": 80,
@@ -70270,6 +70277,1223 @@
       }
      }
     ]
+   }
+  ],
+  "ベルガ・ギロス（GK）": [
+   {
+    "name": "ベルガ・G（GK）用S・ランサー",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 3000
+    },
+    "hits": 1,
+    "notes": "移動射撃可/空中射撃可/スキル「S・ノズル制御機構（G）」対応/スキル「高速機動射撃」対応/スキル発動中、ブースト射撃可/よろけ有/ユニット貫通効果有/攻撃対象の耐実弾補正を30%減でダメージ計算/よろけ値：60%/シールド補正：2.0倍",
+    "magazine": 3,
+    "rangeM": 350,
+    "staggerValue": 60,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ベルガ・G（GK）用B・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2900
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 60.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.6
+    }
+   },
+   {
+    "name": "S・付属ヘビー・マシンガン",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 220
+    },
+    "hits": 1,
+    "notes": "移動射撃可/スキル「S・ノズル制御機構（G）」対応/スキル「高速機動射撃」対応/スキル発動中、ブースト射撃可/よろけ値：9%（12HIT）",
+    "magazine": 80,
+    "rangeM": 250,
+    "staggerValue": 9,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ショット・ランサー［打突］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3000
+    },
+    "hits": 1,
+    "notes": "スキル「空中格闘制御」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 60.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.6
+    }
+   },
+   {
+    "name": "ホッブバグ［射出］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 1000
+    },
+    "hits": 1,
+    "notes": "二発同時発射 x3回攻撃/約0.7秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/よろけ値：25% x2発 x3射",
+    "magazine": 1,
+    "rangeM": 250,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ホッブバグ［感知］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 400
+    },
+    "hits": 1,
+    "notes": "射程範囲内の敵機に約3秒間隔で自動攻撃/6回攻撃/移動射撃可/ブースト射撃可/ユニット貫通効果有/効果時間：10秒/自機がダウンした場合強制OH/よろけ値：17% x6",
+    "rangeM": 150,
+    "staggerValue": 17,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "F91［BC装備］": [
+   {
+    "name": "F91［BC装備］用B・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 3000
+    },
+    "hits": 1,
+    "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/ASL（自動照準補正）有/よろけ値：20%",
+    "rangeM": 400,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "F91［BC装備］用B・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3000
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 50.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.3
+    }
+   },
+   {
+    "name": "［BC装備］用バルカン砲",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 160
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：8%（13HIT）",
+    "magazine": 50,
+    "rangeM": 200,
+    "staggerValue": 8,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "［BC装備］用メガ・MCx2",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 100
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/よろけ値：1% x2",
+    "magazine": 40,
+    "rangeM": 350,
+    "staggerValue": 1,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "［BC装備］用4連装B・Gx2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 220
+    },
+    "hits": 1,
+    "notes": "左右交互発射/移動射撃可/空中射撃可/ASL（自動照準補正）有/よろけ値：7%（15HIT）",
+    "rangeM": 400,
+    "staggerValue": 7,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "［BC装備］用4連装B・Gx2［リミッター解除］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 300
+    },
+    "hits": 1,
+    "notes": "「リロード」ボタン押下で発動/10秒間使用可/左右交互発射/射撃時静止/ユニット貫通効果有/ASL（自動照準補正）有/よろけ値：9%（12HIT）",
+    "rangeM": 450,
+    "staggerValue": 9,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "［BC装備］用大型Mx4",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 1200
+    },
+    "hits": 1,
+    "notes": "二発同時発射/射撃時静止/空中射撃可/大よろけ有/ASL（自動照準補正）有/照準誘導効果有/よろけ値：20% x2",
+    "magazine": 4,
+    "rangeM": 400,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "［BC装備］用大型Mx4［焼夷］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 800
+    },
+    "hits": 1,
+    "notes": "二発同時発射/射撃時静止/空中射撃可/よろけ有/ASL（自動照準補正）有/照準誘導効果有/命中対象に炎上デバフ付与/2000固定ダメージ(400x5HIT)/よろけ値：25% x2",
+    "magazine": 4,
+    "rangeM": 400,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "重装ジム改": [
+   {
+    "name": "ハイパー・バズーカ［改良型］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 1500,
+     "2": 1575,
+     "3": 1650,
+     "4": 1725,
+     "5": 1800
+    },
+    "hits": 1,
+    "notes": "移動射撃可/よろけ有/よろけ値：80%/局部補正：0.8倍/シールド補正：1.5倍",
+    "magazine": 12,
+    "rangeM": 375,
+    "staggerValue": 80,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ビーム・サーベル［強化］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1900,
+     "2": 1995,
+     "3": 2090,
+     "4": 2185,
+     "5": 2280
+    },
+    "hits": 1,
+    "notes": "頭部・脚部補正：1.0倍/背部補正：1.1倍/シールド補正：1.2倍",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.4
+    }
+   },
+   {
+    "name": "重装ジム改用頭部バルカン",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 70,
+     "2": 80,
+     "3": 90,
+     "4": 100
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/ブースト射撃可/よろけ値：3% x2",
+    "magazine": 50,
+    "rangeM": 175,
+    "staggerValue": 3,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "6連装ミサイル・ランチャー",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 400,
+     "2": 450,
+     "3": 500,
+     "4": 550
+    },
+    "hits": 6,
+    "notes": "6発連続発射/射撃時静止/よろけ有/よろけ値：10% x6",
+    "magazine": 12,
+    "rangeM": 250,
+    "staggerValue": 10,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "重装ジム改用ジム・ライフル",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 170,
+     "2": 180,
+     "3": 190,
+     "4": 200
+    },
+    "hits": 3,
+    "notes": "3発連続発射/移動射撃可/よろけ値：7%（15HIT）",
+    "magazine": 30,
+    "rangeM": 250,
+    "staggerValue": 7,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "肩部3連装ミサイル・ポッド",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 550,
+     "2": 650,
+     "3": 750,
+     "4": 850
+    },
+    "hits": 3,
+    "notes": "3発連続発射/移動射撃可/ひるみ有/照準誘導効果有/よろけ値：25% x3",
+    "magazine": 6,
+    "rangeM": 300,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "ゲンガオゾ": [
+   {
+    "name": "ゲンガオゾ用ビーム・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2900
+    },
+    "hits": 1,
+    "notes": "Eパック式弾数所持/移動射撃可/スキル「B・E・ユニット制御機構」対応/スキル発動中、ブースト射撃可/即撃ちよろけ有/よろけ値：50%",
+    "rangeM": 350,
+    "staggerValue": 50,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ゲンガオゾ用ビーム・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3000
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 40.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.6
+    }
+   },
+   {
+    "name": "ゲンガオゾ用ビーム・ライフル［速射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 700
+    },
+    "hits": 4,
+    "notes": "4発連続発射/Eパック式弾数所持/移動射撃可/スキル「B・E・ユニット制御機構」対応/スキル発動中、ブースト射撃可/ASL（自動照準補正）有/よろけ値：17% x4",
+    "rangeM": 300,
+    "staggerValue": 17,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ゲンガオゾ用ビーム・メイス",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3400
+    },
+    "hits": 1,
+    "notes": "大よろけ有/攻撃対象の耐格闘補正を20%減でダメージ計算/攻撃対象の特殊緩衝材系スキル無視",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 40.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.6
+    }
+   },
+   {
+    "name": "MB・ランチャーx5［速射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1000
+    },
+    "hits": 5,
+    "notes": "5発連続発射/移動射撃可/空中射撃可/スキル「B・E・ユニット制御機構」対応/スキル発動中、ブースト射撃可/よろけ有/ASL（自動照準補正）有/よろけ値：10% x5",
+    "rangeM": 350,
+    "staggerValue": 10,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "MB・ランチャーx5［速射］［リミッター解除］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 300
+    },
+    "hits": 1,
+    "notes": "「リロード」ボタン押下で発動/10秒間使用可/4発同時発射 x5回攻撃/移動射撃可/空中射撃可/ブースト射撃可/よろけ値：17% x4発 x5射",
+    "rangeM": 350,
+    "staggerValue": 17,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "ゴッドガンダム": [
+   {
+    "name": "マシン・キャノンx2",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 160,
+     "2": 170
+    },
+    "hits": 1,
+    "notes": "2発同時発射/移動射撃可/ブースト射撃可/よろけ値：2% x2",
+    "magazine": 120,
+    "rangeM": 300,
+    "staggerValue": 2,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ゴッドガンダム用打撃",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2600,
+     "2": 2800
+    },
+    "hits": 1,
+    "notes": "スキル性能変化対象兵装",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 3.5,
+     "side": 3.5,
+     "down": 3.5
+    }
+   },
+   {
+    "name": "ゴッドガンダム用打撃［ハイパーモード］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2700,
+     "2": 2900
+    },
+    "hits": 1,
+    "notes": "スキル「ハイパーモード」発動中使用可/スキル「/ヘビーアタック（D）/」対応/集束時間：1秒",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 3.5,
+     "side": 3.5,
+     "down": 3.5
+    }
+   },
+   {
+    "name": "ゴッドガンダム用打撃［明鏡止水］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2700,
+     "2": 2900
+    },
+    "hits": 1,
+    "notes": "スキル「明鏡止水」発動中使用可/スキル「/空中格闘制御/」対応/スキル「/ヘビーアタック（D）/」対応/集束時間：1秒",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 3.5,
+     "side": 3.5,
+     "down": 3.5
+    }
+   },
+   {
+    "name": "頭部バルカン砲x4",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 75,
+     "2": 80
+    },
+    "hits": 1,
+    "notes": "2発同時発射/移動射撃可/ブースト射撃可/よろけ値：5% x2",
+    "magazine": 80,
+    "rangeM": 250,
+    "staggerValue": 5,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ゴッドスラッシュ",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3200,
+     "2": 3400
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応/スキル「ハイパーモード」発動中、威力上昇",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 3.5,
+     "side": 3.5,
+     "down": 3.5
+    }
+   },
+   {
+    "name": "ゴッドスラッシュ［波動］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2600,
+     "2": 2800
+    },
+    "hits": 1,
+    "notes": "連撃不可/射撃時静止/空中射撃可/よろけ有/よろけ値：50%/スキル「攻撃姿勢制御」の効果対象外/スキル「ハイパーモード」発動中、威力上昇",
+    "magazine": 1,
+    "rangeM": 350,
+    "staggerValue": 50,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 3.5,
+     "side": 3.5,
+     "down": 3.5
+    }
+   },
+   {
+    "name": "石破天驚拳",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 4500,
+     "2": 4800
+    },
+    "hits": 1,
+    "notes": "明鏡止水発動中、ゴッドスラッシュ［波動］から置き換わる/射撃時静止/空中射撃可/大よろけ有/ユニット貫通効果有/よろけ値：50%/スキル「攻撃姿勢制御」の効果対象外",
+    "magazine": 1,
+    "rangeM": 400,
+    "staggerValue": 50,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 3.5,
+     "side": 3.5,
+     "down": 3.5
+    }
+   }
+  ],
+  "ビギナ・ゼラ": [
+   {
+    "name": "ビギナ・ゼラ用ビーム・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1500
+    },
+    "hits": 1,
+    "notes": "Eパック式弾数所持/移動射撃可/スキル「高速機動射撃」対応/スキル発動中、ブースト射撃可/非集束時ASL（自動照準補正）有/集束可/集束時よろけ有/集束時間：1.5秒/倍率：1.6倍/よろけ値：65%（65%）",
+    "rangeM": 300,
+    "staggerValue": 65,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 1500
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 2400
+      }
+     }
+    ]
+   },
+   {
+    "name": "ビギナ・ゼラ用ビーム・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2900
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 7.2,
+     "side": 7.2,
+     "down": 7.2
+    }
+   },
+   {
+    "name": "V・ゼラ用B・ライフル［速射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 700
+    },
+    "hits": 4,
+    "notes": "Eパック式弾数所持/4発連続発射/移動射撃可/スキル「高速機動射撃」対応/スキル発動中、ブースト射撃可/ASL（自動照準補正）有/よろけ値：25% x4",
+    "rangeM": 300,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "V・ゼラ用B・サーベルx2",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3200
+    },
+    "hits": 1,
+    "notes": "スキル「空中格闘制御」対応/スキル「ヘビーアタック改」対応/集束時間：1秒",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 7.2,
+     "side": 7.2,
+     "down": 7.2
+    }
+   },
+   {
+    "name": "ヴェスバーx2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1550
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/空中射撃可/スキル「高速機動射撃」対応/スキル発動中、ブースト射撃可/即撃ちよろけ有/ASL（自動照準補正）有/集束可/集束時二発同時発射 x2回攻撃/集束時ユニット貫通効果有/集束時攻撃対象のシールドHP無視/集束時間：2秒/倍率：1.03倍/よろけ値：35% x2（50% x2発 x2射）",
+    "rangeM": 325,
+    "staggerValue": 35,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 1550
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 1600
+      }
+     }
+    ]
+   }
+  ],
+  "FAエンゲージガンダム［Bプラン］": [
+   {
+    "name": "FEGBP用ビーム・キャノン",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2400
+    },
+    "hits": 1,
+    "notes": "移動射撃可/スキル「リンクショット」対応/スキル発動中、ブースト射撃可/即撃ちよろけ有/よろけ値：20%",
+    "rangeM": 350,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "FEGBP用B・サーベルx2",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2700
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.45
+    }
+   },
+   {
+    "name": "FEGBP用頭部バルカン",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 120
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：6%（17HIT）",
+    "magazine": 50,
+    "rangeM": 200,
+    "staggerValue": 6,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "FEGBP用B・キャノン［速射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 800
+    },
+    "hits": 1,
+    "notes": "二発同時発射 x2回攻撃/移動射撃可/よろけ有/ASL（自動照準補正）有/よろけ値：12% x2発 x2射",
+    "rangeM": 350,
+    "staggerValue": 12,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "背部ミサイル・ポッドx2",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 400
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：15%（7HIT）",
+    "magazine": 12,
+    "rangeM": 300,
+    "staggerValue": 15,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "R・ファンネルx4［射出］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 400
+    },
+    "hits": 1,
+    "notes": "4発同時発射 x4回攻撃/約0.7秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/よろけ値：14% x4発 x4射",
+    "magazine": 1,
+    "rangeM": 250,
+    "staggerValue": 14,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "R・ファンネルx4［集中砲火］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 300
+    },
+    "hits": 1,
+    "notes": "12回攻撃/約0.7秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/よろけ値：5% x12",
+    "rangeM": 250,
+    "staggerValue": 5,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "R・ファンネルx3［援護］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 400
+    },
+    "hits": 1,
+    "notes": "20秒間味方の攻撃行動とともに自動攻撃/3発同時発射/味方を約0.5秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/「リロード」ボタンで任意解除可/よろけ値：0%",
+    "rangeM": 450,
+    "staggerValue": 0,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "Ζガンダム［IFC＆IFB装備］": [
+   {
+    "name": "IF・ブラスター［ライフル］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2600,
+     "2": 2800
+    },
+    "hits": 1,
+    "notes": "＜通常時/変形時＞共通使用可/移動射撃可/スキル「能力UP「バイオセンサーK」」対応/スキル発動中及び変形中、ブースト射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：1.5秒/倍率：1.46倍/よろけ値：20%（100%）",
+    "rangeM": 300,
+    "staggerValue": 20,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 2600,
+       "2": 2800
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 3800,
+       "2": 4000
+      }
+     }
+    ]
+   },
+   {
+    "name": "IF・ブラスター［サーベル］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3400,
+     "2": 3600
+    },
+    "hits": 1,
+    "notes": "＜通常時＞使用可/格闘方向に関わらず強制ダウン/スキル「空中格闘制御」対応/スキル「ヘビーアタック改」対応/集束時間：1.5秒",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 80.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.4
+    }
+   },
+   {
+    "name": "頭部バルカン",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 180,
+     "2": 190
+    },
+    "hits": 1,
+    "notes": "＜通常時＞使用可/移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
+    "magazine": 60,
+    "rangeM": 200,
+    "staggerValue": 7,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ビーム・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1100,
+     "2": 3000
+    },
+    "hits": 1,
+    "notes": "＜通常時＞使用可",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 80.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.4
+    }
+   },
+   {
+    "name": "腕部グレネード・ランチャー",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 700,
+     "2": 800
+    },
+    "hits": 4,
+    "notes": "＜通常時＞使用可/4発連続発射/移動射撃可/よろけ有/よろけ値：10% x4",
+    "magazine": 4,
+    "rangeM": 275,
+    "staggerValue": 10,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "腕部G・ランチャー［焼夷］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 400,
+     "2": 500
+    },
+    "hits": 1,
+    "notes": "＜通常時＞使用可/移動射撃可/水中時使用不可/命中対象に炎上デバフ付与/3000固定ダメージ(300x10HIT)/よろけ値：35%",
+    "magazine": 4,
+    "rangeM": 275,
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "Iフィールド発生装置",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 0,
+     "2": 0
+    },
+    "hits": 1,
+    "notes": "＜通常時＞使用可/移動射撃可/ブースト射撃可/ビーム属性射撃被ダメージ60%軽減/ビーム属性射撃よろけ値を70%かつ小数点以下切り捨てで計算/ビーム属性射撃ダメージリアクション1段階軽減/効果時間：12.5秒/よろけ値：0%",
+    "rangeM": 0,
+    "staggerValue": 0,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ビーム・ガンx2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 400,
+     "2": 500
+    },
+    "hits": 1,
+    "notes": "＜変形時＞使用可/移動射撃可/ブースト射撃可/ASL（自動照準補正）有/よろけ値：35%（3HIT）",
+    "rangeM": 350,
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "ユニコーンガンダム［HML装備］": [
+   {
+    "name": "［HML］用H・M・ランチャー",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2700,
+     "2": 2900
+    },
+    "hits": 1,
+    "notes": "移動射撃可/スキル「能力UP「NT-D（B）」」対応/スキル発動中、ブースト射撃可/スキル発動中、攻撃対象の耐ビーム補正を20%減でダメージ計算/即撃ちよろけ有/よろけ値：20%",
+    "rangeM": 400,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "［HML］用B・サーベルx2",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3000,
+     "2": 3200
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 50.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.2
+    }
+   },
+   {
+    "name": "［HML］用バルカン砲",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 160,
+     "2": 170
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
+    "magazine": 40,
+    "rangeM": 200,
+    "staggerValue": 7,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "［HML］用H・M・L［速射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1200,
+     "2": 1300
+    },
+    "hits": 2,
+    "notes": "2発連続発射/移動射撃可/スキル「能力UP「NT-D（B）」」対応/スキル発動中、ブースト射撃可/スキル発動中、攻撃対象の耐ビーム補正を20%減でダメージ計算/ASL（自動照準補正）有/よろけ値：45% x2",
+    "rangeM": 375,
+    "staggerValue": 45,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "［HML］用L・B・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3400,
+     "2": 3600
+    },
+    "hits": 1,
+    "notes": "大よろけ有/スキル「空中格闘制御」対応/スキル「能力UP「NT-D（B）」」対応/攻撃対象の機体HPが50%以上の場合追加ダメージ発生/追加ダメージは、700の固定値",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 50.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.2
+    }
    }
   ]
  }
