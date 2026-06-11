@@ -2283,12 +2283,16 @@ const App = {
     const fmt = v => v.toLocaleString();
     const b = r.breakdown;
 
-    // 格闘=方向3値 / 射撃=1発・斉射・よろけ値（DESIGN §6-2）
+    // 格闘=方向3値（＋ヘビーアタック対応機は4値目） / 射撃=1発・斉射・よろけ値（DESIGN §6-2）
+    const haCell = r.heavyAttack
+      ? `<div class="dsim-dmg dsim-dmg-heavy"><span class="dsim-dmg-label">ヘビーアタック${r.heavyAttack.hits > 1 ? `（×${r.heavyAttack.hits}）` : ''}</span><span class="dsim-dmg-val">${fmt(r.heavyAttack.total)}</span></div>`
+      : '';
     const mainRow = r.byDirection
       ? `<div class="dsim-dmg-row">
            <div class="dsim-dmg"><span class="dsim-dmg-label">N格</span><span class="dsim-dmg-val">${fmt(r.byDirection.n)}</span></div>
            <div class="dsim-dmg"><span class="dsim-dmg-label">横格</span><span class="dsim-dmg-val">${fmt(r.byDirection.side)}</span></div>
            <div class="dsim-dmg"><span class="dsim-dmg-label">下格</span><span class="dsim-dmg-val">${fmt(r.byDirection.down)}</span></div>
+           ${haCell}
          </div>`
       : `<div class="dsim-dmg-row">
            <div class="dsim-dmg"><span class="dsim-dmg-label">1発</span><span class="dsim-dmg-val">${fmt(r.perHit)}</span></div>

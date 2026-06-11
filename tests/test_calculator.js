@@ -707,6 +707,65 @@ section('calcWeaponDamage: 属性カット合成・多段ヒット・LV威力・
   assert('breakdown.basePower', rB.breakdown.basePower, 1500);
 }
 
+section('calcWeaponDamage: ヘビーアタック（Wiki格闘方向補正表のHAカラム）');
+{
+  // ガズエル用ヒート・ランサー実データ: 威力2600・HA 270%(135%x2)
+  const wHA = {
+    name: 'ヒート・ランサー', category: 'melee', attribute: 'melee',
+    power: { '1': 2600 }, hits: 1,
+    directionMul: { n: 1.0, side: 1.0, down: 1.4 },
+    special: { heavyAttack: { mul: 2.7, perHitMul: 1.35, hits: 2 } },
+  };
+  const r = GBO2Calculator.calcWeaponDamage(wHA, mkAtk(), mkDef(), noTriad);
+  // 1hit = floor(2600×1.35) = 3510、total = 3510×2 = 7020
+  assert('HA perHit = 威力×perHitMul floor', r.heavyAttack.perHit, 3510);
+  assert('HA hits', r.heavyAttack.hits, 2);
+  assert('HA total = perHit×hits', r.heavyAttack.total, 7020);
+  assert('HA はモデル済みなので§A-4警告なし',
+    r.unmodeled.some(s => s.includes('§A-4')), false);
+  assert('通常方向（下格1.4上書き）は従来通り', r.byDirection.down, 3640);
+
+  // 補正・三すくみとの合成: floor(2600×1.5)=3900 → floor(3900×1.35)=5265 → floor(5265×1.3)=6844 ×2
+  const rFull = GBO2Calculator.calcWeaponDamage(
+    wHA, mkAtk({ correction: { shooting: 0, melee: 50 } }), mkDef(), { triad: 'advantage' });
+  assert('HA×格闘補正×三すくみ（段ごとfloor）', rFull.heavyAttack.total, 13688);
+
+  // 単発HA（mulのみ）: total = floor(2600×2.7) = 7020
+  const wHA1 = { ...wHA, special: { heavyAttack: { mul: 2.7, perHitMul: 2.7, hits: 1 } } };
+  const r1 = GBO2Calculator.calcWeaponDamage(wHA1, mkAtk(), mkDef(), noTriad);
+  assert('単発HA は mul で一括計算', r1.heavyAttack.total, 7020);
+
+  // 旧データ互換: heavyAttack=true（倍率不明）は未モデル警告を維持し heavyAttack=null
+  const wFlag = { ...wHA, special: { heavyAttack: true } };
+  const rFlag = GBO2Calculator.calcWeaponDamage(wFlag, mkAtk(), mkDef(), noTriad);
+  assert('倍率不明フラグは未モデル警告', rFlag.unmodeled.some(s => s.includes('§A-4')), true);
+  assert('倍率不明フラグは heavyAttack=null', rFlag.heavyAttack, null);
+
+  // HA無し武器は heavyAttack=null
+  const wNo = { name: 'サーベル', category: 'melee', attribute: 'melee', power: { '1': 2600 }, hits: 1 };
+  assert('HA非対応武器は null',
+    GBO2Calculator.calcWeaponDamage(wNo, mkAtk(), mkDef(), noTriad).heavyAttack, null);
+
+  // 射撃武器に誤って heavyAttack が付いても無視（格闘専用）
+  const wShoot = { name: 'BR', category: 'shooting', attribute: 'beam',
+    power: { '1': 1500 }, hits: 1, special: { heavyAttack: { mul: 2.7, perHitMul: 2.7, hits: 1 } } };
+  assert('射撃武器のHAは無視',
+    GBO2Calculator.calcWeaponDamage(wShoot, mkAtk(), mkDef(), noTriad).heavyAttack, null);
+}
+
+section('calcWeaponDamage: 集束必須武装（二段集束2段階目・照射ビーム）');
+{
+  // スーパーガンダム「射撃出力リミッター解除」実データ: 威力1200×最大8HIT
+  const wBeam = { name: '射撃出力リミッター解除', category: 'shooting', attribute: 'beam',
+    power: { '1': 1200, '4': 1500 }, hits: 8, chargeable: true };
+  const atk = mkAtk({ correction: { shooting: 70, melee: 0 } });
+  const def = mkDef({ armor: { ballistic: 0, beam: 30, melee: 0 } });
+  // floor(1200×1.70)=2040 → floor(2040×0.70)=1428、フルヒット=×8
+  const r = GBO2Calculator.calcWeaponDamage(wBeam, atk, def, noTriad);
+  assert('照射1hit', r.perHit, 1428);
+  assert('フルヒット8発', r.perVolley, 11424);
+}
+
 // ===== 結果サマリ =====
 console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
 console.log(`結果: ${passed} 件成功 / ${failed} 件失敗 / 計 ${passed + failed} 件`);

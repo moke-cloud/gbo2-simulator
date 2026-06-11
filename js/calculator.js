@@ -1493,7 +1493,13 @@ const GBO2Calculator = {
     const resistIgnoreMul = 1;
     const sp = weapon.special || {};
     if (sp.penetration || sp.resistIgnore) unmodeled.push('耐性無視/貫通は未モデル（§A-3 未確定）');
-    if (sp.heavyAttack) unmodeled.push('ヘビーアタック倍率は未モデル（§A-4 未確定）');
+    // ヘビーアタック: 倍率はWiki「格闘方向補正」表のHAカラム（パーサが special.heavyAttack=
+    // {mul,perHitMul,hits} に格納）。方向倍率と同じ段で適用（N/横/下に代わる別モーション）。
+    // 旧データ・倍率未記載機（=true のみ）は従来通り未モデル警告。
+    const ha = sp.heavyAttack;
+    const haModeled = isMelee && ha && typeof ha === 'object' && ha.mul > 0;
+    if (ha && !haModeled) unmodeled.push('ヘビーアタック倍率は未モデル（§A-4 未確定）');
+    if (haModeled) unmodeled.push('ヘビーアタックの緩衝材無効/シールド貫通は部位未モデルのため非考慮');
     if (sp.comboCorrection) unmodeled.push('コンボ段数別倍率は未対応（後段）');
 
     const triadMul = this.resolveTriadMultiplier(triad, attacker.category, defender.category);
@@ -1516,12 +1522,26 @@ const GBO2Calculator = {
     const hits = weapon.hits || 1;
     const product = arr => arr.reduce((a, b) => a * b, 1);
 
+    // ヘビーアタック: 方向倍率の代わりにHA倍率を適用した別モーション。
+    // 多段HA（例 270%(135%x2)）は1ヒット分を floor 込みで計算して hits 倍する。
+    let heavyAttack = null;
+    if (haModeled) {
+      const haHits = ha.hits || 1;
+      const haPerHit = computeFor(ha.perHitMul || ha.mul);
+      heavyAttack = {
+        perHit: haPerHit,
+        hits: haHits,
+        total: haHits > 1 ? haPerHit * haHits : computeFor(ha.mul),
+      };
+    }
+
     return {
       perHit,
       perVolley: perHit * hits,
       byDirection: isMelee
         ? { n: computeFor(DIR.n), side: computeFor(DIR.side), down: computeFor(DIR.down) }
         : null,
+      heavyAttack,
       breakdown: {
         basePower, atkCorrMul,
         atkSkillMul: this._truncMul(product(atkFactors)),

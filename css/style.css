@@ -921,6 +921,8 @@ select { cursor: pointer; appearance: none;
 }
 .dsim-dmg-label { display: block; font-size: .68rem; color: var(--text-3); margin-bottom: 2px; }
 .dsim-dmg-val { font-size: 1.25rem; font-weight: 700; color: var(--teal); font-variant-numeric: tabular-nums; }
+.dsim-dmg-heavy { border-color: var(--warn); }
+.dsim-dmg-heavy .dsim-dmg-val { color: var(--warn); }
 .dsim-breakdown summary { cursor: pointer; font-size: .74rem; color: var(--text-2); }
 .dsim-breakdown-body { font-size: .74rem; color: var(--text-2); padding: 6px 0 2px; line-height: 1.7; }
 .dsim-notes { font-size: .72rem; color: var(--text-3); margin-top: 6px; }
