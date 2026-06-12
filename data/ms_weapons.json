@@ -1,5 +1,5 @@
 {
- "version": "h98fbb68bccbc",
+ "version": "ha2b1e4901847",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -6270,7 +6270,7 @@
      "3": 220
     },
     "hits": 1,
-    "notes": "10発同時発射/約0.8秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/よろけ値：0%",
+    "notes": "10発同時発射×2回攻撃/約0.8秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/よろけ値：0%",
     "rangeM": 300,
     "staggerValue": 0,
     "chargeable": false,
@@ -6287,9 +6287,9 @@
      "3": 350
     },
     "hits": 1,
-    "notes": "10発同時発射/約0.8秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/よろけ値：7% x10",
+    "notes": "10発同時発射/約0.8秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/よろけ値：0%",
     "rangeM": 250,
-    "staggerValue": 7,
+    "staggerValue": 0,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -73991,9 +73991,9 @@
     "special": {},
     "modes": null,
     "directionMul": {
-     "n": 3.5,
-     "side": 3.5,
-     "down": 3.5
+     "n": 1.0,
+     "side": 1.0,
+     "down": 1.6
     }
    },
    {
@@ -74008,13 +74008,14 @@
     "notes": "スキル「ハイパーモード」発動中使用可/スキル「/ヘビーアタック（D）/」対応/集束時間：1秒",
     "staggerValue": null,
     "chargeable": false,
-    "special": {},
-    "modes": null,
-    "directionMul": {
-     "n": 3.5,
-     "side": 3.5,
-     "down": 3.5
-    }
+    "special": {
+     "heavyAttack": {
+      "mul": 3.5,
+      "perHitMul": 3.5,
+      "hits": 1
+     }
+    },
+    "modes": null
    },
    {
     "name": "ゴッドガンダム用打撃［明鏡止水］",
@@ -74028,13 +74029,14 @@
     "notes": "スキル「明鏡止水」発動中使用可/スキル「/空中格闘制御/」対応/スキル「/ヘビーアタック（D）/」対応/集束時間：1秒",
     "staggerValue": null,
     "chargeable": false,
-    "special": {},
-    "modes": null,
-    "directionMul": {
-     "n": 3.5,
-     "side": 3.5,
-     "down": 3.5
-    }
+    "special": {
+     "heavyAttack": {
+      "mul": 3.5,
+      "perHitMul": 3.5,
+      "hits": 1
+     }
+    },
+    "modes": null
    },
    {
     "name": "頭部バルカン砲x4",
@@ -74068,9 +74070,9 @@
     "special": {},
     "modes": null,
     "directionMul": {
-     "n": 3.5,
-     "side": 3.5,
-     "down": 3.5
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.6
     }
    },
    {
@@ -74088,12 +74090,7 @@
     "staggerValue": 50,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "directionMul": {
-     "n": 3.5,
-     "side": 3.5,
-     "down": 3.5
-    }
+    "modes": null
    },
    {
     "name": "石破天驚拳",
@@ -74110,12 +74107,7 @@
     "staggerValue": 50,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "directionMul": {
-     "n": 3.5,
-     "side": 3.5,
-     "down": 3.5
-    }
+    "modes": null
    }
   ],
   "ビギナ・ゼラ": [
