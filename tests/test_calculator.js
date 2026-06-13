@@ -253,6 +253,34 @@ const capResult = GBO2Calculator.optimizeFocused(capBase, focusSlots, focusParts
 const capNames = capResult.map(p => p.name);
 assert('上限近接時: Bは不選択(格闘配分0)', !capNames.includes('B'), true);
 
+section('_beamSelect: 単純貪欲の罠を回避（2枚そろって効く構成を選ぶ）');
+// HP系が枠を食い潰し装甲が伸びない「早期確定」を、ビームサーチ＋研磨で回避する回帰テスト。
+// 旧 _greedySelect は初手で HP1（Bal と利得同値・候補先頭）を選び、HP1+Bal=28800 で停止していた。
+// ビームサーチは両分岐を保持し、2属性の装甲を立てた Bal+Beam=30000 を選ぶ。
+const trapBase = {
+  hp: 20000, ballistic_armor: 0, beam_armor: 0, melee_armor: 0,
+  shooting_correction: 0, melee_correction: 0, speed: 0, thruster: 0,
+};
+const trapParts = [
+  { name: 'HP1',  slots: { close: 2, mid: 0, long: 0 }, effects: [{ type: 'hp', value: 4000 }] },
+  { name: 'Bal',  slots: { close: 2, mid: 0, long: 0 }, effects: [{ type: 'ballistic_armor', value: 50 }] },
+  { name: 'Beam', slots: { close: 2, mid: 0, long: 0 }, effects: [{ type: 'beam_armor', value: 50 }] },
+  { name: 'Mel',  slots: { close: 2, mid: 0, long: 0 }, effects: [{ type: 'melee_armor', value: 50 }] },
+];
+const trapDR = { ballistic: 1/3, beam: 1/3, melee: 1/3 };
+const trapRes = GBO2Calculator.optimizeFocused(trapBase, { close: 4, mid: 0, long: 0 }, trapParts, {
+  ...focusConfig, mode: 'defense', damageRatio: trapDR,
+});
+const trapMod = GBO2Calculator.applyParts(trapBase, trapRes, [], 1, 0);
+const trapEHP = GBO2Calculator.calcEffectiveHPFromCutRates(trapMod.hp, {
+  ballistic: GBO2Calculator.calcCutRate(trapMod.ballistic_armor),
+  beam: GBO2Calculator.calcCutRate(trapMod.beam_armor),
+  melee: GBO2Calculator.calcCutRate(trapMod.melee_armor),
+}, trapDR);
+assert('貪欲の罠(HP1+Bal=28800)を超える有効HPに到達', trapEHP > 28800, true);
+assert('2属性の装甲を立てた最適解(effHP=30000)を選ぶ', Math.round(trapEHP), 30000);
+assert('装甲を優先し HP系で早期確定しない', trapRes.some(p => p.name === 'HP1'), false);
+
 section('optimize: 同名+同LVは重複不可 / LV違いは追加可');
 const optBase = { ...focusBase };
 const aLv1 = { name: 'A', level: 1, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 15 }] };

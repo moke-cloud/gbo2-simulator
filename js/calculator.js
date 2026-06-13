@@ -900,19 +900,24 @@ const GBO2Calculator = {
   },
 
   /**
-   * 限界利得再計算付き貪欲法（共通エンジン）
+   * パーツ最適化エンジン（ビームサーチ + 局所探索研磨）
    * 毎ステップ applyParts を呼び直し、キャップ・逓減・乗算シナジーを正確に反映する。
-   * 計算量 O(N × K)  N=候補パーツ数, K=空きスロット数（最大8）
+   * 上位 BEAM_WIDTH 本の部分解を保持して前進選択するため、単純貪欲では取りこぼす
+   * 「2枚そろって初めて効く」手（例: 新型装甲でcap解放→通常装甲で充填、HP系で枠を
+   * 使い切らず装甲へ振り直す等）も拾える。最後に追加/除去/1スワップの局所探索で研磨する
+   * （改善する手のみ採用＝結果は常に単純貪欲以上）。
+   * 計算量 O(BEAM_WIDTH × N × K)  N=候補パーツ数, K=空きスロット数（最大8）
    *
    * @param {object} baseStats - 強化適用済みベースステータス
    * @param {object} maxSlots - { close, mid, long }
    * @param {Array} candidateParts - 装備候補パーツ一覧
-   * @param {object} config - { msLevel, enhanceLevel, expansionSkillsList, equippedParts }
+   * @param {object} config - { msLevel, enhanceLevel, expansionSkillsList, equippedParts, beamWidth? }
    * @param {function} objectiveFn - (modifiedStats) => number  最大化する目的関数
    * @returns {Array} 選択されたパーツ配列（空きスロットに追加する分のみ）
    */
-  _greedySelect(baseStats, maxSlots, candidateParts, config, objectiveFn) {
+  _beamSelect(baseStats, maxSlots, candidateParts, config, objectiveFn) {
     const MAX_PARTS = 8;
+    const BEAM_WIDTH = config.beamWidth || 8;
     const {
       msLevel = 1,
       enhanceLevel = 0,
@@ -920,55 +925,91 @@ const GBO2Calculator = {
       equippedParts = []
     } = config;
 
-    const currentParts = equippedParts.filter(Boolean);
-    const usedSlots = { close: 0, mid: 0, long: 0 };
-    for (const part of currentParts) {
-      usedSlots.close += part.slots.close || 0;
-      usedSlots.mid   += part.slots.mid   || 0;
-      usedSlots.long  += part.slots.long  || 0;
+    const fixedParts = equippedParts.filter(Boolean);
+    const fixedSlots = { close: 0, mid: 0, long: 0 };
+    for (const part of fixedParts) {
+      fixedSlots.close += part.slots.close || 0;
+      fixedSlots.mid   += part.slots.mid   || 0;
+      fixedSlots.long  += part.slots.long  || 0;
     }
+    const slotRoom = MAX_PARTS - fixedParts.length;
+    if (slotRoom <= 0) return [];
 
-    const selected = [];
+    // 追加パーツ集合 sel に対する目的関数値（既装備 fixedParts は不変の文脈として常に含める）
+    const score = (sel) => objectiveFn(
+      this.applyParts(baseStats, [...fixedParts, ...sel], expansionSkillsList, msLevel, enhanceLevel));
+    const slotsOf = (sel) => {
+      const s = { close: fixedSlots.close, mid: fixedSlots.mid, long: fixedSlots.long };
+      for (const p of sel) { s.close += p.slots.close || 0; s.mid += p.slots.mid || 0; s.long += p.slots.long || 0; }
+      return s;
+    };
+    // sel(+既装備) に cand を足せるか（8枠・スロット残量・既装備/既選択との排他）
+    const canAdd = (cand, used, sel) => {
+      if (fixedParts.length + sel.length >= MAX_PARTS) return false;
+      const remaining = { close: maxSlots.close - used.close, mid: maxSlots.mid - used.mid, long: maxSlots.long - used.long };
+      if (!this.canEquip(cand, remaining)) return false;
+      if (this.conflictsWithAny(cand, fixedParts)) return false;
+      if (this.conflictsWithAny(cand, sel)) return false;
+      return true;
+    };
+    const keyOf = (sel) => sel.map(p => p.name + '#' + (p.level || 0)).sort().join('|');
 
-    while (currentParts.length < MAX_PARTS) {
-      const remaining = {
-        close: maxSlots.close - usedSlots.close,
-        mid:   maxSlots.mid   - usedSlots.mid,
-        long:  maxSlots.long  - usedSlots.long
-      };
-      if (remaining.close <= 0 && remaining.mid <= 0 && remaining.long <= 0) break;
-
-      const currentModified = this.applyParts(baseStats, currentParts, expansionSkillsList, msLevel, enhanceLevel);
-      const currentValue = objectiveFn(currentModified);
-
-      let bestPart = null;
-      let bestGain = 0;
-
-      for (const candidate of candidateParts) {
-        // 同名(LV違い含む)・○○系・スピード/旋回排他で既選択と共存不可なものを除外
-        if (this.conflictsWithAny(candidate, currentParts)) continue;
-        if (!this.canEquip(candidate, remaining)) continue;
-
-        const trialParts = [...currentParts, candidate];
-        const trialModified = this.applyParts(baseStats, trialParts, expansionSkillsList, msLevel, enhanceLevel);
-        const gain = objectiveFn(trialModified) - currentValue;
-
-        if (gain > bestGain) {
-          bestGain = gain;
-          bestPart = candidate;
+    // --- ビームサーチ：各深さで上位 BEAM_WIDTH の部分解を保持して1枚ずつ前進 ---
+    let frontier = [{ sel: [], used: { ...fixedSlots }, val: score([]) }];
+    let best = frontier[0];
+    for (let depth = 0; depth < slotRoom; depth++) {
+      const nextMap = new Map();
+      for (const state of frontier) {
+        for (const cand of candidateParts) {
+          if (!canAdd(cand, state.used, state.sel)) continue;
+          const sel = [...state.sel, cand];
+          const k = keyOf(sel);
+          if (nextMap.has(k)) continue; // 同一集合（順序違い）は1度だけ評価
+          const used = {
+            close: state.used.close + (cand.slots.close || 0),
+            mid:   state.used.mid   + (cand.slots.mid   || 0),
+            long:  state.used.long  + (cand.slots.long  || 0),
+          };
+          nextMap.set(k, { sel, used, val: score(sel) });
         }
       }
-
-      if (!bestPart) break;
-
-      selected.push(bestPart);
-      currentParts.push(bestPart);
-      usedSlots.close += bestPart.slots.close || 0;
-      usedSlots.mid   += bestPart.slots.mid   || 0;
-      usedSlots.long  += bestPart.slots.long  || 0;
+      if (nextMap.size === 0) break;
+      const ranked = [...nextMap.values()].sort((a, b) => b.val - a.val);
+      for (const st of ranked) if (st.val > best.val) best = st; // 枚数が少ない解も最良になりうる
+      frontier = ranked.slice(0, BEAM_WIDTH);
     }
 
-    return selected;
+    // --- 局所探索の研磨（追加 / 除去 / 1スワップ。改善する手のみ採用＝貪欲解以上を保証） ---
+    let sel = best.sel.slice();
+    let val = best.val;
+    let improved = true, guard = 0;
+    while (improved && guard++ < 200) {
+      improved = false;
+      const used = slotsOf(sel);
+      for (const cand of candidateParts) { // 追加
+        if (!canAdd(cand, used, sel)) continue;
+        const v = score([...sel, cand]);
+        if (v > val + 1e-9) { sel = [...sel, cand]; val = v; improved = true; break; }
+      }
+      if (improved) continue;
+      for (let i = 0; i < sel.length; i++) { // 除去
+        const trial = sel.filter((_, j) => j !== i);
+        const v = score(trial);
+        if (v > val + 1e-9) { sel = trial; val = v; improved = true; break; }
+      }
+      if (improved) continue;
+      for (let i = 0; i < sel.length && !improved; i++) { // 1スワップ
+        const rest = sel.filter((_, j) => j !== i);
+        const restUsed = slotsOf(rest);
+        for (const cand of candidateParts) {
+          if (!canAdd(cand, restUsed, rest)) continue;
+          const v = score([...rest, cand]);
+          if (v > val + 1e-9) { sel = [...rest, cand]; val = v; improved = true; break; }
+        }
+      }
+    }
+
+    return sel;
   },
 
   /**
@@ -1033,7 +1074,7 @@ const GBO2Calculator = {
       return score;
     };
 
-    return this._greedySelect(baseStats, maxSlots, allParts, config, objectiveFn);
+    return this._beamSelect(baseStats, maxSlots, allParts, config, objectiveFn);
   },
 
   /**
@@ -1095,7 +1136,7 @@ const GBO2Calculator = {
         return [];
     }
 
-    return this._greedySelect(baseStats, maxSlots, allParts, config, objectiveFn);
+    return this._beamSelect(baseStats, maxSlots, allParts, config, objectiveFn);
   },
 
   // 目標値（下限）最適化で参照するステータスの「素の」上限値。
@@ -1143,7 +1184,8 @@ const GBO2Calculator = {
     const statOf = (modified, key) => this._getModifiedStat(modified, key);
     const selected = [];
 
-    // 不足の正規化合計（各目標を 1 として均等扱い）を最も減らすパーツを貪欲に追加
+    // 不足の正規化合計（各目標を 1 として均等扱い）を最も減らすパーツを貪欲に追加する。
+    // 多数回の呼び出し（suggestExpansionSkills 等）があるため軽量な貪欲法を維持する。
     while (currentParts.length < MAX_PARTS && targetEntries.length > 0) {
       const remaining = {
         close: maxSlots.close - usedSlots.close,
