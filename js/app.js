@@ -849,17 +849,25 @@ const App = {
     document.getElementById('ms-card-env').textContent = env.join(' / ') || 'なし';
   },
 
-  // 変身(NT-D等)トグルの表示制御。選択中の機体LVが ＜変身時＞ ステータスを持つ場合のみ表示し、
-  // 持たない機体/LVへ移ったら強制的に通常時へ戻す（transformed フラグが居残らないように）。
+  // 変身/変形トグルの表示制御。変身(NT-D)・変形(ウェイブライダー等)の形態がある機体
+  // (transformLabel 保持)のみ表示し、ラベルを「変身/変形 状態で計算」に切り替える。
+  // 形態が無い機体へ移ったら強制的に通常時へ戻す（transformed フラグが居残らないように）。
   _updateTransformToggle() {
     const row = document.getElementById('transform-toggle-row');
     const box = document.getElementById('transform-toggle');
+    const labelEl = document.getElementById('transform-toggle-label');
     if (!row || !box) return;
-    const lv = this.selectedMS?.levels?.[String(this.selectedLevel)];
-    const canTransform = !!(lv && lv.transformed);
+    const label = this.selectedMS?.transformLabel;
+    const canTransform = !!label;
     if (!canTransform && this.transformed) this.transformed = false;
     row.classList.toggle('hidden', !canTransform);
     box.checked = this.transformed;
+    if (canTransform && labelEl) labelEl.textContent = `${label}状態で計算`;
+  },
+
+  // 現在の形態(通常/変身)で使用できる武装だけに絞る。form 無し(共通)は常に含める。
+  _weaponsForForm(weapons, transformed) {
+    return (weapons || []).filter(w => transformed ? w.form !== 'normal' : w.form !== 'alt');
   },
 
   getBaseStats() {
@@ -897,10 +905,12 @@ const App = {
    * （二重計上防止）。
    * @returns {Array} [{skillLabel, category, value?, bonuses?, condition}]
    */
-  _buildSkillEffectItems(ms, msLevel, enhanceLevel) {
+  _buildSkillEffectItems(ms, msLevel, enhanceLevel, transformed = false) {
     const items = [];
     const lvNum = Number(msLevel);
-    for (const skill of (ms?.skills || [])) {
+    // 変身/変形トグルON時は変身後スキル一覧(altSkills)を使う。
+    const skillList = (transformed && ms?.altSkills) ? ms.altSkills : (ms?.skills || []);
+    for (const skill of skillList) {
       if (typeof skill !== 'object') continue;
       // 機体LVでスキルLVが変わる/解放される場合は ms_levels 付きの行に分割されている。
       // 選択中の機体LVに該当する行のみ採用（ms_levels 無し＝全LV共通）。
@@ -945,7 +955,7 @@ const App = {
   /** 現在構成でONになっているスキルの一律ステータス上昇を返す（applyParts へ渡す） */
   getActiveSkillStatBonuses() {
     if (!this.selectedMS) return {};
-    const items = this._buildSkillEffectItems(this.selectedMS, this.selectedLevel, this.enhanceLevel);
+    const items = this._buildSkillEffectItems(this.selectedMS, this.selectedLevel, this.enhanceLevel, this.transformed);
     return this._aggregateSkillStatBonuses(items, this.activeSkillIndices);
   },
 
@@ -1278,7 +1288,7 @@ const App = {
 
     // 効果項目リストを構築（1効果=1トグル）。MS固有スキル＋解放済み強化リストを共通生成。
     // effectItems: [{skillLabel, category, value?|bonuses?, condition}]
-    const effectItems = this._buildSkillEffectItems(this.selectedMS, this.selectedLevel, this.enhanceLevel);
+    const effectItems = this._buildSkillEffectItems(this.selectedMS, this.selectedLevel, this.enhanceLevel, this.transformed);
 
     if (effectItems.length === 0) {
       section.classList.add('hidden');
@@ -2093,6 +2103,8 @@ const App = {
    */
   getCombatProfile(buildData) {
     let ms, msLevel, enhanceLevel, modified, activeIdx, buildName;
+    // 変身/変形は現在構成のトグル状態のみ反映（保存構成は通常時で扱う）。
+    const transformed = buildData === 'current' && this.transformed;
     if (buildData === 'current') {
       if (!this.selectedMS) return null;
       const base = this.getBaseStats();
@@ -2121,7 +2133,7 @@ const App = {
         .filter(([, lv]) => lv > 0)
         .map(([name, lv]) => this.expansionSkillsData.find(s => s.name === name && s.level === lv))
         .filter(Boolean);
-      const items = this._buildSkillEffectItems(ms, msLevel, enhanceLevel);
+      const items = this._buildSkillEffectItems(ms, msLevel, enhanceLevel, transformed);
       const bonuses = this._aggregateSkillStatBonuses(items, activeIdx);
       modified = GBO2Calculator.applyParts(base, parts, expSkills, msLevel, enhanceLevel, bonuses);
     }
@@ -2129,7 +2141,7 @@ const App = {
     // 条件付きスキル → ダメージ計算トグル。firepower=攻撃側 / damage_cut=防御側。
     // id はスキル効果itemsのインデックスに紐付け（保存ONの復元と同じ並び）。
     // 「常時」または保存時ONのスキルは初期ON（DESIGN §5-4）。
-    const items = this._buildSkillEffectItems(ms, msLevel, enhanceLevel);
+    const items = this._buildSkillEffectItems(ms, msLevel, enhanceLevel, transformed);
     const skillConditions = [];
     items.forEach((it, i) => {
       if (it.category !== 'firepower' && it.category !== 'damage_cut') return;
@@ -2166,7 +2178,7 @@ const App = {
         beam: modified.beamDamageCutPct || 0,
         melee: modified.meleeDamageCutPct || 0,
       },
-      weapons: this.msWeapons[ms.name] || [],
+      weapons: this._weaponsForForm(this.msWeapons[ms.name] || [], transformed),
       skillConditions,
     };
   },

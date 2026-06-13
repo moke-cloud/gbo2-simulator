@@ -1,5 +1,5 @@
 {
- "version": "h6d4e6423dc8c",
+ "version": "hf4d75174f213",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -5496,7 +5496,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "車載用火炎放射器",
@@ -5514,7 +5515,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "燃料爆雷",
@@ -13078,7 +13080,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 2.0
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "腕部グレネード・ランチャー",
@@ -13097,7 +13100,8 @@
     "staggerValue": 50,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "頭部バルカン［改修型］",
@@ -13116,7 +13120,8 @@
     "staggerValue": 2,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    }
   ],
   "ガンタンクⅡ": [
@@ -13368,7 +13373,8 @@
        "4": 1750
       }
      }
-    ]
+    ],
+    "form": "alt"
    }
   ],
   "ガンキャノン・ディテクター": [
@@ -14095,7 +14101,8 @@
     "staggerValue": 50,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "大型ビーム・ライフル（変形）",
@@ -14134,7 +14141,8 @@
        "4": 3200
       }
      }
-    ]
+    ],
+    "form": "alt"
    }
   ],
   "ジム・ナイトシーカーⅡ": [
@@ -14759,7 +14767,8 @@
     "staggerValue": 6,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "メガ粒子砲x2",
@@ -14777,7 +14786,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "メガ粒子砲x2［速射］",
@@ -14795,7 +14805,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "フェダーイン・ライフル（変形）",
@@ -14834,7 +14845,8 @@
        "4": 3300
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "メガ粒子砲x2（変形）",
@@ -14852,7 +14864,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ネモⅢ": [
@@ -15237,7 +15250,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ドム・キャノン［単砲仕様］": [
@@ -15717,7 +15731,8 @@
     "staggerValue": 7,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "背部ミサイル・ランチャーx2",
@@ -15735,7 +15750,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "頭部ハイ・メガ・キャノン",
@@ -15752,7 +15768,8 @@
     "staggerValue": 100,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "頭部ハイ・メガ・キャノン［射撃出力リミッター解除］",
@@ -15769,7 +15786,8 @@
     "staggerValue": 40,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ダブル・キャノン",
@@ -15786,7 +15804,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "背部M・ランチャーx2（変形）",
@@ -15804,7 +15823,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ダブル・キャノン（変形）",
@@ -15821,7 +15841,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ガザC": [
@@ -15892,7 +15913,8 @@
     "staggerValue": 13,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "R・ジャジャ": [
@@ -16674,7 +16696,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・カノンx2（変形）",
@@ -16692,7 +16715,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ドライセン": [
@@ -17450,7 +17474,8 @@
     "staggerValue": 17,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "メタス用クレイ・バズーカx2",
@@ -17486,7 +17511,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    }
   ],
   "バウ": [
@@ -19236,7 +19262,8 @@
     "staggerValue": 2,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "大腿部ビーム・カノンx2",
@@ -19254,7 +19281,8 @@
     "staggerValue": 17,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・スマートガン",
@@ -19293,7 +19321,8 @@
        "4": 3400
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "大腿部ビーム・カノンx2（変形）",
@@ -19311,7 +19340,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "アッグ［ML装備］": [
@@ -19970,7 +20000,8 @@
     "staggerValue": 3,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "バック・パック部B・カノンx4",
@@ -19987,7 +20018,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "大腿部ビーム・カノンx2",
@@ -20004,7 +20036,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "頭部インコム",
@@ -20021,7 +20054,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "リフレクター・インコムx2",
@@ -20038,7 +20072,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "Ex-Sガンダム用B・S（変形）",
@@ -20074,7 +20109,8 @@
        "3": 4400
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "バック・パック部B・カノンx4（変形）",
@@ -20091,7 +20127,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ドラッツェ改［重装備型］": [
@@ -21955,7 +21992,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "腕部グレネード・ランチャー",
@@ -21973,7 +22011,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "頭部バルカン［改修型］",
@@ -21991,7 +22030,8 @@
     "staggerValue": 2,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "Ζガンダム［HML］用B・R",
@@ -22025,7 +22065,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "H・メガ・ランチャー（変形）",
@@ -22042,7 +22083,8 @@
     "staggerValue": 10,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "レッドライダー": [
@@ -23414,7 +23456,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.3
-    }
+    },
+    "form": "alt"
    },
    {
     "name": "ΖⅡ用メガ・ビーム・ライフル",
@@ -23467,7 +23510,8 @@
     "staggerValue": 40,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ΖⅡ用M・B・R［速射］（変形）",
@@ -23484,7 +23528,8 @@
     "staggerValue": 50,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ガザD": [
@@ -23567,7 +23612,8 @@
     "staggerValue": 5,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "8連装ミサイル・ランチャーx2",
@@ -23601,7 +23647,8 @@
     "staggerValue": 1,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ビーム・ガンx2",
@@ -23617,7 +23664,8 @@
     "staggerValue": 5,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "脚部メガ粒子砲x2",
@@ -23633,7 +23681,8 @@
     "staggerValue": 45,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "量産型キュベレイ": [
@@ -24400,7 +24449,8 @@
        "2": 4350
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "フラッシュグレネード",
@@ -24417,7 +24467,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "H・M・C［速射］",
@@ -24433,7 +24484,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "メタス改用H・M・C（変形）",
@@ -24466,7 +24518,8 @@
        "2": 3675
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "H・M・C［速射］（変形）",
@@ -24482,7 +24535,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ザクⅢ改": [
@@ -24986,7 +25040,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "9連装ミサイル・ポッドx2",
@@ -25003,7 +25058,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・ガンx2",
@@ -25019,7 +25075,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "9連装M・ポッドx2（変形）",
@@ -25036,7 +25093,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ドム・トローペン": [
@@ -26907,7 +26965,8 @@
     "staggerValue": 6,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "腕部グレネード・ランチャー",
@@ -26926,7 +26985,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "腰部ビーム・ガンx2",
@@ -26944,7 +27004,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "3連装M・ランチャーx2",
@@ -26963,7 +27024,8 @@
     "staggerValue": 15,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "メガ・ビーム・キャノン",
@@ -26981,7 +27043,8 @@
     "staggerValue": 70,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ビーム・ランチャーx2",
@@ -26999,7 +27062,8 @@
     "staggerValue": 15,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ビーム・ガンx2",
@@ -27017,7 +27081,8 @@
     "staggerValue": 15,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "3連装M・ランチャーx2（変形）",
@@ -27036,7 +27101,8 @@
     "staggerValue": 15,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "アッガイ": [
@@ -28007,7 +28073,8 @@
     "staggerValue": 7,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "メッサーラ用ビーム・サーベル",
@@ -28038,7 +28105,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.6
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "メッサーラ用腕部・Gランチャー",
@@ -28055,7 +28123,8 @@
     "staggerValue": 40,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "腕部収納式クロー",
@@ -28086,7 +28155,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "肩部メガ粒子砲x2",
@@ -28119,7 +28189,8 @@
        "2": 2000
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "肩部ミサイル・ポッドx2",
@@ -28136,7 +28207,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "肩部メガ粒子砲x2（変形）",
@@ -28169,7 +28241,8 @@
        "2": 1600
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "肩部ミサイル・ポッドx2（変形）",
@@ -28186,7 +28259,8 @@
     "staggerValue": 7,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "グフ重装型": [
@@ -30823,7 +30897,8 @@
        "4": 4200
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "小型ミサイル・ランチャー",
@@ -30842,7 +30917,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ハイ・メガ・キャノン（変形）",
@@ -30881,7 +30957,8 @@
        "4": 3800
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "小型ミサイル・ランチャー（変形）",
@@ -30900,7 +30977,8 @@
     "staggerValue": 5,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ガズエル・グラウ": [
@@ -34104,7 +34182,8 @@
      "n": 1.0,
      "side": 0.85,
      "down": 1.5
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ダブル・バルカン",
@@ -34121,7 +34200,8 @@
     "staggerValue": 7,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ダブル・キャノン",
@@ -34137,7 +34217,8 @@
     "staggerValue": 40,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "背部ミサイル・ランチャーx2",
@@ -34154,7 +34235,8 @@
     "staggerValue": 15,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "頭部ハイ・メガ・キャノン",
@@ -34170,7 +34252,8 @@
     "staggerValue": 80,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "頭部ハイ・メガ・キャノン［射撃出力リミッター解除］",
@@ -34186,7 +34269,8 @@
     "staggerValue": 40,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "強化型ΖΖG用H・B・Sx2",
@@ -34223,7 +34307,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ダブル・キャノン（変形）",
@@ -34239,7 +34324,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ペイルライダーDⅡ": [
@@ -35799,7 +35885,8 @@
     "staggerValue": 50,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "頭部バルカン［改修型］",
@@ -35816,7 +35903,8 @@
     "staggerValue": 2,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "シールド内ビーム・キャノン",
@@ -35849,7 +35937,8 @@
        "2": 2900
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "リゼル用ビーム・ライフル［照射］",
@@ -35865,7 +35954,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "シールド内B・キャノン（変形）",
@@ -35898,7 +35988,8 @@
        "2": 1700
       }
      }
-    ]
+    ],
+    "form": "alt"
    }
   ],
   "ズゴック": [
@@ -36366,7 +36457,8 @@
        "3": 3600
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "デルタプラス用ビーム・サーベル",
@@ -36398,7 +36490,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "60mmバルカン",
@@ -36416,7 +36509,8 @@
     "staggerValue": 6,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "シールド内ビーム・キャノン",
@@ -36433,7 +36527,8 @@
     "staggerValue": 30,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "シールド内G・ランチャー",
@@ -36451,7 +36546,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "デルタプラス用B・R（変形）",
@@ -36468,7 +36564,8 @@
     "staggerValue": 50,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "シールド内B・キャノン（変形）",
@@ -36485,7 +36582,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "シールド内G・ランチャー（変形）",
@@ -36503,7 +36601,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "クシャトリヤ": [
@@ -37445,7 +37544,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.6
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "拡散メガ粒子砲",
@@ -37478,7 +37578,8 @@
        "2": 945
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "脚部クロー",
@@ -37513,7 +37614,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.3
-    }
+    },
+    "form": "alt"
    },
    {
     "name": "拡散メガ粒子砲（変形）",
@@ -37546,7 +37648,8 @@
        "2": 3150
       }
      }
-    ]
+    ],
+    "form": "alt"
    }
   ],
   "デルタガンダム": [
@@ -37628,7 +37731,8 @@
     "staggerValue": 5,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "シールド内ビーム・ガンx2",
@@ -37644,7 +37748,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "シールド内ビーム・ガンx2（変形）",
@@ -37660,7 +37765,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ジェスタ": [
@@ -37859,7 +37965,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "頭部バルカン［改修Ⅲ型］",
@@ -37924,7 +38031,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.8
-    }
+    },
+    "form": "alt"
    },
    {
     "name": "Uガンダム用腕部B・トンファー",
@@ -37955,7 +38063,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.5
-    }
+    },
+    "form": "alt"
    }
   ],
   "バンシィ": [
@@ -38030,7 +38139,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.6
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "アームド・アーマーBS［照射］",
@@ -38072,7 +38182,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.6
-    }
+    },
+    "form": "alt"
    }
   ],
   "シルヴァ・バレト": [
@@ -39139,7 +39250,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.5
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "60mmバルカン砲",
@@ -39157,7 +39269,8 @@
     "staggerValue": 4,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・キャノン",
@@ -39193,7 +39306,8 @@
        "3": 1900
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "ハイ・メガ・キャノン",
@@ -39210,7 +39324,8 @@
     "staggerValue": 20,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "P・F・ファンネルx2［挟撃］",
@@ -39227,7 +39342,8 @@
     "staggerValue": 8,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・キャノン（変形）",
@@ -39263,7 +39379,8 @@
        "3": 1500
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "ハイ・メガ・キャノン（変形）",
@@ -39280,7 +39397,8 @@
     "staggerValue": 20,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ディザート・ザク": [
@@ -39935,7 +40053,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "Ζガンダム［ザク頭］用腕部G・L",
@@ -40445,7 +40564,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・ランチャー",
@@ -40461,7 +40581,8 @@
     "staggerValue": 35,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・ガンx2",
@@ -40477,7 +40598,8 @@
     "staggerValue": 17,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ビーム・ランチャー（変形）",
@@ -40493,7 +40615,8 @@
     "staggerValue": 50,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "グスタフ・カール": [
@@ -41161,7 +41284,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "フェネクス用頭部バルカン",
@@ -41194,7 +41318,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "アームド・アーマーDE［射出］",
@@ -41211,7 +41336,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "アームド・アーマーDE［防御］",
@@ -41227,7 +41353,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "フェネクス用背部B・サーベルx2",
@@ -41258,7 +41385,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.75
-    }
+    },
+    "form": "alt"
    },
    {
     "name": "メガ・キャノン（変身）",
@@ -41274,7 +41402,8 @@
     "staggerValue": 50,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "A・アーマーDE［射出］（変身）",
@@ -41291,7 +41420,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "A・アーマーDE［防御］（変身）",
@@ -41307,7 +41437,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "フェネクス用腕部B・トンファー",
@@ -41338,7 +41469,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.7
-    }
+    },
+    "form": "alt"
    }
   ],
   "ザクⅡ（KG）": [
@@ -41981,7 +42113,8 @@
     "staggerValue": 50,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "60mmバルカン砲",
@@ -41999,7 +42132,8 @@
     "staggerValue": 6,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "シールド内B・キャノン",
@@ -42035,7 +42169,8 @@
        "3": 3200
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "M・B・ランチャーx2",
@@ -42052,7 +42187,8 @@
     "staggerValue": 35,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "バインダー内メガ粒子砲x2",
@@ -42069,7 +42205,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "シールド内B・キャノン（変形）",
@@ -42105,7 +42242,8 @@
        "3": 1600
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "M・B・ランチャーx2（変形）",
@@ -42122,7 +42260,8 @@
     "staggerValue": 25,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ガンダム試作1号機［アクア装備］": [
@@ -42394,7 +42533,8 @@
     "staggerValue": 30,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "M・ポッド",
@@ -42410,7 +42550,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "M・ポッド［連続爆発］",
@@ -42426,7 +42567,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・カノンx2（変形）",
@@ -42441,7 +42583,8 @@
     "staggerValue": 30,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "M・ポッド（変形）",
@@ -42457,7 +42600,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "M・ポッド［連続爆発］（変形）",
@@ -42473,7 +42617,8 @@
     "staggerValue": 5,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "Sガンダム": [
@@ -45327,7 +45472,8 @@
     "staggerValue": 6,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "胸部ガトリングガンx2",
@@ -45344,7 +45490,8 @@
     "staggerValue": 3,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "腕部グレネード・ランチャー",
@@ -45361,7 +45508,8 @@
     "staggerValue": 50,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "腰部射出式グレネードx2",
@@ -45378,7 +45526,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "B・スマートガン",
@@ -45410,7 +45559,8 @@
        "1": 1750
       }
      }
-    ]
+    ],
+    "form": "alt"
    }
   ],
   "ギラ・ドーガ改": [
@@ -46821,7 +46971,8 @@
     "staggerValue": 5,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ブーステッド・ヒート・ブレード",
@@ -46841,7 +46992,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.5
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ブーステッド・クロー",
@@ -46858,7 +47010,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ブーステッド・ライフル（変形）",
@@ -46874,7 +47027,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "陸戦型ジム": [
@@ -47825,7 +47979,8 @@
     "staggerValue": 15,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ガザG用拳部トリモチ・ランチャー",
@@ -47842,7 +47997,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "連装頭部バルカン砲",
@@ -47859,7 +48015,8 @@
     "staggerValue": 4,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "M・ランチャーx2［連続爆発］",
@@ -47876,7 +48033,8 @@
     "staggerValue": 2,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "メタル・スパイダー": [
@@ -48714,7 +48872,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "アンクシャ用ビーム・サーベルx2",
@@ -48745,7 +48904,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.6
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "60mmバルカン砲x2",
@@ -48762,7 +48922,8 @@
     "staggerValue": 6,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "アンクシャ用B・Rx2",
@@ -48795,7 +48956,8 @@
        "2": 1050
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "アンクシャ用B・Rx2（変形）",
@@ -48811,7 +48973,8 @@
     "staggerValue": 10,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "シルヴァ・バレト・サプレッサー": [
@@ -49193,7 +49356,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.8
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "NG［C装備］用打撃（覚醒）",
@@ -49620,7 +49784,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.4
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "頭部バルカン［改修Ⅲ型］",
@@ -49701,7 +49866,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 2.85
-    }
+    },
+    "form": "alt"
    },
    {
     "name": "ビーム・ジュッテ",
@@ -49735,7 +49901,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 2.5
-    }
+    },
+    "form": "alt"
    },
    {
     "name": "B・ノルン用腕部B・トンファー",
@@ -49769,7 +49936,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.5
-    }
+    },
+    "form": "alt"
    }
   ],
   "ズサ［袖付き仕様］": [
@@ -49944,7 +50112,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "マシン・キャノン",
@@ -49978,7 +50147,8 @@
     "staggerValue": 40,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ミサイル・コンテナ［焼夷］",
@@ -49995,7 +50165,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "M・Cx2［小型M］",
@@ -50012,7 +50183,8 @@
     "staggerValue": 5,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ロング・キャノンx2（変形）",
@@ -50029,7 +50201,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "M・Cx2［連続爆発］",
@@ -50046,7 +50219,8 @@
     "staggerValue": 17,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ザクⅡS型": [
@@ -51364,7 +51538,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 2.4
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ΖG3号機A型用B・サーベル",
@@ -51395,7 +51570,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.6
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ΖG3号機A型用腕部G・L",
@@ -51412,7 +51588,8 @@
     "staggerValue": 45,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ΖG3号機A型用頭部バルカン砲",
@@ -51429,7 +51606,8 @@
     "staggerValue": 6,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ΖG3号機A型用H・M・L",
@@ -51462,7 +51640,8 @@
        "2": 700
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "ΖG3号機A型用B・ガンx2",
@@ -51478,7 +51657,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ΖG3号機A型用H・M・L（変形）",
@@ -51494,7 +51674,8 @@
     "staggerValue": 5,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ギャプラン（I0）": [
@@ -51512,7 +51693,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ギャプラン（I0）用B・S",
@@ -51538,7 +51720,8 @@
       }
      ]
     },
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ギャプラン（I0）用B・Rx2",
@@ -51571,7 +51754,8 @@
        "2": 1500
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "ギャプラン（I0）用B・Sx2",
@@ -51597,7 +51781,8 @@
       }
      ]
     },
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ギャプラン（I0）用B・Rx2（変形）",
@@ -51613,7 +51798,8 @@
     "staggerValue": 17,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ビーム・メガキャノン",
@@ -51629,7 +51815,8 @@
     "staggerValue": 50,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ジム・コマンド": [
@@ -54132,7 +54319,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ΖG3号機B型用腕部G・L",
@@ -54149,7 +54337,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ΖG3号機B型用頭部バルカン砲",
@@ -54166,7 +54355,8 @@
     "staggerValue": 5,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ΖG3号機B型用メガ・ガトリング",
@@ -54182,7 +54372,8 @@
     "staggerValue": 9,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ΖG3号機B型用B・C（変形）",
@@ -54198,7 +54389,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ΖG3号機B型用B・ガンx2",
@@ -54214,7 +54406,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ΖG3号機B型用M・G（変形）",
@@ -54230,7 +54423,8 @@
     "staggerValue": 4,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "FA・ユニコーンガンダム": [
@@ -55236,7 +55430,8 @@
     "staggerValue": 17,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "肩部メガ粒子砲x2",
@@ -55252,7 +55447,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ファンネル・ミサイル",
@@ -55269,7 +55465,8 @@
     "staggerValue": 15,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "C・W・U［ミサイル］",
@@ -55286,7 +55483,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "C・W・U［メガ粒子砲］",
@@ -55302,7 +55500,8 @@
     "staggerValue": 10,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ペーネロペー用バルカン砲",
@@ -55335,7 +55534,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ファンネル・ミサイル（変形）",
@@ -55352,7 +55552,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "フライルー・ラーⅡ": [
@@ -55370,7 +55571,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "フライルー・ラーⅡ用B・サーベル",
@@ -55417,7 +55619,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "フライルー・ラーⅡ用H・B",
@@ -55448,7 +55651,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 3.5
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "バインダー内B・Cx2",
@@ -55464,7 +55668,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "H・RⅡ用L・B・R［直結］",
@@ -55480,7 +55685,8 @@
     "staggerValue": 80,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "H・RⅡ用L・B・R（変形）",
@@ -55496,7 +55702,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "バインダー内B・Cx2（変形）",
@@ -55512,7 +55719,8 @@
     "staggerValue": 15,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "量産型νガンダム［F・F装備］": [
@@ -55939,7 +56147,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ファーヴニル用B・サーベルx2",
@@ -55970,7 +56179,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "胸部マシン・キャノンx2",
@@ -55987,7 +56197,8 @@
     "staggerValue": 4,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・キャノンx2",
@@ -56003,7 +56214,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ハイパー・ビーム・サーベル",
@@ -56029,7 +56241,8 @@
       }
      ]
     },
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ファーヴニル用B・Rx2",
@@ -56045,7 +56258,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ミサイル・ランチャーx2",
@@ -56062,7 +56276,8 @@
     "staggerValue": 17,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ハイ・メガ・キャノン",
@@ -56078,7 +56293,8 @@
     "staggerValue": 65,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・キャノンx4",
@@ -56094,7 +56310,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ファーヴニル用B・Rx2（変形）",
@@ -56127,7 +56344,8 @@
        "2": 1500
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "ミサイル・ランチャーx2（変形）",
@@ -56144,7 +56362,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ネティクス": [
@@ -57228,7 +57447,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.8
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "60mmバルカン砲",
@@ -57245,7 +57465,8 @@
     "staggerValue": 4,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "シールド装着型ビーム・キャノン",
@@ -57278,7 +57499,8 @@
        "2": 1500
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "炸裂ボルト",
@@ -57298,7 +57520,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "シールド装着型B・C（変形）",
@@ -57331,7 +57554,8 @@
        "2": 1500
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "炸裂ボルト（変形）",
@@ -57346,7 +57570,8 @@
     "staggerValue": 50,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "イフリート改": [
@@ -57618,7 +57843,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 2.0
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ΖプラスA2型用B・サーベル",
@@ -57648,7 +57874,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 2.2
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ΖプラスA2型用頭部バルカン",
@@ -57664,7 +57891,8 @@
     "staggerValue": 5,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・カノンx2",
@@ -57679,7 +57907,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ハイ・メガ・カノン",
@@ -57694,7 +57923,8 @@
     "staggerValue": 50,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ハイ・メガ・カノン［射撃出力リミッター解除］",
@@ -57709,7 +57939,8 @@
     "staggerValue": 10,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・カノンx2（変形）",
@@ -57724,7 +57955,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ブルーディスティニー1号機": [
@@ -58610,7 +58842,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "60mmバルカン砲",
@@ -58626,7 +58859,8 @@
     "staggerValue": 5,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "シールド内B・キャノン",
@@ -58656,7 +58890,8 @@
        "1": 2600
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "マイクロ・ミサイルx4",
@@ -58672,7 +58907,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "マイクロ・ミサイルx4［連動射撃］",
@@ -58705,7 +58941,8 @@
     "staggerValue": 50,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "マイクロ・ミサイルx4（変形）",
@@ -58721,7 +58958,8 @@
     "staggerValue": 17,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "エンゲージガンダム［I装備］": [
@@ -58890,7 +59128,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "M・C［パイル・ハンマ］",
@@ -58921,7 +59160,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "M・C［ビーム・マシンガン］",
@@ -58937,7 +59177,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "エクス・キャノンx2",
@@ -58953,7 +59194,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・ガンx2",
@@ -58969,7 +59211,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "M・Cx2［拘束弾］",
@@ -58986,7 +59229,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "M・Cx2［焼夷］",
@@ -59003,7 +59247,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "M・Cx2［B・マシンガン］",
@@ -59019,7 +59264,8 @@
     "staggerValue": 2,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "エクス・キャノンx2［速射］",
@@ -59035,7 +59281,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ユニコーンガンダム［覚醒］": [
@@ -59845,7 +60092,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 2.6
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ΖG3号機P2型用頭部バルカン砲",
@@ -59862,7 +60110,8 @@
     "staggerValue": 7,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ΖG3号機P2型用腕部G・L",
@@ -59879,7 +60128,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ΖG3号機P2型用B・Sx2",
@@ -59914,7 +60164,8 @@
      "n": 1.0,
      "side": 0.9,
      "down": 1.4
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ΖG3号機P2型用B・P（変形）",
@@ -59930,7 +60181,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "ΖG3号機P2型用B・ガンx2",
@@ -59946,7 +60198,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ナラティブガンダム": [
@@ -60121,7 +60374,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 2.55
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "60mmバルカン砲",
@@ -60139,7 +60393,8 @@
     "staggerValue": 6,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ガンダムデルタアンス用B・Sx2",
@@ -60171,7 +60426,8 @@
      "n": 2.0,
      "side": 0.9,
      "down": 1.5
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "L・M・B［速射］",
@@ -60188,7 +60444,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・キャノンx2",
@@ -60224,7 +60481,8 @@
        "3": 510
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "メガ・キャノン",
@@ -60241,7 +60499,8 @@
     "staggerValue": 60,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "RFズゴック": [
@@ -63960,7 +64219,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ガブスレイβ用頭部バルカン",
@@ -63976,7 +64236,8 @@
     "staggerValue": 4,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ムーバブル・フレーム・クロー",
@@ -63995,7 +64256,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.7
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "腰部M・ポッドx2",
@@ -64011,7 +64273,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "腰部M・ポッドx2［閃光弾］",
@@ -64027,7 +64290,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "腰部M・ポッドx2［スモーク］",
@@ -64043,7 +64307,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "F・ライフルMk2（変形）",
@@ -64073,7 +64338,8 @@
        "1": 2600
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "腰部M・Px2［焼夷］",
@@ -64089,7 +64355,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "腰部M・Px2［閃光弾］（変形）",
@@ -64105,7 +64372,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "クロスボーン・ガンダムX1改": [
@@ -66066,7 +66334,8 @@
        "1": 3200
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "キハールⅡ用ブーステッド・H・B",
@@ -66091,7 +66360,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.8
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "キハールⅡ用頭部バルカン",
@@ -66107,7 +66377,8 @@
     "staggerValue": 7,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "スプレッド・ビーム砲",
@@ -66137,7 +66408,8 @@
        "1": 800
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "キハールⅡ用ブーステッド・クロー",
@@ -66158,7 +66430,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.8
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ブーステッド・ライフル",
@@ -66173,7 +66446,8 @@
     "staggerValue": 10,
     "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "スプレッド・ビーム砲（変形）",
@@ -66203,7 +66477,8 @@
        "1": 1300
       }
      }
-    ]
+    ],
+    "form": "normal"
    }
   ],
   "Gキャノン・マグナ": [
@@ -68565,7 +68840,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "4連ミサイル・ポッド［閃光弾］",
@@ -68584,7 +68860,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "200mmキャノン徹甲榴弾x2",
@@ -68603,7 +68880,8 @@
     "staggerValue": 40,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "200mmキャノン榴散弾x2",
@@ -68622,7 +68900,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "5連フィンガー・ランチャーx2",
@@ -68641,7 +68920,8 @@
     "staggerValue": 4,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "4連M・ポッドx2（変形）",
@@ -68660,7 +68940,8 @@
     "staggerValue": 13,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "4連M・ポッドx2［連続爆発］",
@@ -68679,7 +68960,8 @@
     "staggerValue": 17,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "200mmC徹甲榴弾x2［速射］",
@@ -68698,7 +68980,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ヴィクトリーガンダム": [
@@ -68824,7 +69107,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.7
-    }
+    },
+    "form": "normal"
    }
   ],
   "シャッコー": [
@@ -68871,7 +69155,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ショルダービーム・ガン",
@@ -68886,7 +69171,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "シャッコー用ビーム・サーベルx2",
@@ -68921,7 +69207,8 @@
      "n": 1.0,
      "side": 1.5,
      "down": 1.4
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ガトリングガン",
@@ -68937,7 +69224,8 @@
     "staggerValue": 3,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "複合複眼式マルチセンサー",
@@ -68952,7 +69240,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・ライフル（B・R飛行）",
@@ -69645,7 +69934,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "肩部ミサイル・ポッド",
@@ -69664,7 +69954,8 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "左腕ミサイル・ポッド",
@@ -69683,7 +69974,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "肩部M・ポッド［焼夷］",
@@ -69702,7 +69994,8 @@
     "staggerValue": 5,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "左腕ミサイル・ポッド（変形）",
@@ -69721,7 +70014,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ガンブラスター": [
@@ -70320,7 +70614,8 @@
     "staggerValue": 65,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "アビゴル用ビーム・サイス",
@@ -70350,7 +70645,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 2.2
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "ビーム・サイス［投擲］",
@@ -70377,7 +70673,8 @@
       }
      ]
     },
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・カタール",
@@ -70407,7 +70704,8 @@
      "n": 1.0,
      "side": 1.0,
      "down": 2.3
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "複合複眼式マルチセンサー",
@@ -70447,7 +70745,8 @@
       }
      ]
     },
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "背部ビーム・カッター",
@@ -70462,7 +70761,8 @@
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    },
    {
     "name": "頭頂部ビーム・キャノン",
@@ -70492,7 +70792,8 @@
        "1": 3200
       }
      }
-    ]
+    ],
+    "form": "alt"
    },
    {
     "name": "ビーム・カッター［防御］",
@@ -70507,7 +70808,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ギラ・ドーガ（FF）": [
@@ -73334,7 +73636,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 2.4
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "リゼルN型用S内B・キャノン",
@@ -73367,7 +73670,8 @@
        "2": 3000
       }
      }
-    ]
+    ],
+    "form": "normal"
    },
    {
     "name": "リゼルN型用頭部バルカン砲",
@@ -73384,7 +73688,8 @@
     "staggerValue": 6,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "リゼルN型用腕部G・ランチャー",
@@ -73401,7 +73706,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "リゼルN型用L・B・サーベル",
@@ -73432,7 +73738,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 2.4
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "リゼルN型用S内B・C（変形）",
@@ -73465,7 +73772,8 @@
        "2": 2200
       }
      }
-    ]
+    ],
+    "form": "alt"
    }
   ],
   "ベルガ・ギロス（GK）": [
@@ -74503,7 +74811,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.6
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "頭部バルカン",
@@ -74520,7 +74829,8 @@
     "staggerValue": 7,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・サーベル",
@@ -74551,7 +74861,8 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.4
-    }
+    },
+    "form": "normal"
    },
    {
     "name": "腕部グレネード・ランチャー",
@@ -74568,7 +74879,8 @@
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "腕部G・ランチャー［焼夷］",
@@ -74585,7 +74897,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "Iフィールド発生装置",
@@ -74601,7 +74914,8 @@
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "normal"
    },
    {
     "name": "ビーム・ガンx2",
@@ -74617,7 +74931,8 @@
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null
+    "modes": null,
+    "form": "alt"
    }
   ],
   "ユニコーンガンダム［HML装備］": [

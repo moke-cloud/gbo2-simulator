@@ -1,5 +1,5 @@
 {
-  "version": "h8c7333e63c33",
+  "version": "h93cb99796812",
   "totalMS": 576,
   "msList": [
     {
@@ -8754,7 +8754,10 @@
           "melee_correction": 5,
           "speed": 100,
           "boost_speed": 135,
-          "thruster": 65
+          "thruster": 65,
+          "transformed": {
+            "speed": 170
+          }
         },
         "2": {
           "cost": 450,
@@ -8766,7 +8769,10 @@
           "melee_correction": 5,
           "speed": 100,
           "boost_speed": 135,
-          "thruster": 65
+          "thruster": 65,
+          "transformed": {
+            "speed": 180
+          }
         },
         "3": {
           "cost": 500,
@@ -8778,7 +8784,10 @@
           "melee_correction": 5,
           "speed": 100,
           "boost_speed": 135,
-          "thruster": 65
+          "thruster": 65,
+          "transformed": {
+            "speed": 180
+          }
         },
         "4": {
           "cost": 550,
@@ -8790,7 +8799,10 @@
           "melee_correction": 5,
           "speed": 100,
           "boost_speed": 135,
-          "thruster": 65
+          "thruster": 65,
+          "transformed": {
+            "speed": 180
+          }
         }
       },
       "slots": {
@@ -8924,7 +8936,45 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/1372.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/1372.html",
+      "altSkills": [
+        {
+          "name": "高速突撃",
+          "level": "LV1",
+          "effect": "変形後の移動時に、一定以上の速度で接触した対象をよろけさせる。タンク系、飛行系、宇宙地上問わず利用が可能。・ダメージは発生しない接触した機体は約5秒ほど効果が発生しなくなる味方に接触しても効果は発生しない"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV1",
+          "effect": "強化されたレーダー性能。有効範囲が300mから350mへ拡張する。"
+        },
+        {
+          "name": "高性能スコープ",
+          "level": "LV1",
+          "effect": "高性能のスコープが使用可能。スナイプモード時に左スティックで倍率4倍までの調整が可能。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ゲム・カモフ",
@@ -10334,7 +10384,10 @@
           "melee_correction": 5,
           "speed": 120,
           "boost_speed": 135,
-          "thruster": 60
+          "thruster": 60,
+          "transformed": {
+            "speed": 170
+          }
         },
         "2": {
           "cost": 450,
@@ -10346,7 +10399,10 @@
           "melee_correction": 5,
           "speed": 120,
           "boost_speed": 135,
-          "thruster": 60
+          "thruster": 60,
+          "transformed": {
+            "speed": 180
+          }
         },
         "3": {
           "cost": 500,
@@ -10358,7 +10414,10 @@
           "melee_correction": 5,
           "speed": 120,
           "boost_speed": 135,
-          "thruster": 60
+          "thruster": 60,
+          "transformed": {
+            "speed": 180
+          }
         },
         "4": {
           "cost": 550,
@@ -10370,7 +10429,10 @@
           "melee_correction": 5,
           "speed": 120,
           "boost_speed": 135,
-          "thruster": 60
+          "thruster": 60,
+          "transformed": {
+            "speed": 180
+          }
         }
       },
       "slots": {
@@ -10504,7 +10566,45 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/1453.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/1453.html",
+      "altSkills": [
+        {
+          "name": "高速突撃",
+          "level": "LV1",
+          "effect": "変形後の移動時に、一定以上の速度で接触した対象をよろけさせる。タンク系、飛行系、宇宙地上問わず利用が可能。・ダメージは発生しない接触した機体は約5秒ほど効果が発生しなくなる味方に接触しても効果は発生しない"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "高性能スコープ",
+          "level": "LV2",
+          "effect": "高性能のスコープが使用可能。スナイプモード時に左スティックで倍率5倍までの調整が可能。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ジーライン・スタンダードアーマー",
@@ -22318,7 +22418,13 @@
           "boost_speed": 215,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         },
         "2": {
           "cost": 650,
@@ -22332,7 +22438,13 @@
           "boost_speed": 215,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         },
         "3": {
           "cost": 700,
@@ -22346,7 +22458,13 @@
           "boost_speed": 215,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         },
         "4": {
           "cost": 750,
@@ -22360,7 +22478,13 @@
           "boost_speed": 215,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 81.0
+          "turn_speed_space": 81.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         }
       },
       "slots": {
@@ -22551,7 +22675,94 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2077.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2077.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要",
+          "ms_levels": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの85%を消費して回避する",
+          "ms_levels": [
+            4
+          ]
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "能力UP「バイオセンサー」",
+          "level": "LV2",
+          "effect": "機体HPが50%以下になった際に発動。発動した瞬間のみ、ダメージの蓄積によるよろけ以外のリアクションを無効化する。発動中は攻撃力、防御力、機動力が上昇する。また蓄積によるよろけの発生と、格闘攻撃中の射撃ダメージによるリアクションが軽減。・発動中は・射撃補正＋10・格闘補正＋35・各耐性＋15・スピード＋10・高速移動＋10・スラスター消費－25%・旋回性能＋15・受けた攻撃のよろけ値を70%かつ小数点以下切り捨てで計算する・緊急回避制御Lv3が付与・攻撃姿勢制御Lv1が付与※効果時間は無し※発動した瞬間のカットシーン中はダメージリアクション無効"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ラムアタック「バイオセンサー」",
+          "level": "LV1",
+          "effect": "バイオセンサーが発動中に高速移動を一定時間行うと、ラムアタックの威力が2000上昇する。さらにスキル発動中は機体HPへのダメージを50%軽減する。・HP50%以下かつ高速移動を約1秒使用後に発動",
+          "ms_levels": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "name": "ラムアタック「バイオセンサー」",
+          "level": "LV2",
+          "effect": "バイオセンサーが発動中に高速移動を一定時間行うと、ラムアタックの威力が3000上昇する。さらにスキル発動中は機体HPへのダメージを60%軽減する。",
+          "ms_levels": [
+            4
+          ]
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV2",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを15%軽減する。",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV3",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。",
+          "ms_levels": [
+            3,
+            4
+          ]
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ガンタンクⅡ",
@@ -22779,7 +22990,13 @@
           "boost_speed": 225,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 240,
+            "turn_speed_ground": 45.0,
+            "turn_speed_space": 45.0
+          }
         },
         "2": {
           "cost": 600,
@@ -22793,7 +23010,13 @@
           "boost_speed": 225,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 240,
+            "turn_speed_ground": 45.0,
+            "turn_speed_space": 45.0
+          }
         },
         "3": {
           "cost": 650,
@@ -22807,7 +23030,13 @@
           "boost_speed": 230,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 240,
+            "turn_speed_ground": 45.0,
+            "turn_speed_space": 45.0
+          }
         },
         "4": {
           "cost": 700,
@@ -22821,7 +23050,13 @@
           "boost_speed": 230,
           "thruster": 85,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 240,
+            "turn_speed_ground": 45.0,
+            "turn_speed_space": 45.0
+          }
         }
       },
       "slots": {
@@ -23002,7 +23237,81 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2129.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2129.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "背部特殊緩衝材",
+          "level": "LV2",
+          "effect": "背部へ攻撃を受けた際、機体HPへのダメージと背部HPへの負荷を15%軽減する。・地上でもダメージ軽減は効果対象",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "背部特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部へ攻撃を受けた際、機体HPへのダメージと背部HPへの負荷を20%軽減する。",
+          "ms_levels": [
+            3,
+            4
+          ]
+        },
+        {
+          "name": "腕部バインダー特殊緩衝材",
+          "level": "LV3",
+          "effect": "腕部バインダーへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV1",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が130%になる",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる",
+          "ms_levels": [
+            3,
+            4
+          ]
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ガンキャノン・ディテクター",
@@ -24105,7 +24414,11 @@
           "melee_correction": 10,
           "speed": 140,
           "boost_speed": 205,
-          "thruster": 80
+          "thruster": 80,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 240
+          }
         },
         "2": {
           "cost": 600,
@@ -24117,7 +24430,11 @@
           "melee_correction": 17,
           "speed": 140,
           "boost_speed": 205,
-          "thruster": 80
+          "thruster": 80,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 240
+          }
         },
         "3": {
           "cost": 650,
@@ -24129,7 +24446,11 @@
           "melee_correction": 30,
           "speed": 140,
           "boost_speed": 205,
-          "thruster": 80
+          "thruster": 80,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 240
+          }
         },
         "4": {
           "cost": 700,
@@ -24141,7 +24462,11 @@
           "melee_correction": 43,
           "speed": 140,
           "boost_speed": 205,
-          "thruster": 80
+          "thruster": 80,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 240
+          }
         }
       },
       "slots": {
@@ -24305,7 +24630,53 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2215.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2215.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV3",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が200%になる",
+          "ms_levels": [
+            3,
+            4
+          ]
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ジム・ナイトシーカーⅡ",
@@ -25232,7 +25603,13 @@
           "boost_speed": 210,
           "thruster": 85,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 225,
+            "turn_speed_ground": 60.0,
+            "turn_speed_space": 60.0
+          }
         },
         "2": {
           "cost": 650,
@@ -25246,7 +25623,13 @@
           "boost_speed": 210,
           "thruster": 85,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 225,
+            "turn_speed_ground": 60.0,
+            "turn_speed_space": 60.0
+          }
         },
         "3": {
           "cost": 700,
@@ -25260,7 +25643,13 @@
           "boost_speed": 210,
           "thruster": 85,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 225,
+            "turn_speed_ground": 60.0,
+            "turn_speed_space": 60.0
+          }
         },
         "4": {
           "cost": 750,
@@ -25274,7 +25663,13 @@
           "boost_speed": 210,
           "thruster": 85,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 225,
+            "turn_speed_ground": 60.0,
+            "turn_speed_space": 60.0
+          }
         }
       },
       "slots": {
@@ -25425,7 +25820,63 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2283.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2283.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV1",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を10%軽減する。・宇宙でもダメージ軽減は効果対象",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV2",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を15%軽減する。",
+          "ms_levels": [
+            3,
+            4
+          ]
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ネモⅢ",
@@ -25867,7 +26318,13 @@
           "boost_speed": 220,
           "thruster": 75,
           "turn_speed_ground": 75.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 235,
+            "turn_speed_ground": 63.0,
+            "turn_speed_space": 63.0
+          }
         },
         "2": {
           "cost": 650,
@@ -25881,7 +26338,13 @@
           "boost_speed": 225,
           "thruster": 75,
           "turn_speed_ground": 75.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 240,
+            "turn_speed_ground": 63.0,
+            "turn_speed_space": 63.0
+          }
         },
         "3": {
           "cost": 700,
@@ -25895,7 +26358,13 @@
           "boost_speed": 230,
           "thruster": 80,
           "turn_speed_ground": 75.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 245,
+            "turn_speed_ground": 63.0,
+            "turn_speed_space": 63.0
+          }
         },
         "4": {
           "cost": 750,
@@ -25909,7 +26378,13 @@
           "boost_speed": 235,
           "thruster": 85,
           "turn_speed_ground": 75.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 250,
+            "turn_speed_ground": 63.0,
+            "turn_speed_space": 63.0
+          }
         }
       },
       "slots": {
@@ -26084,7 +26559,92 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2334.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2334.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "スラスター出力強化",
+          "level": "LV1",
+          "effect": "高速移動が5増加する。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "スラスター出力強化",
+          "level": "LV2",
+          "effect": "高速移動が10増加する。",
+          "ms_levels": [
+            3
+          ]
+        },
+        {
+          "name": "スラスター出力強化",
+          "level": "LV3",
+          "effect": "高速移動が15増加する。",
+          "ms_levels": [
+            4
+          ]
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2200の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋110される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV4",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを35%軽減する。",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV5",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを50%軽減する。",
+          "ms_levels": [
+            3,
+            4
+          ]
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "対人レーダー",
+          "level": "LV2",
+          "effect": "停止状態ではない敵パイロットをレーダーで捕捉する。有効射程は200m。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ドム・キャノン［単砲仕様］",
@@ -26695,7 +27255,13 @@
           "boost_speed": 220,
           "thruster": 75,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 240,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 54.0
+          }
         },
         "2": {
           "cost": 700,
@@ -26709,7 +27275,13 @@
           "boost_speed": 220,
           "thruster": 75,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 81.0
+          "turn_speed_space": 81.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 240,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 54.0
+          }
         },
         "3": {
           "cost": 750,
@@ -26723,7 +27295,13 @@
           "boost_speed": 230,
           "thruster": 75,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 81.0
+          "turn_speed_space": 81.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 240,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 54.0
+          }
         }
       },
       "slots": {
@@ -26886,7 +27464,77 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2376.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2376.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの85%を消費して回避する"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する"
+        },
+        {
+          "name": "能力UP「バイオセンサー」",
+          "level": "LV2",
+          "effect": "機体HPが50%以下になった際に発動。発動した瞬間のみ、ダメージの蓄積によるよろけ以外のリアクションを無効化する。発動中は攻撃力、防御力、機動力が上昇する。また蓄積によるよろけの発生と、格闘攻撃中の射撃ダメージによるリアクションが軽減。・発動中は・射撃補正＋10・格闘補正＋35・各耐性＋15・スピード＋10・高速移動＋10・スラスター消費－25%・旋回＋15・受けた攻撃のよろけ値を70%かつ小数点以下切り捨てで計算する・緊急回避制御Lv3が付与・攻撃姿勢制御Lv1が付与※効果時間は無し※発動した瞬間のカットシーン中はダメージリアクション無効",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "能力UP「バイオセンサー」",
+          "level": "LV3",
+          "effect": "機体HPが50%以下になった際に発動。発動した瞬間のみ、ダメージの蓄積によるよろけ以外のリアクションを無効化する。発動中は攻撃力、防御力、機動力が上昇する。また蓄積によるよろけの発生と、格闘攻撃中の射撃ダメージによるリアクションが軽減。・発動中は・射撃補正＋15・格闘補正＋50・各耐性＋15・スピード＋15・高速移動＋15・スラスター消費－50%・旋回＋15・受けた攻撃のよろけ値を70%かつ小数点以下切り捨てで計算する・緊急回避制御Lv3が付与・攻撃姿勢制御Lv1が付与※効果時間は無し※発動した瞬間のカットシーン中はダメージリアクション無効",
+          "ms_levels": [
+            3
+          ]
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "両腕部装備特殊緩衝材",
+          "level": "LV3",
+          "effect": "両腕部装備へ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・自動発動型スキル。変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV1",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が130%になる"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ガザC",
@@ -26909,7 +27557,13 @@
           "boost_speed": 195,
           "thruster": 65,
           "turn_speed_ground": 57.0,
-          "turn_speed_space": 60.0
+          "turn_speed_space": 60.0,
+          "transformed": {
+            "speed": 175,
+            "boost_speed": 225,
+            "turn_speed_ground": 51.0,
+            "turn_speed_space": 51.0
+          }
         },
         "2": {
           "cost": 450,
@@ -26923,7 +27577,13 @@
           "boost_speed": 195,
           "thruster": 65,
           "turn_speed_ground": 57.0,
-          "turn_speed_space": 60.0
+          "turn_speed_space": 60.0,
+          "transformed": {
+            "speed": 175,
+            "boost_speed": 225,
+            "turn_speed_ground": 51.0,
+            "turn_speed_space": 51.0
+          }
         }
       },
       "slots": {
@@ -27037,7 +27697,55 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2378.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2378.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV1",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを10%軽減する。"
+        },
+        {
+          "name": "両腕部装備特殊緩衝材",
+          "level": "LV2",
+          "effect": "両腕装備へ攻撃を受けた際、機体HPへのダメージを15%軽減する。"
+        },
+        {
+          "name": "対人レーダー",
+          "level": "LV2",
+          "effect": "停止状態ではない敵パイロットをレーダーで捕捉する。有効射程は200m。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "R・ジャジャ",
@@ -28200,7 +28908,12 @@
           "speed": 130,
           "boost_speed": 220,
           "thruster": 75,
-          "turn_speed_ground": 69.0
+          "turn_speed_ground": 69.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 240,
+            "turn_speed_ground": 48.0
+          }
         },
         "2": {
           "cost": 650,
@@ -28213,7 +28926,12 @@
           "speed": 130,
           "boost_speed": 220,
           "thruster": 75,
-          "turn_speed_ground": 69.0
+          "turn_speed_ground": 69.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 240,
+            "turn_speed_ground": 48.0
+          }
         },
         "3": {
           "cost": 700,
@@ -28226,7 +28944,12 @@
           "speed": 135,
           "boost_speed": 230,
           "thruster": 80,
-          "turn_speed_ground": 72.0
+          "turn_speed_ground": 72.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 240,
+            "turn_speed_ground": 48.0
+          }
         },
         "4": {
           "cost": 750,
@@ -28239,7 +28962,12 @@
           "speed": 140,
           "boost_speed": 230,
           "thruster": 80,
-          "turn_speed_ground": 75.0
+          "turn_speed_ground": 75.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 240,
+            "turn_speed_ground": 48.0
+          }
         }
       },
       "slots": {
@@ -28420,7 +29148,81 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2479.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2479.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの85%を消費して回避する",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "緊急回避制御",
+          "level": "LV3",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの75%を消費して回避する",
+          "ms_levels": [
+            3,
+            4
+          ]
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV4",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを35%軽減する。",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV5",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを50%軽減する。",
+          "ms_levels": [
+            3,
+            4
+          ]
+        },
+        {
+          "name": "シールド破損姿勢制御",
+          "level": "LV1",
+          "effect": "射撃攻撃によるシールド破損時のリアクションを無効化する。ただし、ダメージの蓄積によるよろけアクションは無効化されない。"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ドライセン",
@@ -29508,7 +30310,13 @@
           "boost_speed": 195,
           "thruster": 75,
           "turn_speed_ground": 54.0,
-          "turn_speed_space": 57.0
+          "turn_speed_space": 57.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 235,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         },
         "2": {
           "cost": 550,
@@ -29522,7 +30330,13 @@
           "boost_speed": 195,
           "thruster": 75,
           "turn_speed_ground": 54.0,
-          "turn_speed_space": 57.0
+          "turn_speed_space": 57.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 235,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         },
         "3": {
           "cost": 600,
@@ -29536,7 +30350,13 @@
           "boost_speed": 195,
           "thruster": 75,
           "turn_speed_ground": 54.0,
-          "turn_speed_space": 57.0
+          "turn_speed_space": 57.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 235,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         }
       },
       "slots": {
@@ -29664,7 +30484,60 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2581.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2581.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV2",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を15%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV1",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを10%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる"
+        },
+        {
+          "name": "対人レーダー",
+          "level": "LV2",
+          "effect": "停止状態ではない敵パイロットをレーダーで捕捉する。有効射程は200m。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "バウ",
@@ -32160,7 +33033,13 @@
           "boost_speed": 190,
           "thruster": 70,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 175,
+            "boost_speed": 240,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 48.0
+          }
         },
         "2": {
           "cost": 650,
@@ -32174,7 +33053,13 @@
           "boost_speed": 190,
           "thruster": 70,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 175,
+            "boost_speed": 240,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 48.0
+          }
         },
         "3": {
           "cost": 700,
@@ -32188,7 +33073,13 @@
           "boost_speed": 190,
           "thruster": 75,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 175,
+            "boost_speed": 240,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 48.0
+          }
         },
         "4": {
           "cost": 750,
@@ -32202,7 +33093,13 @@
           "boost_speed": 190,
           "thruster": 75,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 175,
+            "boost_speed": 240,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 48.0
+          }
         }
       },
       "slots": {
@@ -32371,7 +33268,63 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2730.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2730.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV2",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを15%軽減する。",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV3",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。",
+          "ms_levels": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "対人レーダー",
+          "level": "LV2",
+          "effect": "停止状態ではない敵パイロットをレーダーで捕捉する。有効射程は200m。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV3",
+          "effect": "強化されたレーダー性能。有効範囲が300mから450mへ拡張する。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "アッグ［ML装備］",
@@ -33427,7 +34380,13 @@
           "boost_speed": 220,
           "thruster": 70,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 240,
+            "turn_speed_ground": 60.0,
+            "turn_speed_space": 60.0
+          }
         },
         "2": {
           "cost": 700,
@@ -33441,7 +34400,13 @@
           "boost_speed": 220,
           "thruster": 75,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 240,
+            "turn_speed_ground": 63.0,
+            "turn_speed_space": 63.0
+          }
         },
         "3": {
           "cost": 750,
@@ -33455,7 +34420,13 @@
           "boost_speed": 230,
           "thruster": 75,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 240,
+            "turn_speed_ground": 66.0,
+            "turn_speed_space": 66.0
+          }
         }
       },
       "slots": {
@@ -33613,7 +34584,100 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2794.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/2794.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの85%を消費して回避する",
+          "ms_levels": [
+            3
+          ]
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "反応速度向上プログラム",
+          "level": "LV1",
+          "effect": "ＭＳの旋回性能（レティクルのレスポンス）が3増加",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "反応速度向上プログラム",
+          "level": "LV2",
+          "effect": "ＭＳの旋回性能（レティクルのレスポンス）が6増加",
+          "ms_levels": [
+            3
+          ]
+        },
+        {
+          "name": "能力UP「ALICE」",
+          "level": "LV1",
+          "effect": "機体HPが50%以下になった際、自動で発動して機動力が上昇する。更にスキル発動中は下記の効果が付与される。射撃兵装における集束時間を50%短縮、サイコミュ兵装でロックオンするまでの時間を50%短縮する。・発動中は・スピード＋15・高速移動＋15・スラスター消費－50%・旋回＋15・移動速度補正上昇・緊急回避制御LV3が付与・射撃兵装の集束時間－50%・サイコミュ兵装のロックオン時間－50%※効果時間は無し"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV3",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が200%になる",
+          "ms_levels": [
+            2,
+            3
+          ]
+        },
+        {
+          "name": "胸部Iフィールド",
+          "level": "LV1",
+          "effect": "胸部にビーム属性の射撃攻撃を受けた際、機体HPへのダメージを50%軽減し、攻撃を受けた際のリアクションを緩和、または無効化する。・効果発動時はビームを弾くような演出が発生する"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ドラッツェ改［重装備型］",
@@ -36376,7 +37440,13 @@
           "boost_speed": 190,
           "thruster": 70,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 66.0
+          "turn_speed_space": 66.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 240,
+            "turn_speed_ground": 51.0,
+            "turn_speed_space": 51.0
+          }
         },
         "2": {
           "cost": 700,
@@ -36390,7 +37460,13 @@
           "boost_speed": 190,
           "thruster": 70,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 66.0
+          "turn_speed_space": 66.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 240,
+            "turn_speed_ground": 51.0,
+            "turn_speed_space": 51.0
+          }
         },
         "3": {
           "cost": 750,
@@ -36404,7 +37480,13 @@
           "boost_speed": 200,
           "thruster": 75,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 240,
+            "turn_speed_ground": 51.0,
+            "turn_speed_space": 51.0
+          }
         }
       },
       "slots": {
@@ -36562,7 +37644,87 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3015.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3015.html",
+      "altSkills": [
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "能力UP「バイオセンサー」",
+          "level": "LV2",
+          "effect": "機体HPが50%以下になった際に発動。発動した瞬間のみ、ダメージの蓄積によるよろけ以外のリアクションを無効化する。発動中は攻撃力、防御力、機動力が上昇する。また蓄積によるよろけの発生と、格闘攻撃中の射撃ダメージによるリアクションが軽減。・発動中は・射撃補正＋10・格闘補正＋35・各耐性＋15・スピード＋10・高速移動＋10・スラスター消費－25%・旋回性能＋15・受けた攻撃のよろけ値を70%かつ小数点以下切り捨てで計算する・緊急回避制御Lv3が付与・攻撃姿勢制御Lv1が付与※効果時間は無し※発動した瞬間のカットシーン中はダメージリアクション無効"
+        },
+        {
+          "name": "ラムアタック「バイオセンサー」",
+          "level": "LV1",
+          "effect": "バイオセンサーが発動中に高速移動を一定時間行うと、ラムアタックの威力が2000上昇する。さらにスキル発動中は機体HPへのダメージを50%軽減する。・HP30%以下かつ高速移動を約1秒使用後に発動",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "ラムアタック「バイオセンサー」",
+          "level": "LV2",
+          "effect": "バイオセンサーが発動中に高速移動を一定時間行うと、ラムアタックの威力が3000上昇する。さらにスキル発動中は機体HPへのダメージを60%軽減する。",
+          "ms_levels": [
+            3
+          ]
+        },
+        {
+          "name": "追撃射撃補助プログラム",
+          "level": "LV1",
+          "effect": "ダウン状態の敵機に対して、射撃兵装で与えるダメージが15%上昇する。",
+          "ms_levels": [
+            3
+          ]
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV2",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを15%軽減する。",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV3",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。",
+          "ms_levels": [
+            3
+          ]
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV3",
+          "effect": "強化されたレーダー性能。有効範囲が300mから450mへ拡張する。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "レッドライダー",
@@ -38067,7 +39229,13 @@
           "boost_speed": 210,
           "thruster": 80,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 66.0
+          "turn_speed_space": 66.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 245,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         },
         "2": {
           "cost": 650,
@@ -38081,7 +39249,13 @@
           "boost_speed": 210,
           "thruster": 80,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 66.0
+          "turn_speed_space": 66.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 245,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         },
         "3": {
           "cost": 700,
@@ -38095,7 +39269,13 @@
           "boost_speed": 210,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 245,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         }
       },
       "slots": {
@@ -38243,7 +39423,96 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3154.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3154.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV1",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を10%軽減する。・宇宙でもダメージ軽減は効果対象",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV3",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を25%軽減する。",
+          "ms_levels": [
+            2,
+            3
+          ]
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV2",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを15%軽減する。",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。",
+          "ms_levels": [
+            2,
+            3
+          ]
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV1",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が130%になる",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる",
+          "ms_levels": [
+            3
+          ]
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ガザD",
@@ -38266,7 +39535,13 @@
           "boost_speed": 200,
           "thruster": 75,
           "turn_speed_ground": 60.0,
-          "turn_speed_space": 63.0
+          "turn_speed_space": 63.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 220,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         },
         "2": {
           "cost": 500,
@@ -38280,7 +39555,13 @@
           "boost_speed": 200,
           "thruster": 80,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 66.0
+          "turn_speed_space": 66.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 220,
+            "turn_speed_ground": 60.0,
+            "turn_speed_space": 60.0
+          }
         }
       },
       "slots": {
@@ -38414,7 +39695,50 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3171.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3171.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "肩部特殊緩衝材",
+          "level": "LV2",
+          "effect": "肩部へ攻撃を受けた際、機体HPへのダメージを15%軽減する。"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV2",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを15%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV1",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が130%になる"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "量産型キュベレイ",
@@ -39322,7 +40646,13 @@
           "boost_speed": 190,
           "thruster": 70,
           "turn_speed_ground": 60.0,
-          "turn_speed_space": 63.0
+          "turn_speed_space": 63.0,
+          "transformed": {
+            "speed": 170,
+            "boost_speed": 230,
+            "turn_speed_ground": 45.0,
+            "turn_speed_space": 45.0
+          }
         },
         "2": {
           "cost": 650,
@@ -39336,7 +40666,13 @@
           "boost_speed": 190,
           "thruster": 70,
           "turn_speed_ground": 60.0,
-          "turn_speed_space": 63.0
+          "turn_speed_space": 63.0,
+          "transformed": {
+            "speed": 170,
+            "boost_speed": 230,
+            "turn_speed_ground": 45.0,
+            "turn_speed_space": 45.0
+          }
         }
       },
       "slots": {
@@ -39475,7 +40811,87 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3269.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3269.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV2",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を15%軽減する。・宇宙でもダメージ軽減は効果対象",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV3",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を25%軽減する。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "肩部特殊緩衝材",
+          "level": "LV2",
+          "effect": "肩部へ攻撃を受けた際、機体HPへのダメージを15%軽減する。",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "肩部特殊緩衝材",
+          "level": "LV3",
+          "effect": "肩部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる"
+        },
+        {
+          "name": "対人レーダー",
+          "level": "LV3",
+          "effect": "停止状態ではない敵パイロットをレーダーで捕捉する。有効射程は250m。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV3",
+          "effect": "強化されたレーダー性能。有効範囲が300mから450mへ拡張する。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ザクⅢ改",
@@ -40379,7 +41795,13 @@
           "boost_speed": 205,
           "thruster": 70,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 66.0
+          "turn_speed_space": 66.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 230,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         },
         "2": {
           "cost": 500,
@@ -40393,7 +41815,13 @@
           "boost_speed": 205,
           "thruster": 70,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 66.0
+          "turn_speed_space": 66.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 230,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         }
       },
       "slots": {
@@ -40522,7 +41950,50 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3315.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3315.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋75される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "肩部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "肩部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV1",
+          "effect": "強化されたレーダー性能。有効範囲が300mから350mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ドム・トローペン",
@@ -43456,7 +44927,13 @@
           "boost_speed": 215,
           "thruster": 75,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 230,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         },
         "2": {
           "cost": 650,
@@ -43470,7 +44947,13 @@
           "boost_speed": 215,
           "thruster": 75,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 230,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         },
         "3": {
           "cost": 700,
@@ -43484,7 +44967,13 @@
           "boost_speed": 215,
           "thruster": 75,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 230,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         },
         "4": {
           "cost": 750,
@@ -43498,7 +44987,13 @@
           "boost_speed": 215,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 230,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         }
       },
       "slots": {
@@ -43674,7 +45169,82 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3439.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3439.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "能力UP「簡易バイオセンサー」",
+          "level": "LV1",
+          "effect": "機体HPが25%以下になった際、自動で発動して攻撃力、防御力、機動力が上昇する。スキルが発動した瞬間のみ、ダメージの蓄積によるよろけ以外のリアクションを無効化する。・発動中は・射撃補正＋5・格闘補正＋25・耐ビーム補正＋20・耐実弾補正＋10・耐格闘補正＋10・スピード＋5・高速移動＋5・スラスター消費－20%・旋回性能＋15・緊急回避制御Lv2が付与※効果時間は無し※発動した瞬間のカットシーン中はダメージリアクション無効"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV2",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を15%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV1",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを10%軽減する。",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV2",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを15%軽減する。",
+          "ms_levels": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。",
+          "ms_levels": [
+            3,
+            4
+          ]
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "アッガイ",
@@ -45798,7 +47368,13 @@
           "boost_speed": 220,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 63.0,
+            "turn_speed_space": 63.0
+          }
         },
         "2": {
           "cost": 650,
@@ -45812,7 +47388,13 @@
           "boost_speed": 220,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 63.0,
+            "turn_speed_space": 63.0
+          }
         }
       },
       "slots": {
@@ -45961,7 +47543,65 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3516.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3516.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋150される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV2",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を15%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV3",
+          "effect": "拘束効果のない射撃攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が200%になる"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "グフ重装型",
@@ -49677,7 +51317,13 @@
           "boost_speed": 180,
           "thruster": 70,
           "turn_speed_ground": 57.0,
-          "turn_speed_space": 60.0
+          "turn_speed_space": 60.0,
+          "transformed": {
+            "speed": 170,
+            "boost_speed": 230,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 48.0
+          }
         },
         "2": {
           "cost": 550,
@@ -49691,7 +51337,13 @@
           "boost_speed": 180,
           "thruster": 75,
           "turn_speed_ground": 57.0,
-          "turn_speed_space": 60.0
+          "turn_speed_space": 60.0,
+          "transformed": {
+            "speed": 170,
+            "boost_speed": 230,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 48.0
+          }
         },
         "3": {
           "cost": 600,
@@ -49705,7 +51357,13 @@
           "boost_speed": 180,
           "thruster": 80,
           "turn_speed_ground": 57.0,
-          "turn_speed_space": 60.0
+          "turn_speed_space": 60.0,
+          "transformed": {
+            "speed": 170,
+            "boost_speed": 230,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 48.0
+          }
         },
         "4": {
           "cost": 650,
@@ -49719,7 +51377,13 @@
           "boost_speed": 180,
           "thruster": 80,
           "turn_speed_ground": 57.0,
-          "turn_speed_space": 60.0
+          "turn_speed_space": 60.0,
+          "transformed": {
+            "speed": 170,
+            "boost_speed": 230,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 48.0
+          }
         }
       },
       "slots": {
@@ -49883,7 +51547,63 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3663.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3663.html",
+      "altSkills": [
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2100の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋150される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV3",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を25%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "頭部特殊緩衝材",
+          "level": "LV1",
+          "effect": "頭部へ攻撃を受けた際、機体HPへのダメージと頭部HPへの負荷を10%軽減する。"
+        },
+        {
+          "name": "肩部特殊緩衝材",
+          "level": "LV2",
+          "effect": "肩部へ攻撃を受けた際、機体HPへのダメージを15%軽減する。",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "肩部特殊緩衝材",
+          "level": "LV3",
+          "effect": "肩部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。",
+          "ms_levels": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV3",
+          "effect": "強化されたレーダー性能。有効範囲が300mから450mへ拡張する。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ガズエル・グラウ",
@@ -54527,7 +56247,13 @@
           "boost_speed": 235,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 245,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 54.0
+          }
         },
         "2": {
           "cost": 750,
@@ -54541,7 +56267,13 @@
           "boost_speed": 235,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 245,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 54.0
+          }
         }
       },
       "slots": {
@@ -54690,7 +56422,55 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3916.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/3916.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋?される"
+        },
+        {
+          "name": "能力UP「バイオセンサー」",
+          "level": "LV2",
+          "effect": "機体HPが50%以下になった際に発動。発動した瞬間のみ、ダメージの蓄積によるよろけ以外のリアクションを無効化する。発動中は攻撃力、防御力、機動力が上昇する。また蓄積によるよろけの発生と、格闘攻撃中の射撃ダメージによるリアクションが軽減。・発動中は・射撃補正＋10・格闘補正＋35・各耐性＋15・スピード＋10・高速移動＋10・スラスター消費－25%・旋回性能＋15・受けた攻撃のよろけ値を70%かつ小数点以下切り捨てで計算する・緊急回避制御Lv3が付与・攻撃姿勢制御Lv1が付与※効果時間は無し※発動した瞬間のカットシーン中はダメージリアクション無効"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "両腕部装備特殊緩衝材",
+          "level": "LV3",
+          "effect": "両腕部装備へ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV3",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が200%になる"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ペイルライダーDⅡ",
@@ -56730,7 +58510,13 @@
           "boost_speed": 210,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 235,
+            "turn_speed_ground": 63.0,
+            "turn_speed_space": 63.0
+          }
         },
         "2": {
           "cost": 650,
@@ -56744,7 +58530,13 @@
           "boost_speed": 210,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 235,
+            "turn_speed_ground": 63.0,
+            "turn_speed_space": 63.0
+          }
         }
       },
       "slots": {
@@ -56868,7 +58660,55 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4030.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4030.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ハイブースト・ラムアタック",
+          "level": "LV1",
+          "effect": "変形中に高速移動を一定時間行うと高速移動中の速度が5上昇し、ラムアタックの威力が1000上昇する。・高速移動を約1秒使用後に発動"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV1",
+          "effect": "強化されたレーダー性能。有効範囲が300mから350mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ズゴック",
@@ -57716,7 +59556,13 @@
           "boost_speed": 220,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 235,
+            "turn_speed_ground": 75.0,
+            "turn_speed_space": 75.0
+          }
         },
         "2": {
           "cost": 700,
@@ -57730,7 +59576,13 @@
           "boost_speed": 225,
           "thruster": 85,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 235,
+            "turn_speed_ground": 75.0,
+            "turn_speed_space": 75.0
+          }
         },
         "3": {
           "cost": 750,
@@ -57744,7 +59596,12 @@
           "boost_speed": 230,
           "thruster": 85,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "boost_speed": 235,
+            "turn_speed_ground": 75.0,
+            "turn_speed_space": 75.0
+          }
         }
       },
       "slots": {
@@ -57902,7 +59759,60 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4097.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4097.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの85%を消費して回避する"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ハイブースト・ラムアタック",
+          "level": "LV1",
+          "effect": "変形中に高速移動を一定時間行うと高速移動中の速度が5上昇し、ラムアタックの威力が1000上昇する。・高速移動を約1秒使用後に発動"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV3",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "シールド破損姿勢制御",
+          "level": "LV1",
+          "effect": "射撃攻撃によるシールド破損時のリアクションを無効化する。ただし、ダメージの蓄積によるよろけアクションは無効化されない。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV1",
+          "effect": "強化されたレーダー性能。有効範囲が300mから350mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "クシャトリヤ",
@@ -59309,7 +61219,13 @@
           "boost_speed": 225,
           "thruster": 80,
           "turn_speed_ground": 78.0,
-          "turn_speed_space": 81.0
+          "turn_speed_space": 81.0,
+          "transformed": {
+            "speed": 140,
+            "boost_speed": 240,
+            "turn_speed_ground": 66.0,
+            "turn_speed_space": 66.0
+          }
         },
         "2": {
           "cost": 700,
@@ -59323,7 +61239,13 @@
           "boost_speed": 225,
           "thruster": 80,
           "turn_speed_ground": 78.0,
-          "turn_speed_space": 81.0
+          "turn_speed_space": 81.0,
+          "transformed": {
+            "speed": 140,
+            "boost_speed": 240,
+            "turn_speed_ground": 66.0,
+            "turn_speed_space": 66.0
+          }
         }
       },
       "slots": {
@@ -59472,7 +61394,80 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4217.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4217.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "強制噴射装置",
+          "level": "LV3",
+          "effect": "回避行動の着地動作を、スラスター消費量が軽減された高速移動でキャンセルし、再び回避行動を可能とする。・再度の高速移動開始時にはスラスターを消費する"
+        },
+        {
+          "name": "空中制御プログラム",
+          "level": "LV4",
+          "effect": "ジャンプ中に高速移動または追加行動が可能になる。空中で高速移動または追加行動を使用したときのスラスター消費量が55%軽減される。また空中における高速移動中のスラスター消費量が50%軽減される。・ジャンプ中に追加ジャンプ＆高速移動ができる。"
+        },
+        {
+          "name": "格闘戦複合システム",
+          "level": "LV3",
+          "effect": "ジャンプ＆高速移動後の着地硬直を格闘攻撃かタックルでキャンセル可能となる。格闘攻撃を最大3回まで連続で使用可能だが連撃時はダメージが減衰する。さらに格闘攻撃中は射撃攻撃による被弾時のリアクションを軽減する。・高性能バランサーLV1と格闘連撃制御LV2と攻撃姿勢制御LV1の複合効果"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "サイコ・ウェーブ",
+          "level": "LV1",
+          "effect": "機体HPが50%以下になると自動で発動。発動中は格闘判定力がやや上昇し、機動力と攻撃力が上昇する。スキルが発動した瞬間のみ、ダメージの蓄積によるよろけ以外のリアクションを無効化する。・発動中は・射撃補正＋5・格闘補正＋50・格闘判定力が強よりやや上となる・スピード＋5・高速移動＋5・旋回＋15・スラスター初期消費量－15%・スラスター消費量－20%・緊急回避制御LV2付与※効果時間は無し※発動した瞬間はダメージリアクション無効"
+        },
+        {
+          "name": "マニューバーアーマー",
+          "level": "LV3",
+          "effect": "高速移動中に以下の効果が発生。射撃攻撃による被弾時のリアクションを軽減。拘束効果のない攻撃を連続して受けた際に生じるよろけの発生を軽減。ダメージを15%軽減。・高速移動中に受けた攻撃のよろけ値を70%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV2",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を15%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "腰部ユニット特殊緩衝材",
+          "level": "LV3",
+          "effect": "腰部ユニットへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "左腕装備特殊緩衝材",
+          "level": "LV2",
+          "effect": "左腕装備へ攻撃を受けた際、機体HPへのダメージを15%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV2",
+          "effect": "タッチパッドを押すことで、変形を行える。変形中は空中での継続的なアクションが可能となり、移動や格闘攻撃がレティクル方向に同期する。更に高速移動と通常移動への遷移がスムーズに行える。なお、水中では変形を行うことができない。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "デルタガンダム",
@@ -59495,7 +61490,13 @@
           "boost_speed": 195,
           "thruster": 65,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 240,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         },
         "2": {
           "cost": 650,
@@ -59509,7 +61510,13 @@
           "boost_speed": 195,
           "thruster": 65,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 240,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         },
         "3": {
           "cost": 700,
@@ -59712,7 +61719,58 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4239.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4239.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋75される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "耐ビーム・コーティング",
+          "level": "LV1",
+          "effect": "ビーム属性の射撃攻撃を機体に受けると、機体HPへのダメージを25%軽減しリアクションを緩和。ただし、機体HPが50%未満になるとダメージ軽減およびリアクション軽減が無効となり、耐ビーム装甲が0になる。・50%未満時耐ビームはカスタムパーツでの増加分も含めて0になる"
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV3",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV4",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを35%軽減する。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ジェスタ",
@@ -60139,7 +62197,90 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4271.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4271.html",
+      "altSkills": [
+        {
+          "name": "脚部ショックアブソーバー",
+          "level": "LV3",
+          "effect": "着地時の脚部負荷を軽減。ジャンプ後30%回避行動15%脚部負荷発生後の回復速度を1%上昇。"
+        },
+        {
+          "name": "緊急回避制御",
+          "level": "LV3",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの75%を消費して回避する"
+        },
+        {
+          "name": "強制噴射装置",
+          "level": "LV4",
+          "effect": "回避行動の着地動作を、スラスター消費量が軽減された高速移動でキャンセルし、再び回避行動を可能とする。また、連続して使用した場合、更にスラスター消費量が軽減される・再度の高速移動開始時にはスラスターを消費する"
+        },
+        {
+          "name": "空中制御プログラム",
+          "level": "LV3",
+          "effect": "ジャンプ中に高速移動または追加行動が可能になる。空中で高速移動または追加行動を使用したときのスラスター消費量が50%軽減する。・ジャンプ中に追加ジャンプ＆高速移動ができる。"
+        },
+        {
+          "name": "高性能AMBAC",
+          "level": "LV2",
+          "effect": "宇宙において、高速移動終了終了時に移動方向と同じ向きへ移動操作を行っていると、減速動作を行わずに巡航移動へ移行する。さらにMS旋回性能が3増加する。・高速移動終了時に継続して同方向に左スティックor上昇下降ボタンを入力していれば硬直が発生しない"
+        },
+        {
+          "name": "廃熱効率適正化",
+          "level": "LV2",
+          "effect": "高速移動とジャンプを使用した時、スラスターの初期消費量を20%軽減する。"
+        },
+        {
+          "name": "格闘戦複合システム",
+          "level": "LV1",
+          "effect": "ジャンプ＆高速移動後の着地硬直を格闘攻撃かタックルでキャンセル可能となる。格闘攻撃を最大2回まで連続で使用可能。連撃時はダメージが減衰する。・高性能バランサーLV1と格闘連撃制御LV1の複合効果"
+        },
+        {
+          "name": "高性能カウンタープログラム",
+          "level": "LV2",
+          "effect": "機体HPが50%以下でカウンターが成立した場合、高威力の特殊カウンターが発生する。・カウンター威力が3500に増加する"
+        },
+        {
+          "name": "パワーアクセラレータ",
+          "level": "LV2",
+          "effect": "鍔迫り合い終了後と格闘攻撃がはじかれた後の体勢の崩れを、回避行動で立て直し、相手より素早く行動が可能。・鍔迫り合い＆はじかれ後の硬直中にブーストキャンセルが出来る"
+        },
+        {
+          "name": "マニューバーアーマー",
+          "level": "LV1",
+          "effect": "高速移動中、射撃攻撃による被弾時のリアクションを軽減する。"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "攻撃姿勢制御",
+          "level": "LV1",
+          "effect": "格闘攻撃中、射撃攻撃による被弾時のリアクションを軽減する。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV3",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を30%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "シールド内Iフィールド",
+          "level": "LV1",
+          "effect": "シールドにビーム属性の射撃攻撃を受けた際、シールドHPへのダメージを70%軽減する。・効果発動時はビームを弾くような演出が発生する"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV1",
+          "effect": "強化されたレーダー性能。有効範囲が300mから350mへ拡張する。"
+        },
+        {
+          "name": "能力UP「覚醒」",
+          "level": "LV1",
+          "effect": "能力UP「NT-D」の状態を一定時間維持した後、タッチパッドを押すと発動する。スキル発動直後、機体HPを4000回復。また、各部位のHPを全回復する。発動中、攻撃力が低下するが、機体HPへのダメージを15%軽減する。・能力UP「NT-D」使用から30秒経過で発動可・発動時HP4000回復・射撃補正－10・格闘補正－15・被ダメージ15%軽減・サイコミュ兵装使用不能効果無効化※効果時間は、無し※発動した瞬間のカットシーン中は、無敵"
+        }
+      ],
+      "transformLabel": "変身"
     },
     {
       "name": "バンシィ",
@@ -60336,7 +62477,101 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4300.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4300.html",
+      "altSkills": [
+        {
+          "name": "アサルトブースター",
+          "level": "LV3",
+          "effect": "ジャンプ時の溜め時間を60%短縮し、ジャンプ速度が50%上昇する。また、ジャンプ中に射撃攻撃による被弾時のリアクションを軽減する。・効果は地上限定"
+        },
+        {
+          "name": "緊急回避制御",
+          "level": "LV3",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの75%を消費して回避する"
+        },
+        {
+          "name": "高性能バランサー",
+          "level": "LV1",
+          "effect": "ジャンプ＆回避行動の着地による硬直を格闘攻撃かタックルでキャンセル可能。・着地の硬直時に格闘攻撃かタックルが出せ隙が減る"
+        },
+        {
+          "name": "強制噴射装置",
+          "level": "LV4",
+          "effect": "回避行動の着地動作を、スラスター消費量が軽減された高速移動でキャンセルし、再び回避行動を可能とする。また、連続して使用した場合、更にスラスター消費量が軽減される・再度の高速移動開始時にはスラスターを消費する"
+        },
+        {
+          "name": "空中制御プログラム",
+          "level": "LV3",
+          "effect": "ジャンプ中に高速移動または追加行動が可能になる。空中で高速移動または追加行動を使用したときのスラスター消費量が50%軽減する。・ジャンプ中に追加ジャンプ＆高速移動ができる。"
+        },
+        {
+          "name": "高性能AMBAC",
+          "level": "LV2",
+          "effect": "宇宙において、高速移動終了終了時に移動方向と同じ向きへ移動操作を行っていると、減速動作を行わずに巡航移動へ移行する。さらにMS旋回性能が3増加する。・高速移動終了時に継続して同方向に左スティックor上昇下降ボタンを入力していれば硬直が発生しない"
+        },
+        {
+          "name": "廃熱効率適正化",
+          "level": "LV2",
+          "effect": "高速移動とジャンプを使用した時、スラスターの初期消費量を20%軽減する。"
+        },
+        {
+          "name": "格闘連撃制御",
+          "level": "LV2",
+          "effect": "格闘攻撃を最大3回まで連続で使用可能。連撃時はダメージが減衰する。"
+        },
+        {
+          "name": "ヘビーアタック",
+          "level": "LV2",
+          "effect": "ヘビーアタックに対応した武装選択時に、攻撃ボタンを一定時間押下してから離すと、威力と格闘判定力が上昇した格闘攻撃を行う。この攻撃は特殊緩衝材の軽減効果を無効化し、シールド命中時も本体までダメージを与える。また、攻撃中はダメージリアクションを軽減し、蓄積によるよろけの発生と被ダメージを軽減。・発動中・被ダメージ－30%・動作開始中に受けた攻撃のよろけ値を35%かつ小数点以下切り捨てで計算・判定発生中に受けた攻撃のよろけ値を70%かつ小数点以下切り捨てで計算・格闘判定力が強より上となる鍔迫り合いはヘビーアタック同士で発生"
+        },
+        {
+          "name": "高性能カウンタープログラム",
+          "level": "LV2",
+          "effect": "機体HPが50%以下でカウンターが成立した場合、高威力の特殊カウンターが発生する。・カウンター威力が3500に増加する"
+        },
+        {
+          "name": "マニューバーアーマー",
+          "level": "LV4",
+          "effect": "高速移動中に以下の効果が発生。射撃攻撃による被弾時のリアクションを軽減。拘束効果のない攻撃を連続して受けた際に生じるよろけの発生を軽減。ダメージを30%軽減。・高速移動中に受けた攻撃のよろけ値を60%かつ小数点以下切り捨てで計算する",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "マニューバーアーマー",
+          "level": "LV5",
+          "effect": "高速移動中に以下の効果が発生。射撃攻撃による被弾時のリアクションを軽減。拘束効果のない攻撃を連続して受けた際に生じるよろけの発生を軽減。ダメージを40%軽減。・高速移動中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "攻撃姿勢制御改",
+          "level": "LV1",
+          "effect": "格闘攻撃中、射撃攻撃による被弾時のリアクションを軽減する。また、装備しているすべての格闘兵装の格闘判定力をやや上昇させる。本スキルの効果はスキル「ヘビーアタック」に適応されない。・格闘判定力が強よりやや上となるヘビーアタックには判定負けする"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV4",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を35%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "アームド・アーマーVN特殊緩衝材",
+          "level": "LV2",
+          "effect": "アームド・アーマーVNへ攻撃を受けた際、機体HPへのダメージを70%軽減する。また、ビーム属性の射撃攻撃を受けた場合は蓄積によるよろけの発生が軽減される。・アームド・アーマーVNへ受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "停止射撃姿勢制御",
+          "level": "LV1",
+          "effect": "停止撃ちの射撃兵装を使用中にスキルが発動。発動中は射撃攻撃による被弾時のリアクションを軽減する。なお、集束中に本効果は適用されない。"
+        }
+      ],
+      "transformLabel": "変身"
     },
     {
       "name": "シルヴァ・バレト",
@@ -61649,7 +63884,13 @@
           "boost_speed": 215,
           "thruster": 75,
           "turn_speed_ground": 75.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 78.0,
+            "turn_speed_space": 78.0
+          }
         },
         "2": {
           "cost": 700,
@@ -61663,7 +63904,13 @@
           "boost_speed": 215,
           "thruster": 80,
           "turn_speed_ground": 75.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 78.0,
+            "turn_speed_space": 78.0
+          }
         },
         "3": {
           "cost": 750,
@@ -61677,7 +63924,13 @@
           "boost_speed": 215,
           "thruster": 85,
           "turn_speed_ground": 75.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 78.0,
+            "turn_speed_space": 78.0
+          }
         }
       },
       "slots": {
@@ -61835,7 +64088,106 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4404.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4404.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの85%を消費して回避する",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "緊急回避制御",
+          "level": "LV3",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの75%を消費して回避する",
+          "ms_levels": [
+            3
+          ]
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "能力UP「n_i_t_r_o」",
+          "level": "LV1",
+          "effect": "機体HPが50%以下になった際、自動で発動して機動力が上昇する。スキル発動中はサイコミュ兵器が強化され、全射撃兵装の集束時間を50%短縮し、リロード時間とオーバーヒートからの復帰時間を50%短縮。発動直後、蓄積よろけ以外のリアクション無効。・発動中は・スピード＋5・高速移動＋10・移動方向補正全方向100%・旋回＋10・緊急回避制御Lv3が付与・射撃兵装の集束時間－50%・射撃兵装のリロード＆OH時間－50%※発動した瞬間のカットシーン中はダメージリアクション無効※効果時間は無し"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ハイブースト・ラムアタック",
+          "level": "LV1",
+          "effect": "変形中に高速移動を一定時間行うと高速移動中の速度が5上昇し、ラムアタックの威力が1000上昇する。"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "背部バインダー特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部バインダーへ攻撃を受けた際、機体HPへのダメージを30%軽減する。",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "背部バインダー特殊緩衝材",
+          "level": "LV4",
+          "effect": "背部バインダーへ攻撃を受けた際、機体HPへのダメージを35%軽減する。",
+          "ms_levels": [
+            2,
+            3
+          ]
+        },
+        {
+          "name": "サイコミュ兵装特殊緩衝材",
+          "level": "LV3",
+          "effect": "サイコミュ兵装を選択していない状態でサイコミュ兵装へ攻撃を受けた際機体HPへのダメージを30%軽減する。・サイコミュ兵装使用中効果が発揮されない",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "サイコミュ兵装特殊緩衝材",
+          "level": "LV4",
+          "effect": "サイコミュ兵装を選択していない状態でサイコミュ兵装へ攻撃を受けた際機体HPへのダメージを35%軽減する。",
+          "ms_levels": [
+            2,
+            3
+          ]
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV3",
+          "effect": "強化されたレーダー性能。有効範囲が300mから450mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ディザート・ザク",
@@ -63476,7 +65828,13 @@
           "boost_speed": 185,
           "thruster": 70,
           "turn_speed_ground": 60.0,
-          "turn_speed_space": 63.0
+          "turn_speed_space": 63.0,
+          "transformed": {
+            "speed": 175,
+            "boost_speed": 220,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         },
         "2": {
           "cost": 500,
@@ -63490,7 +65848,13 @@
           "boost_speed": 185,
           "thruster": 70,
           "turn_speed_ground": 60.0,
-          "turn_speed_space": 63.0
+          "turn_speed_space": 63.0,
+          "transformed": {
+            "speed": 175,
+            "boost_speed": 220,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         }
       },
       "slots": {
@@ -63609,7 +65973,45 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4532.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4532.html",
+      "altSkills": [
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "背部バインダー特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部バインダーへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV3",
+          "effect": "強化されたレーダー性能。有効範囲が300mから450mへ拡張する。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "アンチジャミング",
+          "level": "LV2",
+          "effect": "MS搭乗時に自分が受ける敵のジャミング機能を減退。敵のジャミングLV2以下を無効化し、上位ジャミングの有効範囲を半径150m内に減退させる。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "グスタフ・カール",
@@ -64624,7 +67026,7 @@
           "transformed": {
             "shooting_correction": 55,
             "melee_correction": 15,
-            "speed": 140,
+            "speed": 135,
             "boost_speed": 230,
             "turn_speed_ground": 84.0,
             "turn_speed_space": 93.0
@@ -64646,7 +67048,7 @@
           "transformed": {
             "shooting_correction": 60,
             "melee_correction": 17,
-            "speed": 145,
+            "speed": 140,
             "boost_speed": 230,
             "turn_speed_ground": 84.0,
             "turn_speed_space": 93.0
@@ -64784,7 +67186,101 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4605.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4605.html",
+      "altSkills": [
+        {
+          "name": "脚部ショックアブソーバー",
+          "level": "LV3",
+          "effect": "着地時の脚部負荷を軽減。ジャンプ後30%回避行動15%脚部負荷発生後の回復速度を1%上昇。"
+        },
+        {
+          "name": "緊急回避制御",
+          "level": "LV3",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの75%を消費して回避する"
+        },
+        {
+          "name": "高性能バランサー",
+          "level": "LV1",
+          "effect": "ジャンプ＆回避行動の着地による硬直を格闘攻撃かタックルでキャンセル可能。・着地の硬直時に格闘攻撃かタックルが出せ隙が減る"
+        },
+        {
+          "name": "強制噴射装置",
+          "level": "LV4",
+          "effect": "回避行動の着地動作を、スラスター消費量が軽減された高速移動でキャンセルし、再び回避行動を可能とする。また、連続して使用した場合、更にスラスター消費量が軽減される・再度の高速移動開始時にはスラスターを消費する"
+        },
+        {
+          "name": "空中制御プログラム",
+          "level": "LV3",
+          "effect": "ジャンプ中に高速移動または追加行動が可能になる。空中で高速移動または追加行動を使用したときのスラスター消費量が50%軽減する。・ジャンプ中に追加ジャンプ＆高速移動ができる。",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "空中制御プログラム",
+          "level": "LV4",
+          "effect": "ジャンプ中に高速移動または追加行動が可能になる。空中で高速移動または追加行動を使用したときのスラスター消費量が55%軽減される。また空中における高速移動中のスラスター消費量が50%軽減される。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "高性能AMBAC",
+          "level": "LV2",
+          "effect": "宇宙において、高速移動終了終了時に移動方向と同じ向きへ移動操作を行っていると、減速動作を行わずに巡航移動へ移行する。さらにMS旋回性能が3増加する。・高速移動終了時に継続して同方向に左スティックor上昇下降ボタンを入力していれば硬直が発生しない"
+        },
+        {
+          "name": "廃熱効率適正化",
+          "level": "LV2",
+          "effect": "高速移動とジャンプを使用した時、スラスターの初期消費量を20%軽減する。"
+        },
+        {
+          "name": "格闘連撃制御",
+          "level": "LV1",
+          "effect": "格闘攻撃を最大2回まで連続で使用可能。連撃時はダメージが減衰する。"
+        },
+        {
+          "name": "PN用高性能カウンタープログラム",
+          "level": "LV1",
+          "effect": "機体HPが30%以下でカウンターが成立した場合、高威力の特殊カウンターが発生する。ただし、アームド・アーマーDE［射出］または［防御］使用時には通常のカウンターが発生する。・カウンター威力が3500に増加するアームドアーマーDEを使用中効果が発揮されない"
+        },
+        {
+          "name": "サイコフレームアタック",
+          "level": "LV1",
+          "effect": "変身時、前方に一定時間高速移動を行うと高速移動中にアタック体勢を取る。アタック体勢中は高速移動の速度が10上昇し攻撃の蓄積によるリアクションの発生を軽減。さらに接触した敵機の体勢を崩し、ダメージを与えることが可能。なお、アームド・アーマーDEが機体から外れている場合、本スキルは使用不可。・高速移動0.5秒以上維持で発動発動中は・高速移動＋10・受けた攻撃のよろけ値を70%かつ小数点以下切り捨てで計算・敵機接触時よろけ＆2000の固定ダメージ発生アームド・アーマーDE使用中効果が発揮されない"
+        },
+        {
+          "name": "マニューバーアーマー",
+          "level": "LV1",
+          "effect": "高速移動中、射撃攻撃による被弾時のリアクションを軽減する。"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV3",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を25%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "サイコミュ兵装特殊緩衝材",
+          "level": "LV5",
+          "effect": "サイコミュ兵装を選択していない状態でサイコミュ兵装へ攻撃を受けた際機体HPへのダメージを40%軽減する。・サイコミュ兵装使用中効果が発揮されない"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV1",
+          "effect": "強化されたレーダー性能。有効範囲が300mから350mへ拡張する。"
+        },
+        {
+          "name": "能力UP「覚醒：フェネクス」",
+          "level": "LV1",
+          "effect": "能力UP「NT-D」の状態を一定時間維持した後、タッチパッドを押すと発動する。スキル発動直後、レーダー範囲内（300m）にいる自軍すべての機体HPが3000回復し、各部位のHPを全回復する。発動中は自機の攻撃力が低下するが、サイコミュ兵装の使用不能効果を無効化、機体HPへのダメージを15%軽減。・能力UP「NT-D」使用から30秒経過で発動可・レーダー範囲内（300m）の自機及び味方機体HP3000回復・サイコミュ兵装使用不能効果無効化・射撃補正－35・格闘補正－5・被ダメージ15%軽減※効果時間は、無し※発動した瞬間のカットシーン中は、無敵"
+        }
+      ],
+      "transformLabel": "変身"
     },
     {
       "name": "ザクⅡ（KG）",
@@ -65435,7 +67931,13 @@
           "boost_speed": 200,
           "thruster": 75,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 66.0
+          "turn_speed_space": 66.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 230,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         },
         "2": {
           "cost": 700,
@@ -65449,7 +67951,13 @@
           "boost_speed": 200,
           "thruster": 75,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 66.0
+          "turn_speed_space": 66.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 230,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         },
         "3": {
           "cost": 750,
@@ -65463,7 +67971,13 @@
           "boost_speed": 200,
           "thruster": 80,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 66.0
+          "turn_speed_space": 66.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 230,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         }
       },
       "slots": {
@@ -65621,7 +68135,82 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4664.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4664.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "追撃射撃補助プログラム",
+          "level": "LV1",
+          "effect": "ダウン状態の敵機に対して、射撃兵装で与えるダメージが15%上昇する。",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "追撃射撃補助プログラム",
+          "level": "LV2",
+          "effect": "よろけ、大よろけ、ダウン中のいずれかの状態になっている敵機に対して、射撃兵装で与えるダメージが15%上昇する。",
+          "ms_levels": [
+            3
+          ]
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV3",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV3",
+          "effect": "強化されたレーダー性能。有効範囲が300mから450mへ拡張する。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "アンチステルス",
+          "level": "LV1",
+          "effect": "MS搭乗時、敵のステルスを感知する。敵のステルス Lv1を無効化し、上位ステルスの感知距離を50m延長する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ガンダム試作1号機［アクア装備］",
@@ -66000,7 +68589,13 @@
           "boost_speed": 180,
           "thruster": 60,
           "turn_speed_ground": 57.0,
-          "turn_speed_space": 60.0
+          "turn_speed_space": 60.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 220,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         }
       },
       "slots": {
@@ -66115,7 +68710,55 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4704.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/4704.html",
+      "altSkills": [
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "肩部特殊緩衝材",
+          "level": "LV2",
+          "effect": "肩部へ攻撃を受けた際、機体HPへのダメージを15%軽減する。"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV1",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを10%軽減する。"
+        },
+        {
+          "name": "対人レーダー",
+          "level": "LV2",
+          "effect": "停止状態ではない敵パイロットをレーダーで捕捉する。有効射程は200m。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV3",
+          "effect": "強化されたレーダー性能。有効範囲が300mから450mへ拡張する。"
+        },
+        {
+          "name": "高性能スコープ",
+          "level": "LV2",
+          "effect": "高性能のスコープが使用可能。スナイプモード時に左スティックで倍率5倍までの調整が可能。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "Sガンダム",
@@ -70132,7 +72775,13 @@
           "boost_speed": 190,
           "thruster": 70,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 170,
+            "boost_speed": 230,
+            "turn_speed_ground": 51.0,
+            "turn_speed_space": 51.0
+          }
         },
         "2": {
           "cost": 650,
@@ -70146,7 +72795,13 @@
           "boost_speed": 190,
           "thruster": 75,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 170,
+            "boost_speed": 230,
+            "turn_speed_ground": 51.0,
+            "turn_speed_space": 51.0
+          }
         }
       },
       "slots": {
@@ -70285,7 +72940,72 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5036.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5036.html",
+      "altSkills": [
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV2",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を15%軽減する。・宇宙でもダメージ軽減は効果対象",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV3",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を25%軽減する。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV2",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを15%軽減する。",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV3",
+          "effect": "強化されたレーダー性能。有効範囲が300mから450mへ拡張する。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ギラ・ドーガ改",
@@ -71868,7 +74588,13 @@
           "boost_speed": 190,
           "thruster": 70,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 225,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         },
         "2": {
           "cost": 500,
@@ -71882,7 +74608,13 @@
           "boost_speed": 190,
           "thruster": 70,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 225,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         }
       },
       "slots": {
@@ -72006,7 +74738,40 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5181.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5181.html",
+      "altSkills": [
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "C・S・ブースター内Iフィールド",
+          "level": "LV1",
+          "effect": "装備中のコンポジット・シールド・ブースターにビーム属性の射撃攻撃を受けた際、機体HPへのダメージを70%軽減し、発生したリアクションを無効化。なお発生したリアクションに応じたスラスターが消費され、スラスターがオーバーヒート中はスキル効果は発動しない。・対象部位にビーム属性の射撃攻撃を受けた際・ダメージ70%軽減・ダメージリアクション無効化・リアクションのある射撃を受けた際スラスター固定消費・ひるみ：5・よろけ：20・大よろけ：40・転倒：80"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "陸戦型ジム",
@@ -73114,7 +75879,13 @@
           "boost_speed": 200,
           "thruster": 55,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 66.0
+          "turn_speed_space": 66.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 215,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 48.0
+          }
         },
         "2": {
           "cost": 550,
@@ -73128,7 +75899,13 @@
           "boost_speed": 200,
           "thruster": 55,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 66.0
+          "turn_speed_space": 66.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 215,
+            "turn_speed_ground": 48.0,
+            "turn_speed_space": 48.0
+          }
         },
         "3": {
           "cost": 600,
@@ -73316,7 +76093,77 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5254.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5254.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "シールド・ブースター制御機構改",
+          "level": "LV1",
+          "effect": "シールドを所持している場合にスキルが発動。空中での高速移動又は追加行動が可能となり、高速移動速度が増加する。また、高速移動開始時および高速移動中のスラスター消費量が軽減する。各スキル効果はシールド枚数により変動する。・発動中は・高速移動＋20，＋15・高速移動開始時のスラ消費－55%，－50%・スラスター消費量－30%，－25%・空中制御プログラムLv2が付与※シールド所持中のみ効果を発揮※シールド枚数により効果が変動"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ハイブースト・ラムアタック",
+          "level": "LV1",
+          "effect": "変形中に高速移動を一定時間行うと高速移動中の速度が5上昇し、ラムアタックの威力が1000上昇する。"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV3",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を25%軽減する。・宇宙でもダメージ軽減は効果対象",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV4",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を35%軽減する。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "背部特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部へ攻撃を受けた際、機体HPへのダメージと背部HPへの負荷を20%軽減する。・地上でもダメージ軽減は効果対象",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "背部特殊緩衝材",
+          "level": "LV4",
+          "effect": "背部へ攻撃を受けた際、機体HPへのダメージと背部HPへの負荷を25%軽減する。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ガンキャノン重装型",
@@ -73510,7 +76357,13 @@
           "boost_speed": 205,
           "thruster": 75,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 230,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         },
         "2": {
           "cost": 550,
@@ -73524,7 +76377,13 @@
           "boost_speed": 205,
           "thruster": 75,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 180,
+            "boost_speed": 230,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         }
       },
       "slots": {
@@ -73658,7 +76517,55 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5268.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5268.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋？される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "肩部特殊緩衝材",
+          "level": "LV2",
+          "effect": "肩部へ攻撃を受けた際、機体HPへのダメージを15%軽減する。"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV2",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを15%軽減する。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV1",
+          "effect": "強化されたレーダー性能。有効範囲が300mから350mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "メタル・スパイダー",
@@ -74645,7 +77552,11 @@
           "melee_correction": 26,
           "speed": 140,
           "boost_speed": 210,
-          "thruster": 80
+          "thruster": 80,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 240
+          }
         },
         "2": {
           "cost": 650,
@@ -74657,7 +77568,11 @@
           "melee_correction": 30,
           "speed": 140,
           "boost_speed": 210,
-          "thruster": 80
+          "thruster": 80,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 240
+          }
         }
       },
       "slots": {
@@ -74791,7 +77706,55 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5373.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5373.html",
+      "altSkills": [
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ムーバブル・シールド・バインダー",
+          "level": "LV1",
+          "effect": "変形中に回避行動ボタンを2度押すと、スラスター消費量が軽減された緊急回避を行う。さらに高速移動を一定時間行うと高速移動中の速度が5上昇し、高速移動中のスラスター消費量を軽減する。・変形中・緊急回避制御をスラスター25固定消費で行う高速移動維持1秒経過後・高速移動＋5・スラスター消費－50%"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ハイブースト・ラムアタック",
+          "level": "LV1",
+          "effect": "変形中に高速移動を一定時間行うと高速移動中の速度が5上昇し、ラムアタックの威力が1000上昇する。"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "腕部バインダー特殊緩衝材",
+          "level": "LV3",
+          "effect": "腕部バインダーへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "シルヴァ・バレト・サプレッサー",
@@ -75984,7 +78947,90 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5440.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5440.html",
+      "altSkills": [
+        {
+          "name": "脚部ショックアブソーバー",
+          "level": "LV3",
+          "effect": "着地時の脚部負荷を軽減。ジャンプ後30%回避行動15%脚部負荷発生後の回復速度を1%上昇。"
+        },
+        {
+          "name": "緊急回避制御",
+          "level": "LV3",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの75%を消費して回避する"
+        },
+        {
+          "name": "高性能バランサー",
+          "level": "LV1",
+          "effect": "ジャンプ＆回避行動の着地による硬直を格闘攻撃かタックルでキャンセル可能。・着地の硬直時に格闘攻撃かタックルが出せ隙が減る"
+        },
+        {
+          "name": "強制噴射装置",
+          "level": "LV4",
+          "effect": "回避行動の着地動作を、スラスター消費量が軽減された高速移動でキャンセルし、再び回避行動を可能とする。また、連続して使用した場合、更にスラスター消費量が軽減される・再度の高速移動開始時にはスラスターを消費する"
+        },
+        {
+          "name": "空中制御プログラム",
+          "level": "LV3",
+          "effect": "ジャンプ中に高速移動または追加行動が可能になる。空中で高速移動または追加行動を使用したときのスラスター消費量が50%軽減する。・ジャンプ中に追加ジャンプ＆高速移動ができる。"
+        },
+        {
+          "name": "高性能AMBAC",
+          "level": "LV2",
+          "effect": "宇宙において、高速移動終了終了時に移動方向と同じ向きへ移動操作を行っていると、減速動作を行わずに巡航移動へ移行する。さらにMS旋回性能が3増加する。・高速移動終了時に継続して同方向に左スティックor上昇下降ボタンを入力していれば硬直が発生しない"
+        },
+        {
+          "name": "廃熱効率適正化",
+          "level": "LV2",
+          "effect": "高速移動とジャンプを使用した時、スラスターの初期消費量を20%軽減する。"
+        },
+        {
+          "name": "格闘連撃制御",
+          "level": "LV2",
+          "effect": "格闘攻撃を最大3回まで連続で使用可能。連撃時はダメージが減衰する。"
+        },
+        {
+          "name": "高性能カウンタープログラム",
+          "level": "LV2",
+          "effect": "機体HPが50%以下でカウンターが成立した場合、高威力の特殊カウンターが発生する。・カウンター威力が3500に増加する"
+        },
+        {
+          "name": "マニューバーアーマー",
+          "level": "LV1",
+          "effect": "高速移動中、射撃攻撃による被弾時のリアクションを軽減する。"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "攻撃姿勢制御",
+          "level": "LV2",
+          "effect": "格闘攻撃中、射撃攻撃による被弾時のリアクションを軽減する。さらに拘束効果のない攻撃を連続して受けた際に生じるよろけの発生を軽減。・格闘攻撃中に射撃攻撃を受けた際に発動・ダメージリアクション1段階軽減・被ダメージ－20%・受けた射撃攻撃のよろけ値を90%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV3",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を25%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "A・アーマーDE特殊防御機構",
+          "level": "LV2",
+          "effect": "アームド・アーマーDEへ攻撃を受けた際、機体HPへのダメージを50%軽減する。さらに、「NT-D」または「覚醒」状態の場合はビーム属性の射撃攻撃を受けた際の、被ダメージとリアクションを追加で軽減する。・能力UP「NT-D」及び「覚醒」時・ビーム属性被ダメージ－30%・ビーム属性射撃時のダメージリアクション1段階軽減"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "能力UP「覚醒」",
+          "level": "LV2",
+          "effect": "能力UP「NT-D」の状態を一定時間維持した後、タッチパッドを押すと発動する。スキル発動直後、各部位のHP及び射撃兵装の残弾とヒートゲージが全回復する。発動中、格闘属性の兵装で敵MSの機体HPへあたえたダメージに応じて機体と各部位のHPが回復。また有利カテゴリーの敵機に対してあたえるダメージが増加し、サイコミュ兵装への使用不能効果を無効化・能力UP「NT-D」使用から30秒経過で発動可・発動時部位HP全回復・発動時残弾＆ヒート率全回復・格闘属性攻撃時、与ダメージ15%分の機体＆部位HP回復・有利カテゴリー補正＋15%・サイコミュジャック無効化※効果時間は、無し※発動した瞬間のカットシーン中は、無敵"
+        }
+      ],
+      "transformLabel": "変身"
     },
     {
       "name": "ズサ［袖付き仕様］",
@@ -76232,7 +79278,11 @@
           "boost_speed": 160,
           "thruster": 70,
           "turn_speed_ground": 60.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 180,
+            "turn_speed_ground": 81.0
+          }
         },
         "2": {
           "cost": 550,
@@ -76246,7 +79296,11 @@
           "boost_speed": 160,
           "thruster": 70,
           "turn_speed_ground": 60.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 180,
+            "turn_speed_ground": 81.0
+          }
         }
       },
       "slots": {
@@ -76370,7 +79424,50 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5466.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5466.html",
+      "altSkills": [
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "高性能スコープ",
+          "level": "LV2",
+          "effect": "高性能のスコープが使用可能。スナイプモード時に左スティックで倍率5倍までの調整が可能。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "ステルス",
+          "level": "LV1",
+          "effect": "非攻撃時、敵のレーダーに捕捉される範囲を100m以内に減退させる。・高速移動・ジャンプ・緊急回避・武器切替・集束時もステルス有効範囲以上なら捕捉されない。攻撃後3秒間効果が解除されるボマー・ランナーを奨励するスキルではない。"
+        },
+        {
+          "name": "前線維持支援システム",
+          "level": "LV2",
+          "effect": "自軍全員のリスポーン時間を短縮させる。スキル所持者が増えるごとに10%短縮。"
+        },
+        {
+          "name": "変形",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ザクⅡS型",
@@ -78357,7 +81454,13 @@
           "boost_speed": 220,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 60.0,
+            "turn_speed_space": 60.0
+          }
         },
         "2": {
           "cost": 700,
@@ -78371,7 +81474,13 @@
           "boost_speed": 220,
           "thruster": 80,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 60.0,
+            "turn_speed_space": 60.0
+          }
         }
       },
       "slots": {
@@ -78520,7 +81629,60 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5620.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5620.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "能力UP「バイオセンサー」",
+          "level": "LV1",
+          "effect": "機体HPが30%以下になった際、自動で発動して攻撃力、防御力、機動力が上昇する。・発動中は・射撃補正＋5・格闘補正＋30・各耐性＋15・スピード＋5・スラスター消費－20%・旋回性能＋15・緊急回避制御Lv2が付与※効果時間は無し※発動した瞬間のカットシーン中はダメージリアクション無効"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ラムアタック「バイオセンサー」",
+          "level": "LV1",
+          "effect": "バイオセンサーが発動中に高速移動を一定時間行うと、ラムアタックの威力が2000上昇する。さらにスキル発動中は機体HPへのダメージを50%軽減する。・HP30%以下かつ高速移動を約1秒使用後に発動"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV3",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ギャプラン（I0）",
@@ -78543,7 +81705,13 @@
           "boost_speed": 225,
           "thruster": 80,
           "turn_speed_ground": 75.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 235,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         },
         "2": {
           "cost": 650,
@@ -78557,7 +81725,13 @@
           "boost_speed": 225,
           "thruster": 80,
           "turn_speed_ground": 75.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 235,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         }
       },
       "slots": {
@@ -78701,7 +81875,65 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5639.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5639.html",
+      "altSkills": [
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ムーバブル・シールド・バインダー",
+          "level": "LV1",
+          "effect": "変形中に回避行動ボタンを2度押すと、スラスター消費量が軽減された緊急回避を行う。さらに高速移動を一定時間行うと高速移動中の速度が5上昇し、高速移動中のスラスター消費量を軽減する。・変形中・緊急回避制御をスラスター25固定消費で行う高速移動維持1秒経過後・高速移動＋5・スラスター消費－50%"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ハイブースト・ラムアタック",
+          "level": "LV2",
+          "effect": "変形中に高速移動を一定時間行うと高速移動中の速度が10上昇し、ラムアタックの威力が1500上昇する。さらにダメージを20%軽減し蓄積による、よろけの発生を軽減する。・発動中に受けた攻撃のよろけ値を80%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV2",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を15%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "背部特殊緩衝材",
+          "level": "LV2",
+          "effect": "背部へ攻撃を受けた際、機体HPへのダメージと背部HPへの負荷を15%軽減する。・地上でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "腕部バインダー特殊緩衝材",
+          "level": "LV3",
+          "effect": "腕部バインダーへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV1",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が130%になる"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ジム・コマンド",
@@ -82100,7 +85332,13 @@
           "boost_speed": 195,
           "thruster": 75,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 240,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         },
         "2": {
           "cost": 700,
@@ -82114,7 +85352,13 @@
           "boost_speed": 195,
           "thruster": 75,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 69.0
+          "turn_speed_space": 69.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 240,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         }
       },
       "slots": {
@@ -82263,7 +85507,70 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5876.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5876.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ラムアタック「バイオセンサー」",
+          "level": "LV1",
+          "effect": "バイオセンサーが発動中に高速移動を一定時間行うと、ラムアタックの威力が2000上昇する。さらにスキル発動中は機体HPへのダメージを50%軽減する。・HP30%以下かつ高速移動を約1秒使用後に発動"
+        },
+        {
+          "name": "能力UP「バイオセンサー」",
+          "level": "LV1",
+          "effect": "機体HPが30%以下になった際、自動で発動して攻撃力、防御力、機動力が上昇する。・発動中は・射撃補正＋5・格闘補正＋30・各耐性＋15・スピード＋5・スラスター消費－20%・旋回性能＋15・緊急回避制御Lv2が付与※効果時間は無し※発動した瞬間のカットシーン中はダメージリアクション無効"
+        },
+        {
+          "name": "追撃射撃補助プログラム",
+          "level": "LV1",
+          "effect": "ダウン状態の敵機に対して、射撃兵装で与えるダメージが15%上昇する。"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV3",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "耐ビーム・コーティング",
+          "level": "LV3",
+          "effect": "ビーム属性の射撃攻撃を機体に受けると、機体HPへのダメージを30%軽減しリアクションを軽減。ただし、機体HPが50%未満になるとダメージ軽減およびリアクション軽減が無効化される。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV3",
+          "effect": "強化されたレーダー性能。有効範囲が300mから450mへ拡張する。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "FA・ユニコーンガンダム",
@@ -83636,7 +86943,12 @@
           "speed": 150,
           "boost_speed": 225,
           "thruster": 85,
-          "turn_speed_ground": 90.0
+          "turn_speed_ground": 90.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 235,
+            "turn_speed_ground": 87.0
+          }
         },
         "2": {
           "cost": 750,
@@ -83649,7 +86961,12 @@
           "speed": 150,
           "boost_speed": 225,
           "thruster": 85,
-          "turn_speed_ground": 90.0
+          "turn_speed_ground": 90.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 235,
+            "turn_speed_ground": 87.0
+          }
         }
       },
       "slots": {
@@ -83795,7 +87112,101 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5971.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5971.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV3",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの75%を消費して回避する"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV4",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を35%軽減する。・宇宙でもダメージ軽減は効果対象",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV5",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を45%軽減する。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "肩部特殊緩衝材",
+          "level": "LV3",
+          "effect": "肩部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "胸部装甲特殊緩衝材",
+          "level": "LV2",
+          "effect": "胸部へ攻撃を受けた際、機体HPへのダメージを15%軽減する。",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "胸部装甲特殊緩衝材",
+          "level": "LV3",
+          "effect": "胸部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "補助動力",
+          "level": "LV3",
+          "effect": "機体HPが1000以上の時に撃破されるダメージを受けるとスキルが発動し、一定の機体HPを残し撃破を免れる。スキルが発動後は一定時間、攻撃力が上昇し、敵機から受けるすべてのダメージを軽減する。スキルが発動した瞬間のみダメージの蓄積によるよろけ以外のリアクションを無効化する。本スキルは再発動を行うことはできない。・HP1000以上のとき撃墜されるダメージを受けた場合・HP800で耐える・与ダメージ＋30%・被ダメージ－95%※発動した瞬間はダメージリアクション無効※効果時間は10秒"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV1",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が130%になる",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "フライト・フォーム（P）",
+          "level": "LV1",
+          "effect": "スキル「M・フライト・ユニット（P）」の一部、効果を引き継ぎ変形する。変形中は前方に一定時間高速移動を行うとラムアタックの威力と機動力が上昇する。また、タッチパッドを押すことで変形が解除され、フライトモードへ移行する。・高速移動を約1秒使用後に発動・高速移動＋15・ラムアタックの威力＋1500",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "フライト・フォーム（P）",
+          "level": "LV2",
+          "effect": "スキル「M・フライト・ユニット（P）」の一部、効果を引き継ぎ変形する。変形中は前方に一定時間高速移動を行うとラムアタックの威力と機動力が上昇する。また、タッチパッドを押すことで変形が解除され、フライトモードへ移行する。・高速移動を約1秒使用後に発動・高速移動＋？・ラムアタックの威力＋？00",
+          "ms_levels": [
+            2
+          ]
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "フライルー・ラーⅡ",
@@ -83818,7 +87229,13 @@
           "boost_speed": 225,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 235,
+            "turn_speed_ground": 60.0,
+            "turn_speed_space": 60.0
+          }
         },
         "2": {
           "cost": 700,
@@ -83832,7 +87249,13 @@
           "boost_speed": 225,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 235,
+            "turn_speed_ground": 60.0,
+            "turn_speed_space": 60.0
+          }
         }
       },
       "slots": {
@@ -83976,7 +87399,76 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5991.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/5991.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ハイブースト・ラムアタック",
+          "level": "LV1",
+          "effect": "変形中に高速移動を一定時間行うと高速移動中の速度が5上昇し、ラムアタックの威力が1000上昇する。"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV4",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を35%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "背部特殊緩衝材",
+          "level": "LV2",
+          "effect": "背部へ攻撃を受けた際、機体HPへのダメージと背部HPへの負荷を15%軽減する。・地上でもダメージ軽減は効果対象",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "背部特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部へ攻撃を受けた際、機体HPへのダメージと背部HPへの負荷を20%軽減する。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "腕部バインダー特殊緩衝材",
+          "level": "LV5",
+          "effect": "腕部バインダーへ攻撃を受けた際、機体HPへのダメージを50%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "量産型νガンダム［F・F装備］",
@@ -84550,7 +88042,13 @@
           "boost_speed": 220,
           "thruster": 75,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 230,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         },
         "2": {
           "cost": 700,
@@ -84564,7 +88062,13 @@
           "boost_speed": 220,
           "thruster": 75,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 72.0
+          "turn_speed_space": 72.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 230,
+            "turn_speed_ground": 54.0,
+            "turn_speed_space": 54.0
+          }
         }
       },
       "slots": {
@@ -84713,7 +88217,103 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6064.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6064.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの85%を消費して回避する"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ムーバブル・シールド制御機構",
+          "level": "LV1",
+          "effect": "高速移動開始時と高速移動中のスラスター消費量がそれぞれ軽減され、スキル「強制噴射装置」を連続して使用した場合、さらにスラスター消費量が軽減される。また、高速移動中は拘束効果のない攻撃を連続して受けた際に生じるよろけの発生を軽減。・発動中は・スラスター初期消費－30%・スラスター継続消費－30%・強制噴射装置連続使用時のスラスター消費量－20%・高速移動中に受けた攻撃のよろけ値を60%かつ小数点以下切り捨てで計算する",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "ムーバブル・シールド制御機構",
+          "level": "LV2",
+          "effect": "高速移動開始時と高速移動中のスラスター消費量がそれぞれ軽減され、スキル「強制噴射装置」を連続して使用した場合、さらにスラスター消費量が軽減される。また、高速移動中は拘束効果のない攻撃を連続して受けた際に生じるよろけの発生を軽減。・発動中は・スラスター初期消費－35%・スラスター継続消費－35%・強制噴射装置連続使用時のスラスター消費量－20%・高速移動中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "グリモア（青）",
+          "level": "LV1",
+          "effect": "機体HPが50%以下になった際、1度だけ自動でスキルが発動する。発動時一定範囲内にいる敵に対して格闘属性の一部兵装と高速移動を使用した際の動作を一定時間低下させる。また発動してから60秒の間全兵装のリロード及びオーバーヒートからの復帰時間を短縮し、有利カテゴリーの敵機に与えるダメージが増加する。・機体HP50%以下で発動・リロード・OH復帰時間－50%短縮・有利カテゴリーへの与ダメージ＋10%※効果時間は60秒※6秒間、範囲75m程の敵機へ以下の効果を付与・格闘モーション速度－50%・高速移動－50%"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV4",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を35%軽減する。・宇宙でもダメージ軽減は効果対象",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV5",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を45%軽減する。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "肩部オプション特殊緩衝材",
+          "level": "LV4",
+          "effect": "肩部オプションへ攻撃を受けた際、機体HPへのダメージを35%軽減する。",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "肩部オプション特殊緩衝材",
+          "level": "LV5",
+          "effect": "肩部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。",
+          "ms_levels": [
+            2
+          ]
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV3",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が200%になる"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ネティクス",
@@ -86306,7 +89906,12 @@
           "speed": 140,
           "boost_speed": 215,
           "thruster": 75,
-          "turn_speed_ground": 75.0
+          "turn_speed_ground": 75.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 78.0
+          }
         },
         "2": {
           "cost": 650,
@@ -86319,7 +89924,12 @@
           "speed": 140,
           "boost_speed": 215,
           "thruster": 75,
-          "turn_speed_ground": 75.0
+          "turn_speed_ground": 75.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 78.0
+          }
         }
       },
       "slots": {
@@ -86463,7 +90073,70 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6200.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6200.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの85%を消費して回避する"
+        },
+        {
+          "name": "廃熱効率適正化",
+          "level": "LV1",
+          "effect": "高速移動とジャンプを使用した時、スラスターの初期消費量を10%軽減する。"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "能力UP「n_i_t_r_o（G）」",
+          "level": "LV1",
+          "effect": "機体HPが50%以下になった際、自動で発動して機動力が上昇する。スキル「攻撃姿勢制御改」LV1が付与され一定範囲内の敵軍の位置情報が自機のみに可視化される。さらに一部の状態異常からの回復時間を80%短縮する。発動直後、蓄積よろけ以外のリアクション無効。・発動中は・スピード＋5・高速移動＋10・移動方向補正全方向100%・旋回＋10・攻撃姿勢制御改LV1が付与・自身のみが視認可能なスポット効果付与・状態異常回復時間－80%※発動した瞬間のカットシーン中はダメージリアクション無効※効果時間は無し"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ハイブースト・ラムアタック",
+          "level": "LV1",
+          "effect": "変形中に高速移動を一定時間行うと高速移動中の速度が5上昇し、ラムアタックの威力が1000上昇する。"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "背部バインダー特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部バインダーへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "シールド破損姿勢制御",
+          "level": "LV1",
+          "effect": "射撃攻撃によるシールド破損時のリアクションを無効化する。ただし、ダメージの蓄積によるよろけアクションは無効化されない。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "イフリート改",
@@ -86855,7 +90528,12 @@
           "speed": 130,
           "boost_speed": 215,
           "thruster": 75,
-          "turn_speed_ground": 72.0
+          "turn_speed_ground": 72.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 235,
+            "turn_speed_ground": 54.0
+          }
         }
       },
       "slots": {
@@ -86980,7 +90658,45 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6228.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6228.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV2",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを15%軽減する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ブルーディスティニー1号機",
@@ -88012,7 +91728,13 @@
           "boost_speed": 230,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 240,
+            "turn_speed_ground": 66.0,
+            "turn_speed_space": 66.0
+          }
         }
       },
       "slots": {
@@ -88145,7 +91867,65 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6320.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6320.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV3",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの75%を消費して回避する"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ハイブースト・ラムアタック",
+          "level": "LV2",
+          "effect": "変形中に高速移動を一定時間行うと高速移動中の速度が10上昇し、ラムアタックの威力が1500上昇する。さらにダメージを20%軽減し蓄積による、よろけの発生を軽減する。・発動中に受けた攻撃のよろけ値を80%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV4",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを35%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる"
+        },
+        {
+          "name": "シールド破損姿勢制御",
+          "level": "LV1",
+          "effect": "射撃攻撃によるシールド破損時のリアクションを無効化する。ただし、ダメージの蓄積によるよろけアクションは無効化されない。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "エンゲージガンダム［I装備］",
@@ -88400,7 +92180,11 @@
           "boost_speed": 205,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 185,
+            "turn_speed_ground": 66.0
+          }
         },
         "2": {
           "cost": 700,
@@ -88414,7 +92198,11 @@
           "boost_speed": 205,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "speed": 185,
+            "turn_speed_ground": 66.0
+          }
         }
       },
       "slots": {
@@ -88548,7 +92336,50 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6338.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6338.html",
+      "altSkills": [
+        {
+          "name": "高速突撃",
+          "level": "LV1",
+          "effect": "変形後の移動時に、一定以上の速度で接触した対象をよろけさせる。タンク系、飛行系、宇宙地上問わず利用が可能。・ダメージは発生しない接触した機体は約5秒ほど効果が発生しなくなる味方に接触しても効果は発生しない"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV1",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が130%になる"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "高性能スコープ",
+          "level": "LV2",
+          "effect": "高性能のスコープが使用可能。スナイプモード時に左スティックで倍率5倍までの調整が可能。"
+        },
+        {
+          "name": "変形",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        },
+        {
+          "name": "クイックドリフト?",
+          "level": "LV1",
+          "effect": "ドリフト状態の間、旋回性能が上昇、射撃攻撃によって与えるダメージが増加し、射撃属性の兵装による被ダメージを軽減する。・変形時のドリフト発動中・旋回＋100%・射撃属性与ダメージ＋10%・射撃属性被ダメージ－20%"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ユニコーンガンダム［覚醒］",
@@ -89569,7 +93400,13 @@
           "boost_speed": 225,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 63.0,
+            "turn_speed_space": 63.0
+          }
         },
         "2": {
           "cost": 700,
@@ -89583,7 +93420,13 @@
           "boost_speed": 225,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 63.0,
+            "turn_speed_space": 63.0
+          }
         }
       },
       "slots": {
@@ -89732,7 +93575,60 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6455.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6455.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの85%を消費して回避する"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "サイコ・ニュートライザー",
+          "level": "LV1",
+          "effect": "機体HPが30%以下になった際、自動で発動して攻撃力と機動力が上昇し、機体HPへのダメージを50%軽減する。スキル発動中はサイコミュ兵装でロックオンされるまでの時間を250%延長する。さらに射撃兵装のリロード時間とオーバーヒートからの復帰時間を50%短縮。スキルが発動した瞬間のみ、ダメージの蓄積による、よろけ以外のリアクションを無効化する。・発動中は・射撃補正＋15・格闘補正＋35・被ダメージ－50%・スピード＋5・高速移動＋5・移動方向補正全方向100%・スラスター消費－20%・リロード時間－50%・オーバーヒート復帰時間－50%・サイコミュ兵装からのロックオン時間＋250%※効果時間は無し※発動した瞬間のカットシーン中はダメージリアクション無効"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "両翼ユニット特殊緩衝材",
+          "level": "LV3",
+          "effect": "両翼部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "シールド破損姿勢制御",
+          "level": "LV1",
+          "effect": "射撃攻撃によるシールド破損時のリアクションを無効化する。ただし、ダメージの蓄積によるよろけアクションは無効化されない。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ナラティブガンダム",
@@ -89999,7 +93895,13 @@
           "boost_speed": 215,
           "thruster": 75,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 75.0,
+            "turn_speed_space": 75.0
+          }
         },
         "2": {
           "cost": 650,
@@ -90013,7 +93915,13 @@
           "boost_speed": 215,
           "thruster": 75,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 75.0,
+            "turn_speed_space": 75.0
+          }
         },
         "3": {
           "cost": 700,
@@ -90027,7 +93935,13 @@
           "boost_speed": 215,
           "thruster": 75,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 200,
+            "boost_speed": 240,
+            "turn_speed_ground": 75.0,
+            "turn_speed_space": 75.0
+          }
         }
       },
       "slots": {
@@ -90185,7 +94099,60 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6471.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6471.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "ハイブースト・ラムアタック",
+          "level": "LV1",
+          "effect": "変形中に高速移動を一定時間行うと高速移動中の速度が5上昇し、ラムアタックの威力が1000上昇する。"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "シールド内Iフィールド",
+          "level": "LV1",
+          "effect": "シールドにビーム属性の射撃攻撃を受けた際、シールドHPへのダメージを70%軽減する。・効果発動時はビームを弾くような演出が発生する"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "RFズゴック",
@@ -95329,7 +99296,13 @@
           "boost_speed": 200,
           "thruster": 80,
           "turn_speed_ground": 63.0,
-          "turn_speed_space": 63.0
+          "turn_speed_space": 63.0,
+          "transformed": {
+            "speed": 175,
+            "boost_speed": 225,
+            "turn_speed_ground": 60.0,
+            "turn_speed_space": 57.0
+          }
         }
       },
       "slots": {
@@ -95464,7 +99437,70 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6902.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/6902.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV1",
+          "effect": "回避行動ボタンを2度押すことで、緊急回避が可能となる。・スラスターがオーバーヒートするため注意が必要"
+        },
+        {
+          "name": "マルチ・シールド制御機構?",
+          "level": "LV1",
+          "effect": "シールドを所持している場合にスキルが発動。発動中は機動力が上昇し高速移動開始時及び、移動中のスラスター消費量が減少。さらにラムアタックを当てた時のダメージが1000増加する。・・スピード＋15・高速移動＋15・高速移動開始時のスラ消費－60%・スラスター消費量－30％・ラムアタックの威力＋1000※シールド所持中のみ効果を発揮"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "追撃射撃補助プログラム",
+          "level": "LV1",
+          "effect": "ダウン状態の敵機に対して、射撃兵装で与えるダメージが15%上昇する。"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV1",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を10%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "肩部特殊緩衝材",
+          "level": "LV3",
+          "effect": "肩部へ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV1",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が130%になる"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV4",
+          "effect": "強化されたレーダー性能。有効範囲が300mから450mへ拡張する。さらに自機の残り頭部HPが最大状態の場合、レーダー範囲内にいる停止している敵機をレーダー上に表示することが可能となる。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "クロスボーン・ガンダムX1改",
@@ -98046,7 +102082,13 @@
           "boost_speed": 215,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 230,
+            "turn_speed_ground": 60.0,
+            "turn_speed_space": 60.0
+          }
         }
       },
       "slots": {
@@ -98181,7 +102223,65 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/7085.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/7085.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの85%を消費して回避する"
+        },
+        {
+          "name": "オーバーブースト",
+          "level": "LV2",
+          "effect": "スラスターオーバーヒート時に高速移動を行うことで「オーバーブースト」状態に移行。10秒間オーバーヒートが発生しなくなるが終了後は3倍程度の回復時間を必要とする。またスキル発動中は、機動力が上昇する。・・旋回＋25・タックル・強制噴射装置も効果対象※効果終了時に転倒が必ず発生※効果終了時のOH回復時間は21秒"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "胸部装甲特殊緩衝材",
+          "level": "LV3",
+          "effect": "胸部装甲へ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "C・S・ブースター内Iフィールド",
+          "level": "LV1",
+          "effect": "装備中のコンポジット・シールド・ブースターにビーム属性の射撃攻撃を受けた際、機体HPへのダメージを70%軽減し、発生したリアクションを無効化。なお発生したリアクションに応じたスラスターが消費され、スラスターがオーバーヒート中はスキル効果は発動しない。・対象部位にビーム属性の射撃攻撃を受けた際・ダメージ70%軽減・ダメージリアクション無効化・リアクションのある射撃を受けた際スラスター固定消費・ひるみ：5・よろけ：20・大よろけ：40・転倒：80"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "Gキャノン・マグナ",
@@ -100996,7 +105096,11 @@
           "boost_speed": 190,
           "thruster": 75,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 190,
+            "turn_speed_ground": 66.0
+          }
         },
         "2": {
           "cost": 600,
@@ -101010,7 +105114,11 @@
           "boost_speed": 190,
           "thruster": 75,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 190,
+            "turn_speed_ground": 66.0
+          }
         },
         "3": {
           "cost": 650,
@@ -101024,7 +105132,11 @@
           "boost_speed": 190,
           "thruster": 75,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 190,
+            "turn_speed_ground": 66.0
+          }
         },
         "4": {
           "cost": 700,
@@ -101038,7 +105150,11 @@
           "boost_speed": 190,
           "thruster": 75,
           "turn_speed_ground": 66.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 190,
+            "turn_speed_ground": 66.0
+          }
         }
       },
       "slots": {
@@ -101190,7 +105306,99 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/7283.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/7283.html",
+      "altSkills": [
+        {
+          "name": "高速突撃",
+          "level": "LV1",
+          "effect": "変形後の移動時に、一定以上の速度で接触した対象をよろけさせる。タンク系、飛行系、宇宙地上問わず利用が可能。・ダメージは発生しない接触した機体は約5秒ほど効果が発生しなくなる味方に接触しても効果は発生しない"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV1",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が130%になる",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる",
+          "ms_levels": [
+            3,
+            4
+          ]
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV2",
+          "effect": "強化されたレーダー性能。有効範囲が300mから400mへ拡張する。"
+        },
+        {
+          "name": "高性能スコープ",
+          "level": "LV2",
+          "effect": "高性能のスコープが使用可能。スナイプモード時に左スティックで倍率5倍までの調整が可能。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "ステルス",
+          "level": "LV1",
+          "effect": "非攻撃時、敵のレーダーに捕捉される範囲を100m以内に減退させる。・高速移動・ジャンプ・緊急回避・武器切替・集束時もステルス有効範囲以上なら捕捉されない。攻撃後3秒間効果が解除されるボマー・ランナーを奨励するスキルではない。",
+          "ms_levels": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "ステルス",
+          "level": "LV2",
+          "effect": "非攻撃時、敵のレーダーに捕捉される範囲を50m以内に減退させる。",
+          "ms_levels": [
+            3,
+            4
+          ]
+        },
+        {
+          "name": "変形",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        },
+        {
+          "name": "クイックドリフト?",
+          "level": "LV1",
+          "effect": "ドリフト状態の間、旋回性能が上昇、射撃攻撃によって与えるダメージが増加し、射撃属性の兵装による被ダメージを軽減する。・変形時のドリフト発動中・旋回＋100%・射撃属性与ダメージ＋10%・射撃属性被ダメージ－20%",
+          "ms_levels": [
+            1
+          ]
+        },
+        {
+          "name": "クイックドリフト?",
+          "level": "LV2",
+          "effect": "ドリフト状態の間、旋回性能が上昇、射撃攻撃によって与えるダメージが増加し、射撃属性の兵装による被ダメージを軽減する。・変形時のドリフト発動中・旋回＋?%・射撃属性与ダメージ＋?%・射撃属性被ダメージ－30%",
+          "ms_levels": [
+            2,
+            3,
+            4
+          ]
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ヴィクトリーガンダム",
@@ -102348,7 +106556,13 @@
           "boost_speed": 185,
           "thruster": 65,
           "turn_speed_ground": 60.0,
-          "turn_speed_space": 63.0
+          "turn_speed_space": 63.0,
+          "transformed": {
+            "speed": 185,
+            "boost_speed": 225,
+            "turn_speed_ground": 57.0,
+            "turn_speed_space": 57.0
+          }
         },
         "2": {
           "cost": 450,
@@ -102532,7 +106746,60 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/7381.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/7381.html",
+      "altSkills": [
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で1500の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "両腕部装備特殊緩衝材",
+          "level": "LV1",
+          "effect": "両腕部装備へ攻撃を受けた際、機体HPへのダメージを10%軽減する。"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV1",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを10%軽減する。"
+        },
+        {
+          "name": "高性能レーダー",
+          "level": "LV1",
+          "effect": "強化されたレーダー性能。有効範囲が300mから350mへ拡張する。"
+        },
+        {
+          "name": "観測情報連結",
+          "level": "LV1",
+          "effect": "レーダーで捕捉した敵MSのHP情報が自軍メンバーに共有される。"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        },
+        {
+          "name": "バレットフィーダー",
+          "level": "LV1",
+          "effect": "実弾、ビーム（残弾式）、その他の弾数式兵装の弾数が30％以上残っている状態でリロードを行うと、リロード時間が30%短縮する。"
+        },
+        {
+          "name": "高機動戦闘制御?",
+          "level": "LV1",
+          "effect": "射撃主兵装が高速移動中に使用可能となる。"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ガンブラスター",
@@ -103202,7 +107469,13 @@
           "boost_speed": 225,
           "thruster": 80,
           "turn_speed_ground": 78.0,
-          "turn_speed_space": 87.0
+          "turn_speed_space": 87.0,
+          "transformed": {
+            "speed": 195,
+            "boost_speed": 240,
+            "turn_speed_ground": 66.0,
+            "turn_speed_space": 72.0
+          }
         }
       },
       "slots": {
@@ -103342,7 +107615,55 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/7478.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/7478.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの85%を消費して回避する"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋100される"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "脚部特殊緩衝材",
+          "level": "LV3",
+          "effect": "脚部へ攻撃を受けた際、機体HPへのダメージと脚部HPへの負荷を25%軽減する。・宇宙でもダメージ軽減は効果対象"
+        },
+        {
+          "name": "肩部オプション特殊緩衝材",
+          "level": "LV3",
+          "effect": "肩部オプションへ攻撃を受けた際、機体HPへのダメージを30%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV2",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が160%になる"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "ギラ・ドーガ（FF）",
@@ -108953,7 +113274,13 @@
           "boost_speed": 230,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 240,
+            "turn_speed_ground": 69.0,
+            "turn_speed_space": 69.0
+          }
         },
         "2": {
           "cost": 700,
@@ -108967,7 +113294,13 @@
           "boost_speed": 230,
           "thruster": 80,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 75.0
+          "turn_speed_space": 75.0,
+          "transformed": {
+            "speed": 190,
+            "boost_speed": 240,
+            "turn_speed_ground": 69.0,
+            "turn_speed_space": 69.0
+          }
         }
       },
       "slots": {
@@ -109116,7 +113449,70 @@
           ]
         }
       ],
-      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/7554.html"
+      "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/7554.html",
+      "altSkills": [
+        {
+          "name": "緊急回避制御",
+          "level": "LV2",
+          "effect": "回避行動ボタンを2度押すことで、スラスター消費量が軽減された、緊急回避が可能となる。・総スラスターの85%を消費して回避する"
+        },
+        {
+          "name": "変形機構最適化制御",
+          "level": "LV1",
+          "effect": "高速移動開始時のスラスター消費量と変形時から通常時へ変形するときのスラスター消費量を60%軽減する。移動中のスラスター消費量を25%軽減する。"
+        },
+        {
+          "name": "ラムアタック",
+          "level": "LV1",
+          "effect": "変形後の高速移動時に、接触した対象にダメージを与える・高速移動時に対象に接触するとよろけと共に機体Lv1で2000の固定ダメージを与える固定ダメージは機体Lvが上がる毎に＋200される"
+        },
+        {
+          "name": "ハイブースト・ラムアタック",
+          "level": "LV2",
+          "effect": "変形中に高速移動を一定時間行うと高速移動中の速度が10上昇し、ラムアタックの威力が1500上昇する。さらにダメージを20%軽減し蓄積による、よろけの発生を軽減する。・発動中に受けた攻撃のよろけ値を80%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "耐爆機構",
+          "level": "LV1",
+          "effect": "ＭＳの爆発により発生するよろけ状態を無効化する。"
+        },
+        {
+          "name": "衝撃吸収機構",
+          "level": "LV1",
+          "effect": "格闘攻撃による転倒を除き、攻撃を受けた際のよろけアクションを緩和、または無効化。・大よろけ攻撃はよろけにリアクションを緩和する。蓄積ダメージによるよろけは緩和できない。下格闘を受けると緩和できずにダウンする。"
+        },
+        {
+          "name": "変形補強機構",
+          "level": "LV1",
+          "effect": "変形時に拘束効果のない射撃攻撃を連続して受けた際に、生じるよろけの発生を軽減する。・変形中に受けた攻撃のよろけ値を50%かつ小数点以下切り捨てで計算する"
+        },
+        {
+          "name": "シールド破損姿勢制御",
+          "level": "LV1",
+          "effect": "射撃攻撃によるシールド破損時のリアクションを無効化する。ただし、ダメージの蓄積によるよろけアクションは無効化されない。"
+        },
+        {
+          "name": "背部オプション特殊緩衝材",
+          "level": "LV4",
+          "effect": "背部オプションへ攻撃を受けた際、機体HPへのダメージを35%軽減する。"
+        },
+        {
+          "name": "ダメージコントロール",
+          "level": "LV1",
+          "effect": "拘束効果のない攻撃を連続して受けた際に生じるよろけを発生しづらくする。・蓄積よろけまでの値が130%になる"
+        },
+        {
+          "name": "変形（飛行）",
+          "level": "LV1",
+          "effect": "変形能力をもつMSは、タッチパッドを押すことで変形が行える。・変形時に無敵が解除されるので注意"
+        },
+        {
+          "name": "高機動戦闘制御",
+          "level": "LV1",
+          "effect": "射撃主兵装が高速移動中に使用可能となる。"
+        }
+      ],
+      "transformLabel": "変形"
     },
     {
       "name": "重装ジム改",
