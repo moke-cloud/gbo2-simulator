@@ -1,5 +1,5 @@
 {
- "version": "hf4d75174f213",
+ "version": "hf5cdffd98813",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -7477,7 +7477,7 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1900,
+     "1": 1700,
      "2": 2050,
      "3": 2300,
      "4": 2550
@@ -23013,8 +23013,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1600,
-     "2": 1800
+     "1": 1800,
+     "2": 2000
     },
     "hits": 1,
     "notes": "Eパック式弾数所持/移動射撃可/ひるみ有/集束可/集束時大よろけ有/集束時全弾消費/集束時間：1.5秒/倍率：2.25倍/よろけ値：50%（60%）",
@@ -23027,16 +23027,16 @@
       "key": "normal",
       "label": "非集束",
       "power": {
-       "1": 1600,
-       "2": 1800
+       "1": 1800,
+       "2": 2000
       }
      },
      {
       "key": "charged",
       "label": "集束",
       "power": {
-       "1": 3600,
-       "2": 3900
+       "1": 3800,
+       "2": 4100
       }
      }
     ]
@@ -23046,7 +23046,7 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "2": 2730
+     "2": 3000
     },
     "hits": 1,
     "notes": "",
@@ -23076,36 +23076,36 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 140,
-     "2": 147
+     "1": 160,
+     "2": 180
     },
     "hits": 1,
-    "notes": "移動射撃可/ブースト射撃可/よろけ値：2%（50HIT）",
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：6%（17HIT）",
     "magazine": 50,
     "rangeM": 200,
-    "staggerValue": 2,
+    "staggerValue": 6,
     "chargeable": false,
     "special": {},
     "modes": null
    },
    {
-    "name": "ビーム・ピストルx2",
+    "name": "ディジェ（CA）用B・Px2",
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 500,
-     "2": 510
+     "1": 600,
+     "2": 700
     },
     "hits": 1,
-    "notes": "左右交互発射/移動射撃可/ひるみ有/ASL(自動照準補正)有/よろけ値：10%/局部補正：1.3倍/シールド補正：0.5倍",
+    "notes": "左右交互発射/移動射撃可/ひるみ有/ASL(自動照準補正)有/よろけ値：12%/局部補正：1.3倍/シールド補正：0.5倍",
     "rangeM": 300,
-    "staggerValue": 10,
+    "staggerValue": 12,
     "chargeable": false,
     "special": {},
     "modes": null
    },
    {
-    "name": "拳部トリモチ・ランチャー",
+    "name": "ディジェ（CA）用拳部T・R",
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
@@ -23113,7 +23113,7 @@
      "2": 315
     },
     "hits": 1,
-    "notes": "移動射撃可/ジャンプ射撃不可/スコープ使用不可/曲射/よろけ有/命中後5秒間、スピード低下効果付与/よろけ値：0%",
+    "notes": "移動射撃可/空中射撃可/スコープ使用不可/曲射/よろけ有/命中後5秒間、スピード低下効果付与/よろけ値：0%",
     "magazine": 1,
     "rangeM": 200,
     "staggerValue": 0,
@@ -23126,13 +23126,13 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1200,
-     "2": 1260
+     "1": 1500,
+     "2": 1700
     },
     "hits": 1,
-    "notes": "二発同時発射/射撃時静止/よろけ有/ユニット貫通効果有/よろけ値：10% x2/局部補正：0.8倍/シールド補正：1.3倍",
+    "notes": "二発同時発射/射撃時静止/よろけ有/ユニット貫通効果有/よろけ値：20% x2/局部補正：0.8倍/シールド補正：1.3倍",
     "rangeM": 500,
-    "staggerValue": 10,
+    "staggerValue": 20,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -23142,11 +23142,11 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1650,
-     "2": 1800
+     "1": 1700,
+     "2": 1900
     },
     "hits": 1,
-    "notes": "2発同時発射 x2回攻撃/移動射撃可/よろけ有/よろけ値：35% x2発 x2射",
+    "notes": "二発同時発射 x2回攻撃/移動射撃可/ブースト射撃可/よろけ有/よろけ値：35% x2発 x2射",
     "magazine": 8,
     "rangeM": 300,
     "staggerValue": 35,
@@ -28063,18 +28063,18 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 150,
-     "2": 157
+     "1": 160,
+     "2": 180
     },
     "hits": 1,
-    "notes": "＜通常時＞使用可/移動射撃可/よろけ値：7%（15HIT）",
+    "notes": "＜通常時＞使用可/移動射撃可/よろけ値：9%（12HIT）",
     "magazine": 60,
     "rangeM": 300,
-    "staggerValue": 7,
+    "form": "normal",
+    "staggerValue": 9,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "メッサーラ用ビーム・サーベル",
@@ -28085,7 +28085,8 @@
      "2": 2310
     },
     "hits": 1,
-    "notes": "＜通常時＞使用可",
+    "notes": "＜通常時＞使用可/スキル「空中格闘制御」対応",
+    "form": "normal",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -28105,26 +28106,25 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.6
-    },
-    "form": "normal"
+    }
    },
    {
     "name": "メッサーラ用腕部・Gランチャー",
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1000,
-     "2": 1050
+     "1": 1600,
+     "2": 2000
     },
     "hits": 1,
     "notes": "＜通常時＞使用可/移動射撃可/よろけ有/よろけ値：40%",
     "magazine": 3,
     "rangeM": 300,
+    "form": "normal",
     "staggerValue": 40,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "腕部収納式クロー",
@@ -28135,7 +28135,8 @@
      "2": 3300
     },
     "hits": 1,
-    "notes": "＜通常時＞使用可/格闘方向に関わらず強制ダウン",
+    "notes": "＜通常時＞使用可/格闘方向に関わらず強制ダウン/スキル「空中格闘制御」対応",
+    "form": "normal",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -28154,9 +28155,8 @@
     "directionMul": {
      "n": 1.0,
      "side": 1.0,
-     "down": 1.3
-    },
-    "form": "normal"
+     "down": 1.5
+    }
    },
    {
     "name": "肩部メガ粒子砲x2",
@@ -28167,8 +28167,9 @@
      "2": 1500
     },
     "hits": 1,
-    "notes": "＜通常時＞使用可/二発同時発射/射撃時停止/即撃ちよろけ有/集束可/集束中移動可/集束時爆風範囲発生/集束時間：4秒/倍率：1.357倍/よろけ値：10% x2（40% x2）",
+    "notes": "＜通常時＞使用可/二発同時発射/射撃時停止/即撃ちよろけ有/集束可/集束中移動可/集束時爆風範囲発生/集束時間：2.5秒/倍率：1.357倍/よろけ値：10% x2（50% x2）",
     "rangeM": 400,
+    "form": "normal",
     "staggerValue": 10,
     "chargeable": true,
     "special": {},
@@ -28189,38 +28190,38 @@
        "2": 2000
       }
      }
-    ],
-    "form": "normal"
+    ]
    },
    {
     "name": "肩部ミサイル・ポッドx2",
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 300,
-     "2": 325
+     "1": 350,
+     "2": 400
     },
     "hits": 1,
-    "notes": "＜通常時＞使用可/移動射撃可/照準誘導効果有/よろけ値：20%",
+    "notes": "＜通常時＞使用可/移動射撃可/照準誘導効果有/よろけ値：25%",
     "magazine": 18,
     "rangeM": 350,
-    "staggerValue": 20,
+    "form": "normal",
+    "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "肩部メガ粒子砲x2（変形）",
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1100,
-     "2": 1200
+     "1": 1200,
+     "2": 1400
     },
     "hits": 1,
-    "notes": "＜変形時＞使用可/二発同時発射/移動射撃可/ブースト射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：2秒/倍率：1.364倍/よろけ値：15% x2（35% x2）",
+    "notes": "＜変形時＞使用可/二発同時発射/移動射撃可/ブースト射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：1秒/倍率：1.25倍/よろけ値：15% x2（50% x2）",
     "rangeM": 500,
+    "form": "alt",
     "staggerValue": 15,
     "chargeable": true,
     "special": {},
@@ -28229,8 +28230,8 @@
       "key": "normal",
       "label": "非集束",
       "power": {
-       "1": 1100,
-       "2": 1200
+       "1": 1200,
+       "2": 1400
       }
      },
      {
@@ -28241,8 +28242,7 @@
        "2": 1600
       }
      }
-    ],
-    "form": "alt"
+    ]
    },
    {
     "name": "肩部ミサイル・ポッドx2（変形）",
@@ -28256,11 +28256,11 @@
     "notes": "＜変形時＞使用可/移動射撃可/ブースト射撃可/よろけ値：7%",
     "magazine": 18,
     "rangeM": 350,
+    "form": "alt",
     "staggerValue": 7,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    }
   ],
   "グフ重装型": [
@@ -39213,7 +39213,7 @@
      "3": 3100
     },
     "hits": 1,
-    "notes": "＜通常時/変形時＞共通使用可/Eパック式弾数所持/移動射撃可/即撃ちよろけ有/よろけ値：20%",
+    "notes": "＜通常時/変形時＞共通使用可/Eパック式弾数所持/移動射撃可/スキル「/能力UP「n_i_t_r_o」/」対応/スキル発動中及び変形中、ブースト射撃可/即撃ちよろけ有/よろけ値：20%",
     "rangeM": 450,
     "staggerValue": 20,
     "chargeable": false,
@@ -39225,12 +39225,13 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2700,
-     "2": 2850,
-     "3": 3000
+     "1": 2800,
+     "2": 3000,
+     "3": 3200
     },
     "hits": 1,
     "notes": "＜通常時＞使用可",
+    "form": "normal",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -39249,9 +39250,8 @@
     "directionMul": {
      "n": 1.0,
      "side": 0.75,
-     "down": 1.5
-    },
-    "form": "normal"
+     "down": 2.0
+    }
    },
    {
     "name": "60mmバルカン砲",
@@ -39266,24 +39266,25 @@
     "notes": "＜通常時＞使用可/移動射撃可/ブースト射撃可/よろけ値：4%（25HIT）",
     "magazine": 50,
     "rangeM": 175,
+    "form": "normal",
     "staggerValue": 4,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "ビーム・キャノン",
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 400,
-     "2": 600,
-     "3": 800
+     "1": 500,
+     "2": 650,
+     "3": 850
     },
     "hits": 4,
-    "notes": "＜通常時＞使用可/非集束時4発連続発射/移動射撃可/ひるみ有/集束可/集束時2発同時発射/集束時よろけ有/集束時間：2.5秒/倍率：3.75倍/よろけ値：25% x4（25% x2）",
+    "notes": "＜通常時＞使用可/非集束時4発連続発射/移動射撃可/スキル「/能力UP「n_i_t_r_o」/」対応/スキル発動中、ブースト射撃可/ひるみ有/集束可/集束時2発同時発射/集束時よろけ有/集束時間：2.5秒/倍率：3.2倍/よろけ値：25% x4（30% x2）",
     "rangeM": 350,
+    "form": "normal",
     "staggerValue": 25,
     "chargeable": true,
     "special": {},
@@ -39292,40 +39293,39 @@
       "key": "normal",
       "label": "非集束",
       "power": {
-       "1": 400,
-       "2": 600,
-       "3": 800
+       "1": 500,
+       "2": 650,
+       "3": 850
       }
      },
      {
       "key": "charged",
       "label": "集束",
       "power": {
-       "1": 1500,
-       "2": 1700,
-       "3": 1900
+       "1": 1600,
+       "2": 1800,
+       "3": 2000
       }
      }
-    ],
-    "form": "normal"
+    ]
    },
    {
     "name": "ハイ・メガ・キャノン",
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1400,
-     "2": 1500,
-     "3": 1600
+     "1": 1500,
+     "2": 1600,
+     "3": 1700
     },
     "hits": 6,
-    "notes": "＜通常時＞使用可/最大6ヒット/射撃時静止/集束必須/集束中移動可/大よろけ有/ユニット貫通効果有/集束時間：10秒/よろけ値：20% x6",
+    "notes": "＜通常時＞使用可/最大6ヒット/射撃時静止/集束必須/集束中移動可/大よろけ有/ユニット貫通効果有/集束時間：7秒/よろけ値：50% x6",
     "rangeM": 550,
-    "staggerValue": 20,
+    "form": "normal",
+    "staggerValue": 50,
     "chargeable": true,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "P・F・ファンネルx2［挟撃］",
@@ -39337,13 +39337,13 @@
      "3": 425
     },
     "hits": 1,
-    "notes": "＜通常時＞使用可/2発同時発射 x2基 x2射 x3回攻撃/0.7秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/能力UP「n_i_t_r_o」発動中2発同時発射 x2基 x2射 x5回攻撃/能力UP「n_i_t_r_o」発動中ブースト射撃可/よろけ値：8% x2発 x2基 x2射 x3回 (9% x2発 x2基 x2射 x5回)",
+    "notes": "＜通常時＞使用可/2発同時発射 x2基 x2射 x3回攻撃/0.7秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/能力UP「n_i_t_r_o」発動中2発同時発射 x2基 x2射 x5回攻撃/能力UP「n_i_t_r_o」発動中ブースト射撃可/よろけ値：9% x2発 x2基 x2射 x3回 (10% x2発 x2基 x2射 x5回)",
     "rangeM": 250,
-    "staggerValue": 8,
+    "form": "normal",
+    "staggerValue": 9,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "ビーム・キャノン（変形）",
@@ -39357,6 +39357,7 @@
     "hits": 6,
     "notes": "＜変形時＞使用可/非集束時6発連続発射/移動射撃可/ブースト射撃可/ひるみ有/集束可/集束時2発同時発射/集束時よろけ有/集束時ユニット貫通効果有/集束時間：1秒/倍率：3倍/よろけ値：25% x6（25% x2）",
     "rangeM": 450,
+    "form": "alt",
     "staggerValue": 25,
     "chargeable": true,
     "special": {},
@@ -39374,13 +39375,12 @@
       "key": "charged",
       "label": "集束",
       "power": {
-       "1": 900,
-       "2": 1200,
-       "3": 1500
+       "1": 1200,
+       "2": 1300,
+       "3": 1600
       }
      }
-    ],
-    "form": "alt"
+    ]
    },
    {
     "name": "ハイ・メガ・キャノン（変形）",
@@ -39392,13 +39392,13 @@
      "3": 4500
     },
     "hits": 1,
-    "notes": "＜変形時＞使用可/移動射撃可/ブースト射撃可/集束必須/よろけ有/ユニット貫通効果有/集束時間：1.5秒/よろけ値：20%",
+    "notes": "＜変形時＞使用可/移動射撃可/ブースト射撃可/集束必須/よろけ有/ユニット貫通効果有/集束時間：1.5秒/よろけ値：100%",
     "rangeM": 500,
-    "staggerValue": 20,
+    "form": "alt",
+    "staggerValue": 100,
     "chargeable": true,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    }
   ],
   "ディザート・ザク": [
@@ -45776,10 +45776,10 @@
      "2": 110
     },
     "hits": 1,
-    "notes": "移動射撃可/ブースト射撃可/よろけ値：3%（34HIT）",
-    "magazine": 40,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
+    "magazine": 60,
     "rangeM": 200,
-    "staggerValue": 3,
+    "staggerValue": 7,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -45789,8 +45789,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1850,
-     "2": 2000
+     "1": 2000,
+     "2": 2200
     },
     "hits": 1,
     "notes": "Eパック式弾数所持/移動射撃可/よろけ有/よろけ値：20%",
@@ -45805,8 +45805,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 500,
-     "2": 600
+     "1": 600,
+     "2": 700
     },
     "hits": 1,
     "notes": "Eパック式弾数所持/2発同時発射 x2回攻撃/射撃時静止/ひるみ有/よろけ値：25% x2発 x2射/脚部補正：0.8倍",
@@ -45821,8 +45821,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 300,
-     "2": 325
+     "1": 350,
+     "2": 400
     },
     "hits": 5,
     "notes": "二発同時発射/射撃時静止/ひるみ有/着弾点に2.5秒間持続ダメージ範囲発生(最大5HIT x2)/よろけ値：25% x2発 x5回",
@@ -47678,7 +47678,9 @@
     "attribute": "beam",
     "power": {
      "1": 2200,
-     "2": 2350
+     "2": 2350,
+     "3": 2500,
+     "4": 2650
     },
     "hits": 1,
     "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/よろけ値：10%",
@@ -47694,7 +47696,9 @@
     "attribute": "melee",
     "power": {
      "1": 2200,
-     "2": 2400
+     "2": 2400,
+     "3": 2600,
+     "4": 2800
     },
     "hits": 1,
     "notes": "",
@@ -47725,7 +47729,9 @@
     "attribute": "beam",
     "power": {
      "1": 800,
-     "2": 900
+     "2": 900,
+     "3": 1000,
+     "4": 1100
     },
     "hits": 3,
     "notes": "Eパック式弾数所持/3発連続発射/移動射撃可/ひるみ有/よろけ値：35% x3",
@@ -47741,7 +47747,9 @@
     "attribute": "melee",
     "power": {
      "1": 2400,
-     "2": 2600
+     "2": 2600,
+     "3": 2800,
+     "4": 3000
     },
     "hits": 1,
     "notes": "",
@@ -47772,7 +47780,9 @@
     "attribute": "beam",
     "power": {
      "1": 500,
-     "2": 600
+     "2": 600,
+     "3": 700,
+     "4": 800
     },
     "hits": 1,
     "notes": "Eパック式弾数所持/移動射撃可/ブースト射撃可/ひるみ有/よろけ値：35%",
@@ -51519,6 +51529,7 @@
     },
     "hits": 1,
     "notes": "＜通常時＞使用可/ΖG3号機A型用B・ライフルに付属/武装Lvは機体Lv依存/頭部・脚部補正：?倍/背部補正：?倍/シールド補正：?倍",
+    "form": "normal",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -51538,8 +51549,7 @@
      "n": 1.0,
      "side": 0.75,
      "down": 2.4
-    },
-    "form": "normal"
+    }
    },
    {
     "name": "ΖG3号機A型用B・サーベル",
@@ -51551,6 +51561,7 @@
     },
     "hits": 1,
     "notes": "＜通常時＞使用可/スキル「/空中格闘制御/」対応",
+    "form": "normal",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -51570,8 +51581,7 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.6
-    },
-    "form": "normal"
+    }
    },
    {
     "name": "ΖG3号機A型用腕部G・L",
@@ -51585,11 +51595,11 @@
     "notes": "＜通常時＞使用可/2発連続発射/移動射撃可/ひるみ有/よろけ値：45% x2",
     "magazine": 4,
     "rangeM": 300,
+    "form": "normal",
     "staggerValue": 45,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "ΖG3号機A型用頭部バルカン砲",
@@ -51603,11 +51613,11 @@
     "notes": "＜通常時＞使用可/移動射撃可/ブースト射撃可/よろけ値：6%（17HIT）",
     "magazine": 60,
     "rangeM": 200,
+    "form": "normal",
     "staggerValue": 6,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "ΖG3号機A型用H・M・L",
@@ -51620,6 +51630,7 @@
     "hits": 11,
     "notes": "＜通常時＞使用可/射撃時静止/即撃ちよろけ有/集束可/集束中移動可/集束時照射攻撃/最大11ヒット/集束時ユニット貫通効果有/集束時間：4秒/倍率：0.167倍/よろけ値：80%（50% x11)",
     "rangeM": 500,
+    "form": "normal",
     "staggerValue": 80,
     "chargeable": true,
     "special": {},
@@ -51640,8 +51651,7 @@
        "2": 700
       }
      }
-    ],
-    "form": "normal"
+    ]
    },
    {
     "name": "ΖG3号機A型用B・ガンx2",
@@ -51652,13 +51662,13 @@
      "2": 400
     },
     "hits": 1,
-    "notes": "＜変形時＞使用可/二発動時発射/移動射撃可/ブースト射撃可/ASL（自動照準補正）有/よろけ値：20% x2",
+    "notes": "＜変形時＞使用可/二発同時発射/移動射撃可/ブースト射撃可/ASL（自動照準補正）有/よろけ値：20% x2",
     "rangeM": 350,
+    "form": "alt",
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    },
    {
     "name": "ΖG3号機A型用H・M・L（変形）",
@@ -51671,11 +51681,11 @@
     "hits": 1,
     "notes": "＜変形時＞使用可/移動射撃可/ブースト射撃可/集束必須/大よろけ有/爆風範囲有/集束時間：1秒/よろけ値：5%",
     "rangeM": 550,
+    "form": "alt",
     "staggerValue": 5,
     "chargeable": true,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    }
   ],
   "ギャプラン（I0）": [
@@ -55378,7 +55388,7 @@
      "2": 3100
     },
     "hits": 1,
-    "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/ASL（自動照準補正）有/よろけ値：20%",
+    "notes": "Eパック式弾数所持/移動射撃可/スキル「/M・フライト・ユニット（P）/」対応/スキル発動中、ブースト射撃可/即撃ちよろけ有/ASL（自動照準補正）有/よろけ値：20%",
     "rangeM": 350,
     "staggerValue": 20,
     "chargeable": false,
@@ -55413,7 +55423,7 @@
     "directionMul": {
      "n": 1.0,
      "side": 0.75,
-     "down": 1.4
+     "down": 1.5
     }
    },
    {
@@ -55421,34 +55431,34 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 700,
-     "2": 750
+     "1": 800,
+     "2": 850
     },
     "hits": 4,
-    "notes": "＜通常時＞使用可/4発連続発射/Eパック式弾数所持/移動射撃可/ASL（自動照準補正）有/よろけ値：17% x4",
+    "notes": "＜通常時＞使用可/4発連続発射/Eパック式弾数所持/移動射撃可/スキル「/M・フライト・ユニット（P）/」対応/スキル発動中、ブースト射撃可/ASL（自動照準補正）有/よろけ値：25% x4",
     "rangeM": 350,
-    "staggerValue": 17,
+    "form": "normal",
+    "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "肩部メガ粒子砲x2",
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1500,
-     "2": 1600
+     "1": 1600,
+     "2": 1700
     },
     "hits": 1,
-    "notes": "＜通常時＞使用可/二発同時発射/射撃時静止/よろけ有/爆風範囲有/よろけ値：20% x2",
+    "notes": "＜通常時＞使用可/二発同時発射/射撃時静止/よろけ有/爆風範囲有/よろけ値：40% x2",
     "rangeM": 400,
-    "staggerValue": 20,
+    "form": "normal",
+    "staggerValue": 40,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "ファンネル・ミサイル",
@@ -55459,14 +55469,14 @@
      "2": 450
     },
     "hits": 1,
-    "notes": "＜通常時＞使用可/8発同時発射/約0.7秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/よろけ値：15% x8",
+    "notes": "＜通常時＞使用可/8発同時発射/約0.7秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/よろけ値：17% x8",
     "magazine": 8,
     "rangeM": 300,
-    "staggerValue": 15,
+    "form": "normal",
+    "staggerValue": 17,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "C・W・U［ミサイル］",
@@ -55480,11 +55490,11 @@
     "notes": "＜通常時＞使用可/二発同時発射/移動射撃可/ASL（自動照準補正）有/よろけ値：10% x2",
     "magazine": 16,
     "rangeM": 300,
+    "form": "normal",
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "C・W・U［メガ粒子砲］",
@@ -55496,12 +55506,12 @@
     },
     "hits": 1,
     "notes": "＜通常時＞使用可/移動射撃可/集束必須/大よろけ有/集束時間：5秒/よろけ値：10%",
-    "rangeM": 250,
+    "rangeM": 300,
+    "form": "normal",
     "staggerValue": 10,
     "chargeable": true,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "ペーネロペー用バルカン砲",
@@ -55512,10 +55522,10 @@
      "2": 136
     },
     "hits": 1,
-    "notes": "＜通常時/変形時＞共通使用可/移動射撃可/ブースト射撃可/よろけ値：5%（20HIT）",
+    "notes": "＜通常時/変形時＞共通使用可/移動射撃可/ブースト射撃可/よろけ値：6%（17HIT）",
     "magazine": 30,
     "rangeM": 200,
-    "staggerValue": 5,
+    "staggerValue": 6,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -55525,17 +55535,17 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1200,
-     "2": 1300
+     "1": 1500,
+     "2": 1600
     },
     "hits": 1,
-    "notes": "＜変形時＞使用可/移動射撃可/ブースト射撃可/よろけ有/爆風範囲有/よろけ値：25% x2",
+    "notes": "＜変形時＞使用可/移動射撃可/ブースト射撃可/よろけ有/爆風範囲有/よろけ値：35% x2",
     "rangeM": 400,
-    "staggerValue": 25,
+    "form": "alt",
+    "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    },
    {
     "name": "ファンネル・ミサイル（変形）",
@@ -55546,14 +55556,14 @@
      "2": 500
     },
     "hits": 1,
-    "notes": "＜変形時＞使用可/8発同時発射/約0.7秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/よろけ値：10% x8",
+    "notes": "＜変形時＞使用可/8発同時発射/約0.7秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/よろけ値：17% x8",
     "magazine": 8,
     "rangeM": 300,
-    "staggerValue": 10,
+    "form": "alt",
+    "staggerValue": 17,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    }
   ],
   "フライルー・ラーⅡ": [
@@ -65033,7 +65043,7 @@
      "2": 3200
     },
     "hits": 1,
-    "notes": "移動射撃可/空中射撃可/スキル「/シェルフ・ノズル制御機構?/」対応/スキル発動中、ブースト射撃可/よろけ有/ユニット貫通効果有/攻撃対象の耐実弾補正を30%減でダメージ計算/よろけ値：60%/シールド補正：2.0倍",
+    "notes": "移動射撃可/空中射撃可/スキル「/シェルフ・ノズル制御機構/」対応/スキル発動中、ブースト射撃可/よろけ有/ユニット貫通効果有/攻撃対象の耐実弾補正を30%減でダメージ計算/よろけ値：60%/シールド補正：2.0倍",
     "magazine": 3,
     "rangeM": 350,
     "staggerValue": 60,
@@ -72557,6 +72567,46 @@
     "magazine": 1,
     "rangeM": 80,
     "staggerValue": 0,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "［WR装備］用R・ランチャー",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 1400,
+     "2": 1700,
+     "3": 2000,
+     "4": 2300,
+     "5": 2600
+    },
+    "hits": 1,
+    "notes": "移動射撃可/よろけ有/よろけ値：60%",
+    "magazine": 6,
+    "rangeM": 350,
+    "staggerValue": 60,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "［WR装備］用吸着式グレネード",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 1800,
+     "2": 2000,
+     "3": 2200,
+     "4": 2400,
+     "5": 2600
+    },
+    "hits": 1,
+    "notes": "移動射撃可/着弾後6秒経過で爆発/敵機が近づいた際に爆発/よろけ有/よろけ値：80%/脚部補正：1.2倍",
+    "magazine": 1,
+    "rangeM": 80,
+    "staggerValue": 80,
     "chargeable": false,
     "special": {},
     "modes": null
