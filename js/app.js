@@ -874,8 +874,12 @@ const App = {
    */
   _buildSkillEffectItems(ms, msLevel, enhanceLevel) {
     const items = [];
+    const lvNum = Number(msLevel);
     for (const skill of (ms?.skills || [])) {
       if (typeof skill !== 'object') continue;
+      // 機体LVでスキルLVが変わる/解放される場合は ms_levels 付きの行に分割されている。
+      // 選択中の機体LVに該当する行のみ採用（ms_levels 無し＝全LV共通）。
+      if (Array.isArray(skill.ms_levels) && skill.ms_levels.length > 0 && !skill.ms_levels.includes(lvNum)) continue;
       // 「常時」発動の一律ステータス上昇（スラスター出力強化等）は、ゲーム内/Wikiの
       // ベース値に既に織り込まれているため除外する（トグルONによる二重計上を防ぐ）。
       // 条件付き（発動中/瀕死/高速移動中など状況限定でベース非込み）の上昇のみ、
@@ -1276,28 +1280,35 @@ const App = {
     const activeItems = effectItems.filter((_, i) => this.activeSkillIndices.has(i));
     const hp = this.getBaseStats()?.hp || 0;
 
-    // よろけ蓄積閾値は常に100%固定（武器よろけ値[%]の累積が100%超えでよろけ発生）
-    // calc-stagger-threshold は index.html で静的に「100%（固定）」と表示済み
+    // よろけ蓄積閾値: 基準100%（武器よろけ値[%]の累積が閾値超えでよろけ発生）。
+    // ダメージコントロール（stagger_threshold）ON時は閾値そのものが拡大する。
+    const thresholdItems = activeItems.filter(s => s.category === 'stagger_threshold');
+    const staggerCap = thresholdItems.reduce((acc, s) => Math.max(acc, s.value), 100);
+    document.getElementById('calc-stagger-threshold').textContent =
+      staggerCap > 100 ? `${staggerCap}%` : '100%（基準）';
 
     // よろけ値: 積算 (例 80%×50%=40%) → 受けたよろけ値が X% で計算される
     const staggerItems = activeItems.filter(s => s.category === 'stagger');
+    const combined = staggerItems.reduce((acc, s) => acc * s.value / 100, 1.0);
     if (staggerItems.length > 0) {
-      const combined = staggerItems.reduce((acc, s) => acc * s.value / 100, 1.0);
       document.getElementById('stagger-effective-row').style.display = '';
       document.getElementById('calc-stagger-effective').textContent =
         `受けたよろけ値 ×${combined.toFixed(3)} （${(combined * 100).toFixed(1)}%）`;
-      // 実質よろけ耐性: スキルがよろけ値を圧縮する分、より大きなよろけ値に耐えられる
-      // 例: ×0.5 → よろけ閾値100%を割るには元の200%が必要 → 「200%以下を無効化」
+    } else {
+      document.getElementById('stagger-effective-row').style.display = 'none';
+    }
+    // 実質よろけ耐性: 閾値拡大 ÷ よろけ値圧縮の合成で、より大きなよろけ値に耐えられる
+    // 例: 閾値160% かつ ×0.5 → 元のよろけ値320%まで耐える → 「320%未満を無効化」
+    if (staggerItems.length > 0 || thresholdItems.length > 0) {
       document.getElementById('stagger-resistance-row').style.display = '';
       if (combined <= 0) {
         document.getElementById('calc-stagger-resistance').textContent = '全よろけ値を無効化';
       } else {
-        const threshold = Math.round(100 / combined);
+        const resistance = Math.round(staggerCap / combined);
         document.getElementById('calc-stagger-resistance').textContent =
-          `よろけ値 ${threshold}% 未満のよろけを無効化`;
+          `よろけ値 ${resistance}% 未満のよろけを無効化`;
       }
     } else {
-      document.getElementById('stagger-effective-row').style.display = 'none';
       document.getElementById('stagger-resistance-row').style.display = 'none';
     }
 
@@ -1322,9 +1333,11 @@ const App = {
     }
 
     // トグルリスト描画（発動条件ごとにグルーピング＋折りたたみ）。1効果=1行。
-    const catLabel = { stagger: 'よろけ値', damage_cut: 'ダメージカット', firepower: '火力', stat_bonus: 'ステータス' };
+    const catLabel = { stagger: 'よろけ値', stagger_threshold: 'よろけ耐性', damage_cut: 'ダメージカット', firepower: '火力', stat_bonus: 'ステータス' };
     const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    const safeCategory = (c) => ['stagger', 'damage_cut', 'firepower', 'stat_bonus'].includes(c) ? c : '';
+    // stagger_threshold はバッジ配色を stagger と共用する
+    const safeCategory = (c) => c === 'stagger_threshold' ? 'stagger'
+      : ['stagger', 'damage_cut', 'firepower', 'stat_bonus'].includes(c) ? c : '';
 
     const renderItem = (item, i) => {
       const isOn = this.activeSkillIndices.has(i);
@@ -1337,6 +1350,9 @@ const App = {
       } else if (item.category === 'stagger') {
         valueText = `よろけ値を ${Number(item.value)}% で計算`;
         valueChip = `×${(Number(item.value) / 100).toFixed(2)}`;
+      } else if (item.category === 'stagger_threshold') {
+        valueText = `蓄積よろけ閾値が ${Number(item.value)}% に拡大`;
+        valueChip = `${Number(item.value)}%`;
       } else if (item.category === 'damage_cut') {
         valueText = `被ダメージ -${Number(item.value)}%`;
         valueChip = `-${Number(item.value)}%`;

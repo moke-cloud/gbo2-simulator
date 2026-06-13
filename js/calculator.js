@@ -638,6 +638,15 @@ const GBO2Calculator = {
       results.push({ category: 'stagger', value: parseInt(m[1]), condition: this._parseCondition(ctx) });
     }
 
+    // よろけ蓄積閾値の拡大（ダメージコントロール「蓄積よろけまでの値がX%になる」）。
+    // 基準100%の蓄積よろけ発生ラインがX%へ広がる。受けたよろけ値の圧縮（stagger）とは
+    // 別軸の耐性のため独立カテゴリで扱い、実質耐性 = 閾値 ÷ 圧縮率 で合成する。
+    const staggerThRe = /蓄積よろけまでの値が\s*(\d+)\s*%\s*になる/g;
+    while ((m = staggerThRe.exec(text)) !== null) {
+      const ctx = text.substring(Math.max(0, m.index - CTX), m.index);
+      results.push({ category: 'stagger_threshold', value: parseInt(m[1]), condition: this._parseCondition(ctx) });
+    }
+
     // ダメージカット (複数マッチ対応)
     const dcRe = /被ダメージ\s*[－\-ー]\s*(\d+)%|受けるダメージを(\d+)%軽減|機体HPへのダメージを(\d+)%軽減|ダメージを(\d+)%軽減/g;
     while ((m = dcRe.exec(text)) !== null) {
