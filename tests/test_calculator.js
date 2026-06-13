@@ -281,6 +281,15 @@ assert('貪欲の罠(HP1+Bal=28800)を超える有効HPに到達', trapEHP > 288
 assert('2属性の装甲を立てた最適解(effHP=30000)を選ぶ', Math.round(trapEHP), 30000);
 assert('装甲を優先し HP系で早期確定しない', trapRes.some(p => p.name === 'HP1'), false);
 
+// 決定性: 候補の並びを変えても同一構成を返す（custom_parts.json は CI で再生成されるため、
+// 同スコア解の選択がデータ順で揺れないことを保証する）。
+const sigOf = (parts) => parts.map(p => `${p.name}#${p.level || 0}`).sort().join('|');
+const trapShuffled = [trapParts[2], trapParts[0], trapParts[3], trapParts[1]];
+const trapResShuf = GBO2Calculator.optimizeFocused(trapBase, { close: 4, mid: 0, long: 0 }, trapShuffled, {
+  ...focusConfig, mode: 'defense', damageRatio: trapDR,
+});
+assert('候補の並び替えに対して決定的（同一構成を返す）', sigOf(trapResShuf), sigOf(trapRes));
+
 section('optimize: 同名+同LVは重複不可 / LV違いは追加可');
 const optBase = { ...focusBase };
 const aLv1 = { name: 'A', level: 1, slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'shooting_correction', value: 15 }] };

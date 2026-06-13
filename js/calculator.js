@@ -952,15 +952,19 @@ const GBO2Calculator = {
       if (this.conflictsWithAny(cand, sel)) return false;
       return true;
     };
-    const keyOf = (sel) => sel.map(p => p.name + '#' + (p.level || 0)).sort().join('|');
+    const partKey = (p) => p.name + '#' + (p.level || 0);
+    const keyOf = (sel) => sel.map(partKey).sort().join('|');
+    // 候補を内容(name#level)で正規化し、入力配列の並びに依存しない決定的な探索にする。
+    // custom_parts.json は CI で再生成されるため、同スコア解の選択がデータ順で揺れないようにする。
+    const cands = [...candidateParts].sort((a, b) => partKey(a).localeCompare(partKey(b)));
 
     // --- ビームサーチ：各深さで上位 BEAM_WIDTH の部分解を保持して1枚ずつ前進 ---
-    let frontier = [{ sel: [], used: { ...fixedSlots }, val: score([]) }];
+    let frontier = [{ sel: [], used: { ...fixedSlots }, val: score([]), key: '' }];
     let best = frontier[0];
     for (let depth = 0; depth < slotRoom; depth++) {
       const nextMap = new Map();
       for (const state of frontier) {
-        for (const cand of candidateParts) {
+        for (const cand of cands) {
           if (!canAdd(cand, state.used, state.sel)) continue;
           const sel = [...state.sel, cand];
           const k = keyOf(sel);
@@ -970,11 +974,12 @@ const GBO2Calculator = {
             mid:   state.used.mid   + (cand.slots.mid   || 0),
             long:  state.used.long  + (cand.slots.long  || 0),
           };
-          nextMap.set(k, { sel, used, val: score(sel) });
+          nextMap.set(k, { sel, used, val: score(sel), key: k });
         }
       }
       if (nextMap.size === 0) break;
-      const ranked = [...nextMap.values()].sort((a, b) => b.val - a.val);
+      // val 降順、同値は集合キーで決定的に並べる（打ち切り境界の再現性を保証）
+      const ranked = [...nextMap.values()].sort((a, b) => (b.val - a.val) || a.key.localeCompare(b.key));
       for (const st of ranked) if (st.val > best.val) best = st; // 枚数が少ない解も最良になりうる
       frontier = ranked.slice(0, BEAM_WIDTH);
     }
@@ -986,7 +991,7 @@ const GBO2Calculator = {
     while (improved && guard++ < 200) {
       improved = false;
       const used = slotsOf(sel);
-      for (const cand of candidateParts) { // 追加
+      for (const cand of cands) { // 追加
         if (!canAdd(cand, used, sel)) continue;
         const v = score([...sel, cand]);
         if (v > val + 1e-9) { sel = [...sel, cand]; val = v; improved = true; break; }
@@ -1001,7 +1006,7 @@ const GBO2Calculator = {
       for (let i = 0; i < sel.length && !improved; i++) { // 1スワップ
         const rest = sel.filter((_, j) => j !== i);
         const restUsed = slotsOf(rest);
-        for (const cand of candidateParts) {
+        for (const cand of cands) {
           if (!canAdd(cand, restUsed, rest)) continue;
           const v = score([...rest, cand]);
           if (v > val + 1e-9) { sel = [...rest, cand]; val = v; improved = true; break; }
