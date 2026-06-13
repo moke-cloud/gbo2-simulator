@@ -1,5 +1,5 @@
 {
-  "version": "h2384a93c92c0",
+  "version": "h8c7333e63c33",
   "totalMS": 576,
   "msList": [
     {
@@ -59980,7 +59980,15 @@
           "boost_speed": 225,
           "thruster": 75,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 81.0
+          "turn_speed_space": 81.0,
+          "transformed": {
+            "shooting_correction": 10,
+            "melee_correction": 60,
+            "speed": 140,
+            "boost_speed": 235,
+            "turn_speed_ground": 87.0,
+            "turn_speed_space": 96.0
+          }
         },
         "2": {
           "cost": 750,
@@ -59994,7 +60002,15 @@
           "boost_speed": 225,
           "thruster": 75,
           "turn_speed_ground": 72.0,
-          "turn_speed_space": 81.0
+          "turn_speed_space": 81.0,
+          "transformed": {
+            "shooting_correction": 12,
+            "melee_correction": 65,
+            "speed": 140,
+            "boost_speed": 235,
+            "turn_speed_ground": 87.0,
+            "turn_speed_space": 96.0
+          }
         }
       },
       "slots": {
@@ -60146,7 +60162,15 @@
           "boost_speed": 230,
           "thruster": 75,
           "turn_speed_ground": 75.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "shooting_correction": 10,
+            "melee_correction": 60,
+            "speed": 140,
+            "boost_speed": 240,
+            "turn_speed_ground": 87.0,
+            "turn_speed_space": 96.0
+          }
         },
         "2": {
           "cost": 750,
@@ -60160,7 +60184,15 @@
           "boost_speed": 230,
           "thruster": 80,
           "turn_speed_ground": 75.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "shooting_correction": 12,
+            "melee_correction": 65,
+            "speed": 140,
+            "boost_speed": 240,
+            "turn_speed_ground": 87.0,
+            "turn_speed_space": 96.0
+          }
         }
       },
       "slots": {
@@ -64588,7 +64620,15 @@
           "boost_speed": 220,
           "thruster": 75,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "shooting_correction": 55,
+            "melee_correction": 15,
+            "speed": 140,
+            "boost_speed": 230,
+            "turn_speed_ground": 84.0,
+            "turn_speed_space": 93.0
+          }
         },
         "2": {
           "cost": 750,
@@ -64602,7 +64642,15 @@
           "boost_speed": 220,
           "thruster": 75,
           "turn_speed_ground": 69.0,
-          "turn_speed_space": 78.0
+          "turn_speed_space": 78.0,
+          "transformed": {
+            "shooting_correction": 60,
+            "melee_correction": 17,
+            "speed": 145,
+            "boost_speed": 230,
+            "turn_speed_ground": 84.0,
+            "turn_speed_space": 93.0
+          }
         }
       },
       "slots": {
@@ -75798,7 +75846,15 @@
           "boost_speed": 220,
           "thruster": 75,
           "turn_speed_ground": 78.0,
-          "turn_speed_space": 87.0
+          "turn_speed_space": 87.0,
+          "transformed": {
+            "shooting_correction": 25,
+            "melee_correction": 45,
+            "speed": 135,
+            "boost_speed": 230,
+            "turn_speed_ground": 87.0,
+            "turn_speed_space": 96.0
+          }
         }
       },
       "slots": {

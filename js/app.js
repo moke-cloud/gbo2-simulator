@@ -10,6 +10,7 @@ const App = {
   // 状態
   selectedMS: null,
   selectedLevel: 1,
+  transformed: false, // 変身(NT-D等)トグル: ON で ＜変身時＞ステータスを使う
   equippedParts: [null, null, null, null, null, null, null, null],
   savedBuilds: [], // 保存済み構成リスト
   msWeapons: {},   // 機体名 → 武装配列（data/ms_weapons.json・ダメージシミュレーション用）
@@ -168,6 +169,11 @@ const App = {
     });
     document.getElementById('ms-enhance-level').addEventListener('change', (e) => {
       this.enhanceLevel = parseInt(e.target.value);
+      this.updateDisplay();
+    });
+    // 変身(NT-D等)トグル
+    document.getElementById('transform-toggle').addEventListener('change', (e) => {
+      this.transformed = e.target.checked;
       this.updateDisplay();
     });
 
@@ -737,6 +743,7 @@ const App = {
   // === 表示更新 ===
   updateDisplay() {
     this.updateMSCard();
+    this._updateTransformToggle();
     // スキルパネルを先に評価して activeSkillIndices（既定ON）を確定させてから
     // 各ステータス計算へスキルの一律上昇を反映する。
     this.updateSkillPanel();
@@ -842,11 +849,29 @@ const App = {
     document.getElementById('ms-card-env').textContent = env.join(' / ') || 'なし';
   },
 
+  // 変身(NT-D等)トグルの表示制御。選択中の機体LVが ＜変身時＞ ステータスを持つ場合のみ表示し、
+  // 持たない機体/LVへ移ったら強制的に通常時へ戻す（transformed フラグが居残らないように）。
+  _updateTransformToggle() {
+    const row = document.getElementById('transform-toggle-row');
+    const box = document.getElementById('transform-toggle');
+    if (!row || !box) return;
+    const lv = this.selectedMS?.levels?.[String(this.selectedLevel)];
+    const canTransform = !!(lv && lv.transformed);
+    if (!canTransform && this.transformed) this.transformed = false;
+    row.classList.toggle('hidden', !canTransform);
+    box.checked = this.transformed;
+  },
+
   getBaseStats() {
     if (!this.selectedMS) return null;
     const lv = this.selectedMS.levels?.[String(this.selectedLevel)];
     if (!lv) return null;
     const stats = { ...lv };
+    // 変身(NT-D等)トグルON時、＜変身時＞ステータスでベースを上書きする（射撃偏重化等を再現）。
+    if (this.transformed && lv.transformed) {
+      Object.assign(stats, lv.transformed);
+    }
+    delete stats.transformed; // 計算には不要なネストを除去
     return GBO2Calculator.applyEnhancements(stats, this.selectedMS.enhancements || [], this.enhanceLevel, this.selectedLevel);
   },
 

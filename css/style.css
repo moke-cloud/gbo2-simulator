@@ -311,6 +311,17 @@ select { cursor: pointer; appearance: none;
 .stat-check-item:hover { border-color: var(--line-strong); color: var(--text); }
 .stat-check-item input { width: auto; accent-color: var(--teal); }
 
+/* 変身(NT-D)トグル */
+.transform-toggle {
+  display: flex; align-items: center; gap: 7px;
+  margin-bottom: var(--gap-md); padding: 7px 10px;
+  font-size: .78rem; font-weight: 700; color: var(--warn); cursor: pointer;
+  background: var(--bg-deep); border: 1px solid var(--warn); border-left-width: 3px;
+  transition: var(--tr-fast);
+}
+.transform-toggle:hover { background: color-mix(in srgb, var(--warn) 8%, var(--bg-deep)); }
+.transform-toggle input { width: auto; accent-color: var(--warn); cursor: pointer; }
+
 /* ===== BUTTONS ===== */
 .btn-primary, .btn-secondary {
   display: flex; align-items: center; justify-content: center; gap: 7px;
