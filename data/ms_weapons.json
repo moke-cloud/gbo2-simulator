@@ -1,5 +1,5 @@
 {
- "version": "h6e3753054c4b",
+ "version": "h2f04da248876",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -31710,10 +31710,10 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1600,
-     "2": 1680,
-     "3": 1760,
-     "4": 1840
+     "1": 1800,
+     "2": 2000,
+     "3": 2200,
+     "4": 2400
     },
     "hits": 1,
     "notes": "射撃時静止/曲射/よろけ有/よろけ値：70%/局部補正：1.0倍/シールド補正：0.5倍",
@@ -31729,16 +31729,16 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1350,
-     "2": 1410,
-     "3": 1470,
-     "4": 1530
+     "1": 1500,
+     "2": 1700,
+     "3": 1900,
+     "4": 2100
     },
     "hits": 1,
-    "notes": "射撃時静止/曲射/ひるみ有/よろけ値：0%/局部補正：?倍/シールド補正：?倍",
+    "notes": "射撃時静止/曲射/ひるみ有/よろけ値：50%/局部補正：?倍/シールド補正：?倍",
     "magazine": 6,
     "rangeM": 450,
-    "staggerValue": 0,
+    "staggerValue": 50,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -31748,10 +31748,10 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 2400,
-     "2": 2715,
-     "3": 2830,
-     "4": 2945
+     "1": 2600,
+     "2": 2800,
+     "3": 3000,
+     "4": 3200
     },
     "hits": 1,
     "notes": "射撃時静止/爆風なし/大よろけ有/局部補正：?倍/シールド補正：?倍",
@@ -33940,10 +33940,10 @@
      "2": 110
     },
     "hits": 1,
-    "notes": "二発同時発射/移動射撃可/ひるみ有/よろけ値：17% x2",
+    "notes": "二発同時発射/移動射撃可/ひるみ有/よろけ値：20% x2",
     "magazine": 20,
     "rangeM": 400,
-    "staggerValue": 17,
+    "staggerValue": 20,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -33953,8 +33953,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 350,
-     "2": 380
+     "1": 400,
+     "2": 450
     },
     "hits": 1,
     "notes": "移動射撃可/ひるみ有/よろけ値：1%",
@@ -33970,8 +33970,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 800,
-     "2": 880
+     "1": 950,
+     "2": 1100
     },
     "hits": 1,
     "notes": "二発同時発射/射撃時静止/よろけ有/よろけ値：10% x2",
@@ -33991,7 +33991,7 @@
      "2": 275
     },
     "hits": 1,
-    "notes": "射撃時静止/ひるみ有/命中対象に炎上デバフ付与/1500固定ダメージ(300x5HIT)/よろけ値：5%",
+    "notes": "射撃時静止/ひるみ有/命中対象に炎上デバフ付与/2400固定ダメージ(300x8HIT)/よろけ値：5%",
     "magazine": 12,
     "rangeM": 400,
     "staggerValue": 5,
@@ -34008,10 +34008,10 @@
      "2": 400
     },
     "hits": 8,
-    "notes": "移動射撃可/着弾点に4秒間持続ダメージ範囲発生/最大8HIT/命中後10秒間、レーダー妨害効果付与/ひるみ有/よろけ値：17% x8",
+    "notes": "移動射撃可/着弾点に4秒間持続ダメージ範囲発生/最大8HIT/命中後10秒間、レーダー妨害効果付与/ひるみ有/よろけ値：25% x8",
     "magazine": 5,
     "rangeM": 400,
-    "staggerValue": 17,
+    "staggerValue": 25,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -60124,6 +60124,7 @@
     },
     "hits": 1,
     "notes": "＜通常時＞使用可/スキル「/空中格闘制御/」対応",
+    "form": "normal",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -60147,8 +60148,7 @@
      "n": 1.0,
      "side": 0.75,
      "down": 2.6
-    },
-    "form": "normal"
+    }
    },
    {
     "name": "ΖG3号機P2型用頭部バルカン砲",
@@ -60156,17 +60156,17 @@
     "attribute": "ballistic",
     "power": {
      "1": 125,
-     "2": 130
+     "2": 180
     },
     "hits": 1,
     "notes": "＜通常時＞使用可/移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
     "magazine": 60,
     "rangeM": 200,
+    "form": "normal",
     "staggerValue": 7,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "ΖG3号機P2型用腕部G・L",
@@ -60177,14 +60177,14 @@
      "2": 600
     },
     "hits": 6,
-    "notes": "＜通常時＞使用可/6発連続発射/移動射撃可/よろけ有/よろけ値：20% x6",
+    "notes": "＜通常時＞使用可/6発連続発射/移動射撃可/よろけ有/よろけ値：25% x6",
     "magazine": 6,
     "rangeM": 250,
-    "staggerValue": 20,
+    "form": "normal",
+    "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "ΖG3号機P2型用B・Sx2",
@@ -60196,6 +60196,7 @@
     },
     "hits": 1,
     "notes": "＜通常時＞使用可/スキル「/空中格闘制御/」対応",
+    "form": "normal",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -60219,25 +60220,24 @@
      "n": 1.0,
      "side": 0.9,
      "down": 1.4
-    },
-    "form": "normal"
+    }
    },
    {
     "name": "ΖG3号機P2型用B・P（変形）",
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1800,
-     "2": 2000
+     "1": 2100,
+     "2": 2400
     },
     "hits": 1,
     "notes": "＜変形時＞使用可/Eパック式弾数所持/移動射撃可/ブースト射撃可/よろけ有/よろけ値：10%",
     "rangeM": 300,
+    "form": "alt",
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    },
    {
     "name": "ΖG3号機P2型用B・ガンx2",
@@ -60250,11 +60250,11 @@
     "hits": 6,
     "notes": "＜変形時＞使用可/6発連続発射/ブースト射撃可/ASL（自動照準補正）有/よろけ値：25% x6",
     "rangeM": 350,
+    "form": "alt",
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    }
   ],
   "ナラティブガンダム": [
@@ -66005,7 +66005,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1700
+     "1": 1700,
+     "2": 1850
     },
     "hits": 2,
     "notes": "移動射撃可/即撃ちよろけ有/集束可/集束時2発連続発射/集束時間：2秒/倍率：0.765倍/よろけ値：10%（50% x2）",
@@ -66018,7 +66019,8 @@
       "key": "normal",
       "label": "非集束",
       "power": {
-       "1": 1700
+       "1": 1700,
+       "2": 1850
       }
      },
      {
@@ -66035,7 +66037,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 1800
+     "1": 1800,
+     "2": 1950
     },
     "hits": 1,
     "notes": "",
@@ -66065,7 +66068,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 90
+     "1": 90,
+     "2": 100
     },
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/よろけ値：6%（17HIT）",
@@ -66081,7 +66085,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2000
+     "1": 2000,
+     "2": 2200
     },
     "hits": 1,
     "notes": "格闘方向に関わらず強制ダウン",
@@ -66111,7 +66116,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 3500
+     "1": 3500,
+     "2": 3750
     },
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/ひるみ有/よろけ値：50%",
