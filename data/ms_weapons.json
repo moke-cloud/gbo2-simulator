@@ -1,5 +1,5 @@
 {
- "version": "h427c7569a6b2",
+ "version": "h12b7e4a98543",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -75801,6 +75801,139 @@
     "rangeM": 500,
     "staggerValue": 20,
     "chargeable": true,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "FAエンゲージガンダム［Cプラン］": [
+   {
+    "name": "FEGCP用ビーム・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2100
+    },
+    "hits": 1,
+    "notes": "移動射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：2秒/倍率：1.524倍/よろけ値：20%（80%）",
+    "rangeM": 300,
+    "staggerValue": 20,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 2100
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 3200
+      }
+     }
+    ]
+   },
+   {
+    "name": "FEGCP用高出力B・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2700
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.4
+    }
+   },
+   {
+    "name": "FEGCP用頭部バルカン",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 110
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
+    "magazine": 50,
+    "rangeM": 200,
+    "staggerValue": 7,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "FEGCP用高出力B・Sx2",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2900
+    },
+    "hits": 1,
+    "notes": "スキル「ヘビーアタック」対応/集束：1.5秒",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "heavyAttack": {
+      "mul": 9.0,
+      "perHitMul": 3.0,
+      "hits": 2
+     }
+    },
+    "modes": null
+   },
+   {
+    "name": "胸部M・ポッドx2［連続爆発］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 450
+    },
+    "hits": 2,
+    "notes": "2発連続発射/移動射撃可/空中射撃可/着弾点に1.6秒間持続ダメージ範囲発生(最大8HIT x2)/よろけ値：15% x8回 x2射",
+    "magazine": 8,
+    "rangeM": 275,
+    "staggerValue": 15,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "FEGCP用B・ライフル［照射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1600
+    },
+    "hits": 4,
+    "notes": "射撃時静止/空中射撃可/集束必須/集束中移動可/照射攻撃/最大4ヒット/ユニット貫通効果有/集束時間：1秒/よろけ値：65% x4",
+    "rangeM": 350,
+    "staggerValue": 65,
+    "chargeable": true,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "FEGCP用B・シールドx2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 0
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/「リロード」ボタンで任意解除可/展開部に当たった射撃属性のリアクション＆よろけ値を無効化/展開部に当たったシールドHP無視を無効化/1500以上のダメージを受けた時、弾数1発消費/タックル・格闘攻撃を受けたとき、弾数全弾消費/展開中タックル威力＋500%/展開中かつ残弾2以上のときタッチパッドを押すことで残弾1消費しつつガード体勢をとる/ガード体勢はスキル「/アクティブガード/」LV3と似た効果/ガード体勢中は格闘攻撃を弾く/ガード体勢中は被ダメージ60%軽減/よろけ値：0%",
+    "rangeM": 0,
+    "staggerValue": 0,
+    "chargeable": false,
     "special": {},
     "modes": null
    }
