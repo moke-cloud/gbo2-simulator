@@ -321,6 +321,10 @@ select { cursor: pointer; appearance: none;
 }
 .transform-toggle:hover { background: color-mix(in srgb, var(--warn) 8%, var(--bg-deep)); }
 .transform-toggle input { width: auto; accent-color: var(--warn); cursor: pointer; }
+/* 時限カスパ（4分経過）トグルは変身トグルと区別するため teal アクセント */
+.time4min-toggle { color: var(--teal); border-color: var(--teal); }
+.time4min-toggle:hover { background: color-mix(in srgb, var(--teal) 8%, var(--bg-deep)); }
+.time4min-toggle input { accent-color: var(--teal); }
 
 /* ===== BUTTONS ===== */
 .btn-primary, .btn-secondary {

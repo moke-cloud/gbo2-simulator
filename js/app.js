@@ -16,6 +16,8 @@ const App = {
   msWeapons: {},   // 機体名 → 武装配列（data/ms_weapons.json・ダメージシミュレーション用）
   // ダメージシミュレーションUI状態
   dsim: { weaponIdx: 0, modeKey: null, triad: 'auto', activeConditions: new Set(), needsToggleInit: true, time4min: false },
+  // メインパネル用「戦闘4分経過後」状態（教育型コンピューター系の時限カスパ効果を有効化）
+  time4min: false,
   MAX_SAVED_BUILDS: 50, // 構成保存の上限件数
   comparisonBaselineId: null, // 「基準」としてピン留めした保存構成のID（常時比較用）
 
@@ -174,6 +176,11 @@ const App = {
     // 変身(NT-D等)トグル
     document.getElementById('transform-toggle').addEventListener('change', (e) => {
       this.transformed = e.target.checked;
+      this.updateDisplay();
+    });
+    // 戦闘4分経過後トグル（教育型コンピューター系の時限効果をメイン表示へ反映）
+    document.getElementById('time4min-toggle').addEventListener('change', (e) => {
+      this.time4min = e.target.checked;
       this.updateDisplay();
     });
 
@@ -499,7 +506,7 @@ const App = {
     if (!base) { section.classList.add('hidden'); return; }
     section.classList.remove('hidden');
 
-    const mod = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses());
+    const mod = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses(), this._timeOpts());
     const normDmg = this.getNormalizedDamageRatio();
     const normAtk = this.getNormalizedAtkRatio();
 
@@ -744,6 +751,7 @@ const App = {
   updateDisplay() {
     this.updateMSCard();
     this._updateTransformToggle();
+    this._updateTime4minToggle();
     // スキルパネルを先に評価して activeSkillIndices（既定ON）を確定させてから
     // 各ステータス計算へスキルの一律上昇を反映する。
     this.updateSkillPanel();
@@ -775,7 +783,7 @@ const App = {
 
     const base = this.getBaseStats();
     if (!base) return;
-    const mod = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses());
+    const mod = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses(), this._timeOpts());
     const hasParts = this.equippedParts.some(Boolean);
 
     const set = (id, val, changed) => {
@@ -863,6 +871,23 @@ const App = {
     row.classList.toggle('hidden', !canTransform);
     box.checked = this.transformed;
     if (canTransform && labelEl) labelEl.textContent = `${label}状態で計算`;
+  },
+
+  // 時限カスパ効果(cond:'time4min')を applyParts に渡すための opts。OFF時は空＝常時効果のみ。
+  _timeOpts() {
+    return this.time4min ? { includeConds: ['time4min'] } : {};
+  },
+
+  // 「戦闘4分経過後」トグルの表示制御。時限効果を持つカスパを装備中のみ表示する。
+  _updateTime4minToggle() {
+    const row = document.getElementById('time4min-toggle-row');
+    const box = document.getElementById('time4min-toggle');
+    if (!row || !box) return;
+    const hasTimed = this.equippedParts.some(
+      p => p && (p.effects || []).some(e => e.cond === 'time4min'));
+    if (!hasTimed && this.time4min) this.time4min = false; // 非対応構成へ移ったら自動OFF
+    row.classList.toggle('hidden', !hasTimed);
+    box.checked = this.time4min;
   },
 
   // 現在の形態(通常/変身)で使用できる武装だけに絞る。form 無し(共通)は常に含める。
@@ -1037,7 +1062,7 @@ const App = {
       return;
     }
 
-    const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses());
+    const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses(), this._timeOpts());
     const hasParts = this.equippedParts.some(Boolean);
     const overflow = modified._overflow || {};
     const caps = modified._caps || {};
@@ -1175,7 +1200,7 @@ const App = {
     const normDmgRatio = this.getNormalizedDamageRatio();
     const normAtkRatio = this.getNormalizedAtkRatio();
 
-    const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses());
+    const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(), this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses(), this._timeOpts());
 
     // 射撃・格闘倍率
     const shootMul = GBO2Calculator.calcShootingMultiplier(modified.shooting_correction || 0) * (1 + (modified.shootingDmgPct || 0) / 100);
@@ -1261,7 +1286,7 @@ const App = {
     if (thEffects.length > 0) {
       const partsOnly = GBO2Calculator.applyParts(
         base, this.equippedParts.filter(Boolean), this.getSelectedExpansionSkills(),
-        this.selectedLevel, this.enhanceLevel
+        this.selectedLevel, this.enhanceLevel, {}, this._timeOpts()
       );
       const thEHP = GBO2Calculator.calcThresholdedEffectiveHP(
         partsOnly.hp || 0,
@@ -2068,7 +2093,7 @@ const App = {
       const base = this.getBaseStats();
       if (!base) return null;
       const expSkills = this.getSelectedExpansionSkills();
-      const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), expSkills, this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses());
+      const modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean), expSkills, this.selectedLevel, this.enhanceLevel, this.getActiveSkillStatBonuses(), this._timeOpts());
       return this._computeCalcResult(modified, this.selectedMS.name, this.selectedLevel);
     }
     const ms = this.msData.find(m => m.name === buildData.msName);
