@@ -1,5 +1,5 @@
 {
- "version": "h9b1f357b8259",
+ "version": "h1c0b23e42be8",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -6857,7 +6857,7 @@
      "4": 145
     },
     "hits": 1,
-    "notes": "移動射撃可/ブースト射撃可/よろけ値：6%",
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：6%（17HIT）",
     "magazine": 40,
     "rangeM": 200,
     "staggerValue": 6,

@@ -1,5 +1,5 @@
 {
-  "version": "h466f7c6892ea",
+  "version": "hb77b0abd94f6",
   "totalParts": 157,
   "parts": [
     {
@@ -460,16 +460,16 @@
       "description": "射撃補正が2増加し、ASL（自動照準補正）領域を5拡張。ビーム射撃兵装の集束時間を5%短縮し、更に敵へ与えるダメージを5%増加させる。なおASL（自動照準補正）領域を拡張、またはビーム射撃兵装の集束時間を短縮するパーツとの同時装備は不可。",
       "effects": [
         {
-          "type": "shooting_correction",
-          "value": 2
-        },
-        {
           "type": "shooting_damage_pct",
           "value": 5
         },
         {
           "type": "melee_damage_pct",
           "value": 5
+        },
+        {
+          "type": "shooting_correction",
+          "value": 2
         }
       ],
       "dpCost": 0,
@@ -3275,15 +3275,15 @@
       "description": "射撃補正が5増加。射撃属性から受けるダメージを5%軽減。",
       "effects": [
         {
-          "type": "shooting_correction",
-          "value": 5
-        },
-        {
           "type": "ballistic_damage_cut_pct",
           "value": 5
         },
         {
           "type": "beam_damage_cut_pct",
+          "value": 5
+        },
+        {
+          "type": "shooting_correction",
           "value": 5
         }
       ],
@@ -3303,12 +3303,12 @@
       "description": "格闘補正が5増加。格闘属性から受けるダメージを10%軽減。",
       "effects": [
         {
-          "type": "melee_correction",
-          "value": 5
-        },
-        {
           "type": "melee_damage_cut_pct",
           "value": 10
+        },
+        {
+          "type": "melee_correction",
+          "value": 5
         }
       ],
       "dpCost": 0,
