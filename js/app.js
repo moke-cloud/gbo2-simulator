@@ -15,7 +15,7 @@ const App = {
   savedBuilds: [], // 保存済み構成リスト
   msWeapons: {},   // 機体名 → 武装配列（data/ms_weapons.json・ダメージシミュレーション用）
   // ダメージシミュレーションUI状態
-  dsim: { weaponIdx: 0, modeKey: null, triad: 'auto', activeConditions: new Set(), needsToggleInit: true },
+  dsim: { weaponIdx: 0, modeKey: null, triad: 'auto', activeConditions: new Set(), needsToggleInit: true, time4min: false },
   MAX_SAVED_BUILDS: 50, // 構成保存の上限件数
   comparisonBaselineId: null, // 「基準」としてピン留めした保存構成のID（常時比較用）
 
@@ -2105,6 +2105,9 @@ const App = {
     let ms, msLevel, enhanceLevel, modified, activeIdx, buildName;
     // 変身/変形は現在構成のトグル状態のみ反映（保存構成は通常時で扱う）。
     const transformed = buildData === 'current' && this.transformed;
+    // ダメージシムの「戦闘4分経過後」トグル ON のとき、時限カスパ効果(cond:'time4min')を有効化。
+    // 常時ステータス表示には影響させず、シミュレーションのプロファイルにのみ適用する。
+    const partsOpts = (this.dsim && this.dsim.time4min) ? { includeConds: ['time4min'] } : {};
     if (buildData === 'current') {
       if (!this.selectedMS) return null;
       const base = this.getBaseStats();
@@ -2115,7 +2118,7 @@ const App = {
       activeIdx = this.activeSkillIndices;
       buildName = '現在の構成';
       modified = GBO2Calculator.applyParts(base, this.equippedParts.filter(Boolean),
-        this.getSelectedExpansionSkills(), msLevel, enhanceLevel, this.getActiveSkillStatBonuses());
+        this.getSelectedExpansionSkills(), msLevel, enhanceLevel, this.getActiveSkillStatBonuses(), partsOpts);
     } else {
       ms = this.msData.find(m => m.name === buildData.msName);
       if (!ms) return null;
@@ -2135,7 +2138,7 @@ const App = {
         .filter(Boolean);
       const items = this._buildSkillEffectItems(ms, msLevel, enhanceLevel, transformed);
       const bonuses = this._aggregateSkillStatBonuses(items, activeIdx);
-      modified = GBO2Calculator.applyParts(base, parts, expSkills, msLevel, enhanceLevel, bonuses);
+      modified = GBO2Calculator.applyParts(base, parts, expSkills, msLevel, enhanceLevel, bonuses, partsOpts);
     }
 
     // 条件付きスキル → ダメージ計算トグル。firepower=攻撃側 / damage_cut=防御側。
@@ -2172,7 +2175,10 @@ const App = {
         shooting: modified.shooting_correction || 0,
         melee: modified.melee_correction || 0,
       },
-      dmgPct: { shooting: modified.shootingDmgPct || 0, melee: modified.meleeDmgPct || 0 },
+      dmgPct: {
+        shooting: modified.shootingDmgPct || 0, melee: modified.meleeDmgPct || 0,
+        ballistic: modified.ballisticDmgPct || 0, beam: modified.beamDmgPct || 0,
+      },
       cutPct: {
         ballistic: modified.ballisticDamageCutPct || 0,
         beam: modified.beamDamageCutPct || 0,
@@ -2209,6 +2215,11 @@ const App = {
       this.dsim.triad = e.target.value;
       this.renderDamageSim();
     });
+    const t4 = document.getElementById('dsim-time4min');
+    if (t4) t4.addEventListener('change', (e) => {
+      this.dsim.time4min = e.target.checked;
+      this.renderDamageSim();
+    });
   },
 
   onDsimBuildChange() {
@@ -2241,6 +2252,9 @@ const App = {
     const body = document.getElementById('dsim-body');
     const empty = document.getElementById('dsim-empty');
     if (!section || section.classList.contains('hidden')) return;
+
+    const t4 = document.getElementById('dsim-time4min');
+    if (t4) t4.checked = !!this.dsim.time4min;
 
     const atkVal = document.getElementById('dsim-build-atk').value;
     const defVal = document.getElementById('dsim-build-def').value;
@@ -2353,11 +2367,13 @@ const App = {
            <div class="dsim-dmg"><span class="dsim-dmg-label">よろけ値</span><span class="dsim-dmg-val">${weapon.staggerValue != null ? weapon.staggerValue + '%' : '—'}</span></div>
          </div>`;
 
+    const arLabel = { ballistic: '耐実弾', beam: '耐ビーム', melee: '耐格闘' };
+    const ar = r.armorReduction;
     const mulParts = [
       `${fmt(b.basePower)}`,
       `×${b.atkCorrMul.toFixed(2)} 攻撃補正`,
       b.atkSkillMul !== 1 ? `×${b.atkSkillMul.toFixed(2)} 与ダメスキル` : '',
-      `×${b.defCutMul.toFixed(2)} 防御補正`,
+      `×${b.defCutMul.toFixed(2)} 防御補正${ar ? `（${arLabel[ar.attr] || ar.attr}${ar.before}→${ar.after}・${ar.pct}%減）` : ''}`,
       b.defSkillMul !== 1 ? `×${b.defSkillMul.toFixed(2)} 防御スキル` : '',
       b.directionMul !== 1 ? `×${b.directionMul.toFixed(2)} 方向` : '',
       b.triadMul !== 1 ? `×${b.triadMul.toFixed(2)} 三すくみ` : '',

@@ -402,7 +402,13 @@ const GBO2Calculator = {
    *        上昇のフラット加算（キー→値）。火力に限らず補正・装甲・移動を加算し、各上限へクランプ。
    * @returns {object} 修正後のステータス
    */
-  applyParts(baseStats, parts, expansionSkillsList = [], msLevel = 1, enhanceLevel = 0, skillStatBonuses = {}) {
+  applyParts(baseStats, parts, expansionSkillsList = [], msLevel = 1, enhanceLevel = 0, skillStatBonuses = {}, opts = {}) {
+    // 条件付き(時限など)効果のゲート。既定では cond 付き効果は適用しない（＝常時効果のみ）。
+    // opts.includeConds に含まれる cond（例 'time4min'）の効果のみ追加で有効化する。
+    const includeConds = opts.includeConds instanceof Set
+      ? opts.includeConds : new Set(opts.includeConds || []);
+    const _effActive = (effect) => !effect.cond || includeConds.has(effect.cond);
+
     // 拡張スキルの直接効果を適用し上限値ボーナスを取得
     const { stats: expanded, capBonus } = this.applyExpansionSkillsDirect(baseStats, expansionSkillsList);
 
@@ -411,6 +417,7 @@ const GBO2Calculator = {
     for (const part of parts) {
       if (!part || !part.effects) continue;
       for (const effect of part.effects) {
+        if (!_effActive(effect)) continue;
         const capKey = CAP_MAP[effect.type];
         if (capKey) capBonus[capKey] += this.resolveEffectValue(effect, msLevel, enhanceLevel);
       }
@@ -419,6 +426,8 @@ const GBO2Calculator = {
     const modified = { ...expanded };
     let shootingDmgPct = 0;
     let meleeDmgPct = 0;
+    let ballisticDmgPct = 0;   // 実弾属性限定の与ダメ%（射撃の中でも実弾兵装のみ）
+    let beamDmgPct = 0;        // ビーム属性限定の与ダメ%
     let ballisticDamageCutPct = 0;
     let beamDamageCutPct = 0;
     let meleeDamageCutPct = 0;
@@ -458,6 +467,7 @@ const GBO2Calculator = {
     for (const part of parts) {
       if (!part || !part.effects) continue;
       for (const effect of part.effects) {
+        if (!_effActive(effect)) continue;
         const effectVal = this.resolveEffectValue(effect, msLevel, enhanceLevel);
         switch (effect.type) {
           case 'hp':
@@ -499,6 +509,12 @@ const GBO2Calculator = {
             break;
           case 'melee_damage_pct':
             meleeDmgPct += effectVal;
+            break;
+          case 'ballistic_damage_pct':
+            ballisticDmgPct += effectVal;
+            break;
+          case 'beam_damage_pct':
+            beamDmgPct += effectVal;
             break;
           case 'ballistic_damage_cut_pct':
             ballisticDamageCutPct += effectVal;
@@ -598,6 +614,8 @@ const GBO2Calculator = {
 
     modified.shootingDmgPct = shootingDmgPct;
     modified.meleeDmgPct = meleeDmgPct;
+    modified.ballisticDmgPct = ballisticDmgPct;
+    modified.beamDmgPct = beamDmgPct;
     modified.ballisticDamageCutPct = ballisticDamageCutPct;
     modified.beamDamageCutPct = beamDamageCutPct;
     modified.meleeDamageCutPct = meleeDamageCutPct;
@@ -1528,9 +1546,17 @@ const GBO2Calculator = {
     const corr = isMelee ? (attacker.correction.melee || 0) : (attacker.correction.shooting || 0);
     const atkCorrMul = this._truncMul((100 + corr) / 100);
 
-    // その他攻撃補正: パーツ常時与ダメ% + ON の firepower スキル（各々独立乗算）
+    // その他攻撃補正: パーツ常時与ダメ% + ON の firepower スキル（各々独立乗算）。
+    // 与ダメ%は同カテゴリ加算（射撃全般 + 属性限定[実弾/ビーム]）→ まとめて1係数に。
     const atkFactors = [];
-    const partsDmgPct = isMelee ? (attacker.dmgPct?.melee || 0) : (attacker.dmgPct?.shooting || 0);
+    let partsDmgPct;
+    if (isMelee) {
+      partsDmgPct = attacker.dmgPct?.melee || 0;
+    } else {
+      partsDmgPct = attacker.dmgPct?.shooting || 0;
+      if (weapon.attribute === 'ballistic') partsDmgPct += attacker.dmgPct?.ballistic || 0;
+      else if (weapon.attribute === 'beam') partsDmgPct += attacker.dmgPct?.beam || 0;
+    }
     if (partsDmgPct) atkFactors.push(this._truncMul(1 + partsDmgPct / 100));
     atkFactors.push(...this._collectSkillFactors(
       attacker.skillConditions, 'attacker', 'firepower', weapon, activeConditions, v => 1 + v / 100));
@@ -1538,17 +1564,27 @@ const GBO2Calculator = {
     // 防御: 属性→装甲の線形カット ×(1−カット)、パーツ属性カット%・ON防御スキルは乗算合成
     const armorKey = this.ATTR_TO_ARMOR_KEY[weapon.attribute] || 'ballistic';
     if (weapon.attribute === 'special') unmodeled.push('特殊属性の防御対応は未確定（暫定: 実弾扱い）');
-    const defCutMul = this._truncMul(1 - this.calcCutRate(defender.armor[armorKey] || 0));
+    const sp = weapon.special || {};
+
+    // 耐性割合無効化（例 ベルガ・ギロスのショット・ランサー「耐実弾補正を30%減でダメージ計算」）。
+    // 対象属性の防御補正値を pct% 減じてからカット率を算出する（補正値は整数化=floor）。
+    let effArmor = defender.armor[armorKey] || 0;
+    const arp = sp.armorReductionPct;
+    let armorReduction = null;
+    if (arp && arp.pct > 0 && (arp.attr === armorKey || arp.attr === 'all')) {
+      const before = effArmor;
+      effArmor = Math.floor(effArmor * (1 - arp.pct / 100));
+      armorReduction = { attr: armorKey, pct: arp.pct, before, after: effArmor };
+    }
+    const defCutMul = this._truncMul(1 - this.calcCutRate(effArmor));
     const defFactors = [];
     const partsCutPct = defender.cutPct?.[armorKey] || 0;
     if (partsCutPct) defFactors.push(this._truncMul(1 - partsCutPct / 100));
     defFactors.push(...this._collectSkillFactors(
       defender.skillConditions, 'defender', 'damage_cut', weapon, activeConditions, v => 1 - v / 100));
 
-    // 耐性無視/貫通: 挙動未確定のため未モデル（×1）。TODO(§A-3)
+    // 耐性無視/貫通: armorReductionPct で割合無効化はモデル化済み。ユニット貫通(多段)は単体ダメージに無関係。
     const resistIgnoreMul = 1;
-    const sp = weapon.special || {};
-    if (sp.penetration || sp.resistIgnore) unmodeled.push('耐性無視/貫通は未モデル（§A-3 未確定）');
     // ヘビーアタック: 倍率はWiki「格闘方向補正」表のHAカラム（パーサが special.heavyAttack=
     // {mul,perHitMul,hits} に格納）。方向倍率と同じ段で適用（N/横/下に代わる別モーション）。
     // 旧データ・倍率未記載機（=true のみ）は従来通り未モデル警告。
@@ -1598,12 +1634,14 @@ const GBO2Calculator = {
         ? { n: computeFor(DIR.n), side: computeFor(DIR.side), down: computeFor(DIR.down) }
         : null,
       heavyAttack,
+      armorReduction,
       breakdown: {
         basePower, atkCorrMul,
         atkSkillMul: this._truncMul(product(atkFactors)),
         defCutMul,
         defSkillMul: this._truncMul(product(defFactors)),
         triadMul, directionMul, resistIgnoreMul, hits,
+        armorReduction,
       },
       notes: weapon.notes || '',
       unmodeled,

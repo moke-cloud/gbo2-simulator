@@ -1,5 +1,5 @@
 {
- "version": "h39787d831543",
+ "version": "h9b1f357b8259",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -7062,7 +7062,12 @@
     "rangeM": 550,
     "staggerValue": 90,
     "chargeable": true,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 30
+     }
+    },
     "modes": null
    },
    {
@@ -50005,7 +50010,12 @@
     "rangeM": 300,
     "staggerValue": 35,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "ballistic",
+      "pct": 30
+     }
+    },
     "modes": null
    },
    {
@@ -53413,7 +53423,11 @@
        "hit": 2,
        "pct": 70.0
       }
-     ]
+     ],
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 30
+     }
     },
     "modes": null,
     "directionMul": {
@@ -61516,7 +61530,12 @@
     "rangeM": 350,
     "staggerValue": 50,
     "chargeable": true,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 30
+     }
+    },
     "modes": null
    }
   ],
@@ -61535,7 +61554,12 @@
     "rangeM": 350,
     "staggerValue": 60,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "ballistic",
+      "pct": 30
+     }
+    },
     "modes": null
    },
    {
@@ -63123,7 +63147,12 @@
     "rangeM": 350,
     "staggerValue": 20,
     "chargeable": true,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 30
+     }
+    },
     "modes": [
      {
       "key": "normal",
@@ -63978,7 +64007,12 @@
     "rangeM": 250,
     "staggerValue": 25,
     "chargeable": true,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 30
+     }
+    },
     "modes": [
      {
       "key": "normal",
@@ -65124,7 +65158,12 @@
     "rangeM": 450,
     "staggerValue": 35,
     "chargeable": true,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 30
+     }
+    },
     "modes": null
    }
   ],
@@ -65247,7 +65286,12 @@
     "rangeM": 350,
     "staggerValue": 60,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "ballistic",
+      "pct": 30
+     }
+    },
     "modes": null
    },
    {
@@ -66790,7 +66834,12 @@
     "rangeM": 400,
     "staggerValue": 10,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 30
+     }
+    },
     "modes": null
    },
    {
@@ -66822,7 +66871,12 @@
     "rangeM": 350,
     "staggerValue": 60,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 30
+     }
+    },
     "modes": null
    },
    {
@@ -67449,6 +67503,10 @@
       "mul": 4.0,
       "perHitMul": 2.0,
       "hits": 2
+     },
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 30
      }
     },
     "modes": null,
@@ -68130,7 +68188,12 @@
     "rangeM": 350,
     "staggerValue": 60,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "ballistic",
+      "pct": 30
+     }
+    },
     "modes": null
    },
    {
@@ -68256,7 +68319,12 @@
     "rangeM": 350,
     "staggerValue": 40,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "ballistic",
+      "pct": 30
+     }
+    },
     "modes": null
    },
    {
@@ -68426,7 +68494,12 @@
     "rangeM": 400,
     "staggerValue": 60,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 30
+     }
+    },
     "modes": null
    },
    {
@@ -68459,7 +68532,11 @@
        "hit": 3,
        "pct": 25.0
       }
-     ]
+     ],
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 30
+     }
     },
     "modes": null,
     "directionMul": {
@@ -68555,7 +68632,11 @@
        "hit": 3,
        "pct": 25.0
       }
-     ]
+     ],
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 30
+     }
     },
     "modes": null,
     "directionMul": {
@@ -68955,7 +69036,12 @@
     "notes": "連撃不可/格闘方向に関わらず吹き飛ばしダウン効果有/スキル「/空中格闘制御/」対応/攻撃対象の特殊緩衝材系スキル無視/攻撃対象の耐格闘補正を20%減でダメージ計算",
     "staggerValue": null,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 20
+     }
+    },
     "modes": null,
     "directionMul": {
      "n": 1.0,
@@ -69610,7 +69696,12 @@
     "notes": "吹き飛ばしダウン効果有/対象の耐格闘補正を20%減でダメージ計算",
     "staggerValue": null,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 20
+     }
+    },
     "modes": null,
     "directionMul": {
      "n": 1.0,
@@ -69819,7 +69910,12 @@
     "rangeM": 400,
     "staggerValue": 40,
     "chargeable": true,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 30
+     }
+    },
     "modes": [
      {
       "key": "normal",
@@ -69880,7 +69976,12 @@
     "rangeM": 300,
     "staggerValue": 10,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "ballistic",
+      "pct": 50
+     }
+    },
     "modes": null
    }
   ],
@@ -69966,6 +70067,10 @@
       "mul": 4.0,
       "perHitMul": 2.0,
       "hits": 2
+     },
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 30
      }
     },
     "modes": null,
@@ -70656,7 +70761,11 @@
        "hit": 3,
        "pct": 35.0
       }
-     ]
+     ],
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 30
+     }
     },
     "modes": null,
     "directionMul": {
@@ -74045,7 +74154,12 @@
     "rangeM": 350,
     "staggerValue": 60,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "ballistic",
+      "pct": 30
+     }
+    },
     "modes": null
    },
    {
@@ -74500,7 +74614,11 @@
        "hit": 2,
        "pct": 40.0
       }
-     ]
+     ],
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 20
+     }
     },
     "modes": null,
     "directionMul": {
@@ -74854,7 +74972,12 @@
     "rangeM": 350,
     "staggerValue": 40,
     "chargeable": true,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 30
+     }
+    },
     "modes": null
    }
   ],
@@ -75204,7 +75327,12 @@
     "rangeM": 400,
     "staggerValue": 20,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 20
+     }
+    },
     "modes": null
    },
    {
@@ -75284,7 +75412,12 @@
     "rangeM": 375,
     "staggerValue": 45,
     "chargeable": false,
-    "special": {},
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 20
+     }
+    },
     "modes": null
    },
    {

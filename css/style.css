@@ -948,6 +948,12 @@ select { cursor: pointer; appearance: none;
 }
 .dsim-toggle:has(input:checked) { color: var(--teal); border-color: var(--teal-dim); }
 .dsim-no-toggles { font-size: .74rem; color: var(--text-3); }
-.dsim-opts { display: flex; align-items: center; gap: var(--gap-sm); }
+.dsim-opts { display: flex; align-items: center; gap: var(--gap-sm); flex-wrap: wrap; }
 .dsim-empty { font-size: .8rem; color: var(--text-3); padding: var(--gap-sm) 0; }
 .dsim-opts .compare-label { white-space: nowrap; margin-bottom: 0; }
+.dsim-time-toggle {
+  display: inline-flex; align-items: center; gap: 4px; font-size: .74rem; color: var(--text-2);
+  background: var(--bg-input); border: 1px solid var(--line); border-radius: 4px;
+  padding: 4px 8px; cursor: pointer; white-space: nowrap;
+}
+.dsim-time-toggle:has(input:checked) { color: var(--warn, #e0a83b); border-color: var(--warn, #e0a83b); }

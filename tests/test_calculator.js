@@ -744,6 +744,67 @@ section('calcWeaponDamage: 属性カット合成・多段ヒット・LV威力・
   assert('breakdown.basePower', rB.breakdown.basePower, 1500);
 }
 
+section('calcWeaponDamage: 耐性割合無効化（ショット・ランサー系 armorReductionPct）');
+{
+  // ベルガ・ギロス S・ランサー: 「耐実弾補正を30%減でダメージ計算」
+  // 防御 耐実弾50 → 30%減 floor(50×0.7)=35 → カット0.35 → defCut0.65 → floor(3000×0.65)=1950
+  const w = {
+    name: 'S・ランサー', category: 'shooting', attribute: 'ballistic',
+    power: { '1': 3000 }, hits: 1, special: { armorReductionPct: { attr: 'ballistic', pct: 30 } },
+  };
+  const def = mkDef({ armor: { ballistic: 50, beam: 0, melee: 0 } });
+  const r = GBO2Calculator.calcWeaponDamage(w, mkAtk(), def, noTriad);
+  assert('耐実弾50→30%減35でダメージ増', r.perHit, 1950);
+  assert('armorReduction.before', r.armorReduction.before, 50);
+  assert('armorReduction.after = floor(50×0.7)', r.armorReduction.after, 35);
+  // 無効化なしの素計算: floor(3000×0.50)=1500（割合無効化の効果が効いていることの対照）
+  const wNo = { ...w, special: {} };
+  assert('割合無効化なしは素カット', GBO2Calculator.calcWeaponDamage(wNo, mkAtk(), def, noTriad).perHit, 1500);
+  // 属性不一致（耐実弾減をビーム武器に持たせても無視）
+  const wBeam = { name: 'X', category: 'shooting', attribute: 'beam', power: { '1': 3000 }, hits: 1,
+    special: { armorReductionPct: { attr: 'ballistic', pct: 30 } } };
+  const defBeam = mkDef({ armor: { ballistic: 0, beam: 50, melee: 0 } });
+  assert('属性不一致の耐性減は無視', GBO2Calculator.calcWeaponDamage(wBeam, mkAtk(), defBeam, noTriad).perHit, 1500);
+  assert('割合無効化なしは armorReduction=null', GBO2Calculator.calcWeaponDamage(wNo, mkAtk(), def, noTriad).armorReduction, null);
+}
+
+section('calcWeaponDamage: 属性限定の与ダメ%（実弾/ビーム）');
+{
+  const base1000 = (attr) => ({ name: 'W', category: attr === 'melee' ? 'melee' : 'shooting', attribute: attr, power: { '1': 1000 }, hits: 1 });
+  // 実弾限定 +7%: 実弾武器のみ floor(1000×1.07)=1070
+  const atkBal = mkAtk({ dmgPct: { shooting: 0, melee: 0, ballistic: 7, beam: 0 } });
+  assert('実弾限定+7%は実弾武器に適用', GBO2Calculator.calcWeaponDamage(base1000('ballistic'), atkBal, mkDef(), noTriad).perHit, 1070);
+  assert('実弾限定+7%はビーム武器に非適用', GBO2Calculator.calcWeaponDamage(base1000('beam'), atkBal, mkDef(), noTriad).perHit, 1000);
+  // 射撃全般+10% と 実弾限定+7% は加算 → 17% → floor(1000×1.17)=1170
+  const atkMix = mkAtk({ dmgPct: { shooting: 10, melee: 0, ballistic: 7, beam: 0 } });
+  assert('射撃全般+実弾限定は加算', GBO2Calculator.calcWeaponDamage(base1000('ballistic'), atkMix, mkDef(), noTriad).perHit, 1170);
+  assert('ビーム武器は射撃全般のみ', GBO2Calculator.calcWeaponDamage(base1000('beam'), atkMix, mkDef(), noTriad).perHit, 1100);
+}
+
+section('applyParts: 条件付き(時限)効果ゲート + 属性別与ダメ%格納');
+{
+  const base = { hp: 10000, shooting_correction: 0, melee_correction: 0, ballistic_armor: 0,
+    beam_armor: 0, melee_armor: 0, speed: 100, thruster: 50, boost_speed: 200,
+    turn_speed_ground: 60, turn_speed_space: 70 };
+  // 教育型コンピューター［特防］: 基本 全属性-10%、4分経過で +10%(time4min)
+  const partTokubou = { name: '教育型［特防］', effects: [
+    { type: 'ballistic_damage_cut_pct', value: 10 },
+    { type: 'beam_damage_cut_pct', value: 10 },
+    { type: 'melee_damage_cut_pct', value: 10 },
+    { type: 'ballistic_damage_cut_pct', value: 10, cond: 'time4min' },
+    { type: 'beam_damage_cut_pct', value: 10, cond: 'time4min' },
+    { type: 'melee_damage_cut_pct', value: 10, cond: 'time4min' },
+  ]};
+  const mBase = GBO2Calculator.applyParts(base, [partTokubou]);
+  assert('時限OFF: 基本10%のみ', mBase.ballisticDamageCutPct, 10);
+  const mTimed = GBO2Calculator.applyParts(base, [partTokubou], [], 1, 0, {}, { includeConds: ['time4min'] });
+  assert('時限ON: 10+10=20%', mTimed.ballisticDamageCutPct, 20);
+  assert('時限ON: ビームも20%', mTimed.beamDamageCutPct, 20);
+  // 属性別与ダメ% が modified に格納される
+  const partBal = { name: 'コネクティング', effects: [{ type: 'ballistic_damage_pct', value: 7 }] };
+  assert('ballisticDmgPct 格納', GBO2Calculator.applyParts(base, [partBal]).ballisticDmgPct, 7);
+}
+
 section('calcWeaponDamage: ヘビーアタック（Wiki格闘方向補正表のHAカラム）');
 {
   // ガズエル用ヒート・ランサー実データ: 威力2600・HA 270%(135%x2)
