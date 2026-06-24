@@ -1,5 +1,5 @@
 {
- "version": "h1c0b23e42be8",
+ "version": "head9b47822d6",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -66118,7 +66118,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 170
+     "1": 170,
+     "2": 180
     },
     "hits": 1,
     "notes": "移動射撃可/よろけ値：2%（50HIT）",
@@ -66134,7 +66135,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2150
+     "1": 2150,
+     "2": 2300
     },
     "hits": 1,
     "notes": "",
@@ -66153,7 +66155,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 150
+     "1": 150,
+     "2": 160
     },
     "hits": 1,
     "notes": "15発同時発射/移動射撃可/よろけ値：17% x15/頭部補正：?倍/脚部補正：?倍/シールド補正：？倍",
@@ -66169,7 +66172,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1200
+     "1": 1200,
+     "2": 1300
     },
     "hits": 1,
     "notes": "二発同時発射/移動射撃可/よろけ有/スコープ使用不可/よろけ値：25% x2",
@@ -66185,7 +66189,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 70
+     "1": 70,
+     "2": 80
     },
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/よろけ値：6%（17HIT）",
@@ -69387,8 +69392,9 @@
     },
     "hits": 1,
     "notes": "投擲時静止/通常時空中使用不可/フライドモード中は空中使用可/照準誘導効果有/よろけ有/よろけ値：20%",
-    "magazine": 2,
+    "magazine": 1,
     "rangeM": 250,
+    "form": "normal",
     "staggerValue": 20,
     "chargeable": false,
     "special": {
@@ -69408,8 +69414,7 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.7
-    },
-    "form": "normal"
+    }
    }
   ],
   "シャッコー": [
