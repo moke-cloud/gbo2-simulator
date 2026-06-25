@@ -1390,42 +1390,36 @@ const GBO2Calculator = {
     };
     const better = (a, b) => a.unmet !== b.unmet ? a.unmet < b.unmet : a.deficit < b.deficit - 1e-9;
 
-    const levels = { ...currentSkillLevels };
-    const baselineOutcome = runOpt(levels);
-    let currentOutcome = baselineOutcome;
-    let currentScore = score(currentOutcome);
+    // 拡張スキルは1機体につき1つしか装備できない。現状構成（既存の選択。最大1つ）を
+    // baseline とし、「単一の拡張スキルだけを装備した」全候補から最良を1つだけ選ぶ。
+    // 旧実装は複数スキルを積み増す貪欲ループだったため、装備不能な複数スキルを提案していた。
+    const baselineOutcome = runOpt(currentSkillLevels);
+    const baselineScore = score(baselineOutcome);
+    const unmetStats = new Set(baselineOutcome.results.filter(r => !r.met).map(r => r.stat));
 
-    const MAX_ITER = 8;
-    for (let iter = 0; iter < MAX_ITER && currentScore.unmet > 0; iter++) {
-      const unmetStats = new Set(currentOutcome.results.filter(r => !r.met).map(r => r.stat));
+    let bestPick = null; // {name, level, outcome, score}
+    for (const [name, entries] of byName.entries()) {
+      const maxLv = entries[entries.length - 1].level;
+      // 未達 stat に1つでも効くスキルのみ試す（探索枝刈り）
+      const affects = this._statKeysAffectedBySkill(entries);
+      let relevant = false;
+      for (const s of unmetStats) if (affects.has(s)) { relevant = true; break; }
+      if (!relevant) continue;
 
-      let bestPick = null; // {name, level, outcome, score}
-      for (const [name, entries] of byName.entries()) {
-        const maxLv = entries[entries.length - 1].level;
-        const cur = levels[name] || 0;
-        if (cur >= maxLv) continue;
-        // 未達 stat に1つでも効くスキルのみ試す（探索枝刈り）
-        const affects = this._statKeysAffectedBySkill(entries);
-        let relevant = false;
-        for (const s of unmetStats) if (affects.has(s)) { relevant = true; break; }
-        if (!relevant) continue;
-
-        for (let lv = cur + 1; lv <= maxLv; lv++) {
-          const trialLevels = { ...levels, [name]: lv };
-          const trialOutcome = runOpt(trialLevels);
-          const trialScore = score(trialOutcome);
-          if (!better(trialScore, currentScore)) continue;
-          if (!bestPick || better(trialScore, bestPick.score)) {
-            bestPick = { name, level: lv, outcome: trialOutcome, score: trialScore };
-          }
+      // この拡張スキル「単独」を Lv1〜maxLv で試す（他スキルは併用しない）。
+      for (let lv = 1; lv <= maxLv; lv++) {
+        const trialLevels = { [name]: lv };
+        const trialOutcome = runOpt(trialLevels);
+        const trialScore = score(trialOutcome);
+        if (!better(trialScore, baselineScore)) continue;
+        if (!bestPick || better(trialScore, bestPick.score)) {
+          bestPick = { name, level: lv, outcome: trialOutcome, score: trialScore };
         }
       }
-
-      if (!bestPick) break; // これ以上効く拡張スキルが無い
-      levels[bestPick.name] = bestPick.level;
-      currentOutcome = bestPick.outcome;
-      currentScore = bestPick.score;
     }
+
+    const levels = bestPick ? { [bestPick.name]: bestPick.level } : {};
+    const finalOutcome = bestPick ? bestPick.outcome : baselineOutcome;
 
     const suggestions = [];
     for (const [name, lv] of Object.entries(levels)) {
@@ -1438,9 +1432,9 @@ const GBO2Calculator = {
       projectedLevels: levels,
       projectedSkillsList: buildList(levels),
       baselineOutcome,
-      projectedOutcome: currentOutcome,
+      projectedOutcome: finalOutcome,
       improved: suggestions.length > 0,
-      resolvesAll: currentOutcome.allMet,
+      resolvesAll: finalOutcome.allMet,
     };
   },
 

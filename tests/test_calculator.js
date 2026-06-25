@@ -495,6 +495,17 @@ const sugNone = GBO2Calculator.suggestExpansionSkills(beamBase, tgtSlots, ampleP
 assert('提案不要: baseline で全目標達成', sugNone.baselineOutcome.allMet, true);
 assert('提案不要: improved=false', sugNone.improved, false);
 
+section('拡張スキル提案: 複数statが未達でも提案は最大1つ（拡張スキルは1機体に1つのみ装備可能）');
+// beam_armor(目標58)と thruster(目標60)の両方が未達。候補パーツは耐ビーム+10×1枚のみで
+// thruster を上げる手段が無いため、耐ビーム補正拡張とスラスター拡張の両方が「効く」状況。
+// しかし拡張スキルは1機体1つしか装備できないため、提案は最大1スキルでなければならない。
+const sugMulti = GBO2Calculator.suggestExpansionSkills(beamBase, tgtSlots, suggestParts,
+  { targets: { beam_armor: 58, thruster: 60 }, currentSkillLevels: {}, expansionSkillsData: suggestSkillData, equippedParts: [] });
+assert('複数未達: 提案は最大1スキル', sugMulti.suggestions.length <= 1, true);
+assert('複数未達: projectedLevels の非ゼロも最大1つ',
+  Object.values(sugMulti.projectedLevels).filter(lv => lv > 0).length <= 1, true);
+assert('複数未達: projectedSkillsList も最大1つ', sugMulti.projectedSkillsList.length <= 1, true);
+
 // ===== 14. 強化リスト: 同名強化(上限開放)の置換（二重計上しない） =====
 section('強化: 同名強化は最高Lvのみ採用（上限開放の二重計上を防ぐ）');
 const enhListDup = [

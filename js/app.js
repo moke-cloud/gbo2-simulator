@@ -477,6 +477,7 @@ const App = {
     if (state.expansionSkillLevels) {
       Object.keys(this.expansionSkillLevels).forEach(n => { this.expansionSkillLevels[n] = 0; });
       Object.entries(state.expansionSkillLevels).forEach(([n, lv]) => { this.expansionSkillLevels[n] = lv; });
+      this._enforceSingleExpansionSkill();
       this.renderExpansionSkillsUI();
     }
     if (state.damageRatio) { this.damageRatio = { ...state.damageRatio }; }
@@ -556,10 +557,27 @@ const App = {
     container.querySelectorAll('.expansion-skill-select').forEach(sel => {
       sel.addEventListener('change', (e) => {
         const skillName = e.target.dataset.skillName;
-        this.expansionSkillLevels[skillName] = parseInt(e.target.value);
+        const level = parseInt(e.target.value);
+        // 拡張スキルは1機体につき1つしか装備できない。非ゼロを選んだら他は全て未装備へ戻す（排他）。
+        if (level > 0) {
+          for (const n of Object.keys(this.expansionSkillLevels)) this.expansionSkillLevels[n] = 0;
+        }
+        this.expansionSkillLevels[skillName] = level;
+        this.renderExpansionSkillsUI(); // 他セレクタの表示を排他状態に同期
         this.updateDisplay();
       });
     });
+  },
+
+  // 拡張スキルは1機体1つのみ。非ゼロが複数あれば先頭の1つだけ残す（旧データ/旧提案の是正）。
+  _enforceSingleExpansionSkill() {
+    let kept = false;
+    for (const name of Object.keys(this.expansionSkillLevels)) {
+      if ((this.expansionSkillLevels[name] || 0) > 0) {
+        if (kept) this.expansionSkillLevels[name] = 0;
+        else kept = true;
+      }
+    }
   },
 
   // === 機体検索 ===
@@ -1764,6 +1782,8 @@ const App = {
     const sug = this._lastTargetSuggestion;
     if (!sug || !sug.improved) return;
     if (this._targetOptBaseParts) this.equippedParts = [...this._targetOptBaseParts];
+    // 拡張スキルは1つのみ装備可能。既存選択を全クリアしてから提案の1つを設定する。
+    for (const n of Object.keys(this.expansionSkillLevels)) this.expansionSkillLevels[n] = 0;
     for (const [name, lv] of Object.entries(sug.projectedLevels)) {
       this.expansionSkillLevels[name] = lv;
     }
@@ -1922,6 +1942,7 @@ const App = {
     }
 
     this.expansionSkillLevels = { ...build.expansionSkillLevels };
+    this._enforceSingleExpansionSkill();
     this.renderExpansionSkillsUI();
     this.activeSkillIndices = new Set();
     this._skillEffectCache = [];
