@@ -1,6 +1,6 @@
 {
-  "version": "hb77b0abd94f6",
-  "totalParts": 157,
+  "version": "h83469ef283f0",
+  "totalParts": 158,
   "parts": [
     {
       "name": "射撃強化プログラム",
@@ -1765,6 +1765,30 @@
           "type": "melee_damage_cut_pct",
           "value": 10,
           "cond": "time4min"
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "貫通軽減装甲",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 2,
+        "mid": 5,
+        "long": 0
+      },
+      "description": "耐実弾補正と耐ビーム補正が5増加。サイコミュ兵装を除くMSへの貫通性能を備えた射撃兵装からの被ダメージを20%軽減する。",
+      "effects": [
+        {
+          "type": "ballistic_armor",
+          "value": 5
+        },
+        {
+          "type": "beam_armor",
+          "value": 5
         }
       ],
       "dpCost": 0,
