@@ -1245,6 +1245,59 @@ const GBO2Calculator = {
       usedSlots.long  += bestPart.slots.long  || 0;
     }
 
+    // --- Phase 2: per_custom_part 拡張スキルのシナジーを残スロットで最大化する ---
+    // 目標達成後（または改善停止後）も空きスロット/枠が残る場合、選択中の per_custom_part
+    // 拡張スキル（拡張[攻撃]＝「移動」1個ごと に補正↑ 等）が報酬とするカテゴリのパーツで
+    // 残枠を埋め、シナジー由来 stat（補正/装甲/HP/スラ）の実効値を貪欲に最大化する。
+    //   ・候補はスキルのトリガーカテゴリに限定（＝ユーザーの「移動を多く積む」直観を実装）
+    //   ・met 済み目標は決して下げない（加算のみデータでは通常起きないが不変条件として検査）
+    //   ・シナジー実効増が無くなったら（上限到達・該当パーツ枯渇）停止
+    // 直接系スキル/スキル無し（active=false）では本フェーズは何もせず＝従来挙動を完全保持。
+    const synergy = this._synergyProfile(expansionSkillsList);
+    if (synergy.active) {
+      const partKey2 = (p) => (p.name || '') + '#' + (p.level || 0);
+      while (currentParts.length < MAX_PARTS) {
+        const remaining = {
+          close: maxSlots.close - usedSlots.close,
+          mid:   maxSlots.mid   - usedSlots.mid,
+          long:  maxSlots.long  - usedSlots.long,
+        };
+        if (remaining.close <= 0 && remaining.mid <= 0 && remaining.long <= 0) break;
+        const curMod = this.applyParts(baseStats, currentParts, expansionSkillsList, msLevel, enhanceLevel);
+        const curSyn = this._synergyValue(curMod, synergy.weights);
+        const metTargets = targetEntries.filter(([k, t]) => statOf(curMod, k) >= t);
+
+        let bestPart = null, bestSyn = 0, bestTgt = 0, bestKey = null;
+        for (const cand of allParts) {
+          if (!synergy.triggerCats.has(cand.category)) continue; // トリガーカテゴリのみ
+          if (this.conflictsWithAny(cand, currentParts)) continue;
+          if (!this.canEquip(cand, remaining)) continue;
+          const trialMod = this.applyParts(baseStats, [...currentParts, cand], expansionSkillsList, msLevel, enhanceLevel);
+          // met 済み目標を下げる候補は除外（安全側）
+          let regress = false;
+          for (const [k, t] of metTargets) { if (statOf(trialMod, k) < t) { regress = true; break; } }
+          if (regress) continue;
+          const synGain = this._synergyValue(trialMod, synergy.weights) - curSyn;
+          if (synGain <= 1e-9) continue; // シナジー実効増が無い候補は採らない（上限到達で停止）
+          // 同シナジー増ならユーザー目標への寄与が大きい方を優先、最後に partKey で決定的に。
+          let tgtGain = 0;
+          for (const [k, t] of targetEntries) tgtGain += Math.max(0, statOf(trialMod, k) - statOf(curMod, k)) / t;
+          const key = partKey2(cand);
+          const better = bestPart === null
+            || synGain > bestSyn + 1e-9
+            || (Math.abs(synGain - bestSyn) <= 1e-9 && tgtGain > bestTgt + 1e-9)
+            || (Math.abs(synGain - bestSyn) <= 1e-9 && Math.abs(tgtGain - bestTgt) <= 1e-9 && key.localeCompare(bestKey) < 0);
+          if (better) { bestPart = cand; bestSyn = synGain; bestTgt = tgtGain; bestKey = key; }
+        }
+        if (!bestPart) break;
+        selected.push(bestPart);
+        currentParts.push(bestPart);
+        usedSlots.close += bestPart.slots.close || 0;
+        usedSlots.mid   += bestPart.slots.mid   || 0;
+        usedSlots.long  += bestPart.slots.long  || 0;
+      }
+    }
+
     // 到達可能な実効上限 = 素の上限 + 選択中拡張スキルのcap + 装備可能な最大cap上昇パーツ。
     // 新型装甲系cap（新型耐ビーム装甲 等）は複数装備不可のため候補中の「単一最大」を採用する。
     // これにより耐性50超が可能なケースを capExceeded として誤判定しない。
@@ -1279,6 +1332,7 @@ const GBO2Calculator = {
       results,
       remainingSlots,
       usedAllSlots: remainingSlots.close <= 0 && remainingSlots.mid <= 0 && remainingSlots.long <= 0,
+      modified: finalMod,
     };
   },
 
@@ -1303,6 +1357,84 @@ const GBO2Calculator = {
       }
     }
     return best;
+  },
+
+  // per_custom_part 拡張スキル（拡張[攻撃]＝移動1個ごと に補正↑ 等）が報酬とする stat キー →
+  // 正の重み。HP系を補正/装甲(1pt)と桁を揃えるための係数で、絶対値に意味はなく「より多く
+  // 積むほど価値が上がる」順序のみが目標値最適化 Phase2 の貪欲選択に効く。
+  _PER_PART_STAT_WEIGHTS: {
+    hp: 0.01, shield_hp: 0.005,
+    shooting_correction: 1, melee_correction: 1,
+    ballistic_armor: 1, beam_armor: 1, melee_armor: 1,
+    thruster: 0.5, boost_speed: 0.3, reload_oh_reduction_pct: 0.5,
+  },
+
+  /**
+   * 選択中の拡張スキルから per_custom_part シナジーのプロファイルを抽出する。
+   * @param {Array} expansionSkillsList - 選択中の拡張スキル配列（最大1つ）
+   * @returns {{weights:object, triggerCats:Set<string>, active:boolean}}
+   *   weights: シナジーが供給する stat キー → 重み（実効増の計測用）
+   *   triggerCats: 効果が乗るパーツカテゴリ集合（このカテゴリのパーツを積むと効果が伸びる）
+   *   active: per_custom_part 系スキルが選択されているか（直接系/無しなら false）
+   */
+  _synergyProfile(expansionSkillsList) {
+    const W = this._PER_PART_STAT_WEIGHTS;
+    const weights = {};
+    const triggerCats = new Set();
+    for (const skill of (expansionSkillsList || [])) {
+      for (const eff of (skill.effects || [])) {
+        if (eff.type !== 'per_custom_part') continue;
+        for (const cat of (eff.targetPartTypes || [])) triggerCats.add(cat);
+        for (const pe of (eff.perPartEffects || [])) {
+          if (W[pe.type] != null) weights[pe.type] = W[pe.type];
+        }
+      }
+    }
+    return { weights, triggerCats, active: triggerCats.size > 0 && Object.keys(weights).length > 0 };
+  },
+
+  /**
+   * シナジーが供給する stat 群の実効値（上限クランプ後）の加重和。
+   * applyParts 済みの modified を読むため、補正/装甲が上限到達したら増えない＝
+   * 上限超のパーツを無駄に積まない判断に使える。
+   */
+  _synergyValue(modified, weights) {
+    let v = 0;
+    for (const k in weights) {
+      let val;
+      if (k === 'shield_hp') val = modified.shield_hp || 0;
+      else if (k === 'reload_oh_reduction_pct') val = modified.reloadOhReductionPct || 0;
+      else val = this._getModifiedStat(modified, k);
+      v += weights[k] * val;
+    }
+    return v;
+  },
+
+  /**
+   * 構成の総合価値（有効HP＋総合火力＋機動の加重和）。optimize() のバランス目的関数と
+   * 同じ指標で、拡張スキルの「伸びしろ」提案（目標達成済みでも per_custom_part スキルで
+   * 火力/装甲が伸びるか）の比較に用いる。
+   * @param {object} modified - applyParts 済みステータス
+   * @param {object} damageRatio - { ballistic, beam, melee }
+   * @param {object} atkRatio - { shooting, melee }
+   */
+  _balanceValue(modified, damageRatio, atkRatio) {
+    if (!modified) return 0;
+    const aB = this.calcCutRate(modified.ballistic_armor || 0);
+    const aBe = this.calcCutRate(modified.beam_armor || 0);
+    const aM = this.calcCutRate(modified.melee_armor || 0);
+    const pB = modified.ballisticDamageCutPct || 0, pBe = modified.beamDamageCutPct || 0, pM = modified.meleeDamageCutPct || 0;
+    const bCut = pB > 0 ? 1 - (1 - aB) * (1 - pB / 100) : aB;
+    const beCut = pBe > 0 ? 1 - (1 - aBe) * (1 - pBe / 100) : aBe;
+    const mCut = pM > 0 ? 1 - (1 - aM) * (1 - pM / 100) : aM;
+    const effHP = this.calcEffectiveHPFromCutRates(modified.hp || 0,
+      { ballistic: bCut, beam: beCut, melee: mCut }, damageRatio);
+    const off = this.calcOffenseScore(modified.shooting_correction || 0, modified.melee_correction || 0,
+      atkRatio, modified.shootingDmgPct || 0, modified.meleeDmgPct || 0);
+    const MOB = { speed: 0.3, boost_speed: 0.2, thruster: 0.5, turn_speed: 0.2 };
+    let mob = 0;
+    for (const k in MOB) mob += this._getModifiedStat(modified, k) * MOB[k];
+    return effHP / 500 + off * 100 + mob;
   },
 
   /**
@@ -1358,7 +1490,11 @@ const GBO2Calculator = {
       equippedParts = [],
       currentSkillLevels = {},
       expansionSkillsData = [],
+      damageRatio = { ballistic: 1 / 3, beam: 1 / 3, melee: 1 / 3 },
+      atkRatio = { shooting: 0.6, melee: 0.4 },
     } = config;
+    // 伸びしろ提案（目標達成済みでも価値が伸びる per_custom_part スキル）を出す相対しきい値。
+    const VALUE_GAIN_MIN = 0.03;
 
     // スキル名 → レベル別エントリ（昇順）
     const byName = new Map();
@@ -1380,31 +1516,44 @@ const GBO2Calculator = {
     const runOpt = (levels) => this.optimizeToTargets(baseStats, maxSlots, allParts, {
       targets, msLevel, enhanceLevel, equippedParts, expansionSkillsList: buildList(levels),
     });
-    // 正規化不足合計（小さいほど良い）と未達件数で構成の良さを評価する
+    // 構成の良さ: 未達件数→正規化不足合計（小さいほど良い）→総合価値（大きいほど良い）。
+    // value は目標が全達成のとき（伸びしろ探索）の比較軸として効く。
     const score = (outcome) => {
       let deficit = 0, unmet = 0;
       for (const r of outcome.results) {
         if (!r.met) { unmet++; deficit += r.deficit / r.target; }
       }
-      return { unmet, deficit };
+      return { unmet, deficit, value: this._balanceValue(outcome.modified, damageRatio, atkRatio) };
     };
-    const better = (a, b) => a.unmet !== b.unmet ? a.unmet < b.unmet : a.deficit < b.deficit - 1e-9;
+    const better = (a, b) =>
+      a.unmet !== b.unmet ? a.unmet < b.unmet
+        : Math.abs(a.deficit - b.deficit) > 1e-9 ? a.deficit < b.deficit
+          : a.value > b.value + 1e-9;
+    const isPerPart = (entries) =>
+      entries.some(e => (e.effects || []).some(ef => ef.type === 'per_custom_part'));
 
     // 拡張スキルは1機体につき1つしか装備できない。現状構成（既存の選択。最大1つ）を
     // baseline とし、「単一の拡張スキルだけを装備した」全候補から最良を1つだけ選ぶ。
     // 旧実装は複数スキルを積み増す貪欲ループだったため、装備不能な複数スキルを提案していた。
     const baselineOutcome = runOpt(currentSkillLevels);
     const baselineScore = score(baselineOutcome);
+    const baselineAllMet = baselineOutcome.allMet;
     const unmetStats = new Set(baselineOutcome.results.filter(r => !r.met).map(r => r.stat));
 
     let bestPick = null; // {name, level, outcome, score}
     for (const [name, entries] of byName.entries()) {
       const maxLv = entries[entries.length - 1].level;
-      // 未達 stat に1つでも効くスキルのみ試す（探索枝刈り）
-      const affects = this._statKeysAffectedBySkill(entries);
-      let relevant = false;
-      for (const s of unmetStats) if (affects.has(s)) { relevant = true; break; }
-      if (!relevant) continue;
+      if (baselineAllMet) {
+        // 全目標達成済み＝「伸びしろ」探索。価値が部品構成に依存して隠れている
+        // per_custom_part 系スキルのみを対象にする（直接系は効果が自明で手動選択可能）。
+        if (!isPerPart(entries)) continue;
+      } else {
+        // 未達あり: 未達 stat に1つでも効くスキルのみ試す（探索枝刈り）。
+        const affects = this._statKeysAffectedBySkill(entries);
+        let relevant = false;
+        for (const s of unmetStats) if (affects.has(s)) { relevant = true; break; }
+        if (!relevant) continue;
+      }
 
       // この拡張スキル「単独」を Lv1〜maxLv で試す（他スキルは併用しない）。
       for (let lv = 1; lv <= maxLv; lv++) {
@@ -1418,8 +1567,20 @@ const GBO2Calculator = {
       }
     }
 
-    const levels = bestPick ? { [bestPick.name]: bestPick.level } : {};
-    const finalOutcome = bestPick ? bestPick.outcome : baselineOutcome;
+    // 採否: 未達/不足が減るなら採用（reason=deficit）。全達成済みでも価値が相対しきい値以上
+    // 伸びるなら採用（reason=headroom）。微小な価値向上での提案乱発は抑止する。
+    let accept = false, reason = null;
+    if (bestPick) {
+      const bs = bestPick.score;
+      if (bs.unmet < baselineScore.unmet || bs.deficit < baselineScore.deficit - 1e-9) {
+        accept = true; reason = 'deficit';
+      } else if (baselineScore.value > 0 && bs.value > baselineScore.value * (1 + VALUE_GAIN_MIN)) {
+        accept = true; reason = 'headroom';
+      }
+    }
+
+    const levels = accept ? { [bestPick.name]: bestPick.level } : {};
+    const finalOutcome = accept ? bestPick.outcome : baselineOutcome;
 
     const suggestions = [];
     for (const [name, lv] of Object.entries(levels)) {
@@ -1435,6 +1596,7 @@ const GBO2Calculator = {
       projectedOutcome: finalOutcome,
       improved: suggestions.length > 0,
       resolvesAll: finalOutcome.allMet,
+      reason,
     };
   },
 

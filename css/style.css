@@ -753,6 +753,13 @@ select { cursor: pointer; appearance: none;
 .lv-tab-num { font-family: var(--font-mono); font-size: .76rem; font-weight: 700; line-height: 1.1; }
 .lv-tab-slot { font-family: var(--font-mono); font-size: .58rem; color: var(--text-3); white-space: nowrap; }
 .lv-tab.lv-equipped .lv-tab-slot { color: var(--teal-dim); }
+/* LV別 所持トグル：各LVタブの下に ★/☆ を併設し、レベル違いを個別に未所持設定する */
+.lv-cell { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.lv-tab.lv-unowned { opacity: .4; }
+.lv-own { background: none; border: none; cursor: pointer; font-size: .72rem; line-height: 1;
+  color: var(--line-strong); padding: 1px 5px; transition: var(--tr-fast); }
+.lv-own.owned { color: var(--warn); }
+.lv-own:hover { filter: brightness(1.25); }
 .btn-part-action { flex: none; font-weight: 700; font-size: .78rem; padding: 8px 18px; cursor: pointer;
   transition: var(--tr-fast); clip-path: polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px); }
 .btn-equip { background: rgba(25,227,196,.14); color: var(--teal); border: 1px solid var(--teal-dim); }

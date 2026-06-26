@@ -506,6 +506,70 @@ assert('複数未達: projectedLevels の非ゼロも最大1つ',
   Object.values(sugMulti.projectedLevels).filter(lv => lv > 0).length <= 1, true);
 assert('複数未達: projectedSkillsList も最大1つ', sugMulti.projectedSkillsList.length <= 1, true);
 
+// ===== 13d. 目標値最適化 Phase2: per_custom_part シナジーで余りスロットを埋める =====
+section('目標値最適化: 拡張[攻撃]選択時は移動パーツで余り枠を埋め補正を伸ばす');
+// 拡張[攻撃] Lv5: 「移動」1個ごと に 射撃/格闘補正 +4。複数の移動パーツを積むほど補正が伸びる。
+const atkExp5 = [{ name: 'カスタムパーツ拡張［攻撃］', level: 5, category: 'custom_parts',
+  effects: [{ type: 'per_custom_part', targetPartTypes: ['mobility'],
+    perPartEffects: [{ type: 'melee_correction', value: 4 }, { type: 'shooting_correction', value: 4 }] }] }];
+// 移動パーツ4種（スラスター付与・別名なので併用可）＋装甲パーツ1種。スロットは潤沢。
+const synParts = [
+  { name: 'MA', level: 1, category: 'mobility', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'thruster', value: 10 }], description: 'スラスターが増加。' },
+  { name: 'MB', level: 1, category: 'mobility', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'thruster', value: 8 }], description: 'スラスターが増加。' },
+  { name: 'MC', level: 1, category: 'mobility', slots: { close: 0, mid: 1, long: 0 }, effects: [{ type: 'thruster', value: 6 }], description: 'スラスターが増加。' },
+  { name: 'MD', level: 1, category: 'mobility', slots: { close: 0, mid: 0, long: 1 }, effects: [{ type: 'thruster', value: 4 }], description: 'スラスターが増加。' },
+  { name: 'DA', level: 1, category: 'defense', slots: { close: 1, mid: 0, long: 0 }, effects: [{ type: 'beam_armor', value: 5 }], description: '耐ビーム補正が増加。' },
+];
+const synSlots = { close: 8, mid: 8, long: 8 };
+// 目標スラスター56（素50→+6）。最小なら移動1枚で達成だが、拡張[攻撃]が乗るので移動を積み増す。
+const synOut = GBO2Calculator.optimizeToTargets(tgtBase, synSlots, synParts,
+  { ...tgtCfg, expansionSkillsList: atkExp5, targets: { thruster: 56 } });
+const synMob = synOut.parts.filter(p => p.category === 'mobility').length;
+assert('Phase2: スラスター目標を達成', synOut.results.find(r => r.stat === 'thruster').achieved >= 56, true);
+assert('Phase2: 移動パーツを2枚以上積む（最小1枚で止まらない）', synMob >= 2, true);
+assert('Phase2: 射撃補正が移動枚数ぶん伸びる（30+4×N）', synOut.modified.shooting_correction, 30 + 4 * synMob);
+
+section('目標値最適化: シナジー無し（直接系スキル/スキル無し）は最小構成のまま＝従来挙動');
+// 直接系スキル（スラスター拡張）では Phase2 は何もしない＝移動を積み増さない。
+const thrExp = [{ name: 'スラスター拡張', level: 1, effects: [
+  { type: 'thruster', value: 4, direct: true }, { type: 'thruster_cap', value: 4, direct: true }] }];
+const noSynOut = GBO2Calculator.optimizeToTargets(tgtBase, synSlots, synParts,
+  { ...tgtCfg, expansionSkillsList: thrExp, targets: { thruster: 56 } });
+assert('シナジー無し: 余り枠を埋めない（移動1枚で停止）', noSynOut.parts.filter(p => p.category === 'mobility').length, 1);
+assert('シナジー無し: 射撃補正は素のまま', noSynOut.modified.shooting_correction, 30);
+
+section('目標値最適化 Phase2: 達成済み目標を下げない・上限到達で停止');
+// 補正が上限間際でも上限超で無駄に積まない（synergyValue が増えない＝停止）。
+const nearCapBase = { ...tgtBase, shooting_correction: 96, melee_correction: 96 };
+const capStopOut = GBO2Calculator.optimizeToTargets(nearCapBase, synSlots, synParts,
+  { ...tgtCfg, expansionSkillsList: atkExp5, targets: { thruster: 56 } });
+assert('Phase2: 補正上限100を超えない', capStopOut.modified.shooting_correction <= 100, true);
+
+// ===== 13e. 拡張スキル提案: 伸びしろ（目標達成済みでも per_custom_part で価値↑） =====
+section('拡張スキル提案: 目標達成済みでも拡張[攻撃]で火力が伸びるなら提案する');
+const headroomSkillData = [
+  ...atkExp5.map(s => ({ ...s })),
+  { name: 'カスタムパーツ拡張［攻撃］', level: 1, category: 'custom_parts', effects: [{ type: 'per_custom_part', targetPartTypes: ['mobility'], perPartEffects: [{ type: 'melee_correction', value: 1 }, { type: 'shooting_correction', value: 1 }] }] },
+  { name: 'スラスター拡張', level: 1, effects: [{ type: 'thruster', value: 5, direct: true }, { type: 'thruster_cap', value: 4, direct: true }] },
+];
+// スラスター目標55は移動パーツのみで達成可能（=baseline allMet）。拡張[攻撃]は移動を積めば火力↑。
+const sugHead = GBO2Calculator.suggestExpansionSkills(tgtBase, synSlots, synParts,
+  { targets: { thruster: 55 }, currentSkillLevels: {}, expansionSkillsData: headroomSkillData, equippedParts: [] });
+assert('伸びしろ: baseline で全目標達成', sugHead.baselineOutcome.allMet, true);
+assert('伸びしろ: improved=true', sugHead.improved, true);
+assert('伸びしろ: reason=headroom', sugHead.reason, 'headroom');
+assert('伸びしろ: 拡張[攻撃]を提案', sugHead.suggestions.some(s => s.name === 'カスタムパーツ拡張［攻撃］'), true);
+
+section('拡張スキル提案: 伸びしろが無ければ提案しない（直接系のみのデータ）');
+// per_custom_part スキルが無く全達成 → 伸びしろ提案は出ない。
+const noHeadData = [
+  { name: 'スラスター拡張', level: 1, effects: [{ type: 'thruster', value: 5, direct: true }, { type: 'thruster_cap', value: 4, direct: true }] },
+];
+const sugNoHead = GBO2Calculator.suggestExpansionSkills(tgtBase, synSlots, synParts,
+  { targets: { thruster: 55 }, currentSkillLevels: {}, expansionSkillsData: noHeadData, equippedParts: [] });
+assert('伸びしろ無: baseline 全達成', sugNoHead.baselineOutcome.allMet, true);
+assert('伸びしろ無: improved=false', sugNoHead.improved, false);
+
 // ===== 14. 強化リスト: 同名強化(上限開放)の置換（二重計上しない） =====
 section('強化: 同名強化は最高Lvのみ採用（上限開放の二重計上を防ぐ）');
 const enhListDup = [

@@ -44,6 +44,7 @@ const App = {
     try {
       this.loadSettings();
       await this.loadData();
+      this._migrateUnownedToPerLevel();
       this.bindEvents();
       this.bindExtraEvents();
       this.renderExpansionSkillsUI();
@@ -131,6 +132,52 @@ const App = {
       localStorage.setItem('gbo2_show_unowned', this.showUnowned);
     } catch (e) {
       // Safari private mode 等で localStorage が使えない場合は無視
+    }
+  },
+
+  // === カスタムパーツ所持判定（name+LV 単位） ===
+  // 未所持は `name + '\0' + level` をキーに保持する。レベル違いを個別に未所持設定できる。
+  _ownKey(part) { return part.name + '\0' + part.level; },
+  // 旧データは名前のみ（＝そのパーツの全LV未所持）。migration 前の保険として bare-name も判定。
+  isPartUnowned(part) {
+    if (!part) return false;
+    return this.unownedParts.has(part.name) || this.unownedParts.has(this._ownKey(part));
+  },
+  // 旧形式（名前のみ）を name+LV キーへ展開して新形式へ移行する（loadData 後に1回）。
+  _migrateUnownedToPerLevel() {
+    if (!this.customParts.length || !this.unownedParts.size) return;
+    const names = new Set(this.customParts.map(p => p.name));
+    let changed = false;
+    const next = new Set();
+    for (const entry of this.unownedParts) {
+      if (entry.includes('\0')) { next.add(entry); continue; }   // 既に name+LV 形式
+      if (names.has(entry)) {                                      // 旧 bare-name → 全LV展開
+        changed = true;
+        for (const p of this.customParts) if (p.name === entry) next.add(this._ownKey(p));
+      } else {
+        next.add(entry);                                          // 未知の名前は温存
+      }
+    }
+    if (changed) { this.unownedParts = next; this.saveSettings(); }
+  },
+  // 単一 name+LV の所持状態を設定。未所持化したら装備中の該当インスタンスを外す。
+  _setPartOwned(name, level, owned) {
+    const key = name + '\0' + level;
+    if (owned) {
+      this.unownedParts.delete(key);
+    } else {
+      this.unownedParts.add(key);
+      for (let i = 0; i < this.equippedParts.length; i++) {
+        const p = this.equippedParts[i];
+        if (p && p.name === name && p.level === level) this.equippedParts[i] = null;
+      }
+    }
+  },
+  // 同名の全LVをまとめて所持/未所持にする（グループ★トグル用）。
+  _setGroupOwned(name, owned) {
+    this.unownedParts.delete(name); // 旧 bare-name を掃除
+    for (const p of this.customParts) {
+      if (p.name === name) this._setPartOwned(name, p.level, owned);
     }
   },
 
@@ -1614,7 +1661,7 @@ const App = {
     const maxSlots = this.getMaxSlots();
     const currentParts = this.equippedParts.filter(Boolean);
 
-    const result = GBO2Calculator.optimize(base, maxSlots, this.customParts.filter(p => !this.unownedParts.has(p.name)), {
+    const result = GBO2Calculator.optimize(base, maxSlots, this.customParts.filter(p => !this.isPartUnowned(p)), {
       damageRatio: this.getNormalizedDamageRatio(),
       atkRatio: this.getNormalizedAtkRatio(),
       selectedStats: this.selectedStats,
@@ -1644,7 +1691,7 @@ const App = {
 
     const maxSlots = this.getMaxSlots();
     const currentParts = this.equippedParts.filter(Boolean);
-    const candidates = this.customParts.filter(p => !this.unownedParts.has(p.name));
+    const candidates = this.customParts.filter(p => !this.isPartUnowned(p));
 
     let result;
     try {
@@ -1727,7 +1774,7 @@ const App = {
 
     const maxSlots = this.getMaxSlots();
     const currentParts = this.equippedParts.filter(Boolean);
-    const candidates = this.customParts.filter(p => !this.unownedParts.has(p.name));
+    const candidates = this.customParts.filter(p => !this.isPartUnowned(p));
 
     // 拡張スキル提案を適用したとき、同じ初期スロット状態から再最適化できるよう保持する
     // （自動追加されたパーツを含めないことで、提案プレビューと再最適化の結果を一致させる）。
@@ -1757,9 +1804,11 @@ const App = {
     this.equippedParts = newParts;
     this.updateDisplay();
 
-    // 未達がある場合、目標到達に効く拡張スキルを提案する（未選択・不足どちらでも有効）。
+    // 拡張スキルを提案する。未達のとき目標到達に効くスキルに加え、達成済みでも
+    // per_custom_part 系スキル（拡張[攻撃]＝移動を積むほど火力↑ 等）で総合価値が伸びる
+    // 「伸びしろ」も提案する（suggestExpansionSkills 側が reason='deficit'|'headroom' で区別）。
     let suggestion = null;
-    if (!outcome.allMet && this.expansionSkillsData.length > 0) {
+    if (this.expansionSkillsData.length > 0) {
       try {
         suggestion = GBO2Calculator.suggestExpansionSkills(base, maxSlots, candidates, {
           targets,
@@ -1768,6 +1817,8 @@ const App = {
           equippedParts: currentParts,
           currentSkillLevels: this.expansionSkillLevels,
           expansionSkillsData: this.expansionSkillsData,
+          damageRatio: this.getNormalizedDamageRatio(),
+          atkRatio: this.getNormalizedAtkRatio(),
         });
       } catch (e) {
         suggestion = null;
@@ -1801,11 +1852,14 @@ const App = {
       const fromTxt = s.fromLevel > 0 ? `LV${s.fromLevel}→` : '';
       return `<span class="opt-suggest-chip">${esc(s.name)} ${fromTxt}LV${s.toLevel}</span>`;
     }).join('');
-    const lead = suggestion.resolvesAll
-      ? 'この拡張スキルを付けると、すべての希望値に到達できます。'
-      : 'この拡張スキルを付けると、希望値に近づきます（上限が上がり、未達が減少）。';
+    const lead = suggestion.reason === 'headroom'
+      ? '希望値は達成済みですが、この拡張スキルを付けると火力・装甲・機動がさらに伸びます（移動などのパーツを多く積むほど効果が上がります）。'
+      : suggestion.resolvesAll
+        ? 'この拡張スキルを付けると、すべての希望値に到達できます。'
+        : 'この拡張スキルを付けると、希望値に近づきます（上限が上がり、未達が減少）。';
+    const head = suggestion.reason === 'headroom' ? '💡 拡張スキルの伸びしろ' : '💡 拡張スキルの提案';
     return `<div class="opt-suggest">
-      <div class="opt-suggest-head">💡 拡張スキルの提案</div>
+      <div class="opt-suggest-head">${head}</div>
       <div class="opt-suggest-body">${lead}</div>
       <div class="opt-suggest-chips">${chips}</div>
       <button type="button" class="opt-suggest-apply" id="opt-suggest-apply">この拡張スキルを設定して再最適化</button>
@@ -2618,8 +2672,9 @@ const App = {
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
     const html = Object.entries(groupMap).map(([name, levels]) => {
-      const isUnowned = this.unownedParts.has(name);
-      if (isUnowned && !this.showUnowned) return '';
+      // 全LVが未所持のグループのみ「未所持」とみなす（一部LVのみ未所持は表示し続ける）。
+      const groupFullyUnowned = levels.every(p => this.isPartUnowned(p));
+      if (groupFullyUnowned && !this.showUnowned) return '';
 
       const maxLvPart = levels[levels.length - 1];
       const equippedInstances = equippedList.filter(p => p.name === name);
@@ -2646,7 +2701,7 @@ const App = {
 
       // 追加で装備できるか。全く同じパーツ（同名・同LV）の重複は不可。同名でもLV違いは可。
       // 加えて「○○系の複数装備不可 / スピード旋回排他」とスロット空きで判定（partsConflict）。
-      const canAdd = (part) => this.selectedMS && !isFull && !isUnowned
+      const canAdd = (part) => this.selectedMS && !isFull && !this.isPartUnowned(part)
         && GBO2Calculator.canEquip(part, remaining)
         && !GBO2Calculator.conflictsWithAny(part, equippedList);
 
@@ -2655,12 +2710,15 @@ const App = {
         && levels.every(part => GBO2Calculator.conflictsWithAny(part, equippedList));
 
       const groupClasses = ['part-group'];
-      if (isUnowned) groupClasses.push('unowned');
+      if (groupFullyUnowned) groupClasses.push('unowned');
       if (isEquipped) groupClasses.push('equipped');
       if (isBlocked) groupClasses.push('group-blocked');
 
-      // 大きめのLVタブ。タップでそのLVを1つ装備。装備済みLV（同名・同LV）は重複不可で自動的に無効化。
+      // 大きめのLVタブ。タップでそのLVを1つ装備。各タブに所持/未所持トグル(★/☆)を併設し、
+      // レベル違いを個別に未所持設定できる。装備済みLV（同名・同LV）は重複不可で自動無効化。
       const lvTabsHtml = levels.map(part => {
+        const lvUnowned = this.isPartUnowned(part);
+        if (lvUnowned && !this.showUnowned) return ''; // 非表示設定なら未所持LVは隠す
         const cnt = lvCount(part.level);
         const addable = canAdd(part);
         const slotStr = ['close', 'mid', 'long']
@@ -2669,9 +2727,14 @@ const App = {
         const cls = ['lv-tab'];
         if (cnt > 0) cls.push('lv-equipped');
         if (!addable) cls.push('lv-disabled');
-        return `<button class="${cls.join(' ')}" data-part-name="${escapeHtml(name)}" data-part-lv="${part.level}" ${addable ? '' : 'disabled'}>
-          <span class="lv-tab-num">LV${part.level}${cnt > 1 ? ` ×${cnt}` : ''}</span><span class="lv-tab-slot">${slotStr}</span>
-        </button>`;
+        if (lvUnowned) cls.push('lv-unowned');
+        const ownCls = lvUnowned ? 'lv-own' : 'lv-own owned';
+        return `<div class="lv-cell">
+          <button class="${cls.join(' ')}" data-part-name="${escapeHtml(name)}" data-part-lv="${part.level}" ${addable ? '' : 'disabled'}>
+            <span class="lv-tab-num">LV${part.level}${cnt > 1 ? ` ×${cnt}` : ''}</span><span class="lv-tab-slot">${slotStr}</span>
+          </button>
+          <button class="${ownCls}" data-own-name="${escapeHtml(name)}" data-own-lv="${part.level}" title="LV${part.level}の所持/未所持">${lvUnowned ? '☆' : '★'}</button>
+        </div>`;
       }).join('');
 
       const single = levels[0];
@@ -2697,7 +2760,7 @@ const App = {
         <div class="part-group-header">
           <div class="part-group-title">
             <span class="part-item-name">${escapeHtml(name)}</span>
-            <button class="btn-own-toggle ${!isUnowned ? 'owned' : ''}" data-part-name="${escapeHtml(name)}" title="所持/未所持の切り替え">★</button>
+            <button class="btn-own-toggle ${!groupFullyUnowned ? 'owned' : ''}" data-part-name="${escapeHtml(name)}" title="${hasMultipleLvs ? '全LVの所持/未所持を切り替え（LV別は各タブの★で）' : '所持/未所持の切り替え'}">★</button>
           </div>
           <div class="part-group-meta">
             ${lvBadge}
@@ -2719,7 +2782,7 @@ const App = {
         const partName = el.dataset.partName;
         const partLv = parseInt(el.dataset.partLv, 10);
         const part = (groupMap[partName] || []).find(p => p.level === partLv);
-        if (part && !this.unownedParts.has(partName)) {
+        if (part && !this.isPartUnowned(part)) {
           this.equipPart(part);
         }
       });
@@ -2733,23 +2796,31 @@ const App = {
       });
     });
 
-    // 所持トグルの処理
+    // LV別 所持トグル(★/☆)：そのLVだけ所持/未所持を切り替える
+    container.querySelectorAll('.lv-own').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const name = btn.dataset.ownName;
+        const lv = parseInt(btn.dataset.ownLv, 10);
+        const part = (groupMap[name] || []).find(p => p.level === lv);
+        const owned = part ? this.isPartUnowned(part) : false; // 現状未所持なら所持化
+        this._setPartOwned(name, lv, owned);
+        this.saveSettings();
+        // updateDisplay は renderPartsList を内包するため二重描画を避ける
+        if (this.selectedMS) this.updateDisplay(); else this.renderPartsList();
+      });
+    });
+
+    // グループ★：同名の全LVをまとめて所持/未所持
     container.querySelectorAll('.btn-own-toggle').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const partName = btn.dataset.partName;
-        if (this.unownedParts.has(partName)) {
-          this.unownedParts.delete(partName);
-        } else {
-          this.unownedParts.add(partName);
-          // 装備中なら外す
-          const equippedIdx = this.equippedParts.findIndex(p => p && p.name === partName);
-          if (equippedIdx !== -1) {
-            this.removePart(equippedIdx);
-          }
-        }
+        const name = btn.dataset.partName;
+        const levels = groupMap[name] || [];
+        const fullyUnowned = levels.length > 0 && levels.every(p => this.isPartUnowned(p));
+        this._setGroupOwned(name, fullyUnowned); // 全未所持なら所持化、それ以外は全未所持化
         this.saveSettings();
-        this.renderPartsList();
+        if (this.selectedMS) this.updateDisplay(); else this.renderPartsList();
       });
     });
 
