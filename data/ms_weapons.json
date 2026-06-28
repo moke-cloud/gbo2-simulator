@@ -1,5 +1,5 @@
 {
- "version": "h31cc22348cf0",
+ "version": "hf015f269b467",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -61670,10 +61670,10 @@
      "1": 110
     },
     "hits": 1,
-    "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：8%（13HIT）",
     "magazine": 60,
     "rangeM": 200,
-    "staggerValue": 7,
+    "staggerValue": 8,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -61686,7 +61686,7 @@
      "1": 900
     },
     "hits": 2,
-    "notes": "2発連続発射(257発/分)/移動射撃可/水中時使用不可/命中対象に炎上デバフ付与/3200固定ダメージ(200x16HIT)/よろけ値：65% x2",
+    "notes": "2発連続発射(257発/分)/移動射撃可/水中時使用不可/命中対象に炎上デバフ付与/4000固定ダメージ(200x20HIT)/よろけ値：65% x2",
     "magazine": 2,
     "rangeM": 400,
     "staggerValue": 65,
@@ -61699,7 +61699,7 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1400
+     "1": 1500
     },
     "hits": 1,
     "notes": "二発同時発射/射撃時静止/照準誘導効果有/よろけ値：80% x2",
