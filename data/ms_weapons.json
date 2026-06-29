@@ -1,5 +1,5 @@
 {
- "version": "hb792a7123685",
+ "version": "h1879eeb3e6a1",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -48786,7 +48786,10 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 2000
+     "1": 2000,
+     "2": 2200,
+     "3": 2400,
+     "4": 2600
     },
     "hits": 1,
     "notes": "移動射撃可/即撃ちよろけ有/よろけ値：10%",
@@ -48801,7 +48804,10 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 1950
+     "1": 1950,
+     "2": 2100,
+     "3": 2250,
+     "4": 2400
     },
     "hits": 1,
     "notes": "スキル「/空中格闘制御/」対応",
@@ -48835,7 +48841,10 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 250
+     "1": 250,
+     "2": 275,
+     "3": 300,
+     "4": 325
     },
     "hits": 1,
     "notes": "移動射撃可/ASL（自動照準補正）有/よろけ値：5%",
@@ -48850,7 +48859,10 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 900
+     "1": 900,
+     "2": 1000,
+     "3": 1100,
+     "4": 1200
     },
     "hits": 1,
     "notes": "攻撃対象の特殊緩衝材系スキル無視",
@@ -48884,13 +48896,16 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 225
+     "1": 225,
+     "2": 250,
+     "3": 275,
+     "4": 300
     },
     "hits": 1,
-    "notes": "二発同時発射/移動射撃可/ひるみ有/よろけ値：17% x2",
+    "notes": "二発同時発射/移動射撃可/ひるみ有/よろけ値：20% x2",
     "magazine": 10,
     "rangeM": 350,
-    "staggerValue": 17,
+    "staggerValue": 20,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -48900,7 +48915,10 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 150
+     "1": 150,
+     "2": 160,
+     "3": 170,
+     "4": 180
     },
     "hits": 1,
     "notes": "移動射撃可/水中時使用不可/ひるみ有/命中対象に炎上デバフ付与/2000固定ダメージ(200x10HIT)/よろけ値：10%",
