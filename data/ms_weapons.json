@@ -1,5 +1,5 @@
 {
- "version": "hf015f269b467",
+ "version": "hb792a7123685",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -76088,7 +76088,6 @@
     "hits": 1,
     "notes": "＜通常時/システム発動中＞共通使用可/移動射撃可/スキル「トランザムシステム」対応/スキル発動中ブースト射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：1秒/倍率：1.26倍/よろけ値：20%（80%）",
     "rangeM": 350,
-    "form": "normal",
     "staggerValue": 20,
     "chargeable": true,
     "special": {},
@@ -76118,7 +76117,6 @@
     },
     "hits": 1,
     "notes": "＜通常時/システム発動中＞共通使用可/スキル「/空中格闘制御/」対応/スキル「トランザムシステム」対応/スキル発動中、攻撃対象の特殊緩衝材系スキル無視",
-    "form": "normal",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -76231,6 +76229,7 @@
     "notes": "＜システム発動中＞使用可/射撃時静止/空中射撃可/照射攻撃/最大6ヒット/大よろけ有/ユニット貫通効果有/使用中射撃属性被ダメージ－50%/使用中受けた射撃属性のよろけ値を50%かつ小数点以下切り捨てで計算する/よろけ値：20% x6",
     "magazine": 1,
     "rangeM": 500,
+    "form": "alt",
     "staggerValue": 20,
     "chargeable": false,
     "special": {
@@ -76257,6 +76256,7 @@
     "hits": 1,
     "notes": "＜システム発動中＞使用可/二発同時発射 x2回攻撃/移動射撃可/空中射撃可/ブースト射撃可/よろけ有/ASL（自動照準補正）有/攻撃対象がよろけ・大よろけ・転倒中、与ダメージ＋20%/よろけ値：10% x2発 x2射",
     "rangeM": 325,
+    "form": "alt",
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
@@ -76272,6 +76272,7 @@
     "hits": 1,
     "notes": "＜システム発動中＞使用可/Eパック式弾数所持/移動射撃可/ブースト射撃可/ASL（自動照準補正）有/よろけ値：13%（8HIT）",
     "rangeM": 300,
+    "form": "alt",
     "staggerValue": 13,
     "chargeable": false,
     "special": {},
@@ -76288,6 +76289,7 @@
     "notes": "＜システム発動中＞使用可/8発連続発射/移動射撃可/空中射撃可/ブースト射撃可/照準誘導効果有/命中対象に炎上デバフ付与/3000固定ダメージ(250x12HIT)/よろけ値：13% x8",
     "magazine": 16,
     "rangeM": 350,
+    "form": "alt",
     "staggerValue": 13,
     "chargeable": false,
     "special": {},
@@ -76304,6 +76306,7 @@
     "notes": "＜システム発動中＞使用可/二発同時発射/移動射撃可/空中射撃可/ブースト射撃可/よろけ有/攻撃対象の耐格闘補正を30%減でダメージ計算/攻撃対象のシールドHP無視/よろけ値：50% x2",
     "magazine": 2,
     "rangeM": 250,
+    "form": "alt",
     "staggerValue": 50,
     "chargeable": false,
     "special": {
