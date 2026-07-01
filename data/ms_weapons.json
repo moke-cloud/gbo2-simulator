@@ -1,5 +1,5 @@
 {
- "version": "h1053dedba808",
+ "version": "hed19b2c1bef6",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -849,7 +849,7 @@
     }
    },
    {
-    "name": "4連装ミサイル・ポッド",
+    "name": "肩部4連装ミサイル・ポッド",
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
@@ -11559,11 +11559,15 @@
       },
       {
        "hit": 2,
-       "pct": 70.0
+       "pct": 102.0
       },
       {
        "hit": 3,
-       "pct": 49.0
+       "pct": 104.0
+      },
+      {
+       "hit": 4,
+       "pct": 110.0
       }
      ]
     },
@@ -11579,16 +11583,16 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 80,
-     "2": 105,
-     "3": 130,
-     "4": 155
+     "1": 100,
+     "2": 125,
+     "3": 150,
+     "4": 175
     },
     "hits": 1,
-    "notes": "移動射撃可/ブースト射撃可/よろけ値：6%（17HIT）/局部補正：？倍/シールド補正：？倍",
-    "magazine": 60,
-    "rangeM": 150,
-    "staggerValue": 6,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）/局部補正：？倍/シールド補正：？倍",
+    "magazine": 80,
+    "rangeM": 200,
+    "staggerValue": 7,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -40920,13 +40924,13 @@
     "attribute": "ballistic",
     "power": {
      "1": 1000,
-     "2": 1100
+     "2": 1200
     },
     "hits": 1,
-    "notes": "二発同時発射/移動射撃可/水中時使用不可/よろけ有/命中対象に炎上デバフ付与/1250固定ダメージ(250x5HIT)/よろけ値：30% x2",
-    "magazine": 6,
+    "notes": "二発同時発射/移動射撃可/水中時使用不可/よろけ有/命中対象に炎上デバフ付与/2000固定ダメージ(400x5HIT)/よろけ値：40% x2",
+    "magazine": 12,
     "rangeM": 350,
-    "staggerValue": 30,
+    "staggerValue": 40,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -40961,7 +40965,7 @@
     "directionMul": {
      "n": 1.0,
      "side": 0.75,
-     "down": 1.4
+     "down": 1.6
     }
    },
    {
@@ -40973,9 +40977,9 @@
      "2": 250
     },
     "hits": 1,
-    "notes": "移動射撃可/ブースト射撃可/ASL（自動照準補正）有/よろけ値：10%（10HIT）",
+    "notes": "移動射撃可/ブースト射撃可/ASL（自動照準補正）有/よろけ値：13%（8HIT）",
     "rangeM": 225,
-    "staggerValue": 10,
+    "staggerValue": 13,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -40985,8 +40989,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 2100,
-     "2": 2250
+     "1": 2300,
+     "2": 2500
     },
     "hits": 1,
     "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/よろけ値：10%",
@@ -41001,11 +41005,11 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 160,
-     "2": 180
+     "1": 180,
+     "2": 200
     },
     "hits": 1,
-    "notes": "Eパック式弾数所持/射撃時静止/ASL（自動照準補正）有/よろけ値：5%",
+    "notes": "Eパック式弾数所持/射撃時静止/ASL（自動照準補正）有/よろけ値：5%（20HIT）",
     "rangeM": 400,
     "staggerValue": 5,
     "chargeable": false,
@@ -46686,10 +46690,10 @@
      "1": 550,
      "2": 700
     },
-    "hits": 3,
-    "notes": "移動射撃可/集束可/非集束時3発連続発射(450発/分)/集束時よろけ有/集束時3発連続発射(360発/分)/集束時間：2.5秒/倍率：3.09倍/よろけ値：20% x3（35% x3）/脚部倍率：1.17倍(1.0倍)",
-    "rangeM": 250,
-    "staggerValue": 20,
+    "hits": 4,
+    "notes": "移動射撃可/集束可/非集束時4発連続発射(450発/分)/集束時よろけ有/集束時3発連続発射(360発/分)/集束時間：2.5秒/倍率：3.45倍/よろけ値：25% x4（50% x3）/脚部倍率：1.17倍(1.0倍)",
+    "rangeM": 300,
+    "staggerValue": 25,
     "chargeable": true,
     "special": {},
     "modes": [
@@ -46705,8 +46709,8 @@
       "key": "charged",
       "label": "集束",
       "power": {
-       "1": 1700,
-       "2": 1800
+       "1": 1900,
+       "2": 2100
       }
      }
     ]
@@ -46716,8 +46720,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2600,
-     "2": 3050
+     "1": 2800,
+     "2": 3200
     },
     "hits": 1,
     "notes": "",
@@ -46731,7 +46735,7 @@
       },
       {
        "hit": 2,
-       "pct": 30.0
+       "pct": 60.0
       }
      ]
     },
@@ -46747,8 +46751,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2900,
-     "2": 3400
+     "1": 3000,
+     "2": 3500
     },
     "hits": 1,
     "notes": "",
@@ -46762,7 +46766,7 @@
       },
       {
        "hit": 2,
-       "pct": 30.0
+       "pct": 60.0
       }
      ]
     },
@@ -46778,14 +46782,14 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1500,
-     "2": 2300
+     "1": 2500,
+     "2": 2800
     },
     "hits": 1,
-    "notes": "移動射撃可/よろけ有/照準誘導効果有/よろけ値：20%",
+    "notes": "移動射撃可/よろけ有/照準誘導効果有/よろけ値：80%",
     "magazine": 3,
     "rangeM": 350,
-    "staggerValue": 20,
+    "staggerValue": 80,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -46795,8 +46799,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 700,
-     "2": 1100
+     "1": 1000,
+     "2": 1300
     },
     "hits": 1,
     "notes": "移動射撃可/よろけ値：35%（3HIT）",
@@ -46816,9 +46820,9 @@
      "2": 400
     },
     "hits": 1,
-    "notes": "6発同時発射/約0.8秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/よろけ値：20% x6",
+    "notes": "6発同時発射/約0.8秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/よろけ値：25% x6",
     "rangeM": 250,
-    "staggerValue": 20,
+    "staggerValue": 25,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -46832,9 +46836,9 @@
      "2": 250
     },
     "hits": 1,
-    "notes": "6発同時発射/移動射撃可/ブースト射撃可/ひるみ有/ASL（自動照準補正）有/ユニット貫通効果有/よろけ値：8% x6",
-    "rangeM": 200,
-    "staggerValue": 8,
+    "notes": "6発同時発射/移動射撃可/ブースト射撃可/ひるみ有/ASL（自動照準補正）有/ユニット貫通効果有/よろけ値：9% x6",
+    "rangeM": 250,
+    "staggerValue": 9,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -57253,24 +57257,24 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 350,
-     "2": 375
+     "1": 380,
+     "2": 420
     },
     "hits": 1,
-    "notes": "射撃時静止/ASL（自動照準補正）有/よろけ値：17%（6HIT）",
+    "notes": "射撃時静止/ASL（自動照準補正）有/よろけ値：20%（5HIT）",
     "rangeM": 400,
-    "staggerValue": 17,
+    "staggerValue": 20,
     "chargeable": false,
     "special": {},
     "modes": null
    },
    {
-    "name": "メガ・ビーム・キャノン",
+    "name": "メガ・ビーム・キャノンx2",
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1500,
-     "2": 1600
+     "1": 1600,
+     "2": 1750
     },
     "hits": 1,
     "notes": "二発同時発射/射撃時静止/集束必須/集束中移動可/よろけ有/ユニット貫通効果有/集束時間：0.8秒/よろけ値：40% x2",
@@ -76164,7 +76168,7 @@
      "1": 3500
     },
     "hits": 1,
-    "notes": "＜通常時＞使用可/格闘方向に関わらず強制ダウン/攻撃対象の特殊緩衝材系スキル無視/スキル「空中格闘制御対応」",
+    "notes": "＜通常時＞使用可/格闘方向に関わらず強制ダウン/攻撃対象の特殊緩衝材系スキル無視/スキル「空中格闘制御」対応",
     "form": "normal",
     "staggerValue": null,
     "chargeable": false,
@@ -76244,11 +76248,11 @@
      "1": 2500
     },
     "hits": 6,
-    "notes": "＜システム発動中＞使用可/射撃時静止/空中射撃可/照射攻撃/最大6ヒット/大よろけ有/ユニット貫通効果有/使用中射撃属性被ダメージ－50%/使用中受けた射撃属性のよろけ値を50%かつ小数点以下切り捨てで計算する/よろけ値：20% x6",
+    "notes": "＜システム発動中＞使用可/射撃時静止/空中射撃可/照射攻撃/最大6ヒット/大よろけ有/ユニット貫通効果有/使用中射撃属性被ダメージ－50%/使用中受けた射撃属性のよろけ値を50%かつ小数点以下切り捨てで計算する/OH短縮系の効果なし/よろけ値：50% x6",
     "magazine": 1,
     "rangeM": 500,
     "form": "alt",
-    "staggerValue": 20,
+    "staggerValue": 50,
     "chargeable": false,
     "special": {
      "comboCorrection": [
