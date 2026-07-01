@@ -854,6 +854,18 @@ const GBO2Calculator = {
   _SPEED_TURN_TYPES: new Set(['speed', 'turn_speed', 'turn_speed_ground', 'turn_speed_space']),
 
   /**
+   * パーツ名から「系列」キーを導出する。
+   * 「同系統のパーツは複数装備不可」は固有の系統名を持たない相対表現なので、
+   * 系列はパーツ名の共通接頭辞（［型式］/（…）等の派生サフィックスを除いた部分）で判定する。
+   * 例: 「コネクティングシステム［支援Ⅰ型］」→「コネクティングシステム」。
+   */
+  _seriesKey(part) {
+    const name = (part && part.name) || '';
+    const m = name.match(/^(.+?)\s*[［（(【\[]/);
+    return (m ? m[1] : name).trim();
+  },
+
+  /**
    * パーツの排他メタ情報を算出（パーツに非列挙でキャッシュ）。
    * - groups: 共有すると共存不可になるキー集合（同名 / ○○系）
    * - raisesSpeedTurn: スピードまたは旋回が上昇する
@@ -869,7 +881,16 @@ const GBO2Calculator = {
     //    「装備」と否定語の間に語が挟まる表記（新型装甲系の「複数装備することは不可」等）も許容する。
     const fam = desc.match(/(?:なお|また|尚)?\s*([^。、,；\s]+?)系(?:統)?(?:の)?(?:カスタム)?パーツは(?:複数|同時)装備[^。]*?(?:でき(?:ない|ません)|不可|行えない)/);
     if (fam) {
-      groups.add('family:' + fam[1].replace(/^(?:なお|また|尚)/, ''));
+      const token = fam[1].replace(/^(?:なお|また|尚)/, '');
+      // 「同系統のパーツは複数装備不可」の「同」は相対参照（＝このパーツと同じ系列）で、
+      // 固有の系統名ではない。全パーツが 'family:同' に集約されると別系列同士まで
+      // 排他扱いになるため、その場合はパーツ名の系列キーで束ねる。
+      // 例: コネクティングシステム系 と レベルリンクシステム系 は別系列＝共存可。
+      if (/同$/.test(token)) {
+        groups.add('series:' + this._seriesKey(part));
+      } else {
+        groups.add('family:' + token);
+      }
     } else if (/(?:複数|同時)装備[^。]*?(?:でき(?:ない|ません)|不可|行えない)/.test(desc)) {
       // 系統指定の無い自己制限（このパーツ単体を複数装備不可）→ 同名で1つに限定
       groups.add('name:' + part.name);

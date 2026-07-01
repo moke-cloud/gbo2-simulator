@@ -333,6 +333,20 @@ assert('新型装甲系 耐ビーム と 耐格闘 は共存不可', GBO2Calcula
 assert('新型装甲系 同種(耐ビーム同士)も共存不可', GBO2Calculator.partsConflict(pArmorBeam, pArmorBeam), true);
 assert('新型装甲系 と 別系統パーツは共存可', GBO2Calculator.partsConflict(pArmorBeam, pThruster), false);
 
+// 「同系統のパーツは複数装備不可」= 相対参照。固有系統名でないため、系列(名前接頭辞)で束ねる。
+// 回帰: 「同」を family 名として全パーツを 'family:同' に集約すると別系列同士まで排他化するバグ。
+const pConnS1 = { name: 'コネクティングシステム［支援Ⅰ型］', level: 1, slots: { close: 3, mid: 3, long: 3 }, effects: [{ type: 'oh_recovery_pct', value: 10 }], description: 'ビーム射撃兵装で敵機に与えるダメージが5%増加し、オーバーヒートからの復帰時間を10%短縮する。同系統のカスタムパーツは複数装備不可。' };
+const pConnA1 = { name: 'コネクティングシステム［強襲Ⅰ型］', level: 1, slots: { close: 3, mid: 3, long: 3 }, effects: [{ type: 'speed', value: 7 }, { type: 'melee_correction', value: 10 }, { type: 'melee_armor', value: 10 }], description: '格闘補正と耐格闘補正が10増加。さらに強襲カテゴリに装備させると、スピードが7増加。同系統のカスタムパーツは複数装備不可。' };
+const pConnG1 = { name: 'コネクティングシステム［汎用Ⅰ型］', level: 1, slots: { close: 3, mid: 3, long: 3 }, effects: [{ type: 'turn_speed', value: 7 }, { type: 'thruster', value: 7 }], description: 'スピード、スラスター、旋回性能が7増加。なおスピードが上昇するパーツと同系統のカスタムパーツは同時装備不可。' };
+const pLinkArm = { name: 'レベルリンクシステム［装甲］', level: 1, slots: { close: 3, mid: 3, long: 3 }, effects: [{ type: 'ballistic_armor', value: 2 }, { type: 'beam_armor', value: 2 }, { type: 'melee_armor', value: 2 }], description: '耐実弾、耐ビーム、耐格闘補正が2増加。機体と主兵装のLVが一致すると効果量が上昇し、LVが高いほど効果量も高くなる。同系統のパーツは複数装備不可。' };
+const pLinkMel = { name: 'レベルリンクシステム［格闘］', level: 1, slots: { close: 3, mid: 3, long: 3 }, effects: [{ type: 'melee_correction', value: 5 }], description: '格闘補正が5増加。機体と主兵装のLVが一致すると効果量が上昇し、LVが高いほど効果量も高くなる。同系統のパーツは複数装備不可。' };
+assert('コネクティングシステム同士は共存不可(同系列)', GBO2Calculator.partsConflict(pConnS1, pConnA1), true);
+assert('コネクティング汎用Ⅰも同系列として排他(「〜と同系統」表記)', GBO2Calculator.partsConflict(pConnG1, pConnA1), true);
+assert('レベルリンクシステム同士は共存不可(同系列)', GBO2Calculator.partsConflict(pLinkArm, pLinkMel), true);
+assert('コネクティング と レベルリンク は別系列なので共存可', GBO2Calculator.partsConflict(pConnS1, pLinkArm), false);
+assert('コネクティング汎用Ⅰ と レベルリンク格闘 も別系列で共存可', GBO2Calculator.partsConflict(pConnG1, pLinkMel), false);
+assert('「同系統」パーツ と 別系統(特殊強化フレーム)も共存可', GBO2Calculator.partsConflict(pConnS1, pFrameA), false);
+
 // 最適化(optimize)でも新型装甲系は1枚しか選ばれない
 const armorBase = { ...focusBase, ballistic_armor: 0, beam_armor: 0, melee_armor: 0 };
 const armorOptRes = GBO2Calculator.optimize(armorBase, { close: 8, mid: 8, long: 30 }, [pArmorBeam, pArmorBall, pArmorMelee], {
