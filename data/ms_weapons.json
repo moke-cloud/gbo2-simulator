@@ -1,5 +1,5 @@
 {
- "version": "hed19b2c1bef6",
+ "version": "h3de72129a48d",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -70497,7 +70497,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 2600
+     "1": 2600,
+     "2": 2800
     },
     "hits": 2,
     "notes": "移動射撃可/即撃ちよろけ有/集束可/集束時2発連続発射/集束時ASL（自動照準補正）有/集束時間：1.5秒/倍率：0.69倍/よろけ値：20%（50% x2）",
@@ -70510,7 +70511,8 @@
       "key": "normal",
       "label": "非集束",
       "power": {
-       "1": 2600
+       "1": 2600,
+       "2": 2800
       }
      },
      {
@@ -70527,7 +70529,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2750
+     "1": 2750,
+     "2": 2950
     },
     "hits": 1,
     "notes": "",
@@ -70546,7 +70549,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 130
+     "1": 130,
+     "2": 136
     },
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
@@ -70562,7 +70566,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 250
+     "1": 250,
+     "2": 300
     },
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/水中時使用不可/命中対象に炎上デバフ付与/3000固定ダメージ(200x15HIT)/よろけ値：13%",
@@ -70578,7 +70583,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 300
+     "1": 300,
+     "2": 350
     },
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/照準誘導効果有/よろけ値：12%",
@@ -70594,7 +70600,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 4200
+     "1": 4200,
+     "2": 4500
     },
     "hits": 1,
     "notes": "射撃時静止/集束必須/集束中移動可/集束時大よろけ有/集束時間：5秒/よろけ値：20%",
@@ -76248,7 +76255,7 @@
      "1": 2500
     },
     "hits": 6,
-    "notes": "＜システム発動中＞使用可/射撃時静止/空中射撃可/照射攻撃/最大6ヒット/大よろけ有/ユニット貫通効果有/使用中射撃属性被ダメージ－50%/使用中受けた射撃属性のよろけ値を50%かつ小数点以下切り捨てで計算する/OH短縮系の効果なし/よろけ値：50% x6",
+    "notes": "＜システム発動中＞使用可/射撃時静止/空中射撃可/照射攻撃/最大6ヒット/大よろけ有/ユニット貫通効果有/使用中射撃属性被ダメージ－50%/使用中射撃攻撃による被弾時のリアクションを軽減する。/使用中受けた射撃属性のよろけ値を50%かつ小数点以下切り捨てで計算する/リロード短縮系の効果なし/よろけ値：50% x6",
     "magazine": 1,
     "rangeM": 500,
     "form": "alt",
@@ -76305,7 +76312,7 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 35
+     "1": 350
     },
     "hits": 8,
     "notes": "＜システム発動中＞使用可/8発連続発射/移動射撃可/空中射撃可/ブースト射撃可/照準誘導効果有/命中対象に炎上デバフ付与/3000固定ダメージ(250x12HIT)/よろけ値：13% x8",
@@ -76348,6 +76355,167 @@
      ]
     },
     "modes": null
+   }
+  ],
+  "スサノオ": [
+   {
+    "name": "スサノオ用Bチャクラム",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2800
+    },
+    "hits": 2,
+    "notes": "移動射撃可/ブースト射撃可/即撃ちよろけ有/集束可/集束時2発連続発射/集束射撃時かつ攻撃対象が空中にいる場合、大よろけ有/集束時間：3秒/倍率：0.714倍/よろけ値：20%（25% x2）/スキル「トランザムシステム（擬似太陽炉）」対応/スキル発動中、攻撃対象の緩衝材系スキル無視/スキル発動中、攻撃対象のシールドHP無視",
+    "rangeM": 300,
+    "staggerValue": 20,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 2800
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 2000
+      }
+     }
+    ]
+   },
+   {
+    "name": "スサノオ用強化サーベルx2",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2600
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応/攻撃対象がダメージリアクション中でない時、与ダメージ＋30%/スキル「トランザムシステム（擬似太陽炉）」対応/スキル発動中、攻撃対象の緩衝材系スキル無視/スキル発動中、攻撃対象のシールドHP無視",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 2.0,
+     "side": 0.75,
+     "down": 2.4
+    }
+   },
+   {
+    "name": "スサノオ用GNバルカンx2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 100
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/ブースト射撃可/ASL（自動照準補正）有/よろけ値：5% x2",
+    "rangeM": 225,
+    "staggerValue": 5,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "トライパニッシャー",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 4000
+    },
+    "hits": 1,
+    "notes": "射撃時静止/集束必須/よろけ有/ユニット貫通効果有/爆風範囲有/攻撃対象のシールドHP無視/攻撃対象のHPが50%以上の場合、追加ダメージ発生/追加ダメージは、2000の固定値/使用中射撃属性被ダメージ－30%/使用中射撃攻撃による被ダメージリアクション1段階軽減/使用中受けた射撃属性のよろけ値を70%かつ小数点以下切り捨てで計算する/集束時間：1秒/よろけ値：200%",
+    "rangeM": 250,
+    "staggerValue": 200,
+    "chargeable": true,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ソウテン",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3400
+    },
+    "hits": 1,
+    "notes": "スキル「空中格闘制御」対応/スキル「ヘビーアタック改」対応/集束：1.5秒/攻撃対象がダメージリアクション中でない時、与ダメージ＋30%",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "heavyAttack": {
+      "mul": 3.6,
+      "perHitMul": 1.8,
+      "hits": 2
+     }
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.4
+    }
+   },
+   {
+    "name": "スサノオ用GNVx2＜TA＞",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 110
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/ブースト射撃可/ASL（自動照準補正）有/よろけ値：6% x2",
+    "rangeM": 225,
+    "staggerValue": 6,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "トライパニッシャー＜TA＞",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 4500
+    },
+    "hits": 1,
+    "notes": "射撃時静止/集束必須/よろけ有/ユニット貫通効果有/爆風範囲有/攻撃対象のシールドHP無視/攻撃対象のHPが50%以上の場合、追加ダメージ発生/追加ダメージは、2000の固定値/使用中射撃属性被ダメージ－30%/使用中射撃攻撃による被ダメージリアクション1段階軽減/使用中受けた射撃属性のよろけ値を70%かつ小数点以下切り捨てで計算する/集束時間：0.8秒/よろけ値：200%",
+    "rangeM": 250,
+    "staggerValue": 200,
+    "chargeable": true,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ソウテン＜TA＞",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3500
+    },
+    "hits": 1,
+    "notes": "スキル「空中格闘制御」対応/スキル「ヘビーアタック改」対応/集束：1秒/攻撃対象がダメージリアクション中でない時、与ダメージ＋30%",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "heavyAttack": {
+      "mul": 3.6,
+      "perHitMul": 1.8,
+      "hits": 2
+     }
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.4
+    }
    }
   ]
  }
