@@ -1,5 +1,5 @@
 {
- "version": "hca15b8305afe",
+ "version": "hd02c9d43bea0",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -76516,6 +76516,256 @@
      "side": 0.75,
      "down": 1.4
     }
+   }
+  ],
+  "リグ・コンティオ": [
+   {
+    "name": "ヴァリアブルビーム・ランチャー",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 3000
+    },
+    "hits": 8,
+    "notes": "移動射撃可/空中射撃可/即撃ちよろけ有/非集束時ASL（自動照準補正）有/集束可/集束射撃時静止/集束中移動可/集束時照射攻撃/最大8ヒット/集束時ユニット貫通効果有/集束時間：2秒/倍率：2.67倍/よろけ値：25%（50% x8）",
+    "rangeM": 350,
+    "staggerValue": 25,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 3000
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 800
+      }
+     }
+    ]
+   },
+   {
+    "name": "R・コンティオ用B・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3100
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.4
+    }
+   },
+   {
+    "name": "格闘",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1100
+    },
+    "hits": 3,
+    "notes": "移動射撃可/ブースト射撃可/集束必須/3発連続発射/よろけ有/集束時間：0.8秒/よろけ値：35% x3",
+    "rangeM": 250,
+    "staggerValue": 35,
+    "chargeable": true,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "リグ・コンティオ用B・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1100
+    },
+    "hits": 2,
+    "notes": "2発連続発射/移動射撃可/ASL（自動照準補正）有/よろけ値：35% x2",
+    "rangeM": 325,
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ビーム内蔵式Sクロー［打突］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3400
+    },
+    "hits": 1,
+    "notes": "連撃不可/大よろけ有/スキル「空中格闘制御」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 1.0,
+     "down": 1.8
+    }
+   },
+   {
+    "name": "ビーム内蔵式Sクロー［射出］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3000
+    },
+    "hits": 1,
+    "notes": "移動射撃可/約0.5秒長押しでロックオン/高速移動中にロックオン＆射出可/よろけ有/ユニット貫通効果有/よろけ値：50%",
+    "magazine": 1,
+    "rangeM": 250,
+    "staggerValue": 50,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "複合複眼式マルチセンサー",
+    "category": "shooting",
+    "attribute": "special",
+    "power": {
+     "1": 0
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/空中射撃可/発動中、射撃属性与ダメージ＋15%/自身のみが視認可能なスポット効果付与/効果時間：12.5秒/よろけ値：0%",
+    "rangeM": 300,
+    "staggerValue": 0,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "ギラ・ズール（CM）": [
+   {
+    "name": "G・Z（CM）用B・S・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 500,
+     "2": 600,
+     "3": 700,
+     "4": 800
+    },
+    "hits": 6,
+    "notes": "射撃時静止/照射攻撃/ユニット貫通効果有/非集束時最大6ヒット(546発/分)/集束可/集束時よろけ有/集束時最大8ヒット(546発/分)/集束時間：2秒/倍率：1.2倍/よろけ値：35% x6（50% x6）",
+    "rangeM": 450,
+    "staggerValue": 35,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 500,
+       "2": 600,
+       "3": 700,
+       "4": 800
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 600,
+       "2": 700,
+       "3": 800,
+       "4": 900
+      }
+     }
+    ]
+   },
+   {
+    "name": "ギラ・ズール用ビーム・ホーク",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2900,
+     "2": 3200,
+     "3": 3500,
+     "4": 3800
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.3
+    }
+   },
+   {
+    "name": "B・スナイパー・ライフル［速射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 700,
+     "2": 800,
+     "3": 900,
+     "4": 1000
+    },
+    "hits": 3,
+    "notes": "3発連続発射(167発/分)/射撃時静止/ひるみ有/よろけ値：35% x3",
+    "rangeM": 400,
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "S・ファウスト（L）",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 1000,
+     "2": 1100,
+     "3": 1200,
+     "4": 1300
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/よろけ有/よろけ値：35% x2",
+    "magazine": 4,
+    "rangeM": 200,
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "S・ファウスト（R）",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 1000,
+     "2": 1100,
+     "3": 1200,
+     "4": 1300
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/よろけ有/よろけ値：35% x2",
+    "magazine": 4,
+    "rangeM": 200,
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
    }
   ]
  }
