@@ -1,5 +1,5 @@
 {
- "version": "h918ca3461229",
+ "version": "h0162bd511dcd",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -15254,7 +15254,8 @@
      "4": 3100
     },
     "hits": 1,
-    "notes": "スキル「/空中格闘制御/」対応",
+    "notes": "＜通常時＞使用可/スキル「/空中格闘制御/」対応",
+    "form": "normal",
     "staggerValue": null,
     "chargeable": false,
     "special": {},
@@ -15313,11 +15314,11 @@
     "hits": 1,
     "notes": "＜変形時使用可＞/2発同時発射/移動射撃可/ブースト射撃可/ひるみ有/よろけ値：25% x2/局部補正：1.0倍/シールド補正：0.8倍",
     "rangeM": 450,
+    "form": "alt",
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    }
   ],
   "ドム・キャノン［単砲仕様］": [
