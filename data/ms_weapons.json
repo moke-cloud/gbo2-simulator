@@ -1,5 +1,5 @@
 {
- "version": "h670ab6fd8194",
+ "version": "hd8c680392d5a",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -859,10 +859,10 @@
      "4": 460
     },
     "hits": 1,
-    "notes": "移動射撃可/ブースト射撃可/左右交互発射/ひるみ有/よろけ値：35%（3HIT）",
+    "notes": "移動射撃可/ブースト射撃可/左右交互発射/ひるみ有/よろけ値：40%（3HIT）",
     "magazine": 8,
     "rangeM": 300,
-    "staggerValue": 35,
+    "staggerValue": 40,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -878,7 +878,7 @@
      "4": 450
     },
     "hits": 2,
-    "notes": "2発連続発射/移動射撃可/ブースト射撃可/ひるみ有/着弾点に2秒間持続ダメージ範囲発生(最大4HIT x2)/よろけ値：20% x2発 x4射",
+    "notes": "2発連続発射(120発/分)/移動射撃可/ブースト射撃可/ひるみ有/着弾点に2秒間持続ダメージ範囲発生(最大4HIT x2)/よろけ値：20% x2発 x4射",
     "magazine": 8,
     "rangeM": 300,
     "staggerValue": 20,
@@ -4839,7 +4839,7 @@
    {
     "name": "Gガンダム用B・ライフル［速射］",
     "category": "shooting",
-    "attribute": "special",
+    "attribute": "beam",
     "power": {
      "1": 900,
      "2": 1000,
@@ -4857,7 +4857,7 @@
    {
     "name": "Gガンダム用B・ライフル［照射］",
     "category": "shooting",
-    "attribute": "special",
+    "attribute": "beam",
     "power": {
      "1": 500,
      "2": 600,
@@ -14805,7 +14805,8 @@
      "4": 2890
     },
     "hits": 1,
-    "notes": "",
+    "notes": "＜通常時＞使用可",
+    "form": "normal",
     "staggerValue": null,
     "chargeable": false,
     "special": {},
@@ -14830,11 +14831,11 @@
     "notes": "＜通常時＞使用可/移動射撃可/ブースト射撃可/よろけ値：6%（17HIT）",
     "magazine": 40,
     "rangeM": 200,
+    "form": "normal",
     "staggerValue": 6,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "メガ粒子砲x2",
@@ -14849,11 +14850,11 @@
     "hits": 1,
     "notes": "＜通常時＞使用可/二発同時発射/射撃時静止/よろけ有/よろけ値：35% x2",
     "rangeM": 350,
+    "form": "normal",
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "メガ粒子砲x2［速射］",
@@ -14868,11 +14869,11 @@
     "hits": 1,
     "notes": "＜通常時＞使用可/二発同時発射/射撃時静止/よろけ値：25% x2",
     "rangeM": 350,
+    "form": "normal",
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "フェダーイン・ライフル（変形）",
@@ -14887,6 +14888,7 @@
     "hits": 1,
     "notes": "＜変形時＞使用可/移動射撃可/ブースト射撃可/ひるみ有/集束可/集束時よろけ有/集束時間：1.0秒/倍率：1.25倍/非集束よろけ値：30%/集束よろけ値：70%",
     "rangeM": 550,
+    "form": "alt",
     "staggerValue": 30,
     "chargeable": true,
     "special": {},
@@ -14911,8 +14913,7 @@
        "4": 3300
       }
      }
-    ],
-    "form": "alt"
+    ]
    },
    {
     "name": "メガ粒子砲x2（変形）",
@@ -14927,11 +14928,11 @@
     "hits": 1,
     "notes": "＜変形時＞使用可/二発同時発射/移動射撃可/ブースト射撃可/よろけ有/よろけ値：35% x2",
     "rangeM": 350,
+    "form": "alt",
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    }
   ],
   "ネモⅢ": [
