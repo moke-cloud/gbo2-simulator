@@ -1,5 +1,5 @@
 {
- "version": "hd8c680392d5a",
+ "version": "h88e308e859b8",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -76779,6 +76779,221 @@
     "magazine": 4,
     "rangeM": 200,
     "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "フリント": [
+   {
+    "name": "フリント用ザンバスター",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1900
+    },
+    "hits": 2,
+    "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/非集束時2発連続発射/集束可/集束時単発射撃/集束時弾数4発消費/集束時ユニット貫通効果有/集束時ASL（自動照準補正）有/集束時間：2秒/倍率：2.42倍/よろけ値：30% x2（80%）",
+    "rangeM": 325,
+    "staggerValue": 30,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 1900
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 4600
+      }
+     }
+    ]
+   },
+   {
+    "name": "フリント用ビーム・ザンバー",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2850
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 60.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.4
+    }
+   },
+   {
+    "name": "フリント用頭部バルカン砲x2",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 150
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
+    "magazine": 40,
+    "rangeM": 200,
+    "staggerValue": 7,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "胸部マシンガンx2",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 200
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/よろけ値：3% x2",
+    "magazine": 50,
+    "rangeM": 250,
+    "staggerValue": 3,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "120mmマシンガン",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 180
+    },
+    "hits": 1,
+    "notes": "移動射撃可/スキル「連動射撃」対応/よろけ値：12%（9HIT）",
+    "magazine": 60,
+    "rangeM": 350,
+    "staggerValue": 12,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "フリント用ヒート・ダガーx2",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2400
+    },
+    "hits": 1,
+    "notes": "スキル「空中格闘制御」対応/フリント用H・ダガーx2［投擲］リロード中使用不可",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 60.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 2.0,
+     "side": 0.75,
+     "down": 1.5
+    }
+   },
+   {
+    "name": "フリント用H・ダガーx2［投擲］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1300
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/ブースト射撃可/空中射撃可/よろけ有/よろけ値：50% x2",
+    "magazine": 2,
+    "rangeM": 200,
+    "staggerValue": 50,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 60.0
+      }
+     ]
+    },
+    "modes": null
+   },
+   {
+    "name": "120mmマシンガン［連動射撃］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 120
+    },
+    "hits": 1,
+    "notes": "単発射撃/※連動により実質3発同時発射/移動射撃可/ブースト射撃可/よろけ値：4%（合計12%）/効果時間終了後、120mmマシンガンが30秒間使用不可",
+    "magazine": 60,
+    "rangeM": 300,
+    "staggerValue": 4,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "フリント用頭部バルカン砲x2［連動射撃］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 80
+    },
+    "hits": 1,
+    "notes": "120mmマシンガン［連動射撃］で同時使用/単発射撃/移動射撃可/ブースト射撃可/よろけ値：4%",
+    "magazine": 60,
+    "rangeM": 300,
+    "staggerValue": 4,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "胸部マシンガンx2［連動射撃］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 100
+    },
+    "hits": 1,
+    "notes": "120mmマシンガン［連動射撃］で同時使用/単発射撃/移動射撃可/ブースト射撃可/よろけ値：4%",
+    "magazine": 60,
+    "rangeM": 300,
+    "staggerValue": 4,
     "chargeable": false,
     "special": {},
     "modes": null
