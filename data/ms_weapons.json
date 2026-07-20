@@ -1,5 +1,5 @@
 {
- "version": "h88e308e859b8",
+ "version": "hcbeb4647dfe1",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -49569,6 +49569,7 @@
     },
     "hits": 1,
     "notes": "＜通常時/NT-D時＞使用可",
+    "form": "normal",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -49588,8 +49589,7 @@
      "n": 1.0,
      "side": 1.0,
      "down": 1.8
-    },
-    "form": "normal"
+    }
    },
    {
     "name": "NG［C装備］用打撃（覚醒）",
@@ -49627,7 +49627,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 4500
+     "1": 4500,
+     "2": 5000
     },
     "hits": 1,
     "notes": "＜覚醒時＞使用可/連撃不可/射程：350m/大よろけ有/ユニット貫通効果有/攻撃対象の特殊緩衝材系スキル無視/スキル「攻撃姿勢制御」の効果対象外/集束時間：2秒",
