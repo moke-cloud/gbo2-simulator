@@ -1,5 +1,5 @@
 {
- "version": "hcbeb4647dfe1",
+ "version": "hb8b54ffe682a",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -37058,16 +37058,16 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 200,
-     "2": 210,
-     "3": 220,
-     "4": 230
+     "1": 220,
+     "2": 240,
+     "3": 260,
+     "4": 280
     },
     "hits": 1,
-    "notes": "15発同時発射/移動射撃可/ジャンプ射撃不可/ひるみ有/よろけ値：17% x15",
+    "notes": "15発同時発射/移動射撃可/ジャンプ射撃不可/ひるみ有/よろけ値：20% x15",
     "magazine": 3,
     "rangeM": 150,
-    "staggerValue": 17,
+    "staggerValue": 20,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -44647,7 +44647,7 @@
     "hits": 1,
     "notes": "二発同時発射/移動射撃可/ブースト射撃可/よろけ値：3% x2",
     "magazine": 40,
-    "rangeM": 175,
+    "rangeM": 200,
     "staggerValue": 3,
     "chargeable": false,
     "special": {},
@@ -76383,7 +76383,7 @@
      "1": 2800
     },
     "hits": 2,
-    "notes": "移動射撃可/ブースト射撃可/即撃ちよろけ有/集束可/集束時2発連続発射(250発/分)/集束射撃時かつ攻撃対象が空中にいる場合、大よろけ有/集束時間：3秒/倍率：0.714倍/よろけ値：20%（25% x2）/スキル「トランザムシステム（擬似太陽炉）」対応/スキル発動中、攻撃対象の緩衝材系スキル無視/スキル発動中、攻撃対象のシールドHP無視",
+    "notes": "移動射撃可/ブースト射撃可/即撃ちよろけ有/集束可/集束時2発連続発射(144発/分)/集束射撃時かつ攻撃対象が空中にいる場合、大よろけ有/集束時間：3秒/倍率：0.714倍/よろけ値：20%（25% x2）/スキル「トランザムシステム（擬似太陽炉）」対応/スキル発動中、攻撃対象の緩衝材系スキル無視/スキル発動中、攻撃対象のシールドHP無視",
     "rangeM": 300,
     "staggerValue": 20,
     "chargeable": true,
@@ -76678,7 +76678,7 @@
      "4": 800
     },
     "hits": 6,
-    "notes": "射撃時静止/照射攻撃/ユニット貫通効果有/非集束時最大6ヒット(546発/分)/集束可/集束中移動可/集束時よろけ有/集束時最大8ヒット(546発/分)/集束時間：2秒/倍率：1.2倍/よろけ値：35% x6（50% x6）",
+    "notes": "射撃時静止/照射攻撃/ユニット貫通効果有/非集束時最大6ヒット(514発/分)/集束可/集束中移動可/集束時よろけ有/集束時最大8ヒット(514発/分)/集束時間：2秒/倍率：1.2倍/よろけ値：35% x6（50% x6）",
     "rangeM": 450,
     "staggerValue": 35,
     "chargeable": true,
@@ -76739,7 +76739,7 @@
      "4": 1000
     },
     "hits": 3,
-    "notes": "3発連続発射(167発/分)/射撃時静止/ひるみ有/よろけ値：35% x3",
+    "notes": "3発連続発射(164発/分)/射撃時静止/ひるみ有/よろけ値：35% x3",
     "rangeM": 400,
     "staggerValue": 35,
     "chargeable": false,
@@ -76998,6 +76998,339 @@
     "chargeable": false,
     "special": {},
     "modes": null
+   }
+  ],
+  "ジェガン［高機動仕様］": [
+   {
+    "name": "ビーム・スナイパー・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1850,
+     "2": 2000,
+     "3": 2150,
+     "4": 2300
+    },
+    "hits": 1,
+    "notes": "射撃時静止/よろけ有/よろけ値：10%/局部補正：1.4倍/シールド補正：0.8倍",
+    "magazine": 2,
+    "rangeM": 850,
+    "staggerValue": 10,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "B・スナイパー・ライフル［照射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 350,
+     "2": 375,
+     "3": 400,
+     "4": 425
+    },
+    "hits": 5,
+    "notes": "射撃時静止/照射攻撃/最大5ヒット/ひるみ有/ユニット貫通効果有/よろけ値：20% x5/ビーム・スナイパー・ライフルに付属/武装Lvは機体Lv依存",
+    "rangeM": 850,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "マゼラ・トップ砲",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 1625,
+     "2": 1706,
+     "3": 1787,
+     "4": 1868
+    },
+    "hits": 1,
+    "notes": "射撃時静止/大よろけ有/局部補正：1.0倍/シールド補正：1.5倍",
+    "magazine": 6,
+    "rangeM": 500,
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "打撃",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1000,
+     "2": 1050,
+     "3": 1100,
+     "4": 1150,
+     "5": 1200,
+     "6": 1250
+    },
+    "hits": 1,
+    "notes": "局部補正：1.2倍/シールド補正：0.7倍/拠点補正：0.1倍",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0
+    }
+   },
+   {
+    "name": "副兵装1",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1100
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0
+    }
+   }
+  ],
+  "ヘイズルⅡ": [
+   {
+    "name": "ビーム・スナイパー・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1850,
+     "2": 2000,
+     "3": 2150,
+     "4": 2300
+    },
+    "hits": 1,
+    "notes": "射撃時静止/よろけ有/よろけ値：10%/局部補正：1.4倍/シールド補正：0.8倍",
+    "magazine": 2,
+    "rangeM": 850,
+    "staggerValue": 10,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "B・スナイパー・ライフル［照射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 350,
+     "2": 375,
+     "3": 400,
+     "4": 425
+    },
+    "hits": 5,
+    "notes": "射撃時静止/照射攻撃/最大5ヒット/ひるみ有/ユニット貫通効果有/よろけ値：20% x5/ビーム・スナイパー・ライフルに付属/武装Lvは機体Lv依存",
+    "rangeM": 850,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "マゼラ・トップ砲",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 1625,
+     "2": 1706,
+     "3": 1787,
+     "4": 1868
+    },
+    "hits": 1,
+    "notes": "射撃時静止/大よろけ有/局部補正：1.0倍/シールド補正：1.5倍",
+    "magazine": 6,
+    "rangeM": 500,
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "打撃",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1000,
+     "2": 1050,
+     "3": 1100,
+     "4": 1150,
+     "5": 1200,
+     "6": 1250
+    },
+    "hits": 1,
+    "notes": "局部補正：1.2倍/シールド補正：0.7倍/拠点補正：0.1倍",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0
+    }
+   },
+   {
+    "name": "副兵装1",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1100
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0
+    }
+   }
+  ],
+  "V2アサルトバスターガンダム": [
+   {
+    "name": "ビーム・スナイパー・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1850,
+     "2": 2000,
+     "3": 2150,
+     "4": 2300
+    },
+    "hits": 1,
+    "notes": "射撃時静止/よろけ有/よろけ値：10%/局部補正：1.4倍/シールド補正：0.8倍",
+    "magazine": 2,
+    "rangeM": 850,
+    "staggerValue": 10,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "B・スナイパー・ライフル［照射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 350,
+     "2": 375,
+     "3": 400,
+     "4": 425
+    },
+    "hits": 5,
+    "notes": "射撃時静止/照射攻撃/最大5ヒット/ひるみ有/ユニット貫通効果有/よろけ値：20% x5/ビーム・スナイパー・ライフルに付属/武装Lvは機体Lv依存",
+    "rangeM": 850,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "マゼラ・トップ砲",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 1625,
+     "2": 1706,
+     "3": 1787,
+     "4": 1868
+    },
+    "hits": 1,
+    "notes": "射撃時静止/大よろけ有/局部補正：1.0倍/シールド補正：1.5倍",
+    "magazine": 6,
+    "rangeM": 500,
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "打撃",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1000,
+     "2": 1050,
+     "3": 1100,
+     "4": 1150,
+     "5": 1200,
+     "6": 1250
+    },
+    "hits": 1,
+    "notes": "局部補正：1.2倍/シールド補正：0.7倍/拠点補正：0.1倍",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0
+    }
+   },
+   {
+    "name": "副兵装1",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1100
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0
+    }
    }
   ]
  }
