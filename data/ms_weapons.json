@@ -1,5 +1,5 @@
 {
- "version": "hb8b54ffe682a",
+ "version": "h963c298bbeaf",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -16869,10 +16869,10 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2500,
-     "2": 2700,
-     "3": 2900,
-     "4": 3100
+     "1": 2600,
+     "2": 2800,
+     "3": 3000,
+     "4": 3200
     },
     "hits": 1,
     "notes": "連撃不可/格闘方向に関わらず強制ダウン",
@@ -16894,7 +16894,7 @@
     "directionMul": {
      "n": 1.0,
      "side": 1.0,
-     "down": 2.0
+     "down": 2.4
     }
    },
    {
@@ -16936,15 +16936,15 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 350,
-     "2": 400,
-     "3": 450,
-     "4": 500
+     "1": 400,
+     "2": 500,
+     "3": 600,
+     "4": 700
     },
     "hits": 1,
-    "notes": "移動射撃可/ASL（自動照準補正）有/ひるみ有/よろけ値：8%",
+    "notes": "移動射撃可/ASL（自動照準補正）有/ひるみ有/よろけ値：17%",
     "rangeM": 300,
-    "staggerValue": 8,
+    "staggerValue": 17,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -16954,10 +16954,10 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1100,
-     "2": 1300,
-     "3": 1500,
-     "4": 1700
+     "1": 1400,
+     "2": 1600,
+     "3": 1800,
+     "4": 2000
     },
     "hits": 1,
     "notes": "3発同時発射/移動射撃可/ブースト射撃可/照準誘導効果有/よろけ有/よろけ値：10%",
@@ -38947,7 +38947,7 @@
     "directionMul": {
      "n": 1.0,
      "side": 0.75,
-     "down": 1.3
+     "down": 1.5
     }
    },
    {
@@ -38955,14 +38955,14 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 600,
-     "2": 650
+     "1": 750,
+     "2": 850
     },
     "hits": 1,
-    "notes": "移動射撃可/ひるみ有/よろけ値：35%（3HIT）",
+    "notes": "移動射撃可/ひるみ有/よろけ値：50%（2HIT）",
     "magazine": 4,
     "rangeM": 400,
-    "staggerValue": 35,
+    "staggerValue": 50,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -38972,13 +38972,13 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 350,
-     "2": 400
+     "1": 450,
+     "2": 500
     },
     "hits": 1,
-    "notes": "二発同時発射 x2回攻撃/移動射撃可/集束可/集束時二発同時発射 x3回攻撃/集束時間：3.5秒/倍率：1.714倍/よろけ値：13% x2発 x2射（25% x2発 x3射）",
+    "notes": "二発同時発射 x2回攻撃(300発/分)/移動射撃可/集束可/集束時二発同時発射 x3回攻撃(360発/分)/集束時間：2秒/倍率：1.78倍/よろけ値：20% x2発 x2射（25% x2発 x3射）",
     "rangeM": 300,
-    "staggerValue": 13,
+    "staggerValue": 20,
     "chargeable": true,
     "special": {},
     "modes": [
@@ -38986,16 +38986,16 @@
       "key": "normal",
       "label": "非集束",
       "power": {
-       "1": 350,
-       "2": 400
+       "1": 450,
+       "2": 500
       }
      },
      {
       "key": "charged",
       "label": "集束",
       "power": {
-       "1": 600,
-       "2": 650
+       "1": 800,
+       "2": 850
       }
      }
     ]
@@ -53368,7 +53368,7 @@
      "2": 2550
     },
     "hits": 2,
-    "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/集束可/集束時2発連続発射/集束時ひるみ有/集束時間：2秒/倍率：0.94倍/よろけ値：20%（65% x2）",
+    "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/集束可/集束時2発連続発射(240発/分)/集束時ひるみ有/集束時間：2秒/倍率：0.94倍/よろけ値：20%（65% x2）",
     "rangeM": 400,
     "staggerValue": 20,
     "chargeable": true,
@@ -53453,6 +53453,10 @@
     "staggerValue": null,
     "chargeable": false,
     "special": {
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 30
+     },
      "comboCorrection": [
       {
        "hit": 1,
@@ -53462,11 +53466,7 @@
        "hit": 2,
        "pct": 70.0
       }
-     ],
-     "armorReductionPct": {
-      "attr": "melee",
-      "pct": 30
-     }
+     ]
     },
     "modes": null,
     "directionMul": {
@@ -53484,7 +53484,7 @@
      "2": 375
     },
     "hits": 1,
-    "notes": "4発同時発射　x2回攻撃/移動射撃可/ブースト射撃可/ひるみ有/よろけ値：20% x4発 x2射",
+    "notes": "4発同時発射　x2回攻撃(600発/分)/移動射撃可/ブースト射撃可/ひるみ有/よろけ値：20% x4発 x2射",
     "rangeM": 200,
     "staggerValue": 20,
     "chargeable": false,
@@ -53500,7 +53500,7 @@
      "2": 1600
     },
     "hits": 5,
-    "notes": "射撃時静止/集束必須/集束中移動可/照射攻撃/最大5ヒット/よろけ有/集束時間：4秒/よろけ値：50% x5",
+    "notes": "射撃時静止/集束必須/集束中移動可/照射攻撃/最大5ヒット(400発/分)/よろけ有/集束時間：4秒/よろけ値：50% x5",
     "rangeM": 450,
     "staggerValue": 50,
     "chargeable": true,
@@ -62808,7 +62808,7 @@
      "2": 2550
     },
     "hits": 2,
-    "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/集束可/集束時2発連続発射/集束時ひるみ有/集束時間：2秒/倍率：0.94倍/よろけ値：20%（65% x2）",
+    "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/集束可/集束時2発連続発射(240発/分)/集束時ひるみ有/集束時間：2秒/倍率：0.94倍/よろけ値：20%（65% x2）",
     "rangeM": 400,
     "staggerValue": 20,
     "chargeable": true,
@@ -77002,207 +77002,133 @@
   ],
   "ジェガン［高機動仕様］": [
    {
-    "name": "ビーム・スナイパー・ライフル",
+    "name": "JG［高機動仕様］用B・Rx2",
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1850,
-     "2": 2000,
-     "3": 2150,
-     "4": 2300
+     "1": 1400
     },
-    "hits": 1,
-    "notes": "射撃時静止/よろけ有/よろけ値：10%/局部補正：1.4倍/シールド補正：0.8倍",
-    "magazine": 2,
-    "rangeM": 850,
-    "staggerValue": 10,
-    "chargeable": false,
-    "special": {},
-    "modes": null
-   },
-   {
-    "name": "B・スナイパー・ライフル［照射］",
-    "category": "shooting",
-    "attribute": "beam",
-    "power": {
-     "1": 350,
-     "2": 375,
-     "3": 400,
-     "4": 425
-    },
-    "hits": 5,
-    "notes": "射撃時静止/照射攻撃/最大5ヒット/ひるみ有/ユニット貫通効果有/よろけ値：20% x5/ビーム・スナイパー・ライフルに付属/武装Lvは機体Lv依存",
-    "rangeM": 850,
+    "hits": 2,
+    "notes": "2発連続発射/移動射撃可/即撃ちよろけ有/よろけ値：20% x2",
+    "rangeM": 350,
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
     "modes": null
    },
    {
-    "name": "マゼラ・トップ砲",
+    "name": "JG［高機動仕様］用B・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2300
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応/スキル「/ヘビーアタック改/」対応/集束時間：2秒",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "heavyAttack": {
+      "mul": 5.5,
+      "perHitMul": 5.5,
+      "hits": 1
+     }
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.4
+    }
+   },
+   {
+    "name": "JG［高機動仕様］用V・P・S",
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1625,
-     "2": 1706,
-     "3": 1787,
-     "4": 1868
+     "1": 110
     },
     "hits": 1,
-    "notes": "射撃時静止/大よろけ有/局部補正：1.0倍/シールド補正：1.5倍",
-    "magazine": 6,
-    "rangeM": 500,
-    "staggerValue": null,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
+    "magazine": 60,
+    "rangeM": 200,
+    "staggerValue": 7,
     "chargeable": false,
     "special": {},
     "modes": null
    },
    {
-    "name": "打撃",
-    "category": "melee",
-    "attribute": "melee",
+    "name": "JG［高機動仕様］用H・バズーカ",
+    "category": "shooting",
+    "attribute": "ballistic",
     "power": {
-     "1": 1000,
-     "2": 1050,
-     "3": 1100,
-     "4": 1150,
-     "5": 1200,
-     "6": 1250
+     "1": 2300
     },
     "hits": 1,
-    "notes": "局部補正：1.2倍/シールド補正：0.7倍/拠点補正：0.1倍",
-    "staggerValue": null,
+    "notes": "移動射撃可/よろけ有/よろけ値：80%",
+    "magazine": 4,
+    "rangeM": 300,
+    "staggerValue": 80,
     "chargeable": false,
-    "special": {
-     "comboCorrection": [
-      {
-       "hit": 1,
-       "pct": 100.0
-      }
-     ]
-    },
-    "modes": null,
-    "directionMul": {
-     "n": 1.0
-    }
+    "special": {},
+    "modes": null
    },
    {
-    "name": "副兵装1",
-    "category": "melee",
-    "attribute": "melee",
+    "name": "腰部射出式グレネード",
+    "category": "shooting",
+    "attribute": "ballistic",
     "power": {
-     "1": 1100
+     "1": 900
     },
     "hits": 1,
-    "notes": "",
-    "staggerValue": null,
+    "notes": "射撃時静止/ひるみ有/よろけ値：35%（3HIT）",
+    "magazine": 3,
+    "rangeM": 250,
+    "staggerValue": 35,
     "chargeable": false,
-    "special": {
-     "comboCorrection": [
-      {
-       "hit": 1,
-       "pct": 100.0
-      }
-     ]
-    },
-    "modes": null,
-    "directionMul": {
-     "n": 1.0
-    }
+    "special": {},
+    "modes": null
    }
   ],
   "ヘイズルⅡ": [
    {
-    "name": "ビーム・スナイパー・ライフル",
+    "name": "ヘイズルⅡ用ビーム・ライフル",
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1850,
-     "2": 2000,
-     "3": 2150,
-     "4": 2300
+     "1": 2000
     },
     "hits": 1,
-    "notes": "射撃時静止/よろけ有/よろけ値：10%/局部補正：1.4倍/シールド補正：0.8倍",
-    "magazine": 2,
-    "rangeM": 850,
+    "notes": "＜通常時＞使用可/Eパック式弾数所持/移動射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：2.5秒/倍率：1.35倍/よろけ値：10%（40%）",
+    "rangeM": 325,
+    "form": "normal",
     "staggerValue": 10,
-    "chargeable": false,
+    "chargeable": true,
     "special": {},
-    "modes": null
-   },
-   {
-    "name": "B・スナイパー・ライフル［照射］",
-    "category": "shooting",
-    "attribute": "beam",
-    "power": {
-     "1": 350,
-     "2": 375,
-     "3": 400,
-     "4": 425
-    },
-    "hits": 5,
-    "notes": "射撃時静止/照射攻撃/最大5ヒット/ひるみ有/ユニット貫通効果有/よろけ値：20% x5/ビーム・スナイパー・ライフルに付属/武装Lvは機体Lv依存",
-    "rangeM": 850,
-    "staggerValue": 20,
-    "chargeable": false,
-    "special": {},
-    "modes": null
-   },
-   {
-    "name": "マゼラ・トップ砲",
-    "category": "shooting",
-    "attribute": "ballistic",
-    "power": {
-     "1": 1625,
-     "2": 1706,
-     "3": 1787,
-     "4": 1868
-    },
-    "hits": 1,
-    "notes": "射撃時静止/大よろけ有/局部補正：1.0倍/シールド補正：1.5倍",
-    "magazine": 6,
-    "rangeM": 500,
-    "staggerValue": null,
-    "chargeable": false,
-    "special": {},
-    "modes": null
-   },
-   {
-    "name": "打撃",
-    "category": "melee",
-    "attribute": "melee",
-    "power": {
-     "1": 1000,
-     "2": 1050,
-     "3": 1100,
-     "4": 1150,
-     "5": 1200,
-     "6": 1250
-    },
-    "hits": 1,
-    "notes": "局部補正：1.2倍/シールド補正：0.7倍/拠点補正：0.1倍",
-    "staggerValue": null,
-    "chargeable": false,
-    "special": {
-     "comboCorrection": [
-      {
-       "hit": 1,
-       "pct": 100.0
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 2000
       }
-     ]
-    },
-    "modes": null,
-    "directionMul": {
-     "n": 1.0
-    }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 2700
+      }
+     }
+    ]
    },
    {
-    "name": "副兵装1",
+    "name": "打撃［強化Ⅱ型］",
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 1100
+     "1": 1800,
+     "2": 1890
     },
     "hits": 1,
     "notes": "",
@@ -77213,13 +77139,145 @@
       {
        "hit": 1,
        "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 50.0
       }
      ]
     },
     "modes": null,
     "directionMul": {
-     "n": 1.0
+     "n": 1.0,
+     "side": 1.0,
+     "down": 1.8
     }
+   },
+   {
+    "name": "ヘイズルⅡ用頭部バルカン",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 95
+    },
+    "hits": 1,
+    "notes": "＜通常時＞使用可/移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
+    "magazine": 40,
+    "rangeM": 175,
+    "form": "normal",
+    "staggerValue": 7,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ヘイズルⅡ用B・H・B",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2200
+    },
+    "hits": 1,
+    "notes": "＜通常時＞使用可/格闘方向に関わらず強制ダウン",
+    "form": "normal",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 50.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.6
+    }
+   },
+   {
+    "name": "ヘイズルⅡ用B・ライフルx2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1100
+    },
+    "hits": 1,
+    "notes": "＜通常時＞使用可/二発同時発射/射撃時静止/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：1.5秒/倍率：1.18倍/よろけ値：20% x2（35% x2）",
+    "rangeM": 400,
+    "form": "normal",
+    "staggerValue": 20,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 1100
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 1300
+      }
+     }
+    ]
+   },
+   {
+    "name": "ヘイズルⅡ用B・ライフル（変形）",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1800
+    },
+    "hits": 1,
+    "notes": "＜変形時＞使用可/Eパック式弾数所持/移動射撃可/ブースト射撃可/即撃ちよろけ有/集束可/集束時間：1秒/倍率：1.22倍/よろけ値：20%（60%）",
+    "rangeM": 300,
+    "form": "alt",
+    "staggerValue": 20,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 1800
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 2200
+      }
+     }
+    ]
+   },
+   {
+    "name": "メガ粒子砲",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 3200
+    },
+    "hits": 1,
+    "notes": "＜変形時＞使用可/移動射撃可/ブースト射撃可/集束必須/よろけ有/集束時間：1.5秒/よろけ値：100%",
+    "rangeM": 400,
+    "form": "alt",
+    "staggerValue": 100,
+    "chargeable": true,
+    "special": {},
+    "modes": null
    }
   ],
   "V2アサルトバスターガンダム": [
