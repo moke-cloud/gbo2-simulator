@@ -1,5 +1,5 @@
 {
- "version": "h963c298bbeaf",
+ "version": "h864e9f1a9efe",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -45258,8 +45258,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 2350,
-     "2": 2500
+     "1": 2500,
+     "2": 2900
     },
     "hits": 1,
     "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/よろけ値：10%",
@@ -45274,8 +45274,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2750,
-     "2": 3000
+     "1": 2850,
+     "2": 3100
     },
     "hits": 1,
     "notes": "",
@@ -45297,7 +45297,7 @@
     "directionMul": {
      "n": 1.0,
      "side": 0.75,
-     "down": 1.4
+     "down": 2.0
     }
    },
    {
@@ -45305,13 +45305,13 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1000,
-     "2": 1100
+     "1": 1300,
+     "2": 1500
     },
     "hits": 1,
-    "notes": "3回攻撃/約0.7秒長押しでロックオン/移動射撃可/ロックオン後ブースト移動可/ひるみ有/ユニット貫通効果有/よろけ値：35% x3射/局部補正：?倍/シールド補正：?倍",
+    "notes": "3回攻撃(78発/分)/約0.7秒長押しでロックオン/移動射撃可/ロックオン後ブースト移動可/ひるみ有/ユニット貫通効果有/よろけ値：50% x3射/局部補正：?倍/シールド補正：?倍",
     "rangeM": 300,
-    "staggerValue": 35,
+    "staggerValue": 50,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -45321,11 +45321,11 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 2000,
-     "2": 2100
+     "1": 2300,
+     "2": 2600
     },
     "hits": 2,
-    "notes": "射撃時静止/ひるみ有/集束可/集束中移動可/集束時2発連続発射/集束時よろけ有/集束時間：2秒/倍率：1.1倍/よろけ値：65%（50% x2）",
+    "notes": "射撃時静止/ひるみ有/集束可/集束中移動可/集束時2発連続発射(300発/分)/集束時よろけ有/集束時間：1.5秒/倍率：1.09倍/よろけ値：65%（65% x2）",
     "rangeM": 350,
     "staggerValue": 65,
     "chargeable": true,
@@ -45335,16 +45335,16 @@
       "key": "normal",
       "label": "非集束",
       "power": {
-       "1": 2000,
-       "2": 2100
+       "1": 2300,
+       "2": 2600
       }
      },
      {
       "key": "charged",
       "label": "集束",
       "power": {
-       "1": 2200,
-       "2": 2300
+       "1": 2500,
+       "2": 2900
       }
      }
     ]
@@ -77282,113 +77282,155 @@
   ],
   "V2アサルトバスターガンダム": [
    {
-    "name": "ビーム・スナイパー・ライフル",
+    "name": "V2ABG用M・B・ライフル",
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1850,
-     "2": 2000,
-     "3": 2150,
-     "4": 2300
+     "1": 3100
     },
     "hits": 1,
-    "notes": "射撃時静止/よろけ有/よろけ値：10%/局部補正：1.4倍/シールド補正：0.8倍",
-    "magazine": 2,
-    "rangeM": 850,
-    "staggerValue": 10,
-    "chargeable": false,
+    "notes": "移動射撃可/スキル「M・ドライブ・ユニット制御機構」対応/スキル発動中、ブースト射撃可/即撃ちよろけ有/ASL（自動照準補正）有/集束可/集束時ユニット貫通効果有/集束時、スキル発動中かつ攻撃対象のHPが50%以上の場合、与ダメージ＋10%/集束時間：1.5秒/倍率：1.065倍/よろけ値：40%（100%）",
+    "rangeM": 400,
+    "staggerValue": 40,
+    "chargeable": true,
     "special": {},
-    "modes": null
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 3100
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 3300
+      }
+     }
+    ]
    },
    {
-    "name": "B・スナイパー・ライフル［照射］",
-    "category": "shooting",
-    "attribute": "beam",
+    "name": "V2ABG用B・サーベル",
+    "category": "melee",
+    "attribute": "melee",
     "power": {
-     "1": 350,
-     "2": 375,
-     "3": 400,
-     "4": 425
+     "1": 3000
     },
-    "hits": 5,
-    "notes": "射撃時静止/照射攻撃/最大5ヒット/ひるみ有/ユニット貫通効果有/よろけ値：20% x5/ビーム・スナイパー・ライフルに付属/武装Lvは機体Lv依存",
-    "rangeM": 850,
-    "staggerValue": 20,
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応",
+    "staggerValue": null,
     "chargeable": false,
-    "special": {},
-    "modes": null
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.4
+    }
    },
    {
-    "name": "マゼラ・トップ砲",
+    "name": "V2ガンダム用頭部バルカンx2",
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1625,
-     "2": 1706,
-     "3": 1787,
-     "4": 1868
+     "1": 170
     },
     "hits": 1,
-    "notes": "射撃時静止/大よろけ有/局部補正：1.0倍/シールド補正：1.5倍",
-    "magazine": 6,
-    "rangeM": 500,
-    "staggerValue": null,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
+    "magazine": 70,
+    "rangeM": 200,
+    "staggerValue": 7,
     "chargeable": false,
     "special": {},
     "modes": null
    },
    {
-    "name": "打撃",
-    "category": "melee",
-    "attribute": "melee",
+    "name": "スプレー・ビーム・ポッド",
+    "category": "shooting",
+    "attribute": "beam",
     "power": {
-     "1": 1000,
-     "2": 1050,
-     "3": 1100,
-     "4": 1150,
-     "5": 1200,
-     "6": 1250
+     "1": 280
     },
     "hits": 1,
-    "notes": "局部補正：1.2倍/シールド補正：0.7倍/拠点補正：0.1倍",
-    "staggerValue": null,
+    "notes": "4発同時発射 x4回攻撃/移動射撃可/スキル「M・ドライブ・ユニット制御機構」対応/スキル発動中、ブースト射撃可/よろけ値：17% x4発 x4射",
+    "rangeM": 275,
+    "staggerValue": 17,
     "chargeable": false,
-    "special": {
-     "comboCorrection": [
-      {
-       "hit": 1,
-       "pct": 100.0
-      }
-     ]
-    },
-    "modes": null,
-    "directionMul": {
-     "n": 1.0
-    }
+    "special": {},
+    "modes": null
    },
    {
-    "name": "副兵装1",
-    "category": "melee",
-    "attribute": "melee",
+    "name": "メガ・ビーム・キャノン",
+    "category": "shooting",
+    "attribute": "beam",
     "power": {
-     "1": 1100
+     "1": 400
+    },
+    "hits": 19,
+    "notes": "照射攻撃/最大19HIT/射撃時静止/空中射撃可/途中キャンセル可/使用中、射撃攻撃被ダメージ－?%/使用中、射撃攻撃のダメージリアクション1段階軽減/使用中、受けた攻撃のよろけ値を?%かつ小数点以下切り捨てで計算する/スキル「M・ドライブ・ユニット制御機構」対応/スキル発動中かつ攻撃対象のHPが50%以上の場合、与ダメージ＋10%/よろけ値：50% x19",
+    "rangeM": 500,
+    "staggerValue": 50,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ヴェスパーx2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1600
     },
     "hits": 1,
-    "notes": "",
-    "staggerValue": null,
+    "notes": "ニ発同時発射/射撃時静止/空中射撃可/よろけ有/ASL（自動照準補正）有/スキル「M・ドライブ・ユニット制御機構」対応/スキル発動中、攻撃対象の特殊緩衝材系スキル無視/よろけ値：45% x2",
+    "rangeM": 350,
+    "staggerValue": 45,
     "chargeable": false,
-    "special": {
-     "comboCorrection": [
-      {
-       "hit": 1,
-       "pct": 100.0
-      }
-     ]
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "バリア・ビット展開［防御］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 0
     },
-    "modes": null,
-    "directionMul": {
-     "n": 1.0
-    }
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/「リロード」ボタンで任意解除可/最長15秒持続/被ダメージ時持続時間短縮/バリアのHP：?000/展開中、タックル威力＋400%/よろけ値：0%",
+    "rangeM": 0,
+    "staggerValue": 0,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "バリア・ビット展開［広域防御］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 0
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/「リロード」ボタンで任意解除可/最長5秒持続/被ダメージ時持続時間短縮/バリアのHP：?000/展開中、タックル威力＋500%/展開中、タックルに吹き飛ばしダウン効果付与/よろけ値：0%",
+    "rangeM": 0,
+    "staggerValue": 0,
+    "chargeable": false,
+    "special": {},
+    "modes": null
    }
   ]
  }
