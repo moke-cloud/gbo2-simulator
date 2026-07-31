@@ -1,6 +1,6 @@
 {
-  "version": "h6ca8df81fba8",
-  "totalParts": 159,
+  "version": "h7983e32747b4",
+  "totalParts": 161,
   "parts": [
     {
       "name": "射撃強化プログラム",
@@ -445,7 +445,7 @@
       "description": "焼夷効果によって当てるダメージを25%増加。さらに焼夷効果の継続時間を10%増加。",
       "effects": [],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "火器管制最適化システム",
@@ -580,6 +580,21 @@
       "ticketCost": 0
     },
     {
+      "name": "CP内蔵特殊構造材",
+      "level": 1,
+      "rarity": 3,
+      "category": "attack",
+      "slots": {
+        "close": 2,
+        "mid": 5,
+        "long": 3
+      },
+      "description": "CP（コンピューター）を内蔵した特殊な構造材。サイコミュ兵装のリロード時間とオーバーヒート時間を15%短縮。敵機に与えるダメージが5%増加し、高速移動速度が10増加する。なお高速移動が上昇するパーツとの同時装備は行えない。",
+      "effects": [],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
       "name": "強化フレーム",
       "level": 1,
       "rarity": 1,
@@ -678,26 +693,6 @@
       ],
       "dpCost": 54200,
       "ticketCost": 75
-    },
-    {
-      "name": "コネクティングシステム［汎用Ⅱ型］",
-      "level": 1,
-      "rarity": 3,
-      "category": "defense",
-      "slots": {
-        "close": 0,
-        "mid": 6,
-        "long": 3
-      },
-      "description": "機体HPとシールドHPが2000増加。さらに汎用機に装備させると各部位のHPが30%増加する。同系統のカスタムパーツは複数装備不可。",
-      "effects": [
-        {
-          "type": "shield_hp",
-          "value": 2000
-        }
-      ],
-      "dpCost": 0,
-      "ticketCost": 0
     },
     {
       "name": "新型フレーム",
@@ -878,6 +873,26 @@
       ],
       "dpCost": 58200,
       "ticketCost": 80
+    },
+    {
+      "name": "コネクティングシステム［汎用Ⅱ型］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 0,
+        "mid": 6,
+        "long": 3
+      },
+      "description": "機体HPとシールドHPが2000増加。さらに汎用機に装備させると各部位のHPが30%増加する。同系統のカスタムパーツは複数装備不可。",
+      "effects": [
+        {
+          "type": "shield_hp",
+          "value": 2000
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
     },
     {
       "name": "耐実弾装甲",
@@ -1201,7 +1216,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "新型耐ビーム装甲",
@@ -1225,7 +1240,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "新型耐格闘装甲",
@@ -1249,7 +1264,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "オーバーチューン［フレーム］",
@@ -1273,7 +1288,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "オーバーチューン［実弾装甲］",
@@ -1297,7 +1312,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "オーバーチューン［ビーム装甲］",
@@ -1321,7 +1336,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "オーバーチューン［格闘装甲］",
@@ -1345,7 +1360,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "ヘビーアーマー",
@@ -1385,7 +1400,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "複合装甲材［Type-A］",
@@ -1517,7 +1532,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "サイコ・パッケージ",
@@ -1565,7 +1580,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "特殊強化フレーム［Type-A］",
@@ -2036,7 +2051,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "運動性能強化機構",
@@ -2060,7 +2075,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "燃焼効率補助装置",
@@ -3101,7 +3116,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "サイコフレーム",
@@ -3157,7 +3172,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "教育型コンピューター［特射］",
@@ -3253,7 +3268,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "複合フレーム［Type-B］",
@@ -3297,7 +3312,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "水中戦適正化装置",
@@ -3340,7 +3355,7 @@
         }
       ],
       "dpCost": 0,
-      "ticketCost": 0
+      "ticketCost": 425
     },
     {
       "name": "格闘攻防プログラム",
@@ -3608,6 +3623,54 @@
         {
           "type": "beam_armor",
           "value": 5
+        }
+      ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "ハロ（V）",
+      "level": 1,
+      "rarity": 3,
+      "category": "special",
+      "slots": {
+        "close": 3,
+        "mid": 4,
+        "long": 3
+      },
+      "description": "機体HPが500増加。耐実弾、耐ビーム、耐格闘補正が3増加。射撃補正、格闘補正が3増加。高速移動、スラスター、スピードが3増加。さらに装備するカテゴリによって効果値が増加する。なおスピードが上昇するパーツとの同時装備は行えない。",
+      "effects": [
+        {
+          "type": "hp",
+          "value": 500
+        },
+        {
+          "type": "speed",
+          "value": 3
+        },
+        {
+          "type": "thruster",
+          "value": 3
+        },
+        {
+          "type": "shooting_correction",
+          "value": 3
+        },
+        {
+          "type": "melee_correction",
+          "value": 3
+        },
+        {
+          "type": "ballistic_armor",
+          "value": 3
+        },
+        {
+          "type": "beam_armor",
+          "value": 3
+        },
+        {
+          "type": "melee_armor",
+          "value": 3
         }
       ],
       "dpCost": 0,
