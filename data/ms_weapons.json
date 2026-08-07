@@ -1,5 +1,5 @@
 {
- "version": "he4099f87d825",
+ "version": "h988b83bc471f",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -36376,7 +36376,7 @@
      "2": 1500
     },
     "hits": 1,
-    "notes": "二発連続発射/移動射撃可/よろけ有/よろけ値：40% x2",
+    "notes": "二発連続発射(327発/分)/移動射撃可/よろけ有/よろけ値：40% x2",
     "magazine": 4,
     "rangeM": 250,
     "staggerValue": 40,
@@ -40975,7 +40975,9 @@
     "attribute": "ballistic",
     "power": {
      "1": 1000,
-     "2": 1200
+     "2": 1200,
+     "3": 1300,
+     "4": 1400
     },
     "hits": 1,
     "notes": "二発同時発射/移動射撃可/水中時使用不可/よろけ有/命中対象に炎上デバフ付与/2000固定ダメージ(400x5HIT)/よろけ値：40% x2",
@@ -41025,7 +41027,9 @@
     "attribute": "beam",
     "power": {
      "1": 225,
-     "2": 250
+     "2": 250,
+     "3": 275,
+     "4": 300
     },
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/ASL（自動照準補正）有/よろけ値：13%（8HIT）",
@@ -41041,7 +41045,9 @@
     "attribute": "beam",
     "power": {
      "1": 2300,
-     "2": 2500
+     "2": 2500,
+     "3": 2700,
+     "4": 2900
     },
     "hits": 1,
     "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/よろけ値：10%",
@@ -41057,7 +41063,9 @@
     "attribute": "beam",
     "power": {
      "1": 180,
-     "2": 200
+     "2": 200,
+     "3": 220,
+     "4": 240
     },
     "hits": 1,
     "notes": "Eパック式弾数所持/射撃時静止/ASL（自動照準補正）有/よろけ値：5%（20HIT）",
@@ -50869,7 +50877,9 @@
     "attribute": "ballistic",
     "power": {
      "1": 70,
-     "2": 75
+     "2": 75,
+     "3": 80,
+     "4": 85
     },
     "hits": 1,
     "notes": "二発同時発射/移動射撃可/よろけ値：4% x2",
@@ -50886,7 +50896,9 @@
     "attribute": "melee",
     "power": {
      "1": 1600,
-     "2": 1750
+     "2": 1750,
+     "3": 1900,
+     "4": 2050
     },
     "hits": 1,
     "notes": "",
@@ -77412,7 +77424,7 @@
      "1": 280
     },
     "hits": 1,
-    "notes": "4発同時発射 x4回攻撃/移動射撃可/スキル「M・ドライブ・ユニット制御機構」対応/スキル発動中、ブースト射撃可/よろけ値：17% x4発 x4射",
+    "notes": "4発同時発射 x4回攻撃(450発/分)/移動射撃可/スキル「M・ドライブ・ユニット制御機構」対応/スキル発動中、ブースト射撃可/よろけ値：17% x4発 x4射",
     "rangeM": 275,
     "staggerValue": 17,
     "chargeable": false,
@@ -77427,7 +77439,7 @@
      "1": 400
     },
     "hits": 19,
-    "notes": "照射攻撃/最大19HIT/射撃時静止/空中射撃可/途中キャンセル可/使用中、射撃攻撃被ダメージ－?%/使用中、射撃攻撃のダメージリアクション1段階軽減/使用中、受けた攻撃のよろけ値を?%かつ小数点以下切り捨てで計算する/スキル「M・ドライブ・ユニット制御機構」対応/スキル発動中かつ攻撃対象のHPが50%以上の場合、与ダメージ＋10%/よろけ値：50% x19",
+    "notes": "照射攻撃/最大19HIT(450ヒット/分)/射撃時静止/空中射撃可/途中キャンセル可/使用中、射撃攻撃被ダメージ－?%/使用中、射撃攻撃のダメージリアクション1段階軽減/使用中、受けた攻撃のよろけ値を?%かつ小数点以下切り捨てで計算する/スキル「M・ドライブ・ユニット制御機構」対応/スキル発動中かつ攻撃対象のHPが50%以上の場合、与ダメージ＋10%/よろけ値：50% x19",
     "rangeM": 500,
     "staggerValue": 50,
     "chargeable": false,
@@ -77661,6 +77673,171 @@
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/使用後任意解除不可/最長10秒持続/被ダメージ時持続時間短縮/バリアのHP：2500/展開中の被ダメージ－10%/よろけ値：0%/スキル「能力UP「NT-D：共鳴」」対応/スキル発動中、オーバーヒート回復速度30%上昇",
     "rangeM": 0,
+    "staggerValue": 0,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "ゴトラタン": [
+   {
+    "name": "ゴトラタン用B・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2900
+    },
+    "hits": 1,
+    "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/ASL（自動照準補正）有/よろけ値：25%",
+    "rangeM": 350,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ゴトラタン用B・トンファーx2",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3100
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応/スキル「/ヘビーアタック改/」対応/集束時間：1秒",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "heavyAttack": {
+      "mul": 5.4,
+      "perHitMul": 1.8,
+      "hits": 3
+     }
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.4
+    }
+   },
+   {
+    "name": "ゴトラタン用B・ライフル［速射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 800
+    },
+    "hits": 4,
+    "notes": "4発連続発射/Eパック式弾数所持/移動射撃可/ASL（自動照準補正）有/よろけ値：35% x4",
+    "rangeM": 350,
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "6連装MMポッド［連続爆発］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 400
+    },
+    "hits": 2,
+    "notes": "2発連続発射/移動射撃可/ブースト射撃可/ひるみ有/照準誘導効果有/着弾点に2.5秒間持続ダメージ範囲発生(最大5HIT x2)/よろけ値：35% x5回 x2発",
+    "magazine": 12,
+    "rangeM": 350,
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "6連装MMポッド［リミッター解除］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 400
+    },
+    "hits": 12,
+    "notes": "「リロード」ボタン押下で発動/10秒間使用可能/12発連続発射/移動射撃可/ブースト射撃可/照準誘導効果有/よろけ値：25% x12",
+    "magazine": 12,
+    "rangeM": 350,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "メガ・ビーム・キャノン",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2000
+    },
+    "hits": 2,
+    "notes": "非集束時2発連続発射/射撃時静止/空中射撃可/即撃ちよろけ有/ASL（自動照準補正）有/集束可/集束中移動可/集束時照射攻撃/最大7ヒット/集束時ユニット貫通効果有/集束時間：2秒/倍率：0.5倍/よろけ値：65% x2（50% x7）",
+    "rangeM": 350,
+    "staggerValue": 65,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 2000
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 1000
+      }
+     }
+    ]
+   },
+   {
+    "name": "メガ・ビーム・キャノン［リミッター解除］（ビーム部分）",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1150
+    },
+    "hits": 12,
+    "notes": "「リロード」ボタン押下で発動/10秒間使用可能/射撃時静止/集束必須/集束中移動可/照射攻撃/最大12ヒット/よろけ有/ユニット貫通効果有/集束時間：2秒/よろけ値：65% x12",
+    "rangeM": 450,
+    "staggerValue": 65,
+    "chargeable": true,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "メガ・ビーム・キャノン［リミッター解除］（実弾部分）",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 200
+    },
+    "hits": 6,
+    "notes": "攻撃ボタン押下で発射/照射攻撃中は連動して自動発射/6発連続発射/移動射撃可/ブースト射撃可/照準誘導効果有/よろけ値：25% x6",
+    "magazine": null,
+    "rangeM": 450,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "複合複眼式マルチセンサー",
+    "category": "shooting",
+    "attribute": "special",
+    "power": {
+     "1": 0
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/空中射撃可/発動中、射撃属性与ダメージ＋15%/自身のみが視認可能なスポット効果付与/効果時間：10秒/よろけ値：0%",
+    "rangeM": 300,
     "staggerValue": 0,
     "chargeable": false,
     "special": {},
