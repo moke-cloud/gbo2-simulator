@@ -1,5 +1,5 @@
 {
- "version": "h63c28122e087",
+ "version": "h132c1e4f1f0e",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -77861,6 +77861,143 @@
     "notes": "移動射撃可/ブースト射撃可/空中射撃可/発動中、射撃属性与ダメージ＋15%/自身のみが視認可能なスポット効果付与/効果時間：10秒/よろけ値：0%",
     "rangeM": 300,
     "staggerValue": 0,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "量産型サイコ・ガンダム": [
+   {
+    "name": "量産型P・G用腕部ビーム砲",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1200
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/即撃ちよろけ有/よろけ値：20% x2",
+    "rangeM": 350,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "量産型P・G用H・B・Sx2",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3000
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.2
+    }
+   },
+   {
+    "name": "拡散メガ粒子砲x3",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 300
+    },
+    "hits": 1,
+    "notes": "4発同時発射 x 3回攻撃/移動射撃可/よろけ値：20% x4発 x3射",
+    "rangeM": 250,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ビーム・カノンx2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1550
+    },
+    "hits": 1,
+    "notes": "二発同時発射/射撃時静止/よろけ有/よろけ値：20% x2",
+    "rangeM": 450,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "収納式ハイ・メガバスター",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1600
+    },
+    "hits": 2,
+    "notes": "即撃ちよろけ有/攻撃対象の緩衝材系スキル無視/非集束時2発連続発射/非集束時移動射撃可/非集束時ASL（自動照準補正）有/集束可/集束射撃時静止/集束中移動可/集束時照射攻撃/最大6ヒット/集束中ユニット貫通効果有/集束時間：4.5秒/倍率：0.875倍/よろけ値：20% x2（65% x6）",
+    "rangeM": 400,
+    "staggerValue": 20,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 1600
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 1400
+      }
+     }
+    ]
+   },
+   {
+    "name": "有線式腕部ビーム砲x2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 350
+    },
+    "hits": 1,
+    "notes": "4発同時発射 x2回攻撃/約0.7秒長押しでロックオン/移動射撃可/ひるみ有/ユニット貫通効果有/よろけ値：13% x4発 x2射",
+    "rangeM": 250,
+    "staggerValue": 13,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "インコム・ユニットx2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 500
+    },
+    "hits": 1,
+    "notes": "2発同時発射 x3回攻撃/約0.7秒長押しでロックオン/移動射撃可/ひるみ有/ユニット貫通効果有/よろけ値：25% x2発 x3射",
+    "rangeM": 250,
+    "staggerValue": 25,
     "chargeable": false,
     "special": {},
     "modes": null
