@@ -1,5 +1,5 @@
 {
- "version": "h2614baf2edf6",
+ "version": "h9dbf120a9377",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -23292,7 +23292,7 @@
      "5": 700
     },
     "hits": 1,
-    "notes": "3点バースト/移動射撃可/ひるみ有/集束可/集束時よろけ有/集束時間：4秒/倍率：4.8倍/非集束よろけ値：20% x3/集束よろけ値：50%/局部補正：1.2倍（1.0倍）/シールド補正：1.2倍（1.5倍）",
+    "notes": "3点バースト(450発/分)/移動射撃可/ひるみ有/集束可/集束時よろけ有/集束時間：4秒/倍率：4.8倍/非集束よろけ値：20% x3/集束よろけ値：50%/局部補正：1.2倍（1.0倍）/シールド補正：1.2倍（1.5倍）",
     "rangeM": 500,
     "staggerValue": 20,
     "chargeable": true,
@@ -23453,7 +23453,7 @@
      "2": 367
     },
     "hits": 1,
-    "notes": "左右交互発射/射撃時静止/ひるみ有/よろけ値：5% x2",
+    "notes": "左右交互発射/射撃時静止/ひるみ有/よろけ値：5%",
     "magazine": 12,
     "rangeM": 350,
     "staggerValue": 5,
@@ -75841,10 +75841,11 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 320
+     "1": 320,
+     "2": 330
     },
     "hits": 1,
-    "notes": "「リロード」ボタン押下で発動/10秒間使用可能/移動射撃可/ブースト射撃可/ユニット貫通効果有/よろけ値：9%（12HIT）",
+    "notes": "「リロード」ボタン押下で発動/10秒間使用可能/移動射撃可/ブースト射撃可/ユニット貫通効果有/ASL（自動照準補正）有/よろけ値：9%（12HIT）",
     "rangeM": 300,
     "staggerValue": 9,
     "chargeable": false,
@@ -75860,7 +75861,7 @@
      "2": 1000
     },
     "hits": 2,
-    "notes": "Eパック式弾数所持/2発連続発射/移動射撃可/ASL（自動照準補正）有/よろけ値：35% x2",
+    "notes": "Eパック式弾数所持/2発連続発射(200発/分)/移動射撃可/ASL（自動照準補正）有/よろけ値：35% x2",
     "rangeM": 375,
     "staggerValue": 35,
     "chargeable": false,
@@ -75876,7 +75877,7 @@
      "2": 160
     },
     "hits": 13,
-    "notes": "2発同時発射 x13発連続発射 x2回攻撃/約0.7秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/よろけ値：6% x2発 x13射 x2回",
+    "notes": "2発同時発射 x13発連続発射(400発/分) x2回攻撃/約0.7秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/よろけ値：6% x2発 x13射 x2回",
     "rangeM": 250,
     "staggerValue": 6,
     "chargeable": false,
@@ -75892,7 +75893,7 @@
      "2": 140
     },
     "hits": 10,
-    "notes": "10秒間範囲内の敵機を自動攻撃/10発連続発射 x2回攻撃/移動射撃可/ブースト射撃可/よろけ値：6% x10射 x2回",
+    "notes": "10秒間範囲内の敵機を自動攻撃/10発連続発射(400発/分) x2回攻撃/移動射撃可/ブースト射撃可/よろけ値：6% x10射 x2回",
     "rangeM": 175,
     "staggerValue": 6,
     "chargeable": false,
@@ -77232,7 +77233,9 @@
     "attribute": "melee",
     "power": {
      "1": 1800,
-     "2": 1890
+     "2": 1890,
+     "3": 1980,
+     "4": 2070
     },
     "hits": 1,
     "notes": "",
@@ -78021,6 +78024,217 @@
     "notes": "2発同時発射 x3回攻撃/約0.7秒長押しでロックオン/移動射撃可/ひるみ有/ユニット貫通効果有/よろけ値：25% x2発 x3射",
     "rangeM": 250,
     "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "ゲルググR": [
+   {
+    "name": "ゲルググR用ビーム・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1900,
+     "2": 2100,
+     "3": 2300,
+     "4": 2500
+    },
+    "hits": 1,
+    "notes": "移動射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：2.5秒/倍率：1.26倍/よろけ値：20%（50%）",
+    "rangeM": 350,
+    "staggerValue": 20,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 1900,
+       "2": 2100,
+       "3": 2300,
+       "4": 2500
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 2400,
+       "2": 2600,
+       "3": 2800,
+       "4": 3000
+      }
+     }
+    ]
+   },
+   {
+    "name": "ゲルググR用C・ブレード",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2000,
+     "2": 2200,
+     "3": 2400,
+     "4": 2600
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 50.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.0
+    }
+   },
+   {
+    "name": "ゲルググR用頭部バルカン",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 60,
+     "2": 70,
+     "3": 80,
+     "4": 90
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/ブースト射撃可/よろけ値：3% x2",
+    "magazine": 80,
+    "rangeM": 150,
+    "staggerValue": 3,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ゲルググR用アンカー",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2100,
+     "2": 2400,
+     "3": 2700,
+     "4": 3000
+    },
+    "hits": 1,
+    "notes": "大よろけ有",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 50.0
+      }
+     ]
+    },
+    "modes": null
+   },
+   {
+    "name": "ゲルググR用C・ブレードx2",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2200,
+     "2": 2400,
+     "3": 2600,
+     "4": 2800
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 50.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 1.0,
+     "down": 1.5
+    }
+   },
+   {
+    "name": "ゲルググR用C・クナイ",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 1400,
+     "2": 1600,
+     "3": 1800,
+     "4": 2000
+    },
+    "hits": 1,
+    "notes": "移動射撃可/よろけ有/命中後?秒間、レーダー妨害効果付与/よろけ値：40%",
+    "magazine": 1,
+    "rangeM": 250,
+    "staggerValue": 40,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "腕部110mm速射砲",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 110,
+     "2": 120,
+     "3": 130,
+     "4": 140
+    },
+    "hits": 1,
+    "notes": "移動射撃可/よろけ値：8%（13HIT）",
+    "magazine": 30,
+    "rangeM": 250,
+    "staggerValue": 8,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "腕部3連装ガトリング",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 240,
+     "2": 255,
+     "3": 270,
+     "4": 285
+    },
+    "hits": 3,
+    "notes": "3発連続発射/移動射撃可/よろけ値：2% x3",
+    "magazine": 30,
+    "rangeM": 275,
+    "staggerValue": 2,
     "chargeable": false,
     "special": {},
     "modes": null
