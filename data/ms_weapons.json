@@ -1,5 +1,5 @@
 {
- "version": "hdbb615230743",
+ "version": "h79404932240f",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -70249,7 +70249,7 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 3000
+     "1": 3200
     },
     "hits": 1,
     "notes": "連撃不可/格闘方向に関わらず強制ダウン/攻撃対象の耐格闘補正を30%減でダメージ計算/スキル「空中格闘制御」対応/スキル「ヘビーアタック」対応/集束時間：1秒",
@@ -78282,6 +78282,56 @@
     "chargeable": false,
     "special": {},
     "modes": null
+   }
+  ],
+  "ガンダムDX": [
+   {
+    "name": "GDX用Gハンマー",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1100
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0
+    }
+   },
+   {
+    "name": "GDX用ビームジャベリン［投擲］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1100
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0
+    }
    }
   ]
  }
