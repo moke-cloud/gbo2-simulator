@@ -1,5 +1,5 @@
 {
- "version": "h79404932240f",
+ "version": "hef9d4d5edba7",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -70184,11 +70184,11 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 3400
+     "1": 3600
     },
     "hits": 1,
     "notes": "射撃時静止/空中射撃可/よろけ有/ユニット貫通効果有/ASL（自動照準補正）有/よろけ値：80%/攻撃対象が空中にいる場合、以下の効果を発揮/・大よろけ有/・攻撃対象の緩衝材系スキル無視",
-    "magazine": 4,
+    "magazine": 6,
     "rangeM": 400,
     "staggerValue": 80,
     "chargeable": false,
@@ -70200,7 +70200,7 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2300
+     "1": 2400
     },
     "hits": 1,
     "notes": "スキル「/空中格闘制御/」対応",
@@ -70211,7 +70211,7 @@
     "directionMul": {
      "n": 1.0,
      "side": 1.0,
-     "down": 1.3
+     "down": 1.4
     }
    },
    {
@@ -70257,8 +70257,8 @@
     "chargeable": false,
     "special": {
      "heavyAttack": {
-      "mul": 4.0,
-      "perHitMul": 2.0,
+      "mul": 4.6,
+      "perHitMul": 2.3,
       "hits": 2
      },
      "armorReductionPct": {
@@ -70270,7 +70270,7 @@
     "directionMul": {
      "n": 1.0,
      "side": 0.75,
-     "down": 1.4
+     "down": 1.5
     }
    }
   ],
@@ -78286,14 +78286,44 @@
   ],
   "ガンダムDX": [
    {
-    "name": "GDX用Gハンマー",
+    "name": "GDX用バスターライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2800
+    },
+    "hits": 1,
+    "notes": "移動射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：2秒/倍率：1.286倍/よろけ値：40%（80%）",
+    "rangeM": 400,
+    "staggerValue": 40,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 2800
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 3600
+      }
+     }
+    ]
+   },
+   {
+    "name": "GDX用ハイパービームソード",
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 1100
+     "1": 2900
     },
     "hits": 1,
-    "notes": "",
+    "notes": "スキル「/空中格闘制御/」対応/攻撃対象の緩衝材系スキル無視",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -78301,12 +78331,64 @@
       {
        "hit": 1,
        "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
       }
      ]
     },
     "modes": null,
     "directionMul": {
-     "n": 1.0
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.4
+    }
+   },
+   {
+    "name": "バルカン＆ブレストランチャー",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 100
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/ブースト射撃可/よろけ値：5% x2",
+    "magazine": 90,
+    "rangeM": 200,
+    "staggerValue": 5,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "GDX用Gハンマー",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3400
+    },
+    "hits": 1,
+    "notes": "格闘方向に関わらず強制ダウン/攻撃対象の機体HPが50%以上の場合、追加ダメージ発生/追加ダメージは固定値1500",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 1.2,
+     "down": 2.0
     }
    },
    {
@@ -78314,24 +78396,81 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 1100
+     "1": 2600
     },
     "hits": 1,
-    "notes": "",
-    "staggerValue": null,
+    "notes": "移動射撃可/ブースト射撃可/よろけ有/攻撃対象のシールドHP無視/対象の耐格闘補正を20%減でダメージ計算/よろけ値：50%",
+    "magazine": 1,
+    "rangeM": 200,
+    "staggerValue": 50,
     "chargeable": false,
     "special": {
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 20
+     },
      "comboCorrection": [
       {
        "hit": 1,
        "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
       }
      ]
     },
-    "modes": null,
-    "directionMul": {
-     "n": 1.0
-    }
+    "modes": null
+   },
+   {
+    "name": "GDX用バスターライフル［速射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 700
+    },
+    "hits": 3,
+    "notes": "3発連続発射/移動射撃可/スラスターが100%の状態で高速移動開始時/ブースト射撃可&/ASL（自動照準補正）有br()よろけ値：25% x3",
+    "rangeM": 350,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ツインサテライトキャノン",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1300
+    },
+    "hits": 5,
+    "notes": "射撃時静止/空中射撃可/集束必須/スラスター使用可能な空中移動中、集束可/集束完了後、3回発射可能/二発同時発射の照射攻撃/最大5ヒット x2/よろけ有/ユニット貫通効果有/攻撃対象のシールドHP無視/対象の耐ビーム補正を40%減でダメージ計算/集束時間：15秒/集束時間を途中維持可能/よろけ値：80% x2発 x5射",
+    "rangeM": 500,
+    "staggerValue": 80,
+    "chargeable": true,
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 40
+     }
+    },
+    "modes": null
+   },
+   {
+    "name": "ツインサテライトキャノン（衝撃波）",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 500
+    },
+    "hits": 1,
+    "notes": "ツインサテライトキャノン集束完了時に自動で範囲攻撃/射撃時静止/命中対象に炎上デバフ付与/2000固定ダメージ(500x4HIT)/よろけ値：200%",
+    "rangeM": 100,
+    "staggerValue": 200,
+    "chargeable": false,
+    "special": {},
+    "modes": null
    }
   ]
  }
