@@ -1,5 +1,5 @@
 {
- "version": "h0c1dda213916",
+ "version": "hfef497845cbc",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -69831,7 +69831,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 2200
+     "1": 2200,
+     "2": 2400
     },
     "hits": 1,
     "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/よろけ値：20%",
@@ -69846,7 +69847,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2350
+     "1": 2350,
+     "2": 2550
     },
     "hits": 1,
     "notes": "スキル「/空中格闘制御/」対応",
@@ -69865,7 +69867,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 95
+     "1": 95,
+     "2": 100
     },
     "hits": 1,
     "notes": "二発同時発射/移動射撃可/よろけ値：2% x2",
@@ -69881,7 +69884,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2400
+     "1": 2400,
+     "2": 2600
     },
     "hits": 1,
     "notes": "射撃時静止/連撃不可/大よろけ有/命中後5秒間、レーダー妨害効果付与/スキル「空中格闘制御」対応",
@@ -69895,7 +69899,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 650
+     "1": 650,
+     "2": 750
     },
     "hits": 1,
     "notes": "二発同時発射 x2回攻撃/移動射撃可/空中射撃可/ASL（自動照準補正）有/よろけ値：35% x2発 x2射",
@@ -69910,7 +69915,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2600
+     "1": 2600,
+     "2": 2800
     },
     "hits": 1,
     "notes": "吹き飛ばしダウン効果有/対象の耐格闘補正を20%減でダメージ計算",
@@ -69934,7 +69940,8 @@
     "category": "shooting",
     "attribute": "special",
     "power": {
-     "1": 0
+     "1": 0,
+     "2": 0
     },
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/空中射撃可/発動中、射撃属性与ダメージ＋15%/自身のみが視認可能なスポット効果付与/効果時間：10秒/よろけ値：0%",
@@ -78479,7 +78486,7 @@
      "1": 1300
     },
     "hits": 5,
-    "notes": "射撃時静止/空中射撃可/集束必須/スラスター使用可能な空中移動中、集束可/集束完了後、3回発射可能/二発同時発射の照射攻撃/最大5ヒット(190ヒット/分) x2/ユニット貫通効果有/攻撃対象のシールドHP無視/対象の耐ビーム補正を40%減でダメージ計算/集束時間：15秒/集束時間を途中維持可能/よろけ値：80% x2発 x5射",
+    "notes": "射撃時静止/空中射撃可/集束必須/スラスター使用可能な空中移動中、集束可/集束完了後、3回発射可能/二発同時発射の照射攻撃/最大5ヒット(190ヒット/分) x2/ユニット貫通効果有/攻撃対象のシールドHP無視/対象の耐ビーム補正を40%減でダメージ計算/集束時間：15秒/集束時間を途中維持可能/よろけ値：80% x2発 x5射/※スキルやカスタムパーツによるOH復帰時間短縮不可",
     "rangeM": 500,
     "staggerValue": 80,
     "chargeable": true,
@@ -78505,6 +78512,239 @@
     "chargeable": false,
     "special": {},
     "modes": null
+   }
+  ],
+  "ウイングガンダムゼロ": [
+   {
+    "name": "ツインバスターライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1650,
+     "2": 1750
+    },
+    "hits": 1,
+    "notes": "＜通常時＞使用可/二発同時発射/移動射撃可/スキル「ＺＥＲＯシステム」対応/スキル発動中、ブースト射撃可/よろけ有/よろけ値：25% x2",
+    "rangeM": 400,
+    "form": "normal",
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "WGゼロ用ビームサーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2900,
+     "2": 3100
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 1.6
+    }
+   },
+   {
+    "name": "マシンキャノン×2",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 120,
+     "2": 130
+    },
+    "hits": 1,
+    "notes": "＜通常時＞使用可/二発同時発射/移動射撃可/よろけ値：6% x2",
+    "magazine": 80,
+    "rangeM": 250,
+    "form": "normal",
+    "staggerValue": 6,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "打突",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2600,
+     "2": 2800
+    },
+    "hits": 1,
+    "notes": "＜通常時＞使用可/格闘方向に関わらず強制ダウン/スキル「空中格闘制御」対応",
+    "form": "normal",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 1.0,
+     "down": 2.0
+    }
+   },
+   {
+    "name": "TBライフル分離［速射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1000,
+     "2": 1050
+    },
+    "hits": 2,
+    "notes": "＜通常時＞使用可/2発連続発射/連続発射間隔：240発/分/移動射撃可/よろけ値：35% x2",
+    "rangeM": 350,
+    "form": "normal",
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ツインバスターライフル［照射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1100,
+     "2": 1150
+    },
+    "hits": 5,
+    "notes": "＜通常時＞使用可/スキル性能変化対象兵装/2発同時発射/照射攻撃/最大5ヒット x2/射撃時静止/集束必須/ひるみ有/ユニット貫通効果有/集束時間：1.5秒/よろけ値：35% x2発 x5射",
+    "rangeM": 500,
+    "form": "normal",
+    "staggerValue": 35,
+    "chargeable": true,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ツインバスターライフル［ZEROシステム］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1000
+    },
+    "hits": 1,
+    "notes": "＜通常時＞使用可/スキル「ZEROシステム」発動中使用可/2発同時発射 x2回攻撃/連続発射間隔：240発/分/射撃時静止/空中射撃可能/爆風範囲有/よろけ有/よろけ値：35% x2発 x2射",
+    "rangeM": null,
+    "form": "normal",
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ZEROシステム起動",
+    "category": "shooting",
+    "attribute": "special",
+    "power": {
+     "1": 0,
+     "2": 0
+    },
+    "hits": 1,
+    "notes": "＜通常時/変形時＞共通使用可/スキル「ZEROシステム」発動/効果時間：25秒/OH短縮系の効果なし",
+    "rangeM": 0,
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "TBライフル分離［照射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 7500
+    },
+    "hits": 1,
+    "notes": "＜通常時＞かつスキル「ＺＥＲＯシステム」発動中使用可/射撃時静止/空中射撃可/集束必須/集束中移動可/二発同時発射/ユニット貫通効果有/集束時間：0.8秒/よろけ値：200% x2",
+    "rangeM": 150,
+    "form": "normal",
+    "staggerValue": 200,
+    "chargeable": true,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ウイングバルカン",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 150,
+     "2": 160
+    },
+    "hits": 1,
+    "notes": "＜変形時＞使用可/二発同時発射/ブースト射撃可/よろけ値：7% x2",
+    "magazine": 40,
+    "rangeM": 300,
+    "form": "alt",
+    "staggerValue": 7,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "TBライフル分離（変形）",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1000,
+     "2": 1100
+    },
+    "hits": 6,
+    "notes": "＜変形時＞使用可/高速移動射撃可/非集束時6発連続発射/連続発射間隔：353発/分/集束可/集束時二発同時発射/集束時間：1秒/倍率：1.5倍（0.5倍）/よろけ値：35% x6（50% x2）",
+    "rangeM": 350,
+    "form": "alt",
+    "staggerValue": 35,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 1000,
+       "2": 1100
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 1500
+      }
+     }
+    ]
    }
   ]
  }
