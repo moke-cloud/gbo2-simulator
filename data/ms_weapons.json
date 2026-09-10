@@ -1,5 +1,5 @@
 {
- "version": "h60393517d97f",
+ "version": "h04f97e804bdf",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -78745,6 +78745,135 @@
       }
      }
     ]
+   }
+  ],
+  "ゴールドスモー": [
+   {
+    "name": "GS用ハンドビームガン",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2800
+    },
+    "hits": 1,
+    "notes": "移動射撃可/即撃ちよろけ有/ASL（自動照準補正）有/よろけ値：40%",
+    "rangeM": 350,
+    "staggerValue": 40,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "GS用軍配型ヒートホーク",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3000
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.0
+    }
+   },
+   {
+    "name": "GS用ハンドビームガンx2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 550
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ASL（自動照準補正）有/よろけ値：20%（5HIT）",
+    "rangeM": 350,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "GS用ハンドビームガン［照射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 900
+    },
+    "hits": 8,
+    "notes": "射撃時静止/空中射撃可/照射攻撃/最大8ヒット/ひるみ有/攻撃対象の耐ビーム補正を20%減でダメージ計算/よろけ値：35% x8",
+    "rangeM": 350,
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {
+     "armorReductionPct": {
+      "attr": "beam",
+      "pct": 20
+     }
+    },
+    "modes": null
+   },
+   {
+    "name": "GS用軍配型ヒートホーク［打突］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1500
+    },
+    "hits": 1,
+    "notes": "連撃不可/スキル「空中格闘制御」対応/攻撃対象の特殊緩衝材系スキル無視/攻撃対象のシールドHP無視",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 3.0,
+     "side": 3.0,
+     "down": 3.0
+    }
+   },
+   {
+    "name": "IFバンカー［打突］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3400
+    },
+    "hits": 1,
+    "notes": "連撃不可/下格闘時、吹き飛ばしダウン効果有/スキル「空中格闘制御」対応/攻撃対象の耐格闘補正を20%減でダメージ計算/IFBD制御装置使用中、追加ダメージ発生/追加ダメージは、1000固定値",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 20
+     }
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 1.0,
+     "down": 1.6
+    }
+   },
+   {
+    "name": "IFBD制御装置",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 0
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/ビーム属性射撃被ダメージ30%［50%］軽減/ビーム属性射撃よろけ値を70%［50%］かつ小数点以下切り捨てで計算/ビーム属性射撃ダメージリアクション1［2］段階軽減/兵装選択時かつ前方から受けた攻撃のみ、軽減効果の適用範囲が全ての射撃に拡大される/効果時間：12秒/よろけ値：0%",
+    "rangeM": 0,
+    "staggerValue": 0,
+    "chargeable": false,
+    "special": {},
+    "modes": null
    }
   ]
  }
