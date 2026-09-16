@@ -1,5 +1,5 @@
 {
-  "version": "hf59f645ee42c",
+  "version": "h75b2207bf876",
   "totalMS": 592,
   "msList": [
     {
@@ -72615,20 +72615,54 @@
           "thruster": 75,
           "turn_speed_ground": 69.0,
           "turn_speed_space": 78.0
+        },
+        "3": {
+          "cost": 700,
+          "hp": 30000,
+          "ballistic_armor": 18,
+          "beam_armor": 32,
+          "melee_armor": 36,
+          "shooting_correction": 23,
+          "melee_correction": 51,
+          "speed": 135,
+          "boost_speed": 225,
+          "thruster": 75,
+          "turn_speed_ground": 69.0,
+          "turn_speed_space": 78.0
+        },
+        "4": {
+          "cost": 750,
+          "hp": 33000,
+          "ballistic_armor": 20,
+          "beam_armor": 34,
+          "melee_armor": 38,
+          "shooting_correction": 26,
+          "melee_correction": 55,
+          "speed": 135,
+          "boost_speed": 225,
+          "thruster": 75,
+          "turn_speed_ground": 69.0,
+          "turn_speed_space": 78.0
         }
       },
       "slots": {
         "close": {
           "1": 23,
-          "2": 25
+          "2": 25,
+          "3": 27,
+          "4": 29
         },
         "mid": {
           "1": 13,
-          "2": 14
+          "2": 14,
+          "3": 15,
+          "4": 16
         },
         "long": {
           "1": 8,
-          "2": 9
+          "2": 9,
+          "3": 10,
+          "4": 11
         }
       },
       "skills": [
@@ -72700,7 +72734,9 @@
           "level": "LV4",
           "effect": "高速移動中に以下の効果が発生。射撃攻撃による被弾時のリアクションを軽減。拘束効果のない攻撃を連続して受けた際に生じるよろけの発生を軽減。ダメージを30%軽減。・高速移動中に受けた攻撃のよろけ値を60%かつ小数点以下切り捨てで計算する",
           "ms_levels": [
-            2
+            2,
+            3,
+            4
           ]
         },
         {
@@ -72730,39 +72766,73 @@
           "effect": "スラスターオーバーヒート時の回復時間が3%短縮",
           "ms_levels": [
             1,
-            2
-          ]
+            2,
+            3,
+            4
+          ],
+          "variants": {
+            "4": {
+              "lv": "Lv2",
+              "effect": "スラスターオーバーヒート時の回復時間が5%短縮"
+            }
+          }
         },
         {
           "skill_name": "プロペラントタンク Lv1",
           "effect": "スラスターが1増加",
           "ms_levels": [
             1,
-            2
-          ]
+            2,
+            3,
+            4
+          ],
+          "variants": {
+            "4": {
+              "lv": "Lv2",
+              "effect": "スラスターが2増加"
+            }
+          }
         },
         {
           "skill_name": "複合拡張パーツスロット Lv1",
           "effect": "近・中・遠のパーツスロットが1スロずつ増加",
           "ms_levels": [
             1,
-            2
-          ]
+            2,
+            3,
+            4
+          ],
+          "variants": {
+            "4": {
+              "lv": "Lv2",
+              "effect": "近・中・遠のパーツスロットが2スロずつ増加"
+            }
+          }
         },
         {
           "skill_name": "AD-PA Lv1",
           "effect": "格闘補正が1増加",
           "ms_levels": [
             1,
-            2
-          ]
+            2,
+            3,
+            4
+          ],
+          "variants": {
+            "4": {
+              "lv": "Lv2",
+              "effect": "格闘補正が2増加"
+            }
+          }
         },
         {
           "skill_name": "AD-PA Lv3",
           "effect": "格闘補正が4増加",
           "ms_levels": [
             1,
-            2
+            2,
+            3,
+            4
           ]
         }
       ],
