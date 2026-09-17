@@ -1,5 +1,5 @@
 {
- "version": "hc1e3efbc0c42",
+ "version": "h2ba890a7edad",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -78888,6 +78888,277 @@
     "notes": "移動射撃可/ブースト射撃可/ビーム属性射撃被ダメージ30%［50%］軽減/ビーム属性射撃よろけ値を70%［50%］かつ小数点以下切り捨てで計算/ビーム属性射撃ダメージリアクション1［2］段階軽減/兵装選択中かつ前方から受けた攻撃のみ、軽減効果の適用範囲が全ての射撃に拡大される/効果時間：12秒/よろけ値：0%",
     "rangeM": 0,
     "staggerValue": 0,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "カプル（CN）": [
+   {
+    "name": "カプル（CN）用ハンドガン",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 100
+    },
+    "hits": 3,
+    "notes": "3発連続発射/移動射撃可/スキル「/水中機動射撃/」対応/スキル発動中、ブースト射撃可/よろけ値：10% x3",
+    "magazine": 60,
+    "rangeM": 300,
+    "staggerValue": 10,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "カプル（CN）用ミンチドリル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2600
+    },
+    "hits": 1,
+    "notes": "連撃不可/スキル「/空中格闘制御/」対応/スキル「/ヘビーアタック改/」/集束時間：1.5秒/攻撃対象が焼夷状態中、追加ダメージ発生/追加ダメージは、攻撃対象の現在HP5%分/※ロケットパンチリロード中、使用不可",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "heavyAttack": {
+      "mul": 7.0,
+      "perHitMul": 0.5,
+      "hits": 14
+     },
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
+      },
+      {
+       "hit": 3,
+       "pct": 49.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.0
+    }
+   },
+   {
+    "name": "カプル（CN）用アイアン・ネイル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2300
+    },
+    "hits": 1,
+    "notes": "スキル「空中格闘制御」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
+      },
+      {
+       "hit": 3,
+       "pct": 49.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 1.0,
+     "down": 1.4
+    }
+   },
+   {
+    "name": "カプル（CN）用Mx8",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 500
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：35%（3HIT）",
+    "magazine": 8,
+    "rangeM": 300,
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "カプル（CN）用Mx8［焼夷］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 200
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/水中射撃可/命中対象に炎上デバフ付与/2000固定ダメージ(100x20HIT)/※水中射撃時、炎上不可/よろけ値：25%（4HIT）",
+    "magazine": 8,
+    "rangeM": 300,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "カプル（CN）用ロケットパンチ",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3000
+    },
+    "hits": 1,
+    "notes": "射撃時静止/よろけ有/攻撃対象の特殊緩衝材系スキル無視/攻撃対象のシールドHP無視/攻撃対象が空中にいる場合、大よろけ有/よろけ値：50%",
+    "magazine": 1,
+    "rangeM": 250,
+    "staggerValue": 50,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
+      },
+      {
+       "hit": 3,
+       "pct": 49.0
+      }
+     ]
+    },
+    "modes": null
+   }
+  ],
+  "カプル": [
+   {
+    "name": "カプル用ハンドガン",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 110
+    },
+    "hits": 3,
+    "notes": "3発連続発射/移動射撃可/スキル「/水中機動射撃/」対応/スキル発動中、ブースト射撃可/よろけ値：9% x3",
+    "magazine": 60,
+    "rangeM": 300,
+    "staggerValue": 9,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "カプル用アイアン・ネイル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2200
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.9,
+     "down": 1.6
+    }
+   },
+   {
+    "name": "カプル用ハンドガンx2［斉射］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 90
+    },
+    "hits": 1,
+    "notes": "二発同時発射/移動射撃可/よろけ値：4% x2",
+    "magazine": 60,
+    "rangeM": 300,
+    "staggerValue": 4,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "カプル用ハンドガンx2［斉射］（リミッター解除）",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 90
+    },
+    "hits": 1,
+    "notes": "リロードボタン押下で発動/10秒間使用可/二発同時発射/射撃時静止/よろけ値：5% x2",
+    "magazine": null,
+    "rangeM": 400,
+    "staggerValue": 5,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "カプル用ミサイルx8",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 350
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：17%（6HIT）/スキル「突撃体勢改」対応",
+    "magazine": 8,
+    "rangeM": 300,
+    "staggerValue": 17,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "カプル用ミサイルx8（リミッター解除）",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 350
+    },
+    "hits": 8,
+    "notes": "リロードボタン押下で発動/10秒間使用可/8発連続発射/移動射撃可/ブースト射撃可/よろけ値：17% x8/スキル「突撃体勢改」対応",
+    "magazine": null,
+    "rangeM": 300,
+    "staggerValue": 17,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "カプル用ミサイルx8［連続爆発］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 200
+    },
+    "hits": 5,
+    "notes": "移動射撃可/ブースト射撃可/着弾点に2.5秒間持続ダメージ範囲発生(最大5HIT)/よろけ値：13% x5/スキル「突撃体勢改」対応",
+    "magazine": 8,
+    "rangeM": 300,
+    "staggerValue": 13,
     "chargeable": false,
     "special": {},
     "modes": null
