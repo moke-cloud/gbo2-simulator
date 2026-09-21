@@ -1,5 +1,5 @@
 {
- "version": "hea0a553fcbfb",
+ "version": "h279fbdc51fd7",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -69037,7 +69037,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 250
+     "1": 250,
+     "2": 260
     },
     "hits": 1,
     "notes": "移動射撃可/空中射撃不可/威力は散弾1発分/15発同時発射/よろけ値：35% x15/頭部補正：2.5倍/脚部補正：1.8倍/背部補正：1.5倍/シールド補正：0.5倍",
@@ -69053,7 +69054,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2800
+     "1": 2800,
+     "2": 3000
     },
     "hits": 1,
     "notes": "スキル「/空中格闘制御/」対応",
@@ -69083,7 +69085,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 100
+     "1": 100,
+     "2": 120
     },
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
@@ -69099,7 +69102,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 1500
+     "1": 1500,
+     "2": 1600
     },
     "hits": 1,
     "notes": "3発同時発射/射撃時静止/連撃不可/大よろけ有/スキル「空中格闘制御」対応",
@@ -69129,7 +69133,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 700
+     "1": 700,
+     "2": 800
     },
     "hits": 3,
     "notes": "3発連続発射/移動射撃可/空中射撃可/水中時使用不可/よろけ有/命中対象に炎上デバフ付与/2000固定ダメージ(500x4HIT)/よろけ値：25% x3",
@@ -69145,7 +69150,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1800
+     "1": 1800,
+     "2": 1900
     },
     "hits": 1,
     "notes": "二発同時発射/移動射撃可/よろけ有/よろけ値：35% x2",
@@ -69161,7 +69167,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 300
+     "1": 300,
+     "2": 350
     },
     "hits": 1,
     "notes": "12回攻撃/約0.7秒長押しでロックオン/移動射撃可/空中射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/よろけ値：17% x12",
@@ -78333,7 +78340,7 @@
      "4": 285
     },
     "hits": 3,
-    "notes": "3発連続発射/移動射撃可/よろけ値：2% x3",
+    "notes": "3発連続発射(600発/分)/移動射撃可/よろけ値：2% x3",
     "magazine": 30,
     "rangeM": 275,
     "staggerValue": 2,
