@@ -1,5 +1,5 @@
 {
- "version": "h279fbdc51fd7",
+ "version": "h3bf99b5182bf",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -63577,7 +63577,7 @@
       "label": "集束",
       "power": {
        "1": 2300,
-       "2": 2400
+       "2": 2500
       }
      }
     ]
