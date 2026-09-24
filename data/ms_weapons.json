@@ -1,5 +1,5 @@
 {
- "version": "h3bf99b5182bf",
+ "version": "h90c91375b8ca",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -64277,7 +64277,7 @@
      "4": 1350
     },
     "hits": 2,
-    "notes": "2発連続発射/移動射撃可/ひるみ有/よろけ値：65% x2",
+    "notes": "2発連続発射(225発/分)/移動射撃可/ひるみ有/よろけ値：65% x2",
     "magazine": 6,
     "rangeM": 300,
     "staggerValue": 65,
@@ -64315,7 +64315,7 @@
     "directionMul": {
      "n": 1.0,
      "side": 0.75,
-     "down": 1.4
+     "down": 1.5
     }
    },
    {
@@ -64323,15 +64323,15 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 1700,
-     "2": 1900,
-     "3": 2100,
-     "4": 2300
+     "1": 2100,
+     "2": 2300,
+     "3": 2500,
+     "4": 2700
     },
     "hits": 1,
-    "notes": "移動射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：2.5秒/倍率：1.29倍/よろけ値：10%（50%）",
+    "notes": "移動射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時間：2.5秒/倍率：1.095倍/よろけ値：35%（65%）",
     "rangeM": 350,
-    "staggerValue": 10,
+    "staggerValue": 35,
     "chargeable": true,
     "special": {},
     "modes": [
@@ -64339,20 +64339,20 @@
       "key": "normal",
       "label": "非集束",
       "power": {
-       "1": 1700,
-       "2": 1900,
-       "3": 2100,
-       "4": 2300
+       "1": 2100,
+       "2": 2300,
+       "3": 2500,
+       "4": 2700
       }
      },
      {
       "key": "charged",
       "label": "集束",
       "power": {
-       "1": 2200,
-       "2": 2400,
-       "3": 2600,
-       "4": 2800
+       "1": 2300,
+       "2": 2500,
+       "3": 2700,
+       "4": 2900
       }
      }
     ]
@@ -64362,10 +64362,10 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1900,
-     "2": 2100,
-     "3": 2300,
-     "4": 2500
+     "1": 2000,
+     "2": 2200,
+     "3": 2400,
+     "4": 2600
     },
     "hits": 1,
     "notes": "移動射撃可/よろけ有/よろけ値：60%",
@@ -76758,7 +76758,7 @@
      "1": 3000
     },
     "hits": 8,
-    "notes": "移動射撃可/空中射撃可/即撃ちよろけ有/非集束時ASL（自動照準補正）有/集束可/集束射撃時静止/集束中移動可/集束時照射攻撃/最大8ヒット/集束時ユニット貫通効果有/集束時間：2秒/倍率：2.67倍/よろけ値：25%（50% x8）",
+    "notes": "移動射撃可/空中射撃可/即撃ちよろけ有/非集束時ASL（自動照準補正）有/集束可/集束射撃時静止/集束中移動可/集束時照射攻撃/最大8ヒット(360HIT/秒)/集束時ユニット貫通効果有/集束時間：2秒/倍率：2.67倍/よろけ値：25%（50% x8）",
     "rangeM": 350,
     "staggerValue": 25,
     "chargeable": true,
@@ -76807,7 +76807,7 @@
      "1": 1100
     },
     "hits": 3,
-    "notes": "移動射撃可/ブースト射撃可/集束必須/3発連続発射/よろけ有/集束時間：0.8秒/よろけ値：35% x3",
+    "notes": "移動射撃可/ブースト射撃可/集束必須/3発連続発射(1200発/分)/よろけ有/集束時間：0.8秒/よろけ値：35% x3",
     "rangeM": 250,
     "staggerValue": 35,
     "chargeable": true,
@@ -76822,7 +76822,7 @@
      "1": 1100
     },
     "hits": 2,
-    "notes": "2発連続発射/移動射撃可/ASL（自動照準補正）有/よろけ値：35% x2",
+    "notes": "2発連続発射(300発/分)/移動射撃可/ASL（自動照準補正）有/よろけ値：35% x2",
     "rangeM": 325,
     "staggerValue": 35,
     "chargeable": false,
@@ -79166,6 +79166,85 @@
     "magazine": 8,
     "rangeM": 300,
     "staggerValue": 13,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "νガンダム［DFF装備］": [
+   {
+    "name": "［DFF装備］用頭部バルカン",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 110
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：?%（?HIT）",
+    "magazine": 80,
+    "rangeM": 200,
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "シールド装着型ビーム・キャノン",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2000
+    },
+    "hits": 1,
+    "notes": "移動射撃可/スキル「サイコフレーム共振（A）」対応/スキル発動中、ブースト射撃可/よろけ有/よろけ値：?%",
+    "rangeM": 350,
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "シールド装着型ミサイルx4",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 700
+    },
+    "hits": 1,
+    "notes": "移動射撃可/スキル「サイコフレーム共振（A）」対応/スキル発動中、ブースト射撃可/ひるみ/よろけ有/よろけ値：?%（?HIT）",
+    "magazine": 4,
+    "rangeM": 300,
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "フィン・ファンネルx3［集中砲火］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 250
+    },
+    "hits": 1,
+    "notes": "？回攻撃/約0.?秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/スキル「サイコフレーム共振（A）」対応/スキル発動中、空中にいる攻撃対象へのよろけ値上昇/よろけ値：?% x?（?% x?）",
+    "rangeM": 300,
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "フィン・ファンネルx3［連動］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 500
+    },
+    "hits": 1,
+    "notes": "10秒間自機の攻撃行動とともに自動攻撃/3発同時発射/移動射撃可/ブースト射撃可/ユニット貫通効果有/「リロード」ボタンで任意解除可/スキル「サイコフレーム共振（A）」対応/スキル発動中、空中にいる攻撃対象へのよろけ値上昇/よろけ値：?% x3（?% x3）",
+    "rangeM": 350,
+    "staggerValue": null,
     "chargeable": false,
     "special": {},
     "modes": null
