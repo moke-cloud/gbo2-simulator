@@ -1,5 +1,5 @@
 {
- "version": "h90c91375b8ca",
+ "version": "hd25920e21d61",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -39419,7 +39419,7 @@
      "2": 1000
     },
     "hits": 3,
-    "notes": "3発連続発射/射撃時静止/ひるみ有/ユニット貫通効果有/よろけ値：10% x3",
+    "notes": "3発連続発射(450発/分)/射撃時静止/ひるみ有/ユニット貫通効果有/よろけ値：10% x3",
     "rangeM": 600,
     "staggerValue": 10,
     "chargeable": false,
@@ -44986,8 +44986,8 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2200,
-     "2": 2500
+     "1": 2400,
+     "2": 2700
     },
     "hits": 1,
     "notes": "",
@@ -44998,7 +44998,7 @@
     "directionMul": {
      "n": 1.0,
      "side": 0.75,
-     "down": 1.4
+     "down": 1.6
     }
    },
    {
@@ -45006,8 +45006,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 250,
-     "2": 300
+     "1": 350,
+     "2": 400
     },
     "hits": 1,
     "notes": "二発同時発射/移動射撃可/ブースト射撃可/ひるみ有/よろけ値：20% x2",
@@ -45023,11 +45023,11 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2400,
-     "2": 2700
+     "1": 2500,
+     "2": 2800
     },
     "hits": 1,
-    "notes": "連撃不可/格闘方向によらず強制ダウン",
+    "notes": "連撃不可/格闘方向に関わらず強制ダウン",
     "staggerValue": null,
     "chargeable": false,
     "special": {},
@@ -45064,7 +45064,7 @@
      "2": 5500
     },
     "hits": 1,
-    "notes": "射撃時静止/集束必須/集束中移動可/よろけ有/爆風範囲有/集束時間：5秒/よろけ値：80%",
+    "notes": "射撃時静止/集束必須/集束中移動可/よろけ有/爆風範囲有/集束時間：3秒/よろけ値：80%",
     "rangeM": 550,
     "staggerValue": 80,
     "chargeable": true,
@@ -59717,12 +59717,12 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 3600
+     "1": 4000
     },
     "hits": 1,
-    "notes": "Eパック式弾数所持/移動射撃可/集束必須/よろけ有/爆風範囲有/集束時間：0.8秒/よろけ値：20%/頭部・背部補正：?倍/脚部補正：?倍/シールド補正：?倍",
+    "notes": "Eパック式弾数所持/移動射撃可/集束必須/よろけ有/爆風範囲有/集束時間：0.8秒/よろけ値：60%/頭部・背部補正：?倍/脚部補正：?倍/シールド補正：?倍",
     "rangeM": 300,
-    "staggerValue": 20,
+    "staggerValue": 60,
     "chargeable": true,
     "special": {},
     "modes": null
@@ -59735,13 +59735,13 @@
      "1": 2800
     },
     "hits": 1,
-    "notes": "スキル「/ヘビーアタック/」対応/集束時間：2.5秒",
+    "notes": "スキル「/ヘビーアタック改/」対応/集束時間：1.5秒",
     "staggerValue": null,
     "chargeable": false,
     "special": {
      "heavyAttack": {
-      "mul": 4.8,
-      "perHitMul": 2.4,
+      "mul": 5.0,
+      "perHitMul": 2.5,
       "hits": 2
      }
     },
@@ -59749,7 +59749,7 @@
     "directionMul": {
      "n": 1.0,
      "side": 1.0,
-     "down": 3.0
+     "down": 3.6
     }
    },
    {
@@ -59776,9 +59776,9 @@
      "1": 350
     },
     "hits": 1,
-    "notes": "移動射撃可/ASL（自動照準補正）有/よろけ値：4%（25HIT）",
-    "rangeM": 275,
-    "staggerValue": 4,
+    "notes": "移動射撃可/ASL（自動照準補正）有/よろけ値：7%（15HIT）",
+    "rangeM": 300,
+    "staggerValue": 7,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -59788,12 +59788,12 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 380
+     "1": 400
     },
     "hits": 1,
-    "notes": "「リロード」ボタン押下で発動/射撃時静止/10秒間使用可能/ユニット貫通効果有/ASL（自動照準補正）有/よろけ値：8%（13HIT）",
+    "notes": "「リロード」ボタン押下で発動/射撃時静止/10秒間使用可能/ユニット貫通効果有/ASL（自動照準補正）有/よろけ値：9%（12HIT）",
     "rangeM": 450,
-    "staggerValue": 8,
+    "staggerValue": 9,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -59806,7 +59806,7 @@
      "1": 0
     },
     "hits": 1,
-    "notes": "移動射撃可/ブースト射撃可/使用後任意解除不可/最長5秒持続/被ダメージ時持続時間短縮/バリアのHP：10000/よろけ値：0%",
+    "notes": "移動射撃可/ブースト射撃可/最長8秒持続/被ダメージ時持続時間短縮/バリアのHP：10000/「リロード」ボタンで任意解除可/よろけ値：0%",
     "rangeM": 0,
     "staggerValue": 0,
     "chargeable": false,
@@ -59818,12 +59818,12 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 200
+     "1": 250
     },
     "hits": 15,
-    "notes": "15発連続発射 x2回攻撃/約0.5秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/よろけ値：5% x15射 x2回",
+    "notes": "15発連続発射 x2回攻撃/約0.5秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/よろけ値：8% x15射 x2回",
     "rangeM": 250,
-    "staggerValue": 5,
+    "staggerValue": 8,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -59836,9 +59836,9 @@
      "1": 700
     },
     "hits": 7,
-    "notes": "10秒間範囲内の敵機を自動攻撃/最大7ヒット/移動射撃可/ブースト射撃可/よろけ値：15% x7",
-    "rangeM": 100,
-    "staggerValue": 15,
+    "notes": "10秒間範囲内の敵機を自動攻撃/最大7ヒット/移動射撃可/ブースト射撃可/「リロード」ボタンで任意解除可/よろけ値：17% x7",
+    "rangeM": 150,
+    "staggerValue": 17,
     "chargeable": false,
     "special": {},
     "modes": null
