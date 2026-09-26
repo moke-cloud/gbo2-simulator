@@ -1,5 +1,5 @@
 {
- "version": "hd25920e21d61",
+ "version": "h434ed432eb2e",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -43093,7 +43093,7 @@
      "4": 1255
     },
     "hits": 1,
-    "notes": "3点バースト/射撃時静止/ユニット貫通効果有/ひるみ有/よろけ値：35% x3/局部補正：1.25倍/シールド補正：1.2倍",
+    "notes": "3点バースト(514発/分)/射撃時静止/ユニット貫通効果有/ひるみ有/よろけ値：35% x3/局部補正：1.25倍/シールド補正：1.2倍",
     "rangeM": 600,
     "staggerValue": 35,
     "chargeable": false,
@@ -43143,7 +43143,7 @@
      "3": 132
     },
     "hits": 1,
-    "notes": "移動射撃可/ブースト射撃可/よろけ値：6%（17HIT）",
+    "notes": "移動射撃可/ブースト射撃可/ASL（自動照準補正）/よろけ値：6%（17HIT）",
     "magazine": 50,
     "rangeM": 200,
     "staggerValue": 6,
@@ -43193,7 +43193,7 @@
      "3": 250
     },
     "hits": 1,
-    "notes": "移動射撃可/よろけ値：5%（20HIT）",
+    "notes": "移動射撃可/ASL（自動照準補正）/よろけ値：5%（20HIT）",
     "magazine": 180,
     "rangeM": 350,
     "staggerValue": 5,
@@ -79173,6 +79173,81 @@
   ],
   "νガンダム［DFF装備］": [
    {
+    "name": "［DFF装備］用ビーム・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 600
+    },
+    "hits": 4,
+    "notes": "移動射撃可/スキル「サイコフレーム共振（A）」対応/スキル発動中、ブースト射撃可/非集束射撃時4発連続発射/集束可/集束時単発射撃/集束時よろけ有/集束時ユニット貫通効果有/集束時間：1秒/倍率：4倍/よろけ値：25% x4（40%）",
+    "rangeM": 325,
+    "staggerValue": 25,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 600
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 2400
+      }
+     }
+    ]
+   },
+   {
+    "name": "［DFF装備］用ビーム・ライフル［リミッター解除］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2800
+    },
+    "hits": 1,
+    "notes": "「リロード」ボタン押下で発動/10秒間使用可/移動射撃可/スキル「サイコフレーム共振（A）」対応/スキル発動中、ブースト射撃可/集束必須/大よろけ有/集束時間：1.5秒/よろけ値：60%",
+    "rangeM": 450,
+    "staggerValue": 60,
+    "chargeable": true,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "［DFF装備］用ビーム・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2900
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 60.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.5
+    }
+   },
+   {
     "name": "［DFF装備］用頭部バルカン",
     "category": "shooting",
     "attribute": "ballistic",
@@ -79180,10 +79255,10 @@
      "1": 110
     },
     "hits": 1,
-    "notes": "移動射撃可/ブースト射撃可/よろけ値：?%（?HIT）",
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
     "magazine": 80,
     "rangeM": 200,
-    "staggerValue": null,
+    "staggerValue": 7,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -79196,9 +79271,9 @@
      "1": 2000
     },
     "hits": 1,
-    "notes": "移動射撃可/スキル「サイコフレーム共振（A）」対応/スキル発動中、ブースト射撃可/よろけ有/よろけ値：?%",
+    "notes": "移動射撃可/スキル「サイコフレーム共振（A）」対応/スキル発動中、ブースト射撃可/よろけ有/ASL（自動照準補正）有/よろけ値：60%",
     "rangeM": 350,
-    "staggerValue": null,
+    "staggerValue": 60,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -79211,10 +79286,10 @@
      "1": 700
     },
     "hits": 1,
-    "notes": "移動射撃可/スキル「サイコフレーム共振（A）」対応/スキル発動中、ブースト射撃可/ひるみ/よろけ有/よろけ値：?%（?HIT）",
+    "notes": "移動射撃可/スキル「サイコフレーム共振（A）」対応/スキル発動中、ブースト射撃可/ひるみ有/よろけ値：35%（3HIT）",
     "magazine": 4,
     "rangeM": 300,
-    "staggerValue": null,
+    "staggerValue": 35,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -79227,9 +79302,9 @@
      "1": 250
     },
     "hits": 1,
-    "notes": "？回攻撃/約0.?秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/スキル「サイコフレーム共振（A）」対応/スキル発動中、空中にいる攻撃対象へのよろけ値上昇/よろけ値：?% x?（?% x?）",
+    "notes": "9回攻撃/約0.7秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/攻撃対象が空中にいる場合、本兵装のよろけ値を1.5倍にする/スキル「サイコフレーム共振（A）」対応/よろけ値：17% x9（20% x9）",
     "rangeM": 300,
-    "staggerValue": null,
+    "staggerValue": 17,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -79242,9 +79317,9 @@
      "1": 500
     },
     "hits": 1,
-    "notes": "10秒間自機の攻撃行動とともに自動攻撃/3発同時発射/移動射撃可/ブースト射撃可/ユニット貫通効果有/「リロード」ボタンで任意解除可/スキル「サイコフレーム共振（A）」対応/スキル発動中、空中にいる攻撃対象へのよろけ値上昇/よろけ値：?% x3（?% x3）",
+    "notes": "15秒間自機の攻撃行動とともに自動攻撃/3発同時発射/移動射撃可/ブースト射撃可/ユニット貫通効果有/「リロード」ボタンで任意解除可/攻撃対象が空中にいる場合、本兵装のよろけ値を1.4倍にする/スキル「サイコフレーム共振（A）」対応/よろけ値：20% x3（25% x3）",
     "rangeM": 350,
-    "staggerValue": null,
+    "staggerValue": 20,
     "chargeable": false,
     "special": {},
     "modes": null
