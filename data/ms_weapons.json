@@ -1,5 +1,5 @@
 {
- "version": "h434ed432eb2e",
+ "version": "h199a9dc2bf0f",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -19842,7 +19842,7 @@
      "4": 1255
     },
     "hits": 1,
-    "notes": "3点バースト/射撃時静止/ユニット貫通効果有/ひるみ有/よろけ値：35% x3/局部補正：1.25倍/シールド補正：1.2倍",
+    "notes": "3点バースト(514発/分)/射撃時静止/ユニット貫通効果有/ひるみ有/よろけ値：35% x3/局部補正：1.25倍/シールド補正：1.2倍",
     "rangeM": 600,
     "staggerValue": 35,
     "chargeable": false,
@@ -40063,7 +40063,7 @@
      "2": 1050
     },
     "hits": 2,
-    "notes": "2発連続発射/移動射撃可/即撃ちよろけ有/よろけ値：10% x2",
+    "notes": "2発連続発射(180発/分)/移動射撃可/即撃ちよろけ有/よろけ値：10% x2",
     "rangeM": 350,
     "staggerValue": 10,
     "chargeable": false,
@@ -40112,7 +40112,7 @@
      "2": 70
     },
     "hits": 1,
-    "notes": "移動射撃可/ブースト射撃可/よろけ値：2%",
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：2%/頭部補正：1.1倍/脚部・背部補正：1.2倍/シールド補正：0.1倍/拠点補正：0.1倍",
     "magazine": 30,
     "rangeM": 150,
     "staggerValue": 2,
@@ -40129,7 +40129,7 @@
      "2": 275
     },
     "hits": 6,
-    "notes": "6発連続発射/射撃時静止/よろけ値：35% x6（3HIT）",
+    "notes": "6発連続発射(900発/分)/射撃時静止/よろけ値：35% x6（3HIT）",
     "magazine": 6,
     "rangeM": 400,
     "staggerValue": 35,
@@ -63892,12 +63892,12 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 500
+     "1": 600
     },
     "hits": 1,
-    "notes": "5発同時発射/移動射撃可/即撃ちよろけ有/よろけ値：10% x5",
+    "notes": "5発同時発射/移動射撃可/即撃ちよろけ有/よろけ値：15% x5",
     "rangeM": 350,
-    "staggerValue": 10,
+    "staggerValue": 15,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -63907,10 +63907,10 @@
     "category": "melee",
     "attribute": "melee",
     "power": {
-     "1": 2600
+     "1": 2800
     },
     "hits": 1,
-    "notes": "格闘方向に関わらず強制ダウン/スキル「/ギガンティック・アーム制御機構/」対応/スキル「/ヘビーアタック/」対応/集束時間：2.5秒",
+    "notes": "格闘方向に関わらず強制ダウン/スキル「/ギガンティック・アーム制御機構/」対応/スキル「/ヘビーアタック/」対応/集束時間：2秒",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -63932,28 +63932,28 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 400
+     "1": 450
     },
     "hits": 1,
-    "notes": "10発同時発射/移動射撃可/集束必須/よろけ有/集束時間：0.8秒/よろけ値：4% x10発",
+    "notes": "10発同時発射/移動射撃可/集束必須/よろけ有/集束時間：0.8秒/よろけ値：10% x10",
     "rangeM": 400,
-    "staggerValue": 4,
+    "staggerValue": 10,
     "chargeable": true,
     "special": {},
     "modes": null
    },
    {
-    "name": "ミサイル・ポッド［焼夷］",
+    "name": "ミサイル・ポッドx2［焼夷］",
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
      "1": 150
     },
     "hits": 1,
-    "notes": "二発同時発射/移動射撃可/ブースト射撃可/水中時使用不可/命中対象に炎上デバフ付与/2400固定ダメージ(300x8HIT)/よろけ値：9% x2",
+    "notes": "二発同時発射/移動射撃可/ブースト射撃可/水中時使用不可/命中対象に炎上デバフ付与/3200固定ダメージ(400x8HIT)/よろけ値：13% x2",
     "magazine": 24,
     "rangeM": 350,
-    "staggerValue": 9,
+    "staggerValue": 13,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -63963,10 +63963,10 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 2000
+     "1": 2500
     },
     "hits": 1,
-    "notes": "二発同時発射/射撃時静止/集束必須/集束中移動可/大よろけ有/ユニット貫通効果有/集束時間：4秒/よろけ値：20% x2",
+    "notes": "二発同時発射/射撃時静止/集束必須/集束中移動可/大よろけ有/ユニット貫通効果有/集束時間：3秒/よろけ値：20% x2",
     "rangeM": 400,
     "staggerValue": 20,
     "chargeable": true,
@@ -63994,12 +63994,12 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 2000
+     "1": 2200
     },
     "hits": 1,
-    "notes": "照射攻撃/4発同時発射 x2HIT/射撃時静止/集束必須/集束中移動可/ユニット貫通効果有/集束時間：3秒/よろけ値：25% x4発 x2射",
+    "notes": "照射攻撃/4発同時発射 x2HIT/射撃時静止/集束必須/集束中移動可/ユニット貫通効果有/集束時間：2.5秒/よろけ値：35% x4発 x2射",
     "rangeM": 400,
-    "staggerValue": 25,
+    "staggerValue": 35,
     "chargeable": true,
     "special": {},
     "modes": null
