@@ -1,5 +1,5 @@
 {
- "version": "h2efd3b7780c2",
+ "version": "haf221ac0f9a1",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -46269,7 +46269,7 @@
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
     "magazine": 60,
-    "rangeM": 200,
+    "rangeM": 250,
     "staggerValue": 7,
     "chargeable": false,
     "special": {},
@@ -65512,10 +65512,10 @@
      "2": 3200
     },
     "hits": 1,
-    "notes": "移動射撃可/空中射撃可/スキル「/シェルフ・ノズル制御機構/」対応/スキル発動中、ブースト射撃可/よろけ有/ユニット貫通効果有/攻撃対象の耐実弾補正を30%減でダメージ計算/よろけ値：60%/シールド補正：2.0倍",
+    "notes": "移動射撃可/空中射撃可/スキル「/シェルフ・ノズル制御機構/」対応/スキル発動中、ブースト射撃可/よろけ有/ユニット貫通効果有/攻撃対象の耐実弾補正を30%減でダメージ計算/よろけ値：80%/シールド補正：2.0倍",
     "magazine": 3,
     "rangeM": 350,
-    "staggerValue": 60,
+    "staggerValue": 80,
     "chargeable": false,
     "special": {
      "armorReductionPct": {
@@ -65565,10 +65565,10 @@
      "2": 250
     },
     "hits": 1,
-    "notes": "移動射撃可/スキル「シェルフ・ノズル制御機構」対応/スキル発動中、ブースト射撃可/よろけ値：8%（13HIT）",
+    "notes": "移動射撃可/スキル「シェルフ・ノズル制御機構」対応/スキル発動中、ブースト射撃可/よろけ値：9%（12HIT）",
     "magazine": 80,
     "rangeM": 250,
-    "staggerValue": 8,
+    "staggerValue": 9,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -65578,14 +65578,14 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 500,
-     "2": 600
+     "1": 750,
+     "2": 850
     },
     "hits": 4,
-    "notes": "4発連続発射/移動射撃可/ブースト射撃可/よろけ有/照準誘導効果有/よろけ値：20% x4",
+    "notes": "4発連続発射(720発/分)/移動射撃可/ブースト射撃可/よろけ有/照準誘導効果有/よろけ値：25% x4",
     "magazine": 4,
     "rangeM": 250,
-    "staggerValue": 20,
+    "staggerValue": 25,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -65595,14 +65595,14 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 500,
-     "2": 600
+     "1": 750,
+     "2": 850
     },
     "hits": 4,
-    "notes": "4発連続発射/移動射撃可/ブースト射撃可/よろけ有/照準誘導効果有/よろけ値：20% x4",
+    "notes": "4発連続発射(720発/分)/移動射撃可/ブースト射撃可/よろけ有/照準誘導効果有/よろけ値：25% x4",
     "magazine": 4,
     "rangeM": 250,
-    "staggerValue": 20,
+    "staggerValue": 25,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -79270,7 +79270,7 @@
      "1": 110
     },
     "hits": 1,
-    "notes": "移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）",
+    "notes": "移動射撃可/ブースト射撃可/ASL（自動照準補正）有/よろけ値：7%（15HIT）",
     "magazine": 80,
     "rangeM": 200,
     "staggerValue": 7,
