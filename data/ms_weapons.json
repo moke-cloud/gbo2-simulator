@@ -1,5 +1,5 @@
 {
- "version": "haf221ac0f9a1",
+ "version": "heaebd55dd20a",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -3914,7 +3914,7 @@
      "4": 517
     },
     "hits": 3,
-    "notes": "3発連続発射/射撃時静止/ASL（自動照準補正）有/よろけ値：40% x3/局部補正：1.25倍/シールド補正：0.3倍",
+    "notes": "3発連続発射(600発/分)/射撃時静止/ASL（自動照準補正）有/よろけ値：40% x3/局部補正：1.25倍/シールド補正：0.3倍",
     "magazine": 18,
     "rangeM": 400,
     "staggerValue": 40,
@@ -5290,7 +5290,7 @@
      "4": 500
     },
     "hits": 1,
-    "notes": "射撃時静止/左右交互発射/よろけ値：25%（4HIT）",
+    "notes": "左右交互発射/射撃時静止/ひるみ有/よろけ値：25%（4HIT）/局部補正：1.0倍/シールド補正：1.0倍",
     "magazine": 6,
     "rangeM": 350,
     "staggerValue": 25,
@@ -8462,7 +8462,7 @@
      "4": 400
     },
     "hits": 1,
-    "notes": "2発同時発射/長押しで2連即射/射撃時静止/ひるみ有/ASL(自動照準補正)有/よろけ値：10% x2",
+    "notes": "2発同時発射/長押しで2連即射(400発/分)/射撃時静止/ひるみ有/ASL(自動照準補正)有/よろけ値：10% x2",
     "magazine": 16,
     "rangeM": 350,
     "staggerValue": 10,
@@ -9227,7 +9227,7 @@
      "4": 1900
     },
     "hits": 2,
-    "notes": "2発連続発射/移動射撃可/ジャンプ撃ち不可/よろけ有/よろけ値：35% x2/局部補正：1.0倍/シールド補正：0.5倍",
+    "notes": "2発連続発射(180発/分)/移動射撃可/ジャンプ撃ち不可/よろけ有/よろけ値：35% x2/局部補正：1.0倍/シールド補正：0.5倍",
     "magazine": 6,
     "rangeM": 550,
     "staggerValue": 35,
@@ -9287,7 +9287,7 @@
      "4": 2250
     },
     "hits": 3,
-    "notes": "3発連続発射/移動射撃可/空中射撃可/よろけ有/よろけ値：50% x3/局部補正：1.0倍/シールド補正：0.5倍",
+    "notes": "3発連続発射(180発/分)/移動射撃可/空中射撃可/よろけ有/よろけ値：50% x3/局部補正：1.0倍/シールド補正：0.5倍",
     "magazine": 6,
     "rangeM": 550,
     "staggerValue": 50,
@@ -32424,8 +32424,8 @@
      "1": 1600,
      "2": 1750
     },
-    "hits": 1,
-    "notes": "8発同時発射/約0.5秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/よろけ値：35% x8発",
+    "hits": 8,
+    "notes": "8発連続発射(600発/分)/約0.5秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/よろけ値：35% x8発",
     "magazine": 1,
     "rangeM": 300,
     "staggerValue": 35,
@@ -39415,8 +39415,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 900,
-     "2": 1000
+     "1": 1100,
+     "2": 1300
     },
     "hits": 3,
     "notes": "3発連続発射(450発/分)/射撃時静止/ひるみ有/ユニット貫通効果有/よろけ値：10% x3",
@@ -39431,11 +39431,11 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 100,
-     "2": 300
+     "1": 200,
+     "2": 500
     },
     "hits": 1,
-    "notes": "移動射撃可/水中時使用不可/ひるみ有/命中対象に炎上デバフ付与/1000固定ダメージ(200x5HIT)/よろけ値：5%",
+    "notes": "移動射撃可/水中時使用不可/ひるみ有/命中対象に炎上デバフ付与/1750固定ダメージ(350x5HIT)/よろけ値：5%",
     "magazine": 6,
     "rangeM": 300,
     "staggerValue": 5,
@@ -39448,8 +39448,8 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 900,
-     "2": 1100
+     "1": 1200,
+     "2": 1400
     },
     "hits": 1,
     "notes": "移動射撃可/ひるみ有/よろけ値：50%（2HIT）",
@@ -39541,7 +39541,7 @@
      "3": 850
     },
     "hits": 4,
-    "notes": "＜通常時＞使用可/非集束時4発連続発射/移動射撃可/スキル「/能力UP「n_i_t_r_o」/」対応/スキル発動中、ブースト射撃可/ひるみ有/集束可/集束時2発同時発射/集束時よろけ有/集束時間：2.5秒/倍率：3.2倍/よろけ値：25% x4（30% x2）",
+    "notes": "＜通常時＞使用可/非集束時4発連続発射(360発/分)/移動射撃可/スキル「/能力UP「n_i_t_r_o」/」対応/スキル発動中、ブースト射撃可/ひるみ有/集束可/集束時2発同時発射/集束時よろけ有/集束時間：2.5秒/倍率：3.2倍/よろけ値：25% x4（30% x2）",
     "rangeM": 350,
     "form": "normal",
     "staggerValue": 25,
@@ -39578,7 +39578,7 @@
      "3": 1700
     },
     "hits": 6,
-    "notes": "＜通常時＞使用可/最大6ヒット/射撃時静止/集束必須/集束中移動可/大よろけ有/ユニット貫通効果有/集束時間：7秒/よろけ値：50% x6",
+    "notes": "＜通常時＞使用可/最大6ヒット(225発/分)/射撃時静止/集束必須/集束中移動可/大よろけ有/ユニット貫通効果有/集束時間：7秒/よろけ値：50% x6",
     "rangeM": 550,
     "form": "normal",
     "staggerValue": 50,
@@ -39596,7 +39596,7 @@
      "3": 425
     },
     "hits": 1,
-    "notes": "＜通常時＞使用可/2発同時発射 x2基 x2射 x3回攻撃/0.7秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/能力UP「n_i_t_r_o」発動中2発同時発射 x2基 x2射 x5回攻撃/能力UP「n_i_t_r_o」発動中ブースト射撃可/よろけ値：9% x2発 x2基 x2射 x3回 (10% x2発 x2基 x2射 x5回)",
+    "notes": "＜通常時＞使用可/2発同時発射 x2基 x2射 x3回攻撃(59回/分)/0.7秒長押しでロックオン/移動射撃可/ロックオン後高速移動可/ひるみ有/ユニット貫通効果有/能力UP「n_i_t_r_o」発動中2発同時発射 x2基 x2射 x5回攻撃/能力UP「n_i_t_r_o」発動中ブースト射撃可/よろけ値：9% x2発 x2基 x2射 x3回 (10% x2発 x2基 x2射 x5回)",
     "rangeM": 250,
     "form": "normal",
     "staggerValue": 9,
@@ -39614,7 +39614,7 @@
      "3": 500
     },
     "hits": 6,
-    "notes": "＜変形時＞使用可/非集束時6発連続発射/移動射撃可/ブースト射撃可/ひるみ有/集束可/集束時2発同時発射/集束時よろけ有/集束時ユニット貫通効果有/集束時間：1秒/倍率：3倍/よろけ値：25% x6（25% x2）",
+    "notes": "＜変形時＞使用可/非集束時6発連続発射(327発/分)/移動射撃可/ブースト射撃可/ひるみ有/集束可/集束時2発同時発射/集束時よろけ有/集束時ユニット貫通効果有/集束時間：1秒/倍率：3倍/よろけ値：25% x6（25% x2）",
     "rangeM": 450,
     "form": "alt",
     "staggerValue": 25,
@@ -42091,7 +42091,7 @@
      "2": 300
     },
     "hits": 1,
-    "notes": "非集束時2発同時発射 x5回攻撃/移動射撃可/集束可/集束時6発同時発射/集束時よろけ有/集束時間：2.5秒/倍率：1.61倍/よろけ値：16% x2発 x5射（14% x6発）",
+    "notes": "非集束時2発同時発射 x5回攻撃(450発/分)/移動射撃可/集束可/集束時6発同時発射/集束時よろけ有/集束時間：2.5秒/倍率：1.61倍/よろけ値：16% x2発 x5射（14% x6発）",
     "rangeM": 250,
     "staggerValue": 16,
     "chargeable": true,
@@ -49458,7 +49458,7 @@
      "3": 600
     },
     "hits": 5,
-    "notes": "移動射撃可/ブースト射撃可/ひるみ有/着弾点に2.5秒間持続ダメージ範囲発生(最大5HIT)/よろけ値：35% 5",
+    "notes": "移動射撃可/ブースト射撃可/ひるみ有/着弾点に2.5秒間持続ダメージ範囲発生(最大5HIT)/よろけ値：35% x5",
     "magazine": 4,
     "rangeM": 300,
     "staggerValue": 35,
@@ -57684,9 +57684,9 @@
      "2": 1450
     },
     "hits": 1,
-    "notes": "移動射撃可/ひるみ有/集束可/集束時よろけ有/集束時ユニット貫通効果有/集束時間：3秒/倍率：1.42倍/よろけ値：10%（20%）",
+    "notes": "移動射撃可/ひるみ有/集束可/集束時よろけ有/集束時ユニット貫通効果有/集束時間：2秒/倍率：1.42倍/よろけ値：20%（50%）",
     "rangeM": 300,
-    "staggerValue": 10,
+    "staggerValue": 20,
     "chargeable": true,
     "special": {},
     "modes": [
@@ -57748,7 +57748,7 @@
     },
     "hits": 1,
     "notes": "二発同時発射/移動射撃可/ブースト射撃可/よろけ値：3% x2",
-    "magazine": 40,
+    "magazine": 50,
     "rangeM": 150,
     "staggerValue": 3,
     "chargeable": false,
@@ -57760,14 +57760,14 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 1500,
-     "2": 1650
+     "1": 1900,
+     "2": 2100
     },
     "hits": 1,
-    "notes": "移動射撃可/よろけ有/よろけ値：60%",
+    "notes": "移動射撃可/よろけ有/よろけ値：80%",
     "magazine": 4,
     "rangeM": 300,
-    "staggerValue": 60,
+    "staggerValue": 80,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -57808,14 +57808,14 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 120,
-     "2": 130
+     "1": 130,
+     "2": 140
     },
     "hits": 1,
-    "notes": "移動射撃可/よろけ値：1%",
+    "notes": "移動射撃可/よろけ値：2%（50HIT）",
     "magazine": 60,
     "rangeM": 300,
-    "staggerValue": 1,
+    "staggerValue": 2,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -68756,6 +68756,10 @@
       "perHitMul": 1.2,
       "hits": 5
      },
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 30
+     },
      "comboCorrection": [
       {
        "hit": 1,
@@ -68769,11 +68773,7 @@
        "hit": 3,
        "pct": 25.0
       }
-     ],
-     "armorReductionPct": {
-      "attr": "melee",
-      "pct": 30
-     }
+     ]
     },
     "modes": null,
     "directionMul": {
@@ -68791,7 +68791,7 @@
     },
     "hits": 1,
     "notes": "移動射撃可/ブースト射撃可/よろけ値：8%（13HIT）",
-    "magazine": 30,
+    "magazine": 60,
     "rangeM": 200,
     "staggerValue": 8,
     "chargeable": false,
@@ -68803,13 +68803,13 @@
     "category": "shooting",
     "attribute": "ballistic",
     "power": {
-     "1": 230
+     "1": 250
     },
     "hits": 1,
-    "notes": "二発同時発射/移動射撃可/よろけ値：6% x2",
-    "magazine": 40,
+    "notes": "二発同時発射/移動射撃可/よろけ値：13% x2",
+    "magazine": 60,
     "rangeM": 300,
-    "staggerValue": 6,
+    "staggerValue": 13,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -68819,12 +68819,12 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 600
+     "1": 700
     },
     "hits": 1,
-    "notes": "二発同時発射 x2回攻撃/移動射撃可/よろけ有/ASL（自動照準補正）有/よろけ値：5% x2発 x2射",
+    "notes": "二発同時発射 x2回攻撃/移動射撃可/よろけ有/ASL（自動照準補正）有/よろけ値：17% x2発 x2射",
     "rangeM": 300,
-    "staggerValue": 5,
+    "staggerValue": 17,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -68856,6 +68856,10 @@
     "staggerValue": null,
     "chargeable": false,
     "special": {
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 30
+     },
      "comboCorrection": [
       {
        "hit": 1,
@@ -68869,11 +68873,7 @@
        "hit": 3,
        "pct": 25.0
       }
-     ],
-     "armorReductionPct": {
-      "attr": "melee",
-      "pct": 30
-     }
+     ]
     },
     "modes": null,
     "directionMul": {
@@ -79337,6 +79337,140 @@
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
+    "modes": null
+   }
+  ],
+  "ギャン改": [
+   {
+    "name": "ギャン改用ニードル・ミサイル",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 200
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/ユニット貫通効果有/シールド貫通効果有/攻撃対象の特殊緩衝材系スキル無視/よろけ値：17%（6HIT）/脚部補正：1.1倍",
+    "magazine": 20,
+    "rangeM": 250,
+    "staggerValue": 17,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ギャン改用大型ビーム・ソード",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2800
+    },
+    "hits": 1,
+    "notes": "攻撃対象の耐格闘補正を30%減でダメージ計算/本兵装で攻撃中、前方からの射撃兵装による被ダメージリアクション＆よろけ値無効化",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "armorReductionPct": {
+      "attr": "melee",
+      "pct": 30
+     },
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 80.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.4
+    }
+   },
+   {
+    "name": "ギャン改用アンカー",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2500
+    },
+    "hits": 1,
+    "notes": "連撃不可/大よろけ有/カウンター非発生",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 80.0
+      }
+     ]
+    },
+    "modes": null
+   },
+   {
+    "name": "ギャン改用大型B・S［連続突き］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2800
+    },
+    "hits": 1,
+    "notes": "攻撃対象のHPが50%以上の時、追加ダメージ発生/追加ダメージは、400固定値",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 80.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.9,
+     "down": 2.1
+    }
+   },
+   {
+    "name": "ギャン改用シールド［投擲］",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2500
+    },
+    "hits": 1,
+    "notes": "射撃時静止/空中射撃可/よろけ有/強襲カテゴリの攻撃対象が空中にいる場合、大よろけ有/よろけ値：50%",
+    "magazine": 1,
+    "rangeM": 300,
+    "staggerValue": 50,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 80.0
+      }
+     ]
+    },
     "modes": null
    }
   ]
