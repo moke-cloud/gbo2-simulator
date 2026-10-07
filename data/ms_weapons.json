@@ -1,5 +1,5 @@
 {
- "version": "h1856765f50f1",
+ "version": "hf6384d8b9ad0",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -15814,11 +15814,11 @@
     "notes": "＜通常時＞使用可/移動射撃可/ブースト射撃可/よろけ値：7%（15HIT）/頭部補正：1.1倍/脚部・背部補正：1.2倍/シールド補正：0.1倍",
     "magazine": 80,
     "rangeM": 200,
+    "form": "normal",
     "staggerValue": 7,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "背部ミサイル・ランチャーx2",
@@ -15833,11 +15833,11 @@
     "notes": "＜通常時＞使用可/左右交互発射/移動射撃可/ブースト射撃可/ひるみ有/よろけ値：20%（5HIT）/局部補正：1.0倍/シールド補正：0.8倍",
     "magazine": 42,
     "rangeM": 400,
+    "form": "normal",
     "staggerValue": 20,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "頭部ハイ・メガ・キャノン",
@@ -15851,11 +15851,11 @@
     "hits": 1,
     "notes": "＜通常時＞使用可/射撃時静止/伏せ撃ち不可/集束必須/集束中移動可/よろけ有/集束時間：2.5秒/よろけ値：100%/局部補正：1.0倍/シールド補正：1.5倍",
     "rangeM": 400,
+    "form": "normal",
     "staggerValue": 100,
     "chargeable": true,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "頭部ハイ・メガ・キャノン［射撃出力リミッター解除］",
@@ -15867,13 +15867,13 @@
      "3": 1900
     },
     "hits": 7,
-    "notes": "＜通常時＞使用可/照射攻撃/射撃時静止/伏せ撃ち不可/集束必須/集束中移動可/大よろけ有/ユニット貫通効果有/最大7ヒット/集束時間：5秒（2.5秒 x2）/よろけ値：40%x7/局部補正：1.0倍/シールド補正：1.5倍",
+    "notes": "＜通常時＞使用可/照射攻撃/射撃時静止/伏せ撃ち不可/集束必須/集束中移動可/大よろけ有/ユニット貫通効果有/最大7ヒット(240HIT/分)/集束時間：5秒（2.5秒 x2）/よろけ値：50%x7/局部補正：1.0倍/シールド補正：1.5倍",
     "rangeM": 500,
-    "staggerValue": 40,
+    "form": "normal",
+    "staggerValue": 50,
     "chargeable": true,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "ダブル・キャノン",
@@ -15887,11 +15887,11 @@
     "hits": 1,
     "notes": "＜通常時＞使用可/二発同時発射/射撃時静止/よろけ有/よろけ値：35% x2/局部補正：0.8倍/シールド補正：1.3倍",
     "rangeM": 500,
+    "form": "normal",
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "背部M・ランチャーx2（変形）",
@@ -15906,11 +15906,11 @@
     "notes": "＜変形時＞使用可/左右交互発射/移動射撃可/ひるみ有/よろけ値：25%（4HIT）/局部補正：1.0倍/シールド補正：1.0倍",
     "magazine": 42,
     "rangeM": 400,
+    "form": "alt",
     "staggerValue": 25,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    },
    {
     "name": "ダブル・キャノン（変形）",
@@ -15924,11 +15924,11 @@
     "hits": 1,
     "notes": "＜変形時＞使用可/二発同時発射/移動射撃可/ブースト射撃可/よろけ有/よろけ値：35% x2/局部補正：0.8倍/シールド補正：1.3倍",
     "rangeM": 500,
+    "form": "alt",
     "staggerValue": 35,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    }
   ],
   "ガザC": [
@@ -71153,7 +71153,7 @@
      "1": 2600
     },
     "hits": 1,
-    "notes": "スキル「空中格闘制御」対応/スキル「ヘビーアタック改」対応/集束時間：1.5秒/スキル「出力リミッター解除機構」対応/スキル発動中、攻撃対象の機体HPが50%以上の場合追加ダメージ発生/追加ダメージは、攻撃対象の最大HP5%分の固定値/攻撃対象のHPが0.5%ずつ減る毎に追加ダメージは低下する",
+    "notes": "スキル「空中格闘制御」対応/スキル「ヘビーアタック改」対応/集束時間：1.5秒/スキル「出力リミッター解除機構」対応/スキル発動中、攻撃対象の現在HP5%分の追加ダメージが発生",
     "staggerValue": null,
     "chargeable": false,
     "special": {
