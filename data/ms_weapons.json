@@ -1,5 +1,5 @@
 {
- "version": "hf6384d8b9ad0",
+ "version": "h242b66cee19e",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -79471,6 +79471,141 @@
       }
      ]
     },
+    "modes": null
+   }
+  ],
+  "キャノンガンダム": [
+   {
+    "name": "キャノンガンダム用B・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2500
+    },
+    "hits": 1,
+    "notes": "Eパック式弾数所持/移動射撃可/即撃ちよろけ有/集束可/集束時ユニット貫通効果有/集束時ASL（自動照準補正）有/集束時間：3秒/倍率：1.24倍/よろけ値：20%（40%）",
+    "rangeM": 450,
+    "staggerValue": 20,
+    "chargeable": true,
+    "special": {},
+    "modes": [
+     {
+      "key": "normal",
+      "label": "非集束",
+      "power": {
+       "1": 2500
+      }
+     },
+     {
+      "key": "charged",
+      "label": "集束",
+      "power": {
+       "1": 3100
+      }
+     }
+    ]
+   },
+   {
+    "name": "キャノンガンダム用B・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2700
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応/スキル「ウェポンパージ」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 80.0
+      }
+     ]
+    },
+    "modes": null
+   },
+   {
+    "name": "キャノンガンダム用バルカン砲x2",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 125
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/よろけ値：8%（13HIT）",
+    "magazine": 30,
+    "rangeM": 200,
+    "staggerValue": 8,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "キャノンガンダム用B・R［速射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 500
+    },
+    "hits": 3,
+    "notes": "3発連続発射/Eパック式弾数所持/移動射撃可/ASL（自動照準補正）有/よろけ値：25% x3",
+    "rangeM": 400,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ダブルビーム・ガン",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 450
+    },
+    "hits": 1,
+    "notes": "二発同時発射 x3回攻撃/移動射撃可/よろけ有/ASL（自動照準補正）有/よろけ値：10% x2発 x3射",
+    "rangeM": 250,
+    "staggerValue": 10,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "3連マシンキャノンx2",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 120
+    },
+    "hits": 1,
+    "notes": "二発同時発射/射撃時静止/よろけ値：6% x2/スキル「ウェポンパージ」発動後、使用不可",
+    "magazine": 90,
+    "rangeM": 400,
+    "staggerValue": 6,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "3連マシンキャノンx2［リミッター解除］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 150
+    },
+    "hits": 1,
+    "notes": "「リロード」ボタン押下で発動/10秒間使用可能/二発同時発射/射撃時静止/よろけ値：6% x2/スキル「ウェポンパージ」発動後、使用不可",
+    "magazine": null,
+    "rangeM": 400,
+    "staggerValue": 6,
+    "chargeable": false,
+    "special": {},
     "modes": null
    }
   ]
