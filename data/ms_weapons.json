@@ -1,5 +1,5 @@
 {
- "version": "hc5262abf469a",
+ "version": "hb85120f18f2e",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -79625,6 +79625,211 @@
     "magazine": null,
     "rangeM": 400,
     "staggerValue": 6,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "バンデット": [
+   {
+    "name": "バンデット用胸部連装ミサイル",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 850
+    },
+    "hits": 4,
+    "notes": "4発連続発射/移動射撃可/ブースト射撃可/よろけ有/よろけ値：35% x4",
+    "magazine": 4,
+    "rangeM": 275,
+    "staggerValue": 35,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "バンデット用ビーム・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3100
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.6
+    }
+   },
+   {
+    "name": "背部ミサイルポッド",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 400
+    },
+    "hits": 9,
+    "notes": "9発連続発射/移動射撃可/ブースト射撃可/照準誘導効果有/よろけ値：25% x9",
+    "magazine": 18,
+    "rangeM": 300,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "背部ミサイルポッド［特殊弾］",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 300
+    },
+    "hits": 9,
+    "notes": "9発連続発射/移動射撃可/ブースト射撃可/照準誘導効果有/命中後2秒間、鈍足効果付与/よろけ値：25% x9",
+    "magazine": 18,
+    "rangeM": 300,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "頭部センサーパネル",
+    "category": "shooting",
+    "attribute": "special",
+    "power": {
+     "1": 0
+    },
+    "hits": 1,
+    "notes": "移動射撃可/ブースト射撃可/空中射撃可/発動中、射撃属性与ダメージ＋20%/発動中、自機のよろけ値＋25%（小数点以下切り捨て）/自身のみが視認可能なスポット効果付与/効果時間：10秒/よろけ値：0%",
+    "rangeM": 300,
+    "staggerValue": 0,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "マグナ・マーテル": [
+   {
+    "name": "M・マーテル用ビーム・ガン",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2000
+    },
+    "hits": 1,
+    "notes": "移動射撃可/スキル「サイコミュシステム共振（C）」対応/スキル発動中、ブースト射撃可/即撃ちよろけ有/よろけ値：?%",
+    "rangeM": 300,
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "M・マーテル用B・サーベル",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2300
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0
+    }
+   },
+   {
+    "name": "M・マーテル用L・B・トマホーク",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3200
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0
+    }
+   },
+   {
+    "name": "アクティブ・カノンx2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 900
+    },
+    "hits": 1,
+    "notes": "二発同時発射 x2回攻撃/射撃時静止/ひるみ？有/よろけ値：?% x2発 x2射",
+    "rangeM": 400,
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ファンネルx8［設置］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 100
+    },
+    "hits": 1,
+    "notes": "着弾点に？秒間停滞し自動攻撃/累計?回攻撃/移動射撃可/ブースト射撃可/ユニット貫通効果有/「リロード」ボタンで任意解除可/よろけ値：?%/スキル「サイコミュシステム共振（C）」対応",
+    "rangeM": 150,
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "ファンネルx8［追従］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 80
+    },
+    "hits": 1,
+    "notes": "8発同時発射/移動射撃可/ブースト射撃可/ASL（自動照準補正）有/ユニット貫通効果有/よろけ値：？% x8/スキル「サイコミュシステム共振（C）」対応",
+    "rangeM": 225,
+    "staggerValue": null,
     "chargeable": false,
     "special": {},
     "modes": null
