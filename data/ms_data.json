@@ -1,5 +1,5 @@
 {
-  "version": "hf60303bf0d6d",
+  "version": "hc7756b21bed1",
   "totalMS": 599,
   "msList": [
     {
@@ -28743,7 +28743,7 @@
         },
         "mid": {
           "1": 20,
-          "2": 12,
+          "2": 22,
           "3": 24,
           "4": 26
         },
@@ -135154,7 +135154,7 @@
         {
           "name": "サイコミュシステム共振（C）?",
           "level": "LV1",
-          "effect": "機体HPが30%以下になった際、1度だけ一定時間発動する。発動中は一定時間攻撃力と防御力が上昇し高速移動開始時および高速移動中のスラスター消費量を軽減する。さらにスキルに対応した兵装の性能が変化し、スキルが発動した瞬間のみ、ダメージの蓄積によるよろけ以外のリアクションを無効化し、各部位のHPが全回復する。・機体HP30%以下で発動・発動時、部位HP全回復発動中は・射撃補正＋？・格闘補正＋？・被ダメージ－？%・スラスター初期消費－？%・スラスター継続消費－？%・対応兵装の性能変化※発動した瞬間は蓄積以外のダメージリアクション無効※効果時間は？秒"
+          "effect": "機体HPが30%以下になった際、1度だけ一定時間発動する。発動中は一定時間攻撃力と防御力が上昇し高速移動開始時および高速移動中のスラスター消費量を軽減する。さらにスキルに対応した兵装の性能が変化し、スキルが発動した瞬間のみ、ダメージの蓄積によるよろけ以外のリアクションを無効化し、各部位のHPが全回復する。・機体HP30%以下で発動・発動時、部位HP全回復発動中は・射撃補正＋？・格闘補正＋？・被ダメージ－？%・スラスター初期消費－？%・スラスター継続消費－？%・対応兵装の性能変化※発動した瞬間は蓄積以外のダメージリアクション無効※効果時間は30秒"
         },
         {
           "name": "マニューバーアーマー",
@@ -135196,227 +135196,44 @@
         {
           "skill_name": "プロペラントタンク Lv1",
           "effect": "スラスターが1増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "冷却補助システム Lv1",
-          "effect": "スラスターオーバーヒート時の回復時間が3%短縮",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "AD-FCS Lv1",
-          "effect": "射撃補正が1増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "AD-PA Lv1",
-          "effect": "格闘補正が1増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "耐実弾装甲補強 Lv1",
-          "effect": "耐実弾補正が1増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "耐ビーム装甲補強 Lv1",
-          "effect": "耐ビーム補正が1増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "耐格闘装甲補強 Lv1",
-          "effect": "耐格闘補正が1増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "フレーム補強 Lv1",
-          "effect": "機体HPが100増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "シールド構造強化 Lv1",
-          "effect": "シールドHPが100増加",
-          "ms_levels": []
+          "ms_levels": [
+            1
+          ]
         },
         {
           "skill_name": "複合拡張パーツスロット Lv1",
           "effect": "近・中・遠のパーツスロットが1スロずつ増加",
-          "ms_levels": []
+          "ms_levels": [
+            1
+          ]
         },
         {
-          "skill_name": "プロペラントタンク Lv3",
-          "effect": "スラスターが5増加",
-          "ms_levels": []
+          "skill_name": "耐格闘装甲補強 Lv1",
+          "effect": "耐格闘補正が1増加",
+          "ms_levels": [
+            1
+          ]
         },
         {
-          "skill_name": "AD-FCS Lv3",
-          "effect": "射撃補正が4増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "AD-FCS Lv4",
-          "effect": "射撃補正が5増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "AD-PA Lv3",
-          "effect": "格闘補正が4増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "AD-PA Lv4",
-          "effect": "格闘補正が5増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "対汎用攻撃プログラム Lv1",
-          "effect": "汎用機へ与えるダメージが3％増加する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "対汎用攻撃プログラム Lv2",
-          "effect": "汎用機へ与えるダメージが4％増加する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "対支援攻撃プログラム Lv1",
-          "effect": "支援機へ与えるダメージが3％増加する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "対支援攻撃プログラム Lv2",
-          "effect": "支援機へ与えるダメージが4％増加する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "耐実弾装甲補強 Lv3",
-          "effect": "耐実弾補正が4増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "耐実弾装甲補強 Lv4",
-          "effect": "耐実弾補正が5増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "耐ビーム装甲補強 Lv3",
-          "effect": "耐ビーム補正が4増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "耐ビーム装甲補強 Lv4",
-          "effect": "耐ビーム補正が5増加",
-          "ms_levels": []
+          "skill_name": "AD-PA Lv1",
+          "effect": "格闘補正が1増加",
+          "ms_levels": [
+            1
+          ]
         },
         {
           "skill_name": "耐格闘装甲補強 Lv3",
           "effect": "耐格闘補正が4増加",
-          "ms_levels": []
+          "ms_levels": [
+            1
+          ]
         },
         {
-          "skill_name": "耐格闘装甲補強 Lv4",
-          "effect": "耐格闘補正が5増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "支援砲撃耐性 Lv1",
-          "effect": "支援砲撃で受けるダメージを30％軽減する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "支援砲撃耐性 Lv3",
-          "effect": "支援砲撃で受けるダメージを50％軽減する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "対汎用防御プログラム Lv1",
-          "effect": "汎用機から受けるダメージを3％軽減する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "対汎用防御プログラム Lv2",
-          "effect": "汎用機から受けるダメージを4％軽減する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "対汎用防御プログラム Lv3",
-          "effect": "汎用機から受けるダメージを5％軽減する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "対支援防御プログラム Lv1",
-          "effect": "支援機から受けるダメージを3％軽減する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "フレーム補強 Lv3",
-          "effect": "機体HPが500増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "フレーム補強 Lv4",
-          "effect": "機体HPが700増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "シールド構造強化 Lv3",
-          "effect": "シールドHPが800増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "シールド構造強化 Lv4",
-          "effect": "シールドHPが1000増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "シールド構造強化 Lv5",
-          "effect": "シールドHPが1200増加",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "緊急射撃防御機構 Lv1",
-          "effect": "ダウン中、射撃攻撃による機体HPへのダメージを5%軽減する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "緊急射撃防御機構 Lv2",
-          "effect": "ダウン中、射撃攻撃による機体HPへのダメージを10%軽減する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "緊急格闘防御機構 Lv1",
-          "effect": "ダウン中、格闘攻撃による機体HPへのダメージを5%軽減する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "緊急格闘防御機構 Lv2",
-          "effect": "ダウン中、格闘攻撃による機体HPへのダメージを10%軽減する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "緊急出撃 Lv1",
-          "effect": "リスポーンに必要な時間が1秒短縮する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "爆発物取扱いサポート Lv1",
-          "effect": "爆弾設置と爆弾解除に必要な時間が2秒短縮する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "強化セキュリティ Lv1",
-          "effect": "このＭＳの鹵獲に必要な時間が3秒延長する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "強化セキュリティ Lv3",
-          "effect": "このＭＳの鹵獲に必要な時間が5秒延長する",
-          "ms_levels": []
-        },
-        {
-          "skill_name": "強行出撃 Lv1",
-          "effect": "出撃待機中、パイロットが出撃可能な状態であれば、MSの再出撃時間を無視して再出撃を行うことが出来る。本効果によって再出撃を行った場合、MSの最大HPが15%減少する。本効果は1試合1回のみ使用できる。",
-          "ms_levels": []
+          "skill_name": "AD-PA Lv3",
+          "effect": "格闘補正が4増加",
+          "ms_levels": [
+            1
+          ]
         }
       ],
       "wikiUrl": "https://w.atwiki.jp/battle-operation2/pages/8009.html"
