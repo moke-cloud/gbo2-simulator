@@ -1,5 +1,5 @@
 {
- "version": "h200df11fcffd",
+ "version": "hbe6c8ad096fb",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -79843,6 +79843,83 @@
     "rangeM": 225,
     "staggerValue": 5,
     "chargeable": false,
+    "special": {},
+    "modes": null
+   }
+  ],
+  "レコードブレイカー": [
+   {
+    "name": "レコードブレイカー用ザンバスター",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 2600
+    },
+    "hits": 1,
+    "notes": "Eパック式弾数所持/移動射撃可/スキル「試作型M・D・ユニット制御機構」対応/スキル発動中、前方へのブースト射撃可/スキル発動中、リロード時間50%短縮/即撃ちよろけ有/ASL（自動照準補正）有/よろけ値：40%",
+    "rangeM": 300,
+    "staggerValue": 40,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "レコードブレイカー用B・ザンバー",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 2900
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応/スキル「試作型M・D・ユニット制御機構」対応/スキル発動中、攻撃対象のシールドHP無視/スキル発動中、攻撃対象の特殊緩衝材系スキル無視/スキル発動中かつ攻撃対象のHPが50%以上の時、追加ダメージ発生/追加ダメージは、固定値300",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 70.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.6
+    }
+   },
+   {
+    "name": "RB用ザンバスター［速射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 400
+    },
+    "hits": 4,
+    "notes": "4発連続発射/Eパック式弾数所持/移動射撃可/スキル「試作型M・D・ユニット制御機構」対応/スキル発動中、前方へのブースト射撃可/スキル発動中、リロード時間50%短縮/ASL（自動照準補正）有/よろけ値：25% x4",
+    "rangeM": 300,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "RB用ザンバスター［照射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 800
+    },
+    "hits": 6,
+    "notes": "Eパック式弾数所持/射撃時静止/空中射撃可/集束必須/照射攻撃/最大6ヒット/よろけ有/ユニット貫通効果有/集束時間：0.8秒/よろけ値：65% x6",
+    "rangeM": 400,
+    "staggerValue": 65,
+    "chargeable": true,
     "special": {},
     "modes": null
    }
