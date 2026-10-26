@@ -1,5 +1,5 @@
 {
- "version": "h69fdf832e543",
+ "version": "haee3854959ae",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -70071,7 +70071,8 @@
     "category": "shooting",
     "attribute": "beam",
     "power": {
-     "1": 250
+     "1": 250,
+     "2": 300
     },
     "hits": 1,
     "notes": "二発同時発射/移動射撃可/ASL（自動照準補正）有/よろけ値：13% x2",
@@ -70090,7 +70091,7 @@
      "2": 2000
     },
     "hits": 1,
-    "notes": "二発同時発射/移動射撃可/集束必須/大よろけ有/爆風範囲有/集束時間：4.5秒/よろけ値：10% x2",
+    "notes": "二発同時発射/移動射撃可/集束必須/集束中移動可/大よろけ有/爆風範囲有/集束時間：4.5秒/よろけ値：10% x2",
     "rangeM": 500,
     "staggerValue": 10,
     "chargeable": true,
