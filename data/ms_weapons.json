@@ -1,5 +1,5 @@
 {
- "version": "h1bf95ba9f640",
+ "version": "hb552b5706bfc",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -79924,6 +79924,117 @@
     "chargeable": true,
     "special": {},
     "modes": null
+   }
+  ],
+  "クロスボーン・ガンダムX-0": [
+   {
+    "name": "ビーム・スナイパー・ライフル",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 1850,
+     "2": 2000,
+     "3": 2150,
+     "4": 2300
+    },
+    "hits": 1,
+    "notes": "射撃時静止/よろけ有/よろけ値：10%/局部補正：1.4倍/シールド補正：0.8倍",
+    "magazine": 2,
+    "rangeM": 850,
+    "staggerValue": 10,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "B・スナイパー・ライフル［照射］",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 350,
+     "2": 375,
+     "3": 400,
+     "4": 425
+    },
+    "hits": 5,
+    "notes": "射撃時静止/照射攻撃/最大5ヒット(327ヒット/分)/ひるみ有/ユニット貫通効果有/よろけ値：20% x5/ビーム・スナイパー・ライフルに付属/武装Lvは機体Lv依存",
+    "rangeM": 850,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "マゼラ・トップ砲",
+    "category": "shooting",
+    "attribute": "ballistic",
+    "power": {
+     "1": 1625,
+     "2": 1706,
+     "3": 1787,
+     "4": 1868
+    },
+    "hits": 1,
+    "notes": "射撃時静止/大よろけ有/局部補正：1.0倍/シールド補正：1.5倍",
+    "magazine": 6,
+    "rangeM": 500,
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "打撃",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1000,
+     "2": 1050,
+     "3": 1100,
+     "4": 1150,
+     "5": 1200,
+     "6": 1250
+    },
+    "hits": 1,
+    "notes": "局部補正：1.2倍/シールド補正：0.7倍/拠点補正：0.1倍",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0
+    }
+   },
+   {
+    "name": "副兵装1",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 1100
+    },
+    "hits": 1,
+    "notes": "",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0
+    }
    }
   ]
  }
