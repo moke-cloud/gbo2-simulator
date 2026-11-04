@@ -1,5 +1,5 @@
 {
- "version": "hd5f3a40a5de3",
+ "version": "ha0a4608182a6",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -79928,6 +79928,66 @@
   ],
   "クロスボーン・ガンダムX-0": [
    {
+    "name": "Bバスター［Gモード］x2",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 800
+    },
+    "hits": 1,
+    "notes": "二発同時発射 x2回攻撃/移動射撃可/即撃ちよろけ有/ASL（自動照準補正）有/スキル「最大出力（C）」対応/よろけ値：20% x2発 x2射",
+    "rangeM": 300,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "Bバスター［Gモード］x2（最大出力）",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 900
+    },
+    "hits": 1,
+    "notes": "二発同時発射 x2回攻撃/移動射撃可/前方へのブースト射撃可/即撃ちよろけ有/ASL（自動照準補正）有/攻撃対象のシールドHP無視/よろけ値：25% x2発 x2射",
+    "rangeM": 350,
+    "staggerValue": 25,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "Bバスター［Sモード］x2",
+    "category": "melee",
+    "attribute": "melee",
+    "power": {
+     "1": 3000
+    },
+    "hits": 1,
+    "notes": "スキル「/空中格闘制御/」対応/スキル「最大出力（C）」対応/スキル発動中、攻撃対象の特殊緩衝材無視/スキル発動中、攻撃対象のシールドHP無視",
+    "staggerValue": null,
+    "chargeable": false,
+    "special": {
+     "comboCorrection": [
+      {
+       "hit": 1,
+       "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 80.0
+      }
+     ]
+    },
+    "modes": null,
+    "directionMul": {
+     "n": 1.0,
+     "side": 0.75,
+     "down": 2.4
+    }
+   },
+   {
     "name": "X-0用シザー・アンカーx2",
     "category": "melee",
     "attribute": "melee",
@@ -79943,13 +80003,14 @@
       {
        "hit": 1,
        "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 80.0
       }
      ]
     },
-    "modes": null,
-    "directionMul": {
-     "n": 1.0
-    }
+    "modes": null
    },
    {
     "name": "クジャク［Bモード］",
@@ -79959,9 +80020,24 @@
      "1": 2800
     },
     "hits": 1,
-    "notes": "移動射撃可/よろけ有/よろけ値：?%（?HIT）",
+    "notes": "移動射撃可/よろけ有/ASL（自動照準補正）有/スキル「最大出力（C）」対応/よろけ値：20%",
     "rangeM": 350,
-    "staggerValue": null,
+    "staggerValue": 20,
+    "chargeable": false,
+    "special": {},
+    "modes": null
+   },
+   {
+    "name": "クジャク［Bモード］（最大出力）",
+    "category": "shooting",
+    "attribute": "beam",
+    "power": {
+     "1": 300
+    },
+    "hits": 1,
+    "notes": "3発同時発射 → 2発同時発射 x6回攻撃/移動射撃可/前方へのブースト射撃可/よろけ有/ASL（自動照準補正）有/照準誘導効果有/よろけ値：20% x3発 ＋ 20% x2発 x6射",
+    "rangeM": 350,
+    "staggerValue": 20,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -79974,22 +80050,23 @@
      "1": 2800
     },
     "hits": 1,
-    "notes": "射撃時静止/空中射撃可/よろけ有/攻撃対象が空中にいる場合、大よろけ有/攻撃対象が空中にいる場合、与ダメージ＋30%",
+    "notes": "射撃時静止/空中射撃可/よろけ有/攻撃対象が空中にいる場合、大よろけ有/攻撃対象が空中にいる場合、与ダメージ＋30%/よろけ値：100%",
     "magazine": 1,
-    "staggerValue": null,
+    "staggerValue": 100,
     "chargeable": false,
     "special": {
      "comboCorrection": [
       {
        "hit": 1,
        "pct": 100.0
+      },
+      {
+       "hit": 2,
+       "pct": 80.0
       }
      ]
     },
-    "modes": null,
-    "directionMul": {
-     "n": 1.0
-    }
+    "modes": null
    }
   ]
  }
