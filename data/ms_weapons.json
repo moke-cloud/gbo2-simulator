@@ -1,5 +1,5 @@
 {
- "version": "h9fe36f6d6d53",
+ "version": "h91e78e9bc1ea",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -49254,11 +49254,11 @@
     "hits": 1,
     "notes": "＜通常時＞使用可/移動射撃可/即撃ちよろけ有/よろけ値：10%",
     "rangeM": 400,
+    "form": "normal",
     "staggerValue": 10,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "アンクシャ用ビーム・サーベルx2",
@@ -49270,6 +49270,7 @@
     },
     "hits": 1,
     "notes": "＜通常時＞使用可/スキル「/空中格闘制御/」対応",
+    "form": "normal",
     "staggerValue": null,
     "chargeable": false,
     "special": {
@@ -49289,8 +49290,7 @@
      "n": 1.0,
      "side": 0.75,
      "down": 1.6
-    },
-    "form": "normal"
+    }
    },
    {
     "name": "60mmバルカン砲x2",
@@ -49304,11 +49304,11 @@
     "notes": "＜通常時＞使用可/移動射撃可/ブースト射撃可/よろけ値：6%（17HIT）",
     "magazine": 50,
     "rangeM": 200,
+    "form": "normal",
     "staggerValue": 6,
     "chargeable": false,
     "special": {},
-    "modes": null,
-    "form": "normal"
+    "modes": null
    },
    {
     "name": "アンクシャ用B・Rx2",
@@ -49319,8 +49319,9 @@
      "2": 725
     },
     "hits": 2,
-    "notes": "＜通常時＞使用可/非集束時2発連続発射/移動射撃可/集束可/集束時2発同時発射 x3発連続発射/集束時よろけ有/集束時間：2.5秒/倍率：1.43倍/よろけ値：25% x2射（25% x2発 x3射）",
+    "notes": "＜通常時＞使用可/非集束時2発連続発射(600発/分)/移動射撃可/集束可/集束時2発同時発射 x3発連続発射(257発/分)/集束時よろけ有/集束時間：2.5秒/倍率：1.43倍/よろけ値：25% x2射（25% x2発 x3射）",
     "rangeM": 400,
+    "form": "normal",
     "staggerValue": 25,
     "chargeable": true,
     "special": {},
@@ -49341,8 +49342,7 @@
        "2": 1050
       }
      }
-    ],
-    "form": "normal"
+    ]
    },
    {
     "name": "アンクシャ用B・Rx2（変形）",
@@ -49353,13 +49353,13 @@
      "2": 1050
     },
     "hits": 4,
-    "notes": "＜変形時＞使用可/非集束時2発同時発射/移動射撃可/ブースト射撃可/よろけ有/集束可/集束時4発連続発射/集束時間：1秒/倍率：1倍/よろけ値：10% x2発（35% x4射）",
+    "notes": "＜変形時＞使用可/非集束時2発同時発射/移動射撃可/ブースト射撃可/よろけ有/集束可/集束時4発連続発射(360発/分)/集束時間：1秒/倍率：1倍/よろけ値：10% x2発（35% x4射）",
     "rangeM": 400,
+    "form": "alt",
     "staggerValue": 10,
     "chargeable": true,
     "special": {},
-    "modes": null,
-    "form": "alt"
+    "modes": null
    }
   ],
   "シルヴァ・バレト・サプレッサー": [
