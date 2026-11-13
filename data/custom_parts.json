@@ -1,6 +1,6 @@
 {
-  "version": "h81080ecada17",
-  "totalParts": 163,
+  "version": "h1231a5a4f519",
+  "totalParts": 164,
   "parts": [
     {
       "name": "射撃強化プログラム",
@@ -1849,6 +1849,21 @@
           "value": 5
         }
       ],
+      "dpCost": 0,
+      "ticketCost": 0
+    },
+    {
+      "name": "衝撃分散装甲［耐実弾］",
+      "level": 1,
+      "rarity": 3,
+      "category": "defense",
+      "slots": {
+        "close": 2,
+        "mid": 3,
+        "long": 1
+      },
+      "description": "実弾属性の兵装による攻撃を受けた際、一度の攻撃で受けるダメージが最大HPの3%以上の場合、そのダメージを10%軽減。3%未満の場合は20%軽減。なお同時に複数のダメージを与える兵装の場合は、各ダメージに対して判定を行う。",
+      "effects": [],
       "dpCost": 0,
       "ticketCost": 0
     },
