@@ -1,5 +1,5 @@
 {
- "version": "h99241b158b7f",
+ "version": "h1fa55a6a4a2b",
  "source": "atwiki battle-operation2 機体ページ武装表 (parse_ms_weapons.py 自動抽出)。属性=table_weapon_* div id、連撃/格闘方向補正=機体ページ表、備考は原文保全。",
  "weapons": {
   "ブルーディスティニー2号機": [
@@ -52854,10 +52854,10 @@
      "2": 250
     },
     "hits": 1,
-    "notes": "二発同時発射/移動射撃可/水中時使用不可/命中対象に炎上デバフ付与/2400固定ダメージ(300x8HIT)/よろけ値：6% x2",
+    "notes": "二発同時発射/移動射撃可/水中時使用不可/命中対象に炎上デバフ付与/2400固定ダメージ(300x8HIT)/よろけ値：20% x2",
     "magazine": 8,
     "rangeM": 350,
-    "staggerValue": 6,
+    "staggerValue": 20,
     "chargeable": false,
     "special": {},
     "modes": null
@@ -75423,7 +75423,7 @@
      "1": 300
     },
     "hits": 1,
-    "notes": "12回攻撃/約0.7秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ユニット貫通効果有/よろけ値：5% x12",
+    "notes": "12回攻撃/約0.7秒長押しでロックオン/移動射撃可/高速移動中にロックオン＆射出可/ひるみ有/ユニット貫通効果有/よろけ値：5% x12",
     "rangeM": 250,
     "staggerValue": 5,
     "chargeable": false,
